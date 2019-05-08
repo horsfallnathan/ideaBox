@@ -8,12 +8,12 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const cors = require("cors");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const passport = require('passport');
-const cors = require('cors')
 
 require('./passport')
 
@@ -91,11 +91,21 @@ app.use(
 app.use(flash());
 require("./passport")(app);
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true
+  })
+);
+
 const index = require("./routes/index");
 app.use("/", index);
 
 const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes);
+
+const ideaRoutes = require("./routes/ideas")
+app.use("/", ideaRoutes)
 
 module.exports = app;
 

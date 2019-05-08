@@ -3,7 +3,10 @@ import './App.css';
 import SignUp from './components/Auth/Signup'
 import Login from './components/Auth/Login'
 import {loggedin} from './services/auth'
+import MyIdeas from './components/Ideas/MyIdeas';
 import {Switch, Route, Redirect} from 'react-router-dom'
+import PublicViewIdea from './components/Ideas/PublicView';
+import IdeaForm from "./components/form/IdeaForm";
 // import ProtectedRoute from "./components/ProtectedRoute";
 
 class App extends React.Component {
@@ -41,9 +44,10 @@ class App extends React.Component {
           exact path="/login"
           render={(props) => <Login {...props} getUser={this.getUser} />}
           />
-
-          
         </Switch>
+        <Route path="/my-ideas" component={MyIdeas} />
+        <Route path="/idea/:ideaId" component={PublicViewIdea} />
+        <Route path="/submit-idea" component={IdeaForm} />
       </div>
     )
   }
