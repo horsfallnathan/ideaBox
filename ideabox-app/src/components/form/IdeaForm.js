@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import IdeaDescription from "./IdeaDescription";
 import IdeaNeedBenefit from "./IdeaNeedBenefit";
+import IdeaCompetition from "./IdeaCompetition";
+import AddTeam from "./AddTeam";
+import IdeaPrivacy from "./IdeaPrivacy";
+import IdeaPreview from "./IdeaPreview";
 
 export default class IdeaForm extends Component {
   state = {
@@ -10,7 +14,12 @@ export default class IdeaForm extends Component {
     description: "",
     files: [],
     need: "",
-    estimatedResource: ""
+    competition: "",
+    benefit: "",
+    estimatedResource: "",
+    teamMember: [],
+    teamMemberMessage: [],
+    ideaPrivacy: ""
   };
   nextStep = () => {
     const { step } = this.state;
@@ -37,12 +46,10 @@ export default class IdeaForm extends Component {
       });
     }
   };
+
   handleResourceChange = event => {
     event.preventDefault();
-    const { value } = event.target.value;
-    this.setState({
-      estimatedResource: value
-    });
+    console.log(event.target);
   };
 
   render() {
@@ -53,15 +60,21 @@ export default class IdeaForm extends Component {
       description,
       files,
       need,
-      estimatedResources
+      benefit,
+      competition,
+      estimatedResources,
+      ideaPrivacy
     } = this.state;
     const values = {
       title,
       category,
       description,
+      competition,
       files,
       need,
-      estimatedResources
+      benefit,
+      estimatedResources,
+      ideaPrivacy
     };
     switch (step) {
       case 1:
@@ -77,12 +90,40 @@ export default class IdeaForm extends Component {
           <IdeaNeedBenefit
             nextStep={this.nextStep}
             prevStep={this.prevStep}
-            estimatedResourcesList={this.state.estimatedResourcesList}
             handleResourceChange={this.handleResourceChange}
             handleChange={this.handleChange}
             values={values}
           />
         );
+      case 3:
+        return (
+          <IdeaCompetition
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 4:
+        return (
+          <AddTeam
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 5:
+        return (
+          <IdeaPrivacy
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleResourceChange={this.handleResourceChange}
+            values={values}
+          />
+        );
+      case 6:
+        return <IdeaPreview values={values} />;
       default:
         return console.log("error");
     }

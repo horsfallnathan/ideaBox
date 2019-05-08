@@ -54,6 +54,7 @@ export default class IdeaNeedBenefit extends Component {
             <h3>{this.props.estimatedResourcesList}</h3>
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
+          <Button onClick={"/"}>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>
