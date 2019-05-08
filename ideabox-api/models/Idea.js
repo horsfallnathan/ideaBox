@@ -13,17 +13,21 @@ ideaSchema = new Schema({
     files: [String],
     need: String,
     benefit: String,
-    estimatedResources: {
-        type: String,
-        enum: ["Resource 1", "Resource 2", "Resource 3"]
-    },
+    estimatedResources: [
+        {
+            type: String,
+            enum: ["Resource 1", "Resource 2", "Resource 3"]
+        }
+    ],
     competition: String,
-    teamMembers: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    teamMembers: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     message: String,
-    visibility: {
+    privacy: {
         type: Boolean
     },
     status: {
@@ -33,9 +37,12 @@ ideaSchema = new Schema({
     selected: {
         type: Boolean
     },
-    comment: {
-        type: Schema.Types.ObjectId
-    },
+    comments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ],
     upVotes: {
         type: Number,
         default: 0
