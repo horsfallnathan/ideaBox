@@ -7,6 +7,7 @@ import MyIdeas from './components/Ideas/MyIdeas';
 import { Switch, Route } from 'react-router-dom'
 import PublicViewIdea from './components/Ideas/PublicView';
 import IdeaForm from "./components/form/IdeaForm";
+import IdeaDetail from './components/Ideas/IdeaDetail';
 
 class App extends React.Component {
   state = {
@@ -43,7 +44,8 @@ class App extends React.Component {
             render={(props) => <Login {...props} getUser={this.getUser} />}
           />
         </Switch>
-        <Route path="/my-ideas" component={MyIdeas} />
+        <Route exact path="/my-ideas" component={MyIdeas} />
+        <Route path="/my-ideas/:ideaId" component={IdeaDetail} />
         <Route path="/idea/:ideaId" component={PublicViewIdea} />
         <Route path="/submit-idea" component={IdeaForm} />
       </div>

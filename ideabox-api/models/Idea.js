@@ -15,8 +15,7 @@ ideaSchema = new Schema({
     benefit: String,
     estimatedResources: [
         {
-            type: String,
-            enum: ["Resource 1", "Resource 2", "Resource 3"]
+            type: String
         }
     ],
     competition: String,
@@ -41,6 +40,12 @@ ideaSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Comment'
+        }
+    ],
+    feedback: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Feedback'
         }
     ],
     upVotes: {
