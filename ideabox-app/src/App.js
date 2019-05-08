@@ -11,7 +11,7 @@ class App extends React.Component {
       <div className="App">
         <Route path="/my-ideas" component={MyIdeas} />
         <Route path="/idea/:ideaId" component={PublicViewIdea} />
-        <IdeaForm />
+        <Route path="/submit-idea" component={IdeaForm} />
       </div>
     );
   }
