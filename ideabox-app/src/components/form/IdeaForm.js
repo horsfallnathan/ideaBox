@@ -49,7 +49,11 @@ export default class IdeaForm extends Component {
 
   handleResourceChange = event => {
     event.preventDefault();
+
     console.log(event.target);
+    this.setState({
+      // [name]
+    });
   };
 
   render() {
