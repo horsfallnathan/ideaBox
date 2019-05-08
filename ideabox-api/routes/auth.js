@@ -1,63 +1,113 @@
 const express = require("express");
-const passport = require('passport');
 const router = express.Router();
+const bcrypt = require("bcrypt");
+const passport = require('passport');
+
 const User = require("../models/User");
 
-// Bcrypt to encrypt passwords
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
-
-
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
-});
-
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
-
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
-
 router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
-    return;
+  const {username, password, firstName, lastName, email, role} = req.body
+
+  if (!username || !password ) {
+    return res
+    .status(422)
+    .json({message: 'Prove username and password'});
   }
-
-  User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
-      return;
-    }
-
-    const salt = bcrypt.genSaltSync(bcryptSalt);
+  
+  if(password.length < 7){
+    return res
+    .status(422)
+    .json({ message: 'Please make your password at least 8 characters long for security purposes.' });
+  }
+  
+  User.findOne({ username })
+    .then(user => {
+      if(user)
+      return res.status(409)
+      .json({message: 'Username already taken'})
+    
+    const salt = bcrypt.genSaltSync();
     const hashPass = bcrypt.hashSync(password, salt);
-
-    const newUser = new User({
-      username,
-      password: hashPass
+    
+    return User.create({
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      password: hashPass,
+      email: email,
+      role: role
     });
-
-    newUser.save()
-    .then(() => {
-      res.redirect("/");
+  })
+  .then(newUser => {
+    console.log('this is a test')
+    req.login(newUser, () => {
+      return res.status(200).json(newUser)
     })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
-  });
-});
+  })
+  .catch(error => {
+    console.log(error)
+    res.status(500).json(error)
+  })
 
-router.get("/logout", (req, res) => {
+})
+    
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  req.login(req.user, err => {
+    if(err)
+    return res.status(500).json({
+      message: 'Something went wrong in the authentication process'
+    })
+  }),
+  (error, req, res) => {
+    return res.status(401).json(error)
+  }
+})
+
+router.post("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.status(200).json({ message: "User successfully logged out" });
 });
 
-module.exports = router;
+
+router.get("/loggedin", (req, res) => {
+  if (req.isAuthenticated()) return res.json(req.user);
+  return res.json(null);
+});
+
+      
+     
+
+
+// router.get('/userFind', (req, res, next) => {
+//   User.find({})
+//   .then(users => {
+//     res.json(users)
+//   })
+//   .catch(err => {
+//     res.json(err)
+//   })
+// })
+
+
+
+// router.get("/logout", (req, res) => {
+  //   req.logout();
+  //   res.redirect("/");
+  // });
+  
+  // router.get("/login", (req, res, next) => {
+    //   res.render("auth/login", { "message": req.flash("error") });
+    // });
+    
+    // router.post("/login", passport.authenticate("local", {
+      //   successRedirect: "/",
+      //   failureRedirect: "/auth/login",
+      //   failureFlash: true,
+      //   passReqToCallback: true
+      // }));
+      
+      // router.get("/signup", (req, res, next) => {
+      //     res.render("auth/signup");
+      //   });
+        
+        module.exports = router;

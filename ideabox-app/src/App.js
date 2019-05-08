@@ -1,26 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SignUp from './components/Auth/Signup'
+import Login from './components/Auth/Login'
+import {loggedin} from './services/auth'
+import {Switch, Route, Redirect} from 'react-router-dom'
+// import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    loggedIn: null
+  };
+
+  setUser = user => {
+    console.log("huhu")
+    this.setState({
+      loggedIn: user
+    })
+  }
+
+  getUser = () => {
+    loggedin().then(user => {
+      this.setState({
+        loggedIn: user
+      })
+    })
+  }
+
+  componentDidMount() {
+    this.getUser()
+  }
+
+  render() {
+    return (
+      <div>
+        <Switch>
+          <Route exact path="/signup" 
+          render={(props) => <SignUp {...props} setUser={this.setUser}  />}
+          />
+          <Route
+          exact path="/login"
+          render={(props) => <Login {...props} getUser={this.getUser} />}
+          />
+
+          
+        </Switch>
+      </div>
+    )
+  }
 }
 
 export default App;
