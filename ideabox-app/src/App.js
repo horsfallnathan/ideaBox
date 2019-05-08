@@ -7,6 +7,7 @@ import MyIdeas from './components/Ideas/MyIdeas';
 import {Switch, Route, Redirect} from 'react-router-dom'
 import PublicViewIdea from './components/Ideas/PublicView';
 import IdeaForm from "./components/form/IdeaForm";
+import Dashboard from "./components/dashboard/Dashboard"
 // import ProtectedRoute from "./components/ProtectedRoute";
 
 class App extends React.Component {
@@ -45,6 +46,7 @@ class App extends React.Component {
           render={(props) => <Login {...props} getUser={this.getUser} />}
           />
         </Switch>
+        <Route path="/" component={Dashboard} />
         <Route path="/my-ideas" component={MyIdeas} />
         <Route path="/idea/:ideaId" component={PublicViewIdea} />
         <Route path="/submit-idea" component={IdeaForm} />

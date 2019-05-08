@@ -31,3 +31,100 @@
     transform: rotate(360deg);
   }
 }
+
+/* Dashboard */
+
+/* Navbar */
+
+.navbar {
+  width: 100vw; 
+  height: 60px; 
+  background-color: grey; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+}
+
+.navbarIcons {
+  display: flex; 
+  flex-direction: row; 
+  width: 400px; 
+  justify-content: space-between;
+  height: inherit; 
+}
+
+.siemensLogo {
+  width: 100px; 
+  height: 50px; 
+}
+
+
+/* SubmittedIdeas */
+
+.submittedIdeas {
+  width:100vw; 
+  height: 60px;
+  background-color: darkgrey;
+  display: flex; 
+  flex-direction: row; 
+}
+
+.submittedIdeasBox {
+  width: 50vw; 
+  height: inherit; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  border: 1px solid black; 
+}
+
+/* ChallengePresentation */
+
+.challengePres {
+  width: 100vw; 
+  height: 300px; 
+  background-color: lightblue;
+  display: flex; 
+  justify-content: center; 
+}
+
+.challengePresInnerDiv {
+  width: 80vw; 
+  height: inherit; 
+  background-color: blue; 
+  display: flex; 
+  flex-direction: row; 
+}
+
+.challengePresKata {
+  width: 30vw; 
+  height: inherit; 
+  display:flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.challengePresTitleBtns {
+  width: 50vw; 
+  height: inherit; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.challengePresTitle {
+  width: inherit; 
+  height: 150px; 
+  display:flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.challengePresBtns {
+  width: inherit; 
+  height: 150px; 
+  display:flex;
+  justify-content: center; 
+  align-items: center; 
+}
