@@ -5,9 +5,12 @@ import IdeaCompetition from "./IdeaCompetition";
 import AddTeam from "./AddTeam";
 import IdeaPrivacy from "./IdeaPrivacy";
 import IdeaPreview from "./IdeaPreview";
+import { submitIdea } from "../../services/ideaSubmission";
+import { getUsers } from "../../services/ideaSubmission";
 
 export default class IdeaForm extends Component {
   state = {
+    users: [],
     step: 1,
     title: "",
     category: 0,
@@ -16,10 +19,18 @@ export default class IdeaForm extends Component {
     need: "",
     competition: "",
     benefit: "",
-    estimatedResource: "",
-    teamMember: [],
-    teamMemberMessage: [],
+    estimatedResources: [],
+    estimatedResource: [],
+    teamMembers: [],
+    teamMemberMessage: "",
     ideaPrivacy: ""
+  };
+  getUserList = () => {
+    getUsers().then(response => {
+      this.setState({
+        users: response
+      });
+    });
   };
   nextStep = () => {
     const { step } = this.state;
@@ -35,21 +46,85 @@ export default class IdeaForm extends Component {
     });
   };
 
+  handleTeamChange = (e, option) => {
+    const { value, text } = option;
+    console.log(value, "text: ", text, option);
+    this.setState({
+      teamMembers: value
+    });
+  };
+
   handleChange = input => event => {
-    if (input === "category") {
-      this.setState({
-        category: event.target.value
-      });
-    } else {
-      this.setState({
-        [input]: event.target.value
-      });
-    }
+    this.setState({
+      [input]: event.target.value
+    });
   };
 
   handleResourceChange = event => {
     event.preventDefault();
-    console.log(event.target);
+    console.log(event);
+    const { value } = event.target;
+    console.log(event.key);
+    if (value.includes(",")) {
+      const newValue = value.slice(0, -1);
+      this.setState({
+        estimatedResources: [...this.state.estimatedResources, newValue],
+        estimatedResource: ""
+      });
+      console.log(this.state.estimatedResources);
+    } else {
+      this.setState({
+        estimatedResource: value
+      });
+    }
+  };
+  handleResourceRemove = index => {
+    const newResourceList = this.state.estimatedResources.slice(index + 1);
+    console.log(index, newResourceList);
+    this.setState({
+      estimatedResources: newResourceList
+    });
+  };
+  submitForm = event => {
+    event.preventDefault();
+    const {
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResource,
+      ideaPrivacy,
+      teamMembers
+    } = this.state;
+    console.log(
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResource,
+      ideaPrivacy,
+      teamMembers
+    );
+    submitIdea(
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResource,
+      ideaPrivacy,
+      teamMembers
+    ).then(idea => {
+      console.log(idea);
+    });
   };
 
   render() {
@@ -62,6 +137,9 @@ export default class IdeaForm extends Component {
       need,
       benefit,
       competition,
+      teamMembers,
+      teamMemberMessage,
+      estimatedResource,
       estimatedResources,
       ideaPrivacy
     } = this.state;
@@ -70,9 +148,12 @@ export default class IdeaForm extends Component {
       category,
       description,
       competition,
+      teamMembers,
       files,
       need,
       benefit,
+      teamMemberMessage,
+      estimatedResource,
       estimatedResources,
       ideaPrivacy
     };
@@ -91,7 +172,9 @@ export default class IdeaForm extends Component {
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             handleResourceChange={this.handleResourceChange}
+            handleResourceRemove={this.handleResourceRemove}
             handleChange={this.handleChange}
+            handlexChange={this.handlexChange}
             values={values}
           />
         );
@@ -109,6 +192,9 @@ export default class IdeaForm extends Component {
           <AddTeam
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            getUserList={this.getUserList}
+            users={this.state.users}
+            handleTeamChange={this.handleTeamChange}
             handleChange={this.handleChange}
             values={values}
           />
@@ -123,7 +209,13 @@ export default class IdeaForm extends Component {
           />
         );
       case 6:
-        return <IdeaPreview values={values} />;
+        return (
+          <IdeaPreview
+            values={values}
+            submitForm={this.submitForm}
+            prevStep={this.prevStep}
+          />
+        );
       default:
         return console.log("error");
     }

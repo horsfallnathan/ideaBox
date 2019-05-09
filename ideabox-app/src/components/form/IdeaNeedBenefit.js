@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, TextArea, FormField } from "semantic-ui-react";
+import { Button, Form, TextArea, FormField, List } from "semantic-ui-react";
 
 export default class IdeaNeedBenefit extends Component {
   nextStep = event => {
@@ -50,11 +50,25 @@ export default class IdeaNeedBenefit extends Component {
               value={values.estimatedResource}
               onChange={this.props.handleResourceChange}
             />
-
-            <h3>{this.props.estimatedResourcesList}</h3>
+            {values.estimatedResources &&
+              values.estimatedResources.map((resource, i) => {
+                return (
+                  <List.Item key={i}>
+                    <List.Content>{resource}</List.Content>
+                    <List.Content>{i}</List.Content>
+                    <List.Content>
+                      <Button
+                        onClick={() => this.props.handleResourceRemove(i)}
+                      >
+                        Delete
+                      </Button>
+                    </List.Content>
+                  </List.Item>
+                );
+              })}
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
-          <Button onClick={"/"}>Save as draft</Button>
+          {/* <Button onClick={"/"}>Save as draft</Button> */}
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

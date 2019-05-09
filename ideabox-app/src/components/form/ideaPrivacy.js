@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Button, Form, Checkbox, FormField, Radio } from "semantic-ui-react";
+import { Button, Form, FormField, Radio } from "semantic-ui-react";
 
 export default class IdeaPrivacy extends Component {
   nextStep = event => {
     event.preventDefault();
     this.props.nextStep();
   };
+  prevStep = event => {
+    event.preventDefault();
+    this.props.prevStep();
+  };
 
   render() {
     const { values } = this.props;
-    console.log(values);
     return (
       <div>
         <Form>
@@ -37,7 +40,7 @@ export default class IdeaPrivacy extends Component {
             </p>
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
-          <Button onClick={"/"}>Save as draft</Button>
+          <Button>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>
