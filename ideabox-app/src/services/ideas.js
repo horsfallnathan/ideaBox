@@ -9,4 +9,12 @@ const publicViewIdea = (ideaId) => {
     return service.get(`/idea/${ideaId}`)
 }
 
-export { publicViewIdea }
+const myIdeas = () => {
+    return service.get("/my-ideas")
+}
+
+const deleteIdea = (ideaId) => {
+    return service.delete(`/my-ideas/${ideaId}`)
+}
+
+export { publicViewIdea, myIdeas, deleteIdea }

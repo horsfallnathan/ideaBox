@@ -6,7 +6,7 @@ const Challenge = require('../models/Challenge')
 
 router.get("/my-ideas", (req, res) => {
     const { _id } = req.user
-    User.find({ _id }).populate('ideas').then(userInfo => {
+    User.findOne({ _id }).populate('ideas').then(userInfo => {
         res.json(userInfo)
     }).catch(err => {
         res.json(err)
@@ -26,8 +26,20 @@ router.get("/idea/:ideaId", (req, res) => {
                 res.json(err)
             })
         } else {
-            return res.json(idea)
+            const result = {
+                challenge: {},
+                idea
+            }
+            return res.json(result)
         }
+    }).catch(err => {
+        res.json(err)
+    })
+})
+
+router.delete("/my-ideas/:ideaId", (req, res) => {
+    Idea.findByIdAndDelete(req.params.ideaId).then(() => {
+        res.json({ message: "idea successfully deleted" })
     }).catch(err => {
         res.json(err)
     })

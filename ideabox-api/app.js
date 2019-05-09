@@ -79,15 +79,6 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  
-  })
-)
-
-
 app.use(flash());
 require("./passport")(app);
 
@@ -106,6 +97,9 @@ app.use("/api", authRoutes);
 
 const ideaRoutes = require("./routes/ideas")
 app.use("/", ideaRoutes)
+
+const challengeRoutes = require("./routes/challenges")
+app.use("/", challengeRoutes)
 
 module.exports = app;
 
