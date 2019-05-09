@@ -47,3 +47,4 @@ export default class IdeaPrivacy extends Component {
     );
   }
 }
+//Changed this also
