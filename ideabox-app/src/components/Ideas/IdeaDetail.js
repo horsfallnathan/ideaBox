@@ -28,7 +28,7 @@ class IdeaDetail extends Component {
         const challengeTitle = this.state.challenge.title
         return (
             <div>
-                <div>
+                <div className="Org">
                     <h1>Idea Title: {title}</h1>
                     {challengeTitle ? <h1>Innovation Challenge: {challengeTitle}</h1> : <h1>Open Idea</h1>}
                 </div>
@@ -43,9 +43,11 @@ class IdeaDetail extends Component {
                     <h2>Estimated Resources</h2>
                     <p>{estimatedResources}</p>
 
-                    <h2>Comments</h2>
-                    <h4>Manager Comments</h4>
-                    <h4>Colleague Comments</h4>
+                    <div className="Org">
+                        <h2>Comments</h2>
+                        <h4>Manager Comments</h4>
+                        <h4>Colleague Comments</h4>
+                    </div>
 
                     <p>This idea has been up-voted by
                     {{ upVotes } === 1 ? ` ${upVotes} employee` : ` ${upVotes} employees`}

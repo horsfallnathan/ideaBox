@@ -98,5 +98,8 @@ app.use("/api", authRoutes);
 const ideaRoutes = require("./routes/ideas")
 app.use("/", ideaRoutes)
 
+const commentRoutes = require("./routes/comments")
+app.use("/", commentRoutes)
+
 module.exports = app;
 
