@@ -62,4 +62,3 @@ export default class IdeaPreview extends Component {
     );
   }
 }
-///Changed stuff here to see if I can udpate the renaming of the files
