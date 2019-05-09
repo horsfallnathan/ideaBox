@@ -7,7 +7,7 @@ import MyIdeas from "./components/Ideas/MyIdeas";
 import { Switch, Route } from "react-router-dom";
 import PublicViewIdea from "./components/Ideas/PublicView";
 import IdeaForm from "./components/form/IdeaForm";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import IdeaDetail from "./components/Ideas/IdeaDetail";
 
 class App extends React.Component {
   state = {
@@ -15,7 +15,6 @@ class App extends React.Component {
   };
 
   setUser = user => {
-    console.log("huhu");
     this.setState({
       loggedIn: user
     });
@@ -45,10 +44,11 @@ class App extends React.Component {
           <Route
             exact
             path="/login"
-            render={props => <Login {...props} getUser={this.getUser} />}
+            render={props => <Login {...props} setUser={this.setUser} />}
           />
         </Switch>
-        <Route path="/my-ideas" component={MyIdeas} />
+        <Route exact path="/my-ideas" component={MyIdeas} />
+        <Route path="/my-ideas/:ideaId" component={IdeaDetail} />
         <Route path="/idea/:ideaId" component={PublicViewIdea} />
         <Route path="/submit-idea" component={IdeaForm} />
       </div>

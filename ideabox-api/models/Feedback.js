@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-commentSchema = new Schema({
-    content: String,
+feedbackSchema = new Schema({
+    attachedTo: {
+        startIndex: Number,
+        endIndex: Number,
+        color: String
+    },
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
     reply: {
         type: Schema.Types.ObjectId,
-        ref: 'Comment'
+        ref: 'Feedback'
 
     }
 },
@@ -20,5 +24,5 @@ commentSchema = new Schema({
         }
     })
 
-const Comment = mongoose.model('Comment', commentSchema);
-module.exports = Comment;
+const Feedback = mongoose.model('Feedback', feedbackSchema);
+module.exports = Feedback;

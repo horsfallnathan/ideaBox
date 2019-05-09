@@ -31,9 +31,18 @@ ideaSchema = new Schema(
     selected: {
       type: Boolean
     },
-    comment: {
-      type: Schema.Types.ObjectId
-    },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
+      }
+    ],
+    feedback: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Feedback"
+      }
+    ],
     upVotes: {
       type: Number,
       default: 0
