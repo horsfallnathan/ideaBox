@@ -98,6 +98,9 @@ app.use("/api", authRoutes);
 const ideaRoutes = require("./routes/ideas");
 app.use("/", ideaRoutes);
 
+const commentRoutes = require("./routes/comments")
+app.use("/", commentRoutes)
+
 const ideaSubmissionRoute = require("./routes/ideaSubmission");
 app.use("/api", ideaSubmissionRoute);
 

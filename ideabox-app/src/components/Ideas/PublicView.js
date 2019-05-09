@@ -1,26 +1,42 @@
 import React, { Component } from 'react'
 import { publicViewIdea } from '../../services/ideas'
+import { createComment } from '../../services/comments'
 
 class PublicViewIdea extends Component {
     state = {
         challenge: {},
-        idea: {}
+        idea: {},
+        commentContent: ''
     }
 
     componentDidMount() {
         const { ideaId } = this.props.match.params
-        publicViewIdea(ideaId).then(idea => {
-            this.setState(idea.data)
+        publicViewIdea(ideaId).then(ideainfo => {
+            const { challenge } = ideainfo.data
+            const { idea } = ideainfo.data
+            this.setState({ challenge, idea, commentContent: "" })
         })
     }
 
+    handleChange = event => {
+        const { value, name } = event.target;
+        this.setState({ [name]: value })
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+        let info = { content: this.state.commentContent, ideaId: this.state.idea._id }
+        createComment(info)
+        this.setState({ commentContent: '' })
+    }
+
     render() {
-        const { title, description, upVotes, need, benefit, estimatedResources, competition, teamMembers } = this.state.idea
+        const { title, description, upVotes, need, benefit, estimatedResources, competition, teamMembers, comments } = this.state.idea
         const challengeTitle = this.state.challenge.title
         return (
             <div>
                 <div>
-                    <h1>The Innovation Challenge: {challengeTitle}</h1>
+                    {challengeTitle ? <h1>The Innovation Challenge: {challengeTitle}</h1> : <h1>Open Idea</h1>}
                     <h1>Submited Idea: {title}</h1>
                 </div>
                 <div>
@@ -49,11 +65,24 @@ class PublicViewIdea extends Component {
                     <h2>Idea Team</h2>
                     <p>{teamMembers}</p>
 
-                    <h2>Comments</h2>
-                    <h4>Manager Comments</h4>
-                    <h4>Colleague Comments</h4>
+                    <div className="Org">
+                        <h2>Comments</h2>
+                        <h4>Manager Comments</h4>
+                        <h4>Colleague Comments</h4>
 
-                    <h2>Leave a comment</h2>
+                        {comments && comments.map((comment, i) => {
+                            return (
+                                <div key={i}>
+                                    <h4>Comment</h4>
+                                    <p>{comment.content}</p>
+                                </div>
+                            )
+                        })}
+
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" placeholder="Leave a comment..." value={this.commentContent} name="commentContent" onChange={this.handleChange} />
+                        </form>
+                    </div>
                 </div>
             </div>
         )
