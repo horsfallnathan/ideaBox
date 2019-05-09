@@ -13,7 +13,7 @@ export default class IdeaForm extends Component {
     users: [],
     step: 1,
     title: "",
-    category: 0,
+    category: "",
     description: "",
     files: [],
     need: "",
@@ -45,10 +45,20 @@ export default class IdeaForm extends Component {
       step: step - 1
     });
   };
-
+  handleCategoryChange = (e, { value }) => {
+    console.log(value);
+    this.setState({
+      category: value
+    });
+  };
+  handlePrivacyChange = (e, { value }) => {
+    console.log(value);
+    this.setState({
+      ideaPrivacy: value
+    });
+  };
   handleTeamChange = (e, option) => {
-    const { value, text } = option;
-    console.log(value, "text: ", text, option);
+    const { value } = option;
     this.setState({
       teamMembers: value
     });
@@ -95,7 +105,7 @@ export default class IdeaForm extends Component {
       need,
       benefit,
       competition,
-      estimatedResource,
+      estimatedResources,
       ideaPrivacy,
       teamMembers
     } = this.state;
@@ -107,7 +117,7 @@ export default class IdeaForm extends Component {
       need,
       benefit,
       competition,
-      estimatedResource,
+      estimatedResources,
       ideaPrivacy,
       teamMembers
     );
@@ -119,7 +129,7 @@ export default class IdeaForm extends Component {
       need,
       benefit,
       competition,
-      estimatedResource,
+      estimatedResources,
       ideaPrivacy,
       teamMembers
     ).then(idea => {
@@ -162,6 +172,7 @@ export default class IdeaForm extends Component {
         return (
           <IdeaDescription
             nextStep={this.nextStep}
+            handleCategoryChange={this.handleCategoryChange}
             handleChange={this.handleChange}
             values={values}
           />
@@ -204,6 +215,7 @@ export default class IdeaForm extends Component {
           <IdeaPrivacy
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handlePrivacyChange={this.handlePrivacyChange}
             handleResourceChange={this.handleResourceChange}
             values={values}
           />

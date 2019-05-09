@@ -23,7 +23,7 @@ export default class IdeaPrivacy extends Component {
               name="ideaPrivacy"
               value="public"
               checked={values.ideaPrivacy === "public"}
-              onChange={this.props.handleResourceChange}
+              onChange={this.props.handlePrivacyChange}
             />
             <p>Your idea will be shared with all Siemens employees</p>
           </FormField>
@@ -33,7 +33,7 @@ export default class IdeaPrivacy extends Component {
               name="ideaPrivacy"
               value="private"
               checked={values.ideaPrivacy === "private"}
-              onChange={this.props.handleResourceChange}
+              onChange={this.props.handlePrivacyChange}
             />
             <p>
               Only you, your selected team members, and managers can view this

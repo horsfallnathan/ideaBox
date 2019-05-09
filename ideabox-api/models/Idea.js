@@ -7,6 +7,10 @@ ideaSchema = new Schema(
     challenge: {
       type: Boolean
     },
+    category: {
+      type: String,
+      enum: ["Innovation Challenge", "Free Idea"]
+    },
     description: {
       type: String,
       maxlength: 750
@@ -16,10 +20,12 @@ ideaSchema = new Schema(
     benefit: String,
     estimatedResources: [String],
     competition: String,
-    teamMembers: {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    },
+    teamMembers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ],
     message: String,
     privacy: {
       type: Boolean

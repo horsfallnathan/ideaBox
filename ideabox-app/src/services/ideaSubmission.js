@@ -13,7 +13,7 @@ const submitIdea = (
   need,
   benefit,
   competition,
-  estimatedResource,
+  estimatedResources,
   ideaPrivacy,
   teamMembers
 ) => {
@@ -26,7 +26,7 @@ const submitIdea = (
       need,
       benefit,
       competition,
-      estimatedResource,
+      estimatedResources,
       ideaPrivacy,
       teamMembers
     })
