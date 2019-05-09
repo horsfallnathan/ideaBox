@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, TextArea, Checkbox, FormField } from "semantic-ui-react";
+import { Button, Form, TextArea } from "semantic-ui-react";
 
 export default class IdeaDescription extends Component {
   nextStep = event => {
@@ -19,7 +19,7 @@ export default class IdeaDescription extends Component {
             value={values.title}
             onChange={this.props.handleChange("title")}
           />
-          <FormField>
+          {/* <FormField>
             <Checkbox
               radio
               label="Innovation Challenge"
@@ -40,7 +40,30 @@ export default class IdeaDescription extends Component {
               onChange={this.props.handleChange("category")}
             />
             <p>Ideas on any topic of your choice</p>
-          </FormField>
+          </FormField> */}
+
+          {/* <Form.Group inline>
+            <label>Size</label>
+            <Form.Radio
+              label="Small"
+              value="sm"
+              checked={values.category === "sm"}
+              onChange={this.props.handleChange}
+            />
+            <Form.Radio
+              label="Medium"
+              value="md"
+              checked={values.category === "md"}
+              onChange={this.props.handleChange}
+            />
+            <Form.Radio
+              label="Large"
+              value="lg"
+              checked={values.category === "lg"}
+              onChange={this.props.handleChange}
+            />
+          </Form.Group> */}
+
           <label htmlFor="description">Description</label>
           <TextArea
             type="textArea"

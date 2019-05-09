@@ -10,17 +10,16 @@ export default class AddTeam extends Component {
     event.preventDefault();
     this.props.prevStep();
   };
-
+  componentWillMount() {
+    this.props.getUserList();
+  }
   render() {
     const { values } = this.props;
-    const userList = [
-      {
-        text: "Julia",
-        value: "Julie"
-      },
-      { text: "Nathan", value: "nthn" },
-      { text: "Theresa", value: "Tdogg" }
-    ];
+    const userList = this.props.users.map((user, index) => ({
+      key: user._id,
+      text: user.username,
+      value: user._id
+    }));
     return (
       <div>
         <Form>
@@ -35,7 +34,7 @@ export default class AddTeam extends Component {
               multiple
               selection
               options={userList}
-              onChange={this.props.handleChange("teamMember")}
+              onChange={this.props.handleTeamChange}
             />
             <label htmlFor="teamMemberMessage">
               Leave them a message! They will reveive it as soon as you submit
@@ -49,7 +48,7 @@ export default class AddTeam extends Component {
             />
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
-          <Button onClick={"/"}>Save as draft</Button>
+          <Button>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-ideaSchema = new Schema(
+draftSchema = new Schema(
   {
     title: String,
     challenge: {
@@ -14,7 +14,9 @@ ideaSchema = new Schema(
     files: [String],
     need: String,
     benefit: String,
-    estimatedResources: [String],
+    estimatedResources: {
+      type: String
+    },
     competition: String,
     teamMembers: {
       type: Schema.Types.ObjectId,
@@ -47,5 +49,5 @@ ideaSchema = new Schema(
   }
 );
 
-const Idea = mongoose.model("Idea", ideaSchema);
-module.exports = Idea;
+const Draft = mongoose.model("Draft", draftSchema);
+module.exports = Draft;
