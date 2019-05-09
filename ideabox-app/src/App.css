@@ -38,7 +38,7 @@
 
 .navbar {
   width: 100vw; 
-  height: 60px; 
+  height: 80px; 
   background-color: grey; 
   display: flex; 
   flex-direction: row; 
@@ -63,7 +63,7 @@
 
 .submittedIdeas {
   width:100vw; 
-  height: 60px;
+  height: 80px;
   background-color: darkgrey;
   display: flex; 
   flex-direction: row; 
@@ -82,7 +82,7 @@
 
 .challengePres {
   width: 100vw; 
-  height: 300px; 
+  height: 429px; 
   background-color: lightblue;
   display: flex; 
   justify-content: center; 
@@ -117,7 +117,7 @@
   width: inherit; 
   height: 150px; 
   display:flex;
-  justify-content: center; 
+  /* justify-content: center;  */
   align-items: center; 
 }
 
@@ -125,6 +125,77 @@
   width: inherit; 
   height: 150px; 
   display:flex;
+  /* justify-content: center;  */
+  align-items: center; 
+}
+
+.challengePresBtns button {
+  margin-right: 40px; 
+}
+
+/* Discover Ideas */
+
+.discoverIdeas {
+  height: 200px; 
+  width: 100vw; 
+  background-color: lightgray;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-around;
+  align-items: center; 
+}
+
+.relatedIdeas {
+  height: 1400px; 
+  width: 100vw; 
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+}
+
+.relatedIdeasInnerDiv {
+  height: 1178;
+  width: 1060;
+  display: flex; 
+  flex-wrap: wrap;
+  flex-direction: row; 
+  justify-content: center; 
+}
+
+.relatedIdeasBox {
+  width: 495px; 
+  height: 346px; 
+  background-color: lightblue;
+  display:flex; 
   justify-content: center; 
   align-items: center; 
+  margin: 50px; 
+}
+
+.relatedIdeasBoxInnerDiv {
+  width: 360px; 
+  height: 250px; 
+  background-color: white; 
+}
+
+.relatedIdeasBoxNameDescription {
+  width: inherit; 
+  height: 116px;
+  background-color: lightcyan;
+}
+
+.relatedIdeasBoxStatus {
+  width: inherit; 
+  height: 60px;
+  background-color: lightgray;
+  margin-top: 40px; 
+}
+
+.relatedIdeasBoxVotes {
+  width: inherit; 
+  height: 16px; 
+  background-color: lightslategray;
+  display:flex; 
+  flex-direction: row; 
+  margin-top: 20px; 
 }

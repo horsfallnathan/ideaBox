@@ -16,8 +16,8 @@ class ChallengePres extends React.Component {
                             <h1>Title of Challenge</h1>
                             </div>
                             <div className="challengePresBtns">
-                                <button>Info</button>
-                                <button>New Idea</button>
+                                <button>Read more</button>
+                                <button>Submit Idea</button>
                             </div>
                         </div>
                     </div>

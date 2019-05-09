@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import SubmittedIdeas from './SubmittedIdeas'
 import ChallengePres from './ChallengePres'
-import DiscoverIdeas from './DiscoverIdeas'
+import RelatedIdeas from './RelatedIdeas'
 
 
 class Dashboard extends React.Component {
@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
                <Navbar />
                <SubmittedIdeas />
                <ChallengePres />
-               <DiscoverIdeas />
+               <RelatedIdeas />
             </div>
         )
     }
