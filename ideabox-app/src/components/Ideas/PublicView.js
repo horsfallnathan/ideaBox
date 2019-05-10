@@ -2,7 +2,15 @@ import React, { Component } from 'react'
 import { publicViewIdea } from '../../services/ideas'
 import { createComment } from '../../services/comments'
 
+// import Popover from 'react-text-selection-popover';
+// import placeRightBelow from 'react-text-selection-popover/lib/placeRightBelow'
+
 class PublicViewIdea extends Component {
+    constructor(props) {
+        super(props)
+        this.ref = React.createRef()
+    }
+
     state = {
         challenge: {},
         idea: {},
@@ -37,6 +45,36 @@ class PublicViewIdea extends Component {
         })
     }
 
+    selectedText = (id) => {
+        let fullString = document.getElementsByTagName("body")[0].textContent;
+        var range = window.getSelection().getRangeAt(0)
+
+        var startPosition = fullString.search(range);
+        var getPosition = range.toString();
+        // var endPosition = parseInt(getPosition.length) + parseInt(startPosition);
+
+        let element = document.createElement("span")
+        element.className = "Selected-text"
+        range.surroundContents(element)
+
+        // create a new div element 
+        // var newDiv = document.createElement("input");
+
+        // add the newly created element and its content into the DOM 
+        // var currentDiv = document.getElementById(id)
+
+        var textdiv = document.createElement('input')
+
+        textdiv.style.left = '100px'
+        textdiv.style.top = '200px'
+        textdiv.style.position = 'absolute'
+
+        document.getElementsByTagName('body')[0].appendChild(textdiv)
+        // let currentDiv = document.getElementById("div1")
+        // document.body.insertBefore(newDiv, currentDiv);
+
+    }
+
     render() {
         const { title, description, upVotes, need, benefit, estimatedResources, competition, teamMembers, comments } = this.state.idea
         const challengeTitle = this.state.challenge.title
@@ -44,30 +82,30 @@ class PublicViewIdea extends Component {
             <div>
                 <div>
                     {challengeTitle ? <h1>The Innovation Challenge: {challengeTitle}</h1> : <h1>Open Idea</h1>}
-                    <h1>Submited Idea: {title}</h1>
+                    <h1 onMouseUp={this.selectedText}>Submited Idea: {title}</h1>
                 </div>
                 <div>
                     <h2>Engagement</h2>
                     {{ upVotes } === 1 ? <p>{upVotes} Up-Vote</p> : <p>{upVotes} Up-Votes</p>}
 
                     <h2>Idea Description</h2>
-                    <p>{description}</p>
+                    <p id="idea-description" onMouseUp={() => this.selectedText("idea-description")}>{description}</p>
 
                     <h2>Need</h2>
                     <p>Who is the target group for your idea?</p>
-                    <p>{need}</p>
+                    <p id="need" onMouseUp={() => this.selectedText("need")}>{need}</p>
 
                     <h2>Benefit</h2>
                     <p>How will the idea benefit the target group? </p>
-                    <p>{benefit}</p>
+                    <p id="benefit" onMouseUp={() => this.selectedText("benefit")}>{benefit}</p>
 
                     <h2>Estimated Resources</h2>
                     <p>Which resources do you think are needed to work on this idea?</p>
-                    <p>{estimatedResources}</p>
+                    <p id="estimated-resources" onMouseUp={() => this.selectedText("estimated-resources")}>{estimatedResources}</p>
 
                     <h2>Competition</h2>
                     <p>Are there any other products trying to solve the same problem?</p>
-                    <p>{competition}</p>
+                    <p id="competition" onMouseUp={() => this.selectedText("competition")}>{competition}</p>
 
                     <h2>Idea Team</h2>
                     <p>{teamMembers}</p>
@@ -91,7 +129,8 @@ class PublicViewIdea extends Component {
                         </form>
                     </div>
                 </div>
-            </div>
+            </div >
+
         )
     }
 }
