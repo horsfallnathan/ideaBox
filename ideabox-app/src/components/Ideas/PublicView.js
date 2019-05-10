@@ -27,7 +27,14 @@ class PublicViewIdea extends Component {
         event.preventDefault()
         let info = { content: this.state.commentContent, ideaId: this.state.idea._id }
         createComment(info)
-        this.setState({ commentContent: '' })
+
+        let copyComm = this.state.idea.comments
+        copyComm.push(info);
+
+        this.setState({
+            commentContent: "",
+            idea: { comments: copyComm }
+        })
     }
 
     render() {
