@@ -54,7 +54,7 @@ class App extends React.Component {
         <Route path="/challenge/:challengeId" component={Dashboard} />
         <Route exact path="/my-ideas" component={MyIdeas} />
         <Route path="/my-ideas/:ideaId" component={IdeaDetail} />
-        <Route path="/idea/:ideaId" component={PublicViewIdea} />
+        <Route path="/idea/:ideaId" render={props => <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />} />
         <Route path="/submit-idea" component={IdeaForm} />
         <Route exact path="/managerDashboard" component={ManagerDashboard} />
         <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />

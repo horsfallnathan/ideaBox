@@ -7,6 +7,10 @@ draftSchema = new Schema(
     challenge: {
       type: Boolean
     },
+    category: {
+      type: String,
+      enum: ["Innovation Challenge", "Free Idea"]
+    },
     description: {
       type: String,
       maxlength: 750
@@ -14,14 +18,14 @@ draftSchema = new Schema(
     files: [String],
     need: String,
     benefit: String,
-    estimatedResources: {
-      type: String
-    },
+    estimatedResources: [String],
     competition: String,
-    teamMembers: {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    },
+    teamMembers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ],
     message: String,
     privacy: {
       type: Boolean
@@ -33,9 +37,18 @@ draftSchema = new Schema(
     selected: {
       type: Boolean
     },
-    comment: {
-      type: Schema.Types.ObjectId
-    },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
+      }
+    ],
+    feedback: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Feedback"
+      }
+    ],
     upVotes: {
       type: Number,
       default: 0

@@ -32,8 +32,15 @@ const submitIdea = (
     })
     .then(response => response.data);
 };
+
 const getUsers = () => {
   return service.get("/get-users").then(response => response.data);
 };
 
-export { submitIdea, getUsers };
+const fileUpload = data => {
+  return service
+    .post("/file-upload", data)
+    .then(response => response.data.secure_url);
+};
+
+export { submitIdea, getUsers, fileUpload };
