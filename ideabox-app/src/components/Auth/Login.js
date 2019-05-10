@@ -16,11 +16,9 @@ class Login extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-
     const { username, password } = this.state;
     login(username, password).then(user => {
-      this.props.setUser(user);
-    });
+      this.props.setUser(user);    });
     this.props.history.push('/')
   };
 

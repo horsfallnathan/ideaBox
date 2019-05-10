@@ -16,7 +16,8 @@ import challengeForm from './components/manager-dashboard/challengeForm';
 
 class App extends React.Component {
   state = {
-    loggedIn: null
+    loggedIn: null,
+    challenge: null
   };
 
   setUser = user => {
@@ -36,6 +37,12 @@ class App extends React.Component {
   componentDidMount() {
     this.getUser();
   }
+
+  // setChallenge = challenge => {
+  //   this.setState({
+  //     challenge: challenge
+  //   })
+  // }
 
   render() {
     return (

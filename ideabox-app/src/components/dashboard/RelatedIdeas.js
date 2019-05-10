@@ -33,7 +33,7 @@ class RelatedIdeas extends React.Component {
     }
 
     componentDidMount() {
-        let {challengeId} = this.props
+        let {challengeId} = this.props.match.params
         challengeIdeas(challengeId).then(challengeinfo => {
             this.setState({challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas})
         })

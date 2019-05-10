@@ -1,4 +1,5 @@
 import React from 'react'
+import {createChallenge} from "../../services/challenge"
 
 class challengeForm extends React.Component {
   state = {
@@ -7,28 +8,58 @@ class challengeForm extends React.Component {
       deadline: "",
   }
 
-  submitForm = event => {
-      event.preventDefault();
-      const {
-        title, 
-        description, 
-        deadline,
-    } = this.state;
-    console.log(title, description, deadline)
-  } 
+  handleChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  };
+  
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const { title, description, deadline } = this.state;
+    
+    createChallenge(title, description, deadline).then(challenge => {
+    let challengeId = challenge._id
+    this.props.history.push(`/managerDashboard/${challengeId}`);
+    });
+    
+    this.setState({
+        title: "",
+        description: "",
+        deadline: ""
+    })
+    // :${challengeId}
+
+
+
+    
+  };
+
+//   submitForm = event => {
+//       event.preventDefault();
+//       const {
+//         title, 
+//         description, 
+//         deadline,
+//     } = this.state;
+//     console.log(title, description, deadline)
+//   } 
 
     render() {
-        // const { title, description, deadline } = this.state
+        const { title, description, deadline } = this.state
         return (
             
             <div>
-                {/* <form action="/managementDashboard/challengeForm" method="POST"></form>
+                <form onSubmit={this.handleSubmit}>
                 <label>title</label>
-                <input type="text" value="title"/>
+                <input type="text" name="title" value={title} onChange={this.handleChange}/>
                 <label>description</label>
-                <input type="text" value="description" maxLength="300"/>
+                <input type="text" maxLength="300" name="description" value={description} onChange={this.handleChange}/>
                 <label>deadline</label>
-                <input type="date"/> */}
+                <input type="date" name="date" value={deadline} onChange={this.handleChange}/>
+                <input type="submit" value="submit" />
+                </form>
             </div>
         )
     }
