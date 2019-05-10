@@ -26,7 +26,6 @@ class Signup extends React.Component {
     const { firstName, lastName, username, password, email, role } = this.state;
 
     signup(firstName, lastName, username, password, email, role).then(user => {
-      console.log("hello");
       this.props.setUser(user);
       this.props.history.push("/");
     });
