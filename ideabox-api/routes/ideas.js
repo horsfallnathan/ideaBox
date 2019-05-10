@@ -3,6 +3,7 @@ const router = express.Router();
 const Idea = require('../models/Idea')
 const User = require('../models/User')
 const Challenge = require('../models/Challenge')
+const Comment = require('../models/Comment')
 
 router.get("/my-ideas", (req, res) => {
     const { _id } = req.user
@@ -14,7 +15,7 @@ router.get("/my-ideas", (req, res) => {
 })
 
 router.get("/idea/:ideaId", (req, res) => {
-    Idea.findById(req.params.ideaId).then(idea => {
+    Idea.findById(req.params.ideaId).populate('comments').then(idea => {
         if (idea.challenge) {
             Challenge.findOne({ ideas: { $in: [req.params.ideaId] } }).then(challenge => {
                 const result = {

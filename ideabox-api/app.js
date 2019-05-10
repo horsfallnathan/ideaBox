@@ -13,9 +13,9 @@ const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
-const passport = require('passport');
+const passport = require("passport");
 
-require('./passport')
+require("./passport");
 
 mongoose
   .connect("mongodb://localhost/ideabox-api", { useNewUrlParser: true })
@@ -95,11 +95,20 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes);
 
-const ideaRoutes = require("./routes/ideas")
-app.use("/", ideaRoutes)
+const ideaRoutes = require("./routes/ideas");
+app.use("/", ideaRoutes);
 
 const challengeRoutes = require("./routes/challenges")
 app.use("/", challengeRoutes)
 
 module.exports = app;
+const commentRoutes = require("./routes/comments")
+app.use("/", commentRoutes)
 
+const ideaSubmissionRoute = require("./routes/ideaSubmission");
+app.use("/api", ideaSubmissionRoute);
+
+const getUsers = require("./routes/users");
+app.use("/api", getUsers);
+
+module.exports = app;

@@ -6,11 +6,6 @@ commentSchema = new Schema({
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
-    reply: {
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-
     }
 },
     {

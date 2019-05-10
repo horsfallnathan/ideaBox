@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Button, Form, Checkbox, FormField, Radio } from "semantic-ui-react";
+import { Button, Form, FormField, Radio } from "semantic-ui-react";
 
 export default class IdeaPrivacy extends Component {
   nextStep = event => {
     event.preventDefault();
     this.props.nextStep();
   };
+  prevStep = event => {
+    event.preventDefault();
+    this.props.prevStep();
+  };
 
   render() {
     const { values } = this.props;
-    console.log(values);
     return (
       <div>
         <Form>
@@ -20,7 +23,7 @@ export default class IdeaPrivacy extends Component {
               name="ideaPrivacy"
               value="public"
               checked={values.ideaPrivacy === "public"}
-              onChange={this.props.handleResourceChange}
+              onChange={this.props.handlePrivacyChange}
             />
             <p>Your idea will be shared with all Siemens employees</p>
           </FormField>
@@ -30,14 +33,14 @@ export default class IdeaPrivacy extends Component {
               name="ideaPrivacy"
               value="private"
               checked={values.ideaPrivacy === "private"}
-              onChange={this.props.handleResourceChange}
+              onChange={this.props.handlePrivacyChange}
             />
             <p>
               Only you, your selected team members, and managers can view this
             </p>
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
-          <Button onClick={"/"}>Save as draft</Button>
+          <Button>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

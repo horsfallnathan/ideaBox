@@ -1,15 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-ideaSchema = new Schema(
+draftSchema = new Schema(
   {
     title: String,
     challenge: {
       type: Boolean
-    },
-    category: {
-      type: String,
-      enum: ["Innovation Challenge", "Free Idea"]
     },
     description: {
       type: String,
@@ -18,14 +14,14 @@ ideaSchema = new Schema(
     files: [String],
     need: String,
     benefit: String,
-    estimatedResources: [String],
+    estimatedResources: {
+      type: String
+    },
     competition: String,
-    teamMembers: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      }
-    ],
+    teamMembers: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    },
     message: String,
     privacy: {
       type: Boolean
@@ -37,18 +33,9 @@ ideaSchema = new Schema(
     selected: {
       type: Boolean
     },
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Comment"
-      }
-    ],
-    feedback: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Feedback"
-      }
-    ],
+    comment: {
+      type: Schema.Types.ObjectId
+    },
     upVotes: {
       type: Number,
       default: 0
@@ -62,5 +49,5 @@ ideaSchema = new Schema(
   }
 );
 
-const Idea = mongoose.model("Idea", ideaSchema);
-module.exports = Idea;
+const Draft = mongoose.model("Draft", draftSchema);
+module.exports = Draft;
