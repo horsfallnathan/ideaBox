@@ -72,6 +72,7 @@ export default class IdeaDescription extends Component {
                 </List.Item>
               );
             })}
+          <Button onClick={this.props.handleDraft}>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

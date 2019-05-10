@@ -32,16 +32,16 @@ let users = [
   }
 ]
 
-// let ideas = [
-//   {
-//     title: "Super amazing idea",
-//     description: "You only live once"
-//   },
-//   {
-//     title: "Best idea ever",
-//     description: "Hakuna Matata"
-//   }
-// ]
+let ideas = [
+  {
+    title: "Super amazing idea",
+    description: "You only live once"
+  },
+  {
+    title: "Best idea ever",
+    description: "Hakuna Matata"
+  }
+]
 
 let challenges = [
   {
@@ -56,22 +56,29 @@ let challenges = [
     description: "how to make all employees go to Jamaica without using too much budget",
     createdBy: "5cd196c2ca40cb3ab0609932",
     challengeNumber: 2
-  }
+  },
+  {
+    title: "yeeaaff",
+    description: "I like the way you work it",
+    ideas: ["5cd193aa9da2f33aa4476c81"],
+    createdBy: "5cd196c2ca40cb3ab0609932",
+    challengeNumber: 23
+  },
 ]
 
-Challenge.create(challenges).then(challengesCreated => {
-  console.log(`${challengesCreated.length} challenges created (: `)
-  console.log(challengesCreated)
-})
-  .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect()
-  })
-  .catch(err => {
-    console.error(err)
-    mongoose.disconnect()
-    throw err
-  })
+// Challenge.create(challenges).then(challengesCreated => {
+//   console.log(`${challengesCreated.length} challenges created (: `)
+//   console.log(challengesCreated)
+// })
+//   .then(() => {
+//     // Close properly the connection to Mongoose
+//     mongoose.disconnect()
+//   })
+//   .catch(err => {
+//     console.error(err)
+//     mongoose.disconnect()
+//     throw err
+//   })
 
 // User.create(users)
 //   .then(usersCreated => {
@@ -89,21 +96,21 @@ Challenge.create(challenges).then(challengesCreated => {
 //     throw err
 //   })
 
-// Idea.create(ideas)
-//   .then(ideasCreated => {
-//     console.log(`${ideasCreated.length} ideas created, a factory of ideas! YAY! (: `)
-//     console.log(ideasCreated)
-//   }).catch(err => {
-//     console.error(err)
-//   })
-//   .then(() => {
-//     // Close properly the connection to Mongoose
-//     mongoose.disconnect()
-//   })
-//   .catch(err => {
-//     mongoose.disconnect()
-//     throw err
-//   })
+Idea.create(ideas)
+  .then(ideasCreated => {
+    console.log(`${ideasCreated.length} ideas created, a factory of ideas! YAY! (: `)
+    console.log(ideasCreated)
+  }).catch(err => {
+    console.error(err)
+  })
+  .then(() => {
+    // Close properly the connection to Mongoose
+    mongoose.disconnect()
+  })
+  .catch(err => {
+    mongoose.disconnect()
+    throw err
+  })
 
 // User.deleteMany()
 //   .then(() => {

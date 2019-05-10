@@ -13,12 +13,12 @@ const drafts = () => {
   return service.get("/drafts");
 };
 
-const createDraft = () => {
-  return service.post(`/create-draft`);
+const createDraft = values => {
+  return service.post(`/create-draft`, values);
 };
 
-const updateDraft = draftId => {
-  return service.post(`update-draft/:draftId`);
+const updateDraft = (draftId, values) => {
+  return service.post(`update-draft/:draftId`, values);
 };
 
 export { createDraft, getDraft, drafts, updateDraft };

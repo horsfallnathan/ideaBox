@@ -29,7 +29,7 @@ export default class IdeaCompetition extends Component {
             />
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
-          <Button>Save as draft</Button>
+          <Button onClick={this.props.handleDraft}>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

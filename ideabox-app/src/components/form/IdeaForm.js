@@ -42,15 +42,41 @@ export default class IdeaForm extends Component {
     });
   };
   handleDraft = event => {
+    const {
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResources,
+      ideaPrivacy,
+      teamMembers
+    } = this.state;
+    const values = {
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResources,
+      ideaPrivacy,
+      teamMembers
+    };
     if (this.state.draftId !== "") {
-      updateDraft(this.state.draftId).then({});
-    }
-    createDraft().then(draft => {
-      const { _id } = draft.data;
-      this.setState({
-        draftId: _id
+      console.log(this.state.draftId);
+      updateDraft(this.state.draftId, values).then({});
+    } else {
+      createDraft(values).then(draft => {
+        const { _id } = draft.data;
+        this.setState({
+          draftId: _id
+        });
       });
-    });
+    }
   };
   prevStep = () => {
     const { step } = this.state;
@@ -80,13 +106,11 @@ export default class IdeaForm extends Component {
     });
   };
   handleCategoryChange = (e, { value }) => {
-    console.log(value);
     this.setState({
       category: value
     });
   };
   handlePrivacyChange = (e, { value }) => {
-    console.log(value);
     this.setState({
       ideaPrivacy: value
     });
@@ -115,7 +139,6 @@ export default class IdeaForm extends Component {
         estimatedResources: [...this.state.estimatedResources, newValue],
         estimatedResource: ""
       });
-      console.log(this.state.estimatedResources);
     } else {
       this.setState({
         estimatedResource: value
@@ -144,18 +167,6 @@ export default class IdeaForm extends Component {
       ideaPrivacy,
       teamMembers
     } = this.state;
-    console.log(
-      title,
-      category,
-      description,
-      files,
-      need,
-      benefit,
-      competition,
-      estimatedResources,
-      ideaPrivacy,
-      teamMembers
-    );
     submitIdea(
       title,
       category,

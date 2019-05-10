@@ -68,7 +68,7 @@ export default class IdeaNeedBenefit extends Component {
               })}
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
-          {/* <Button onClick={"/"}>Save as draft</Button> */}
+          <Button onClick={this.props.handleDraft}>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

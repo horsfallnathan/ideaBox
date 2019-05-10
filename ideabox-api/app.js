@@ -98,6 +98,10 @@ app.use("/api", authRoutes);
 const ideaRoutes = require("./routes/ideas");
 app.use("/", ideaRoutes);
 
+const challengeRoutes = require("./routes/challenges");
+app.use("/", challengeRoutes);
+
+module.exports = app;
 const commentRoutes = require("./routes/comments");
 app.use("/", commentRoutes);
 
