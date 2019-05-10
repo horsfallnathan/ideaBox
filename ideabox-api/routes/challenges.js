@@ -14,4 +14,15 @@ router.get("/challenges/:challengeId", (req, res) => {
 
 
 
+router.get("/managerDashboard/:challengeId", (req, res) => {
+    Challenge.findById(req.params.challengeId).populate('ideas')
+.then(info => {
+    res.json(info)
+}).catch(error => {
+    res.json(error)
+})
+})
+
+
+
 module.exports = router
