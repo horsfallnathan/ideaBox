@@ -4,12 +4,15 @@ import SignUp from "./components/Auth/Signup";
 import Login from "./components/Auth/Login";
 import { loggedin } from "./services/auth";
 import MyIdeas from "./components/Ideas/MyIdeas";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import PublicViewIdea from "./components/Ideas/PublicView";
 import IdeaForm from "./components/form/IdeaForm";
 import Dashboard from "./components/dashboard/Dashboard"
-// import ProtectedRoute from "./components/ProtectedRoute";
 import IdeaDetail from './components/Ideas/IdeaDetail';
+import ManagerDashboard from './components/manager-dashboard/ManagerDashboard';
+import ManagerDashboardChallenge from './components/manager-dashboard/ManagerDashboardChallenge';
+import challengeForm from './components/manager-dashboard/challengeForm';
+
 
 class App extends React.Component {
   state = {
@@ -36,8 +39,8 @@ class App extends React.Component {
 
   render() {
     return (
+      <div>
       <div className="App">
-        <Switch>
           <Route
             exact
             path="/signup"
@@ -47,13 +50,16 @@ class App extends React.Component {
             exact
             path="/login"
             render={props => <Login {...props} setUser={this.setUser} />}
-          />
-        </Switch>
+          />     
         <Route path="/challenge/:challengeId" component={Dashboard} />
         <Route exact path="/my-ideas" component={MyIdeas} />
         <Route path="/my-ideas/:ideaId" component={IdeaDetail} />
         <Route path="/idea/:ideaId" component={PublicViewIdea} />
         <Route path="/submit-idea" component={IdeaForm} />
+        <Route exact path="/managerDashboard" component={ManagerDashboard} />
+        <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />
+        <Route exact path="/managerDashboard/challengeForm" component={challengeForm} />
+      </div>
       </div>
     );
   }

@@ -11,7 +11,7 @@ class Navbar extends React.Component {
                     <img src="http://www.schoolgames.eu/media/djcatalog2/images/item/0/siemens_f.jpg" alt="" className="siemensLogo"/>
                 </div>
                 <div className="navbarIcons">
-                    <div>
+                    {/* <div>
                         <img src="../../../../../../../../Screenshot 2019-05-08 at 16.12.38.png" alt="" width="50px"/>
                         <a href="#">Idea feed</a>
                     </div>
@@ -26,7 +26,7 @@ class Navbar extends React.Component {
                     <div>
                         <img src="" alt=""/>
                         <a href="#">Notifications</a>
-                    </div>
+                    </div> */}
                 </div>
                 </div>
             </div>
