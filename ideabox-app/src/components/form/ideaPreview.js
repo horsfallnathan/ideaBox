@@ -58,6 +58,7 @@ export default class IdeaPreview extends Component {
         <h3>Attached Files</h3>
         <p>{fileNames}</p>
         <Button onClick={this.props.prevStep}>Edit Form</Button>
+        <Button onClick={this.props.handleDraft}>Save as draft</Button>
         <Button onClick={this.props.submitForm}>Submit Form</Button>
       </div>
     );

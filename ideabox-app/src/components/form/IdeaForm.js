@@ -7,6 +7,7 @@ import IdeaPrivacy from "./IdeaPrivacy";
 import IdeaPreview from "./IdeaPreview";
 import { submitIdea, fileUpload } from "../../services/ideaSubmission";
 import { getUsers } from "../../services/ideaSubmission";
+import { createDraft, updateDraft } from "../../services/drafts";
 
 export default class IdeaForm extends Component {
   state = {
@@ -20,6 +21,7 @@ export default class IdeaForm extends Component {
     need: "",
     competition: "",
     benefit: "",
+    draftId: "",
     estimatedResources: [],
     estimatedResource: [],
     teamMembers: [],
@@ -39,7 +41,43 @@ export default class IdeaForm extends Component {
       step: step + 1
     });
   };
-
+  handleDraft = event => {
+    const {
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResources,
+      ideaPrivacy,
+      teamMembers
+    } = this.state;
+    const values = {
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResources,
+      ideaPrivacy,
+      teamMembers
+    };
+    if (this.state.draftId !== "") {
+      console.log(this.state.draftId);
+      updateDraft(this.state.draftId, values).then({});
+    } else {
+      createDraft(values).then(draft => {
+        const { _id } = draft.data;
+        this.setState({
+          draftId: _id
+        });
+      });
+    }
+  };
   prevStep = () => {
     const { step } = this.state;
     this.setState({
@@ -68,13 +106,11 @@ export default class IdeaForm extends Component {
     });
   };
   handleCategoryChange = (e, { value }) => {
-    console.log(value);
     this.setState({
       category: value
     });
   };
   handlePrivacyChange = (e, { value }) => {
-    console.log(value);
     this.setState({
       ideaPrivacy: value
     });
@@ -103,7 +139,6 @@ export default class IdeaForm extends Component {
         estimatedResources: [...this.state.estimatedResources, newValue],
         estimatedResource: ""
       });
-      console.log(this.state.estimatedResources);
     } else {
       this.setState({
         estimatedResource: value
@@ -132,18 +167,6 @@ export default class IdeaForm extends Component {
       ideaPrivacy,
       teamMembers
     } = this.state;
-    console.log(
-      title,
-      category,
-      description,
-      files,
-      need,
-      benefit,
-      competition,
-      estimatedResources,
-      ideaPrivacy,
-      teamMembers
-    );
     submitIdea(
       title,
       category,
@@ -200,6 +223,7 @@ export default class IdeaForm extends Component {
             handleCategoryChange={this.handleCategoryChange}
             handleChange={this.handleChange}
             values={values}
+            handleDraft={this.handleDraft}
             handleFileUpload={this.handleFileUpload}
             handleFileRemove={this.handleFileRemove}
           />
@@ -209,6 +233,7 @@ export default class IdeaForm extends Component {
           <IdeaNeedBenefit
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
             handleResourceChange={this.handleResourceChange}
             handleResourceRemove={this.handleResourceRemove}
             handleChange={this.handleChange}
@@ -221,6 +246,7 @@ export default class IdeaForm extends Component {
           <IdeaCompetition
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
             handleChange={this.handleChange}
             values={values}
           />
@@ -228,10 +254,12 @@ export default class IdeaForm extends Component {
       case 4:
         return (
           <AddTeam
+            draftId={this.draftId}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             getUserList={this.getUserList}
             users={this.state.users}
+            handleDraft={this.handleDraft}
             handleTeamChange={this.handleTeamChange}
             handleChange={this.handleChange}
             values={values}
@@ -242,6 +270,7 @@ export default class IdeaForm extends Component {
           <IdeaPrivacy
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
             handlePrivacyChange={this.handlePrivacyChange}
             handleResourceChange={this.handleResourceChange}
             values={values}
@@ -253,6 +282,7 @@ export default class IdeaForm extends Component {
             values={values}
             submitForm={this.submitForm}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
           />
         );
       default:

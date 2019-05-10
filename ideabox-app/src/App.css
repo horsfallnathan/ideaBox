@@ -28,6 +28,10 @@
   margin: 20px;
 }
 
+.Selected-text {
+  background-color: lightsalmon;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
