@@ -47,8 +47,9 @@ export default class AddTeam extends Component {
               onChange={this.props.handleChange("teamMemberMessage")}
             />
           </FormField>
+          <p>Got here: {this.props.draftId}</p>
           <Button onClick={this.prevStep}>Back</Button>
-          <Button>Save as draft</Button>
+          <Button onClick={this.props.handleDraft}>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Idea = require("../models/Idea");
+const uploader = require("../configs/cloudinary");
 // const User = require("../models/User");
 // const Challenge = require("../models/Challenge");
 
@@ -36,6 +37,13 @@ router.post("/submit-idea", (req, res) => {
     .catch(error => {
       res.json(error);
     });
+});
+router.post("/file-upload", uploader.single("files"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
+  }
+  res.json({ secure_url: req.file.secure_url });
 });
 
 module.exports = router;

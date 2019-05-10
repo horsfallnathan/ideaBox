@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, TextArea, Checkbox } from "semantic-ui-react";
+import { Button, Form, TextArea, Checkbox, List } from "semantic-ui-react";
 
 export default class IdeaDescription extends Component {
   state = {
@@ -57,9 +57,22 @@ export default class IdeaDescription extends Component {
           <input
             type="file"
             name="files"
-            value={values.files}
-            onChange={this.props.handleChange("files")}
+            onChange={this.props.handleFileUpload}
           />
+          {values.fileNames &&
+            values.fileNames.map((file, i) => {
+              return (
+                <List.Item key={i}>
+                  <List.Content>{file}</List.Content>
+                  <List.Content>
+                    <Button onClick={() => this.props.handleFileRemove(i)}>
+                      Delete
+                    </Button>
+                  </List.Content>
+                </List.Item>
+              );
+            })}
+          <Button onClick={this.props.handleDraft}>Save as draft</Button>
           <Button onClick={this.nextStep}>Next</Button>
         </Form>
       </div>

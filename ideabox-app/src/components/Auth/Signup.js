@@ -1,6 +1,7 @@
 import React from "react";
 import { signup } from "../../services/auth";
-// import {Redirect} from 'react-router-dom'
+import { Form } from "semantic-ui-react";
+import { fileUpload } from "../../services/ideaSubmission";
 
 class Signup extends React.Component {
   state = {
@@ -9,6 +10,8 @@ class Signup extends React.Component {
     username: "",
     password: "",
     email: "",
+    profileImage:
+      "https://res.cloudinary.com/nthnh/image/upload/v1557486717/ideaBox/defaultProfileImage_sde62e.png",
     role: "employee"
   };
 
@@ -17,6 +20,17 @@ class Signup extends React.Component {
 
     this.setState({
       [name]: value
+    });
+  };
+  handleImageUpload = event => {
+    console.log(event.target.files);
+    const file = event.target.files[0];
+    const data = new FormData();
+    data.append("files", file);
+    fileUpload(data).then(response => {
+      this.setState({
+        profileImage: response
+      });
     });
   };
 
@@ -29,17 +43,14 @@ class Signup extends React.Component {
       this.props.setUser(user);
       this.props.history.push("/");
     });
-    //     .then( data => {
-
-    //    // <Redirect to={{pathname: "/", state: {from: this.props.loaction} }} />
-    //     })
   };
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
+        <img src={this.state.profileImage} width="30px" alt={"ProfileImage"} />
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
             <label>first name:</label>
             <input
               value={this.state.firstName}
@@ -47,8 +58,8 @@ class Signup extends React.Component {
               type="text"
               name="firstName"
             />
-          </div>
-          <div>
+          </Form.Field>
+          <Form.Field>
             <label>last name:</label>
             <input
               value={this.state.lastName}
@@ -56,8 +67,8 @@ class Signup extends React.Component {
               type="text"
               name="lastName"
             />
-          </div>
-          <div>
+          </Form.Field>
+          <Form.Field>
             <label>username:</label>
             <input
               value={this.state.username}
@@ -65,8 +76,8 @@ class Signup extends React.Component {
               type="text"
               name="username"
             />
-          </div>
-          <div>
+          </Form.Field>
+          <Form.Field>
             <label>password:</label>
             <input
               value={this.state.password}
@@ -74,8 +85,8 @@ class Signup extends React.Component {
               type="password"
               name="password"
             />
-          </div>
-          <div>
+          </Form.Field>
+          <Form.Field>
             <label>email:</label>
             <input
               value={this.state.email}
@@ -83,8 +94,12 @@ class Signup extends React.Component {
               type="text"
               name="email"
             />
-          </div>
-          <div>
+          </Form.Field>
+          <Form.Field>
+            <h3>Set Profile Image</h3>
+            <input type="file" name="files" onChange={this.handleImageUpload} />
+          </Form.Field>
+          <Form.Field>
             <label>role:</label>
             <select
               value={this.state.role}
@@ -94,9 +109,9 @@ class Signup extends React.Component {
               <option value="employee">employee</option>
               <option value="manager">manager</option>
             </select>
-          </div>
+          </Form.Field>
           <input type="submit" value="signup" />
-        </form>
+        </Form>
       </div>
     );
   }

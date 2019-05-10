@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Draft = require("../models/Drafts");
-// const User = require("../models/User");
-// const Challenge = require("../models/Challenge");
 
-router.post("/save-draft", (req, res) => {
-  console.log(req.body);
+router.post("/create-draft", (req, res) => {
   const {
     title,
     description,
@@ -18,7 +15,7 @@ router.post("/save-draft", (req, res) => {
     teamMembers,
     privacy
   } = req.body;
-  Idea.create({
+  Draft.create({
     title,
     description,
     files,
@@ -35,6 +32,63 @@ router.post("/save-draft", (req, res) => {
     })
     .catch(error => {
       res.json(error);
+    });
+});
+
+router.get("/draft/:draftId", (req, res, next) => {
+  Draft.findById(req.query.draftId)
+    .then(draft => {
+      return res.status(200).json(draft);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+router.post("/update-draft/:draftId", (req, res, next) => {
+  const {
+    title,
+    description,
+    files,
+    need,
+    benefit,
+    estimatedResources,
+    competition,
+    message,
+    teamMembers,
+    privacy
+  } = req.body;
+  Draft.findOneAndUpdate(
+    { _id: req.query.draftId },
+    {
+      $set: {
+        title,
+        description,
+        files,
+        need,
+        benefit,
+        estimatedResources,
+        competition,
+        message,
+        teamMembers,
+        privacy
+      }
+    }
+  )
+    .then(draft => {
+      return res.status(200).json(draft);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+router.get("/drafts", (req, res) => {
+  Draft.find()
+    .then(drafts => {
+      return res.status(200).json(drafts);
+    })
+    .catch(error => {
+      return res.json(error);
     });
 });
 

@@ -5,8 +5,9 @@ import IdeaCompetition from "./IdeaCompetition";
 import AddTeam from "./AddTeam";
 import IdeaPrivacy from "./IdeaPrivacy";
 import IdeaPreview from "./IdeaPreview";
-import { submitIdea } from "../../services/ideaSubmission";
+import { submitIdea, fileUpload } from "../../services/ideaSubmission";
 import { getUsers } from "../../services/ideaSubmission";
+import { createDraft, updateDraft } from "../../services/drafts";
 
 export default class IdeaForm extends Component {
   state = {
@@ -16,9 +17,11 @@ export default class IdeaForm extends Component {
     category: "",
     description: "",
     files: [],
+    fileNames: [],
     need: "",
     competition: "",
     benefit: "",
+    draftId: "",
     estimatedResources: [],
     estimatedResource: [],
     teamMembers: [],
@@ -38,21 +41,76 @@ export default class IdeaForm extends Component {
       step: step + 1
     });
   };
-
+  handleDraft = event => {
+    const {
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResources,
+      ideaPrivacy,
+      teamMembers
+    } = this.state;
+    const values = {
+      title,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      competition,
+      estimatedResources,
+      ideaPrivacy,
+      teamMembers
+    };
+    if (this.state.draftId !== "") {
+      console.log(this.state.draftId);
+      updateDraft(this.state.draftId, values).then({});
+    } else {
+      createDraft(values).then(draft => {
+        const { _id } = draft.data;
+        this.setState({
+          draftId: _id
+        });
+      });
+    }
+  };
   prevStep = () => {
     const { step } = this.state;
     this.setState({
       step: step - 1
     });
   };
+
+  handleFileUpload = event => {
+    const fileName = event.target.files[0].name;
+    const file = event.target.files[0];
+    const data = new FormData();
+    data.append("files", file);
+    fileUpload(data).then(response => {
+      this.setState({
+        files: [...this.state.files, response],
+        fileNames: [...this.state.fileNames, fileName]
+      });
+    });
+  };
+  handleFileRemove = index => {
+    const newFileList = this.state.files.slice(index + 1);
+    const newFileNameList = this.state.fileNames.slice(index + 1);
+    this.setState({
+      files: newFileList,
+      fileNames: newFileNameList
+    });
+  };
   handleCategoryChange = (e, { value }) => {
-    console.log(value);
     this.setState({
       category: value
     });
   };
   handlePrivacyChange = (e, { value }) => {
-    console.log(value);
     this.setState({
       ideaPrivacy: value
     });
@@ -81,13 +139,13 @@ export default class IdeaForm extends Component {
         estimatedResources: [...this.state.estimatedResources, newValue],
         estimatedResource: ""
       });
-      console.log(this.state.estimatedResources);
     } else {
       this.setState({
         estimatedResource: value
       });
     }
   };
+
   handleResourceRemove = index => {
     const newResourceList = this.state.estimatedResources.slice(index + 1);
     console.log(index, newResourceList);
@@ -109,18 +167,6 @@ export default class IdeaForm extends Component {
       ideaPrivacy,
       teamMembers
     } = this.state;
-    console.log(
-      title,
-      category,
-      description,
-      files,
-      need,
-      benefit,
-      competition,
-      estimatedResources,
-      ideaPrivacy,
-      teamMembers
-    );
     submitIdea(
       title,
       category,
@@ -144,6 +190,7 @@ export default class IdeaForm extends Component {
       category,
       description,
       files,
+      fileNames,
       need,
       benefit,
       competition,
@@ -160,6 +207,7 @@ export default class IdeaForm extends Component {
       competition,
       teamMembers,
       files,
+      fileNames,
       need,
       benefit,
       teamMemberMessage,
@@ -175,6 +223,9 @@ export default class IdeaForm extends Component {
             handleCategoryChange={this.handleCategoryChange}
             handleChange={this.handleChange}
             values={values}
+            handleDraft={this.handleDraft}
+            handleFileUpload={this.handleFileUpload}
+            handleFileRemove={this.handleFileRemove}
           />
         );
       case 2:
@@ -182,6 +233,7 @@ export default class IdeaForm extends Component {
           <IdeaNeedBenefit
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
             handleResourceChange={this.handleResourceChange}
             handleResourceRemove={this.handleResourceRemove}
             handleChange={this.handleChange}
@@ -194,6 +246,7 @@ export default class IdeaForm extends Component {
           <IdeaCompetition
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
             handleChange={this.handleChange}
             values={values}
           />
@@ -201,10 +254,12 @@ export default class IdeaForm extends Component {
       case 4:
         return (
           <AddTeam
+            draftId={this.draftId}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             getUserList={this.getUserList}
             users={this.state.users}
+            handleDraft={this.handleDraft}
             handleTeamChange={this.handleTeamChange}
             handleChange={this.handleChange}
             values={values}
@@ -215,6 +270,7 @@ export default class IdeaForm extends Component {
           <IdeaPrivacy
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
             handlePrivacyChange={this.handlePrivacyChange}
             handleResourceChange={this.handleResourceChange}
             values={values}
@@ -226,6 +282,7 @@ export default class IdeaForm extends Component {
             values={values}
             submitForm={this.submitForm}
             prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
           />
         );
       default:

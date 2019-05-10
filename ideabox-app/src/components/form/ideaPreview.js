@@ -10,6 +10,7 @@ export default class IdeaPreview extends Component {
         description,
         need,
         benefit,
+        fileNames,
         estimatedResources,
         teamMembers,
         teamMemberMessage,
@@ -17,7 +18,6 @@ export default class IdeaPreview extends Component {
         competition
       }
     } = this.props;
-    console.log(teamMembers);
     return (
       <div>
         <h1>Confirm Idea Input</h1>
@@ -34,7 +34,6 @@ export default class IdeaPreview extends Component {
         <h3>Estimated Resources</h3>
         {estimatedResources &&
           estimatedResources.map((resource, i) => {
-            console.log(resource, "got here");
             return (
               <List.Item key={i}>
                 <List.Content>{resource}</List.Content>
@@ -56,7 +55,10 @@ export default class IdeaPreview extends Component {
         <p>{teamMemberMessage}</p>
         <h3>Visibility</h3>
         <p>{ideaPrivacy}</p>
+        <h3>Attached Files</h3>
+        <p>{fileNames}</p>
         <Button onClick={this.props.prevStep}>Edit Form</Button>
+        <Button onClick={this.props.handleDraft}>Save as draft</Button>
         <Button onClick={this.props.submitForm}>Submit Form</Button>
       </div>
     );
