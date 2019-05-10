@@ -53,7 +53,6 @@ export default class IdeaForm extends Component {
     const data = new FormData();
     data.append("files", file);
     fileUpload(data).then(response => {
-      console.log(response);
       this.setState({
         files: [...this.state.files, response],
         fileNames: [...this.state.fileNames, fileName]
