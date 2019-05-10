@@ -98,13 +98,16 @@ app.use("/api", authRoutes);
 const ideaRoutes = require("./routes/ideas");
 app.use("/", ideaRoutes);
 
-const commentRoutes = require("./routes/comments")
-app.use("/", commentRoutes)
+const commentRoutes = require("./routes/comments");
+app.use("/", commentRoutes);
 
 const ideaSubmissionRoute = require("./routes/ideaSubmission");
 app.use("/api", ideaSubmissionRoute);
 
 const getUsers = require("./routes/users");
 app.use("/api", getUsers);
+
+const draftsRoute = require("./routes/drafts");
+app.use("/api", draftsRoute);
 
 module.exports = app;
