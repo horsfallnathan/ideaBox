@@ -5,7 +5,7 @@ import IdeaCompetition from "./IdeaCompetition";
 import AddTeam from "./AddTeam";
 import IdeaPrivacy from "./IdeaPrivacy";
 import IdeaPreview from "./IdeaPreview";
-import { submitIdea } from "../../services/ideaSubmission";
+import { submitIdea, fileUpload } from "../../services/ideaSubmission";
 import { getUsers } from "../../services/ideaSubmission";
 
 export default class IdeaForm extends Component {
@@ -16,6 +16,7 @@ export default class IdeaForm extends Component {
     category: "",
     description: "",
     files: [],
+    fileNames: [],
     need: "",
     competition: "",
     benefit: "",
@@ -43,6 +44,28 @@ export default class IdeaForm extends Component {
     const { step } = this.state;
     this.setState({
       step: step - 1
+    });
+  };
+
+  handleFileUpload = event => {
+    const fileName = event.target.files[0].name;
+    const file = event.target.files[0];
+    const data = new FormData();
+    data.append("files", file);
+    fileUpload(data).then(response => {
+      console.log(response);
+      this.setState({
+        files: [...this.state.files, response],
+        fileNames: [...this.state.fileNames, fileName]
+      });
+    });
+  };
+  handleFileRemove = index => {
+    const newFileList = this.state.files.slice(index + 1);
+    const newFileNameList = this.state.fileNames.slice(index + 1);
+    this.setState({
+      files: newFileList,
+      fileNames: newFileNameList
     });
   };
   handleCategoryChange = (e, { value }) => {
@@ -88,6 +111,7 @@ export default class IdeaForm extends Component {
       });
     }
   };
+
   handleResourceRemove = index => {
     const newResourceList = this.state.estimatedResources.slice(index + 1);
     console.log(index, newResourceList);
@@ -144,6 +168,7 @@ export default class IdeaForm extends Component {
       category,
       description,
       files,
+      fileNames,
       need,
       benefit,
       competition,
@@ -160,6 +185,7 @@ export default class IdeaForm extends Component {
       competition,
       teamMembers,
       files,
+      fileNames,
       need,
       benefit,
       teamMemberMessage,
@@ -175,6 +201,8 @@ export default class IdeaForm extends Component {
             handleCategoryChange={this.handleCategoryChange}
             handleChange={this.handleChange}
             values={values}
+            handleFileUpload={this.handleFileUpload}
+            handleFileRemove={this.handleFileRemove}
           />
         );
       case 2:
