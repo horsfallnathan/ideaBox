@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { publicViewIdea, deleteIdea } from '../../services/ideas'
+import { getSingleIdea, deleteIdea } from '../../services/ideas'
 import { Link } from 'react-router-dom'
 
 class IdeaDetail extends Component {
     state = {
         challenge: {},
-        idea: {}
+        idea: {},
+        managComm: true
     }
 
     componentDidMount() {
         const { ideaId } = this.props.match.params
-        publicViewIdea(ideaId).then(idea => {
+        getSingleIdea(ideaId).then(idea => {
             this.setState(idea.data)
         })
     }
@@ -18,13 +19,47 @@ class IdeaDetail extends Component {
     deleteIdea = () => {
         const { ideaId } = this.props.match.params
         deleteIdea(ideaId).then(() => {
-            this.setState({ challenge: {}, idea: {} })
+            this.setState({ challenge: {}, idea: {}, managComm: true })
             this.props.history.push("/my-ideas");
         })
     }
 
+    managerComments = () => {
+        const { comments } = this.state.idea
+        const managerCC = comments.filter(el => el.createdBy.role === "manager")
+        return managerCC.map((comment, i) => {
+            return (
+                <div key={i}>
+                    <h4>Comment</h4>
+                    <p>{comment.content}</p>
+                </div>
+            )
+        })
+    }
+
+    colleagueComments = () => {
+        const { comments } = this.state.idea
+        const colleagueCC = comments.filter(el => el.createdBy.role === "employee")
+        return colleagueCC.map((comment, i) => {
+            return (
+                <div key={i}>
+                    <h4>Comment</h4>
+                    <p>{comment.content}</p>
+                </div>
+            )
+        })
+    }
+
+    handleManagToggle = () => {
+        this.setState({ managComm: true })
+    }
+
+    handleColleagueToggle = () => {
+        this.setState({ managComm: false })
+    }
+
     render() {
-        const { title, description, upVotes, estimatedResources, teamMembers } = this.state.idea
+        const { title, description, upVotes, estimatedResources, teamMembers, comments } = this.state.idea
         const challengeTitle = this.state.challenge.title
         return (
             <div>
@@ -45,8 +80,12 @@ class IdeaDetail extends Component {
 
                     <div className="Org">
                         <h2>Comments</h2>
-                        <h4>Manager Comments</h4>
-                        <h4>Colleague Comments</h4>
+
+                        <button onClick={this.handleManagToggle}>Manager Comments</button>
+                        <button onClick={this.handleColleagueToggle}>Collegue Comments</button>
+                        {comments && this.state.managComm && this.managerComments()}
+                        {comments && !this.state.managComm && this.colleagueComments()}
+
                     </div>
 
                     <p>This idea has been up-voted by

@@ -5,8 +5,8 @@ const service = axios.create({
     withCredentials: true
 });
 
-const publicViewIdea = (ideaId) => {
-    return service.get(`/idea/${ideaId}`)
+const getSingleIdea = (ideaId) => {
+    return service.get(`/${ideaId}`)
 }
 
 const myIdeas = () => {
@@ -17,4 +17,4 @@ const deleteIdea = (ideaId) => {
     return service.delete(`/my-ideas/${ideaId}`)
 }
 
-export { publicViewIdea, myIdeas, deleteIdea }
+export { getSingleIdea, myIdeas, deleteIdea }

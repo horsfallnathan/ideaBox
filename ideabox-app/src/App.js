@@ -40,7 +40,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <div className="App">
+        <div className="App">
           <Route
             exact
             path="/signup"
@@ -50,16 +50,16 @@ class App extends React.Component {
             exact
             path="/login"
             render={props => <Login {...props} setUser={this.setUser} />}
-          />     
-        <Route path="/challenge/:challengeId" component={Dashboard} />
-        <Route exact path="/my-ideas" component={MyIdeas} />
-        <Route path="/my-ideas/:ideaId" component={IdeaDetail} />
-        <Route path="/idea/:ideaId" render={props => <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />} />
-        <Route path="/submit-idea" component={IdeaForm} />
-        <Route exact path="/managerDashboard" component={ManagerDashboard} />
-        <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />
-        <Route exact path="/managerDashboard/challengeForm" component={challengeForm} />
-      </div>
+          />
+          <Route path="/challenge/:challengeId" component={Dashboard} />
+          <Route exact path="/my-ideas" component={MyIdeas} />
+          <Route path="/my-ideas/:ideaId" render={props => <IdeaDetail {...props} loggedIn={this.state.loggedIn} />} />
+          <Route path="/idea/:ideaId" render={props => <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />} />
+          <Route path="/submit-idea" component={IdeaForm} />
+          <Route exact path="/managerDashboard" component={ManagerDashboard} />
+          <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />
+          <Route exact path="/managerDashboard/challengeForm" component={challengeForm} />
+        </div>
       </div>
     );
   }

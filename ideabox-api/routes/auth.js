@@ -39,7 +39,6 @@ router.post("/signup", (req, res, next) => {
       });
     })
     .then(newUser => {
-      console.log('this is a test')
       req.login(newUser, () => {
         return res.status(200).json(newUser)
       })

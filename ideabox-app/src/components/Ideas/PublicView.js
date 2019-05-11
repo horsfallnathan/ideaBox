@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { publicViewIdea } from '../../services/ideas'
+import { getSingleIdea } from '../../services/ideas'
 import { createComment } from '../../services/comments'
 
 // import Popover from 'react-text-selection-popover';
@@ -19,7 +19,7 @@ class PublicViewIdea extends Component {
 
     componentDidMount() {
         const { ideaId } = this.props.match.params
-        publicViewIdea(ideaId).then(ideainfo => {
+        getSingleIdea(ideaId).then(ideainfo => {
             const { challenge } = ideainfo.data
             const { idea } = ideainfo.data
             this.setState({ challenge, idea, commentContent: "" })
@@ -46,11 +46,11 @@ class PublicViewIdea extends Component {
     }
 
     selectedText = (id) => {
-        let fullString = document.getElementsByTagName("body")[0].textContent;
+        // let fullString = document.getElementsByTagName("body")[0].textContent;
         var range = window.getSelection().getRangeAt(0)
 
-        var startPosition = fullString.search(range);
-        var getPosition = range.toString();
+        // var startPosition = fullString.search(range);
+        // var getPosition = range.toString();
         // var endPosition = parseInt(getPosition.length) + parseInt(startPosition);
 
         let element = document.createElement("span")
