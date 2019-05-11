@@ -46,11 +46,11 @@ class PublicViewIdea extends Component {
     }
 
     selectedText = (id) => {
-        let fullString = document.getElementsByTagName("body")[0].textContent;
+        // let fullString = document.getElementsByTagName("body")[0].textContent;
         var range = window.getSelection().getRangeAt(0)
 
-        var startPosition = fullString.search(range);
-        var getPosition = range.toString();
+        // var startPosition = fullString.search(range);
+        // var getPosition = range.toString();
         // var endPosition = parseInt(getPosition.length) + parseInt(startPosition);
 
         let element = document.createElement("span")
