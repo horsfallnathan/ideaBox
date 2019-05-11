@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
                <Navbar />
                <SubmittedIdeas />
                <ChallengePres />
-               <RelatedIdeas challengeId={this.props.match.params.challengeId}/>
+               <RelatedIdeas currentChallenge={this.props.currentChallenge}/>
             </div>
         )
     }

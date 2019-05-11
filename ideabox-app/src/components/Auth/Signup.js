@@ -2,6 +2,7 @@ import React from "react";
 import { signup } from "../../services/auth";
 import { Form } from "semantic-ui-react";
 import { fileUpload } from "../../services/ideaSubmission";
+import {currentChallenge} from "../../services/challenge"
 
 class Signup extends React.Component {
   state = {
@@ -36,6 +37,10 @@ class Signup extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    currentChallenge().then(challenge => {
+      this.props.setCurrentChallenge(challenge.data)
+    })
 
     const { firstName, lastName, username, password, email, role } = this.state;
 
