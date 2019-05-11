@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 challengeSchema = new Schema({
     title: String,
     description: String,
+    startDate: Date,
     deadline: Date,
     ideas: [
         {

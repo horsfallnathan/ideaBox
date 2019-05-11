@@ -5,7 +5,8 @@ class challengeForm extends React.Component {
   state = {
       title: "",
       description: "",
-      deadline: "",
+      startDate: Date.now(),
+      deadline: Date.now()
   }
 
   handleChange = event => {
@@ -17,18 +18,14 @@ class challengeForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const { title, description, deadline } = this.state;
+    const { title, description, startDate, deadline } = this.state;
     
-    createChallenge(title, description, deadline).then(challenge => {
+    createChallenge(title, description, startDate, deadline).then(challenge => {
     let challengeId = challenge._id
     this.props.history.push(`/managerDashboard/${challengeId}`);
     });
     
-    this.setState({
-        title: "",
-        description: "",
-        deadline: ""
-    })
+   
     // :${challengeId}
 
 
@@ -47,7 +44,7 @@ class challengeForm extends React.Component {
 //   } 
 
     render() {
-        const { title, description, deadline } = this.state
+        const { title, description, startDate, deadline } = this.state
         return (
             
             <div>
@@ -56,8 +53,10 @@ class challengeForm extends React.Component {
                 <input type="text" name="title" value={title} onChange={this.handleChange}/>
                 <label>description</label>
                 <input type="text" maxLength="300" name="description" value={description} onChange={this.handleChange}/>
+                <label>start Date</label>
+                <input type="date" name="startDate" value={startDate} onChange={this.handleChange}/>
                 <label>deadline</label>
-                <input type="date" name="date" value={deadline} onChange={this.handleChange}/>
+                <input type="date" name="deadline" value={deadline} onChange={this.handleChange}/>
                 <input type="submit" value="submit" />
                 </form>
             </div>

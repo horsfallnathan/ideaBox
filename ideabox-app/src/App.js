@@ -17,7 +17,7 @@ import challengeForm from './components/manager-dashboard/challengeForm';
 class App extends React.Component {
   state = {
     loggedIn: null,
-    challenge: null
+    currentChallenge: null
   };
 
   setUser = user => {
@@ -38,27 +38,28 @@ class App extends React.Component {
     this.getUser();
   }
 
-  // setChallenge = challenge => {
-  //   this.setState({
-  //     challenge: challenge
-  //   })
-  // }
+  setCurrentChallenge = currentChallenge => {
+    this.setState({
+      currentChallenge
+    })
+  }
 
   render() {
+    const currentChallengeId = this.state.currentChallenge && this.state.currentChallenge._id
     return (
       <div>
       <div className="App">
           <Route
             exact
             path="/signup"
-            render={props => <SignUp {...props} setUser={this.setUser} />}
+            render={props => <SignUp {...props} setUser={this.setUser} setCurrentChallenge={this.setCurrentChallenge} />}
           />
           <Route
             exact
             path="/login"
-            render={props => <Login {...props} setUser={this.setUser} />}
+            render={props => <Login {...props} setUser={this.setUser} setCurrentChallenge={this.setCurrentChallenge} />}
           />     
-        <Route path="/challenge/:challengeId" component={Dashboard} />
+        <Route path={`/challenge/${currentChallengeId}`} render={props => <Dashboard {...props} currentChallenge={this.state.currentChallenge} /> } /> 
         <Route exact path="/my-ideas" component={MyIdeas} />
         <Route path="/my-ideas/:ideaId" component={IdeaDetail} />
         <Route path="/idea/:ideaId" render={props => <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />} />

@@ -9,16 +9,16 @@ const challengeIdeas = (challengeId) => {
     return service.get(`/challenges/${challengeId}`)
 }
 
-// const currentChallenge = () => {
+const currentChallenge = () => {
+    return service.get('/currentChallenge')
+}
 
-// }
 
-
-const createChallenge = (title, description, deadline) => {
+const createChallenge = (title, description, startDate, deadline) => {
     return service
-    .post('/managerDashboard/challengeForm', {title, description, deadline})
+    .post('/managerDashboard/challengeForm', {title, description, startDate, deadline})
     .then(response => response.data)
 }
 
-export {challengeIdeas, createChallenge}
+export {challengeIdeas, createChallenge, currentChallenge}
 
