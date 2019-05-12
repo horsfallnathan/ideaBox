@@ -14,6 +14,7 @@ import ManagerDashboardChallenge from "./components/manager-dashboard/ManagerDas
 import ChallengeForm from "./components/manager-dashboard/ChallengeForm";
 import Drafts from "./components/Ideas/Drafts";
 import Navbar from "./components/Navbar";
+import IdeaFeed from "./components/Ideas/IdeaFeed";
 
 class App extends React.Component {
   state = {
@@ -90,6 +91,7 @@ class App extends React.Component {
               <IdeaDetail {...props} loggedIn={this.state.loggedIn} />
             )}
           />
+          <Route path="/idea-feed" component={IdeaFeed} />
           <Route exact path="/drafts" component={Drafts} />
           <Route exact path="/edit-idea/:ideaId" component={IdeaForm} />
           <Route

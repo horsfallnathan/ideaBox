@@ -1,6 +1,6 @@
 import React from "react";
 import { login } from "../../services/auth";
-import { currentChallenge } from "../../services/challenge";
+// import { currentChallenge } from "../../services/challenge";
 
 class Login extends React.Component {
   state = {
