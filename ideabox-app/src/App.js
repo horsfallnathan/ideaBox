@@ -75,7 +75,6 @@ class App extends React.Component {
             )}
           />
           <Route
-            exact
             path={`/challenge/${currentChallengeId}`}
             render={props => (
               <Dashboard
@@ -85,17 +84,21 @@ class App extends React.Component {
             )}
           />
           <Route exact path="/my-ideas" component={MyIdeas} />
-          <Route exact path="/drafts" component={Drafts} />
-          <Route exact path="/my-ideas/:ideaId" component={IdeaDetail} />
           <Route
-            exact
+            path="/my-ideas/:ideaId"
+            render={props => (
+              <IdeaDetail {...props} loggedIn={this.state.loggedIn} />
+            )}
+          />
+          <Route exact path="/drafts" component={Drafts} />
+          <Route exact path="/edit-idea/:ideaId" component={IdeaForm} />
+          <Route
             path="/idea/:ideaId"
             render={props => (
               <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />
             )}
           />
-          <Route exact path="/edit-idea/:ideaId" component={IdeaForm} />
-          <Route exact path="/submit-idea" component={IdeaForm} />
+          <Route path="/submit-idea" component={IdeaForm} />
           <Route exact path="/managerDashboard" component={ManagerDashboard} />
           <Route
             exact

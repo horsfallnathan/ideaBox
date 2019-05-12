@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { publicViewIdea } from '../../services/ideas'
+import { getSingleIdea } from '../../services/ideas'
 import { createComment } from '../../services/comments'
 
 // import Popover from 'react-text-selection-popover';
@@ -19,7 +19,7 @@ class PublicViewIdea extends Component {
 
     componentDidMount() {
         const { ideaId } = this.props.match.params
-        publicViewIdea(ideaId).then(ideainfo => {
+        getSingleIdea(ideaId).then(ideainfo => {
             const { challenge } = ideainfo.data
             const { idea } = ideainfo.data
             this.setState({ challenge, idea, commentContent: "" })

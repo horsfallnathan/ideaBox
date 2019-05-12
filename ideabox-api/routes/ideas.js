@@ -26,9 +26,23 @@ router.get("/edit-idea/:ideaId", (req, res) => {
       res.json(error);
     });
 });
-router.get("/idea/:ideaId", (req, res) => {
+
+// router.get("/idea/:ideaId", (req, res) => {
+//   Idea.findById(req.params.ideaId)
+//     .populate("comments")
+//     .then(idea => {
+//       if (idea.challenge) {
+//         Challenge.findOne({ ideas: { $in: [req.params.ideaId] } })
+//           .then(challenge => {
+// })
+
+router.get("/:ideaId", (req, res) => {
   Idea.findById(req.params.ideaId)
-    .populate("comments")
+    .populate({
+      path: "comments",
+      model: "Comment",
+      populate: { path: "createdBy", model: "User" }
+    })
     .then(idea => {
       if (idea.challenge) {
         Challenge.findOne({ ideas: { $in: [req.params.ideaId] } })
