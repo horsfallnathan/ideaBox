@@ -1,5 +1,5 @@
 import React from "react";
-import { createChallenge } from "../../services/challenge";
+import { createChallenge, getAllChallenges } from "../../services/challenge";
 import SetDeadline from "./SetDeadline";
 
 class challengeForm extends React.Component {
@@ -17,33 +17,27 @@ class challengeForm extends React.Component {
   };
 
   handleSubmit = event => {
-    event.preventDefault();
-
     const { title, description, startDate, deadline } = this.state;
-
-    createChallenge(title, description, startDate, deadline).then(challenge => {
-      let challengeId = challenge._id;
-      this.props.history.push(`/managerDashboard/${challengeId}`);
+    event.preventDefault();
+    getAllChallenges().then(allChallenges => {
+      const conflictingChallenge = allChallenges.data.filter(
+        el => el.startDate < startDate && el.deadline > deadline
+      );
+      conflictingChallenge.length > 0
+        ? alert("Challenge timeline conflicts with another challenge")
+        : createChallenge(title, description, startDate, deadline).then(
+            challenge => {
+              let challengeId = challenge._id;
+              this.props.history.push(`/managerDashboard/${challengeId}`);
+            }
+          );
     });
-
-    // :${challengeId}
   };
-
-  //   submitForm = event => {
-  //       event.preventDefault();
-  //       const {
-  //         title,
-  //         description,
-  //         deadline,
-  //     } = this.state;
-  //     console.log(title, description, deadline)
-  //   }
 
   render() {
     const { title, description, startDate, deadline } = this.state;
     return (
       <div>
-        <SetDeadline />
         <form onSubmit={this.handleSubmit}>
           <label>title</label>
           <input

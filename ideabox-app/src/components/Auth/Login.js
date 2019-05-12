@@ -21,10 +21,10 @@ class Login extends React.Component {
     login(username, password).then(user => {
       this.props.setUser(user);
     });
-    // currentChallenge().then(challenge => {
-    //   this.props.setCurrentChallenge(challenge.data);
-    //   this.props.history.push(`/challenge/${challenge.data._id}`);
-    // });
+    currentChallenge().then(challenge => {
+      this.props.setCurrentChallenge(challenge.data);
+      this.props.history.push(`/challenge/${challenge.data._id}`);
+    });
   };
 
   render() {

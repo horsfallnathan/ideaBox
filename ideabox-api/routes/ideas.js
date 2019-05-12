@@ -27,6 +27,14 @@ router.get("/edit-idea/:ideaId", (req, res) => {
     });
 });
 
+router.get("/all-ideas", (req, res) => {
+  Idea.find({}).then(allIdeas => {
+    res.json(allIdeas)
+  }).catch(err => {
+    res.json(err)
+  })
+})
+
 // router.get("/idea/:ideaId", (req, res) => {
 //   Idea.findById(req.params.ideaId)
 //     .populate("comments")
@@ -36,7 +44,7 @@ router.get("/edit-idea/:ideaId", (req, res) => {
 //           .then(challenge => {
 // })
 
-router.get("/:ideaId", (req, res) => {
+router.get("/idea/:ideaId", (req, res) => {
   Idea.findById(req.params.ideaId)
     .populate({
       path: "comments",

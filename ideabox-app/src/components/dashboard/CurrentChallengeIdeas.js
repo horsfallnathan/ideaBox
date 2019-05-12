@@ -1,31 +1,31 @@
-import React from 'react' 
-import {challengeIdeas} from '../../services/challenge'
+import React from 'react'
+import { challengeIdeas } from '../../services/challenge'
 import { Link } from 'react-router-dom'
 import SearchField from "react-search-field";
 
-class RelatedIdeas extends React.Component {
-    
+class CurrentChallengeIdeas extends React.Component {
+
     state = {
         challenge: {},
         filteredIdeas: []
     }
-    
-    
+
+
     handleSort = event => {
         const type = event.target.value
-        const {challenge} = this.state
-        const {ideas} = challenge
+        const { challenge } = this.state
+        const { ideas } = challenge
         let ideasCopy = ideas.slice()
 
-        ideasCopy.sort((a,b) => {
+        ideasCopy.sort((a, b) => {
             return b[type] - a[type]
         })
         if (type === 'title') {
             ideasCopy.sort((a, b) => {
-                return a.title.localeCompare(b.title) ;
-            })  
+                return a.title.localeCompare(b.title);
+            })
         }
-        
+
         this.setState({
             filteredIdeas: ideasCopy
             // challenge is an object with all the keys of challenge, except for ideas, which will be replaced by ideasCopy
@@ -33,19 +33,19 @@ class RelatedIdeas extends React.Component {
     }
 
     componentDidMount() {
-        let {currentChallenge} = this.props
+        let { currentChallenge } = this.props
         challengeIdeas(currentChallenge._id).then(challengeinfo => {
-            this.setState({challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas})
+            this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
         })
     }
 
     onSearchClick = (searchText) => {
-        const {challenge} = this.state
-        const {ideas} = challenge
+        const { challenge } = this.state
+        const { ideas } = challenge
         let ideasCopy = ideas.slice()
 
         let filteredIdeas = ideasCopy.filter(el => {
-            return (el.title.includes(searchText) || el.description.includes(searchText)) 
+            return (el.title.includes(searchText) || el.description.includes(searchText))
         });
 
         this.setState({
@@ -53,10 +53,10 @@ class RelatedIdeas extends React.Component {
         })
     }
 
-    
+
     render() {
         let ideasArr = this.state.filteredIdeas
-        let displayIdeas = ideasArr && ideasArr.map((el,i) => {
+        let displayIdeas = ideasArr && ideasArr.map((el, i) => {
             return <div className="relatedIdeasBox" key={i}>
                 <div className="relatedIdeasBoxInnerDiv">
                     <div className="relatedIdeasBoxNameDescription">
@@ -67,25 +67,25 @@ class RelatedIdeas extends React.Component {
                         <p>Current stage: {el.status}</p>
                     </div>
                     <div className="relatedIdeasBoxVotes">
-                    <p>{el.upVotes} upVotes</p>
-                    <p>{el.comments.length}comments</p>
-                    
+                        <p>{el.upVotes} upVotes</p>
+                        <p>{el.comments.length}comments</p>
+
 
                     </div>
-            </div>
+                </div>
             </div>
         })
-        
-        
+
+
         return (
             <div>
                 <button onClick={() => this.handleSort('title')}>Sort by votes</button>
-                 <div className="discoverIdeas">
+                <div className="discoverIdeas">
                     <h2>Discover Ideas</h2>
                     <select onChange={this.handleSort} name="" id="" value="Sort by" >
-                    <option value="z" hidden >Sort by</ option>
-                    <option value="upVotes">UpVotes</option>
-                    <option value="title">Names</option>
+                        <option value="z" hidden >Sort by</ option>
+                        <option value="upVotes">UpVotes</option>
+                        <option value="title">Names</option>
                     </select>
                     <SearchField
                         placeholder="Search..."
@@ -94,16 +94,16 @@ class RelatedIdeas extends React.Component {
                         className="test-class"
                     />
                 </div>
-                <div className="relatedIdeas"> 
-                    <div className="relatedIdeasInnerDiv">              
+                <div className="relatedIdeas">
+                    <div className="relatedIdeasInnerDiv">
                         {displayIdeas}
                     </div>
                 </div>
             </div>
         )
     }
-        
-    }
+
+}
 
 
-export default RelatedIdeas
+export default CurrentChallengeIdeas

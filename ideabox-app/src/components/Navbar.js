@@ -20,7 +20,6 @@ export default class Navbar extends Component {
     });
   };
   render() {
-    console.log(this.props);
     return (
       <div>
         {this.state.loggedIn ? (
@@ -35,7 +34,7 @@ export default class Navbar extends Component {
                 <Link to="/">Dashboard</Link>
               </React.Fragment>
             )}
-            <Link to="/">Idea Feed</Link>
+            <Link to="/idea-feed">Idea Feed</Link>
             <Link to="/my-ideas">My Ideas</Link>
             <Link to="/">Profile</Link>
             <Link to="/">Notification</Link>
@@ -44,15 +43,15 @@ export default class Navbar extends Component {
             </li>
           </ul>
         ) : (
-          <ul>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </ul>
-        )}
+            <ul>
+              <li>
+                <Link to="/signup">Signup</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            </ul>
+          )}
       </div>
     );
   }
