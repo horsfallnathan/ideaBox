@@ -6,29 +6,32 @@ const uploader = require("../configs/cloudinary");
 // const Challenge = require("../models/Challenge");
 
 router.post("/submit-idea", (req, res) => {
-  console.log(req.body);
   const {
     title,
+    challenge,
+    category,
     description,
     files,
     need,
     benefit,
     estimatedResources,
     competition,
-    message,
     teamMembers,
+    message,
     privacy
   } = req.body;
   Idea.create({
     title,
+    challenge,
+    category,
     description,
     files,
     need,
     benefit,
     estimatedResources,
     competition,
-    message,
     teamMembers,
+    message,
     privacy
   })
     .then(response => {
@@ -38,6 +41,51 @@ router.post("/submit-idea", (req, res) => {
       res.json(error);
     });
 });
+
+router.post("/edit-idea/:ideaId", (req, res) => {
+  const {
+    title,
+    challenge,
+    category,
+    description,
+    files,
+    need,
+    benefit,
+    estimatedResources,
+    competition,
+    teamMembers,
+    message,
+    privacy
+  } = req.body;
+  console.log(req.body);
+  Idea.findOneAndUpdate(
+    { _id: req.params.ideaId },
+    {
+      $set: {
+        title: title,
+        challenge: challenge,
+        category: category,
+        description: description,
+        files: files,
+        need: need,
+        benefit: benefit,
+        estimatedResources: estimatedResources,
+        competition: competition,
+        teamMembers: teamMembers,
+        message: message,
+        privacy: privacy
+      }
+    }
+  )
+    .then(response => {
+      console.log(response);
+      return res.status(200).json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
 router.post("/file-upload", uploader.single("files"), (req, res, next) => {
   if (!req.file) {
     next(new Error("No file uploaded!"));

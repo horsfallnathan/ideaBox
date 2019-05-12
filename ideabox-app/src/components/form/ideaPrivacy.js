@@ -21,8 +21,8 @@ export default class IdeaPrivacy extends Component {
             <Radio
               label="Make Idea Public"
               name="ideaPrivacy"
-              value="public"
-              checked={values.ideaPrivacy === "public"}
+              value="false"
+              checked={!values.privacy}
               onChange={this.props.handlePrivacyChange}
             />
             <p>Your idea will be shared with all Siemens employees</p>
@@ -31,8 +31,8 @@ export default class IdeaPrivacy extends Component {
             <Radio
               label="Keep Idea Private"
               name="ideaPrivacy"
-              value="private"
-              checked={values.ideaPrivacy === "private"}
+              value="true"
+              checked={values.privacy}
               onChange={this.props.handlePrivacyChange}
             />
             <p>

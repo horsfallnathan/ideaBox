@@ -50,22 +50,24 @@ export default class IdeaNeedBenefit extends Component {
               value={values.estimatedResource}
               onChange={this.props.handleResourceChange}
             />
-            {values.estimatedResources &&
-              values.estimatedResources.map((resource, i) => {
-                return (
-                  <List.Item key={i}>
-                    <List.Content>{resource}</List.Content>
-                    <List.Content>{i}</List.Content>
-                    <List.Content>
-                      <Button
-                        onClick={() => this.props.handleResourceRemove(i)}
-                      >
-                        Delete
-                      </Button>
-                    </List.Content>
-                  </List.Item>
-                );
-              })}
+            <div>
+              {values.estimatedResources &&
+                values.estimatedResources.map((resource, i) => {
+                  return (
+                    <List.Item key={i}>
+                      <List.Content>{resource}</List.Content>
+                      <List.Content>{i}</List.Content>
+                      <List.Content>
+                        <Button
+                          onClick={() => this.props.handleResourceRemove(i)}
+                        >
+                          Delete
+                        </Button>
+                      </List.Content>
+                    </List.Item>
+                  );
+                })}
+            </div>
           </FormField>
           <Button onClick={this.prevStep}>Back</Button>
           <Button onClick={this.props.handleDraft}>Save as draft</Button>

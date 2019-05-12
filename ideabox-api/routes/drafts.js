@@ -5,26 +5,30 @@ const Draft = require("../models/Drafts");
 router.post("/create-draft", (req, res) => {
   const {
     title,
+    challenge,
+    category,
     description,
     files,
     need,
     benefit,
     estimatedResources,
     competition,
-    message,
     teamMembers,
+    message,
     privacy
   } = req.body;
   Draft.create({
     title,
+    challenge,
+    category,
     description,
     files,
     need,
     benefit,
     estimatedResources,
     competition,
-    message,
     teamMembers,
+    message,
     privacy
   })
     .then(response => {
@@ -47,14 +51,16 @@ router.get("/draft/:draftId", (req, res, next) => {
 router.post("/update-draft/:draftId", (req, res, next) => {
   const {
     title,
+    challenge,
+    category,
     description,
     files,
     need,
     benefit,
     estimatedResources,
     competition,
-    message,
     teamMembers,
+    message,
     privacy
   } = req.body;
   Draft.findOneAndUpdate(
@@ -62,14 +68,16 @@ router.post("/update-draft/:draftId", (req, res, next) => {
     {
       $set: {
         title,
+        challenge,
+        category,
         description,
         files,
         need,
         benefit,
         estimatedResources,
         competition,
-        message,
         teamMembers,
+        message,
         privacy
       }
     }

@@ -36,15 +36,15 @@ export default class AddTeam extends Component {
               options={userList}
               onChange={this.props.handleTeamChange}
             />
-            <label htmlFor="teamMemberMessage">
+            <label htmlFor="message">
               Leave them a message! They will reveive it as soon as you submit
               your idea.
             </label>
             <TextArea
               type="TextArea"
-              name="teamMemberMessage"
-              value={values.teamMemberMessage}
-              onChange={this.props.handleChange("teamMemberMessage")}
+              name="message"
+              value={values.message}
+              onChange={this.props.handleChange("message")}
             />
           </FormField>
           <p>Got here: {this.props.draftId}</p>
@@ -56,5 +56,3 @@ export default class AddTeam extends Component {
     );
   }
 }
-
-
