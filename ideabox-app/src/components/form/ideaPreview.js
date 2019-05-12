@@ -13,8 +13,8 @@ export default class IdeaPreview extends Component {
         fileNames,
         estimatedResources,
         teamMembers,
-        teamMemberMessage,
-        ideaPrivacy,
+        message,
+        privacy,
         competition
       }
     } = this.props;
@@ -52,11 +52,12 @@ export default class IdeaPreview extends Component {
             );
           })}
         <h3>Message</h3>
-        <p>{teamMemberMessage}</p>
+        <p>{message}</p>
         <h3>Visibility</h3>
-        <p>{ideaPrivacy}</p>
+        <p>{privacy}</p>
         <h3>Attached Files</h3>
         <p>{fileNames}</p>
+        <p>{this.props.first}</p>
         <Button onClick={this.props.prevStep}>Edit Form</Button>
         <Button onClick={this.props.handleDraft}>Save as draft</Button>
         <Button onClick={this.props.submitForm}>Submit Form</Button>
