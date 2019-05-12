@@ -114,4 +114,7 @@ app.use("/api", getUsers);
 const draftsRoute = require("./routes/drafts");
 app.use("/api", draftsRoute);
 
+const timeRoute = require("./routes/timeKeeper");
+app.use("/", timeRoute);
+
 module.exports = app;

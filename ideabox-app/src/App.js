@@ -44,6 +44,9 @@ class App extends React.Component {
       currentChallenge
     });
   };
+  checkInput = event => {
+    console.log(event.target.value);
+  };
 
   render() {
     const currentChallengeId =
@@ -52,6 +55,7 @@ class App extends React.Component {
       <div>
         <div className="App">
           <Navbar setUser={this.setUser} loggedIn={this.state.loggedIn} />
+          <input type="date" onChange={this.checkInput} />
           <Route
             exact
             path="/signup"
