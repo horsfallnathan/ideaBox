@@ -100,21 +100,8 @@ class App extends React.Component {
           />
           <Route path="/submit-idea" component={IdeaForm} />
           <Route exact path="/managerDashboard" component={ManagerDashboard} />
-<<<<<<< HEAD
           <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />
           <Route exact path="/managerDashboard/challengeForm" component={ChallengeForm} />
-=======
-          <Route
-            exact
-            path="/managerDasboard/:challengeId"
-            component={ManagerDashboardChallenge}
-          />
-          <Route
-            exact
-            path="/managerDashboard/challengeForm"
-            component={challengeForm}
-          />
->>>>>>> 991c545274e25132acac9a68617d380f6f0591d9
         </div>
       </div>
     );
