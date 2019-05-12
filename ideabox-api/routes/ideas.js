@@ -44,7 +44,7 @@ router.get("/all-ideas", (req, res) => {
 //           .then(challenge => {
 // })
 
-router.get("/:ideaId", (req, res) => {
+router.get("/idea/:ideaId", (req, res) => {
   Idea.findById(req.params.ideaId)
     .populate({
       path: "comments",

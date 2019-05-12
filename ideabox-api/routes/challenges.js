@@ -7,7 +7,7 @@ const Idea = require('../models/Idea')
 router.post('/managerDashboard/challengeForm', (req, res, next) => {
     const { title, description, startDate, deadline } = req.body
 
-    return Challenge.create({
+    Challenge.create({
         title: title,
         description: description,
         startDate: startDate,
@@ -21,7 +21,6 @@ router.post('/managerDashboard/challengeForm', (req, res, next) => {
         });
 })
 
-
 router.get("/challenges/:challengeId", (req, res) => {
     Challenge.findById(req.params.challengeId).populate('ideas')
         .then(info => {
@@ -30,10 +29,17 @@ router.get("/challenges/:challengeId", (req, res) => {
             res.json(error)
         })
 })
-
-router.get("/currentChallenge", (req, res) => {
+router.get("/current-challenge", (req, res) => {
     Challenge.findOne({ $and: [{ startDate: { $lte: Date.now() } }, { deadline: { $gte: Date.now() } }] }).then(currentChallenge => {
         res.json(currentChallenge)
+    }).catch(err => {
+        res.json(err)
+    })
+})
+
+router.get("/all-challenges", (req, res) => {
+    Challenge.find({}).then(allChallenges => {
+        res.json(allChallenges)
     }).catch(err => {
         res.json(err)
     })

@@ -15,11 +15,12 @@ import ChallengeForm from "./components/manager-dashboard/ChallengeForm";
 import Drafts from "./components/Ideas/Drafts";
 import Navbar from "./components/Navbar";
 import IdeaFeed from "./components/Ideas/IdeaFeed";
+import AllChallenges from "./components/manager-dashboard/AllChallenges"
 
 class App extends React.Component {
   state = {
-    loggedIn: null,
-    currentChallenge: null
+    loggedIn: {},
+    currentChallenge: {}
   };
 
   setUser = user => {
@@ -53,6 +54,8 @@ class App extends React.Component {
       <div>
         <div className="App">
           <Navbar setUser={this.setUser} loggedIn={this.state.loggedIn} />
+
+          {/* AUTH ROUTES */}
           <Route
             exact
             path="/signup"
@@ -75,6 +78,26 @@ class App extends React.Component {
               />
             )}
           />
+
+          {/* IDEA ROUTES */}
+          <Route path="/submit-idea" component={IdeaForm} />
+          <Route exact path="/my-ideas" component={MyIdeas} />
+          <Route
+            path="/my-ideas/:ideaId"
+            render={props => (
+              <IdeaDetail {...props} loggedIn={this.state.loggedIn} />
+            )}
+          />
+          <Route path="/idea-feed" component={IdeaFeed} />
+          <Route exact path="/edit-idea/:ideaId" component={IdeaForm} />
+          <Route
+            path="/idea/:ideaId"
+            render={props => (
+              <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />
+            )}
+          />
+          <Route exact path="/drafts" component={Drafts} />
+
           <Route
             path={`/challenge/${currentChallengeId}`}
             render={props => (
@@ -84,26 +107,12 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path="/my-ideas" component={MyIdeas} />
-          <Route
-            path="/my-ideas/:ideaId"
-            render={props => (
-              <IdeaDetail {...props} loggedIn={this.state.loggedIn} />
-            )}
-          />
-          <Route path="/idea-feed" component={IdeaFeed} />
-          <Route exact path="/drafts" component={Drafts} />
-          <Route exact path="/edit-idea/:ideaId" component={IdeaForm} />
-          <Route
-            path="/idea/:ideaId"
-            render={props => (
-              <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />
-            )}
-          />
-          <Route path="/submit-idea" component={IdeaForm} />
+
+          {/* MANAGER ROUTES */}
           <Route exact path="/managerDashboard" component={ManagerDashboard} />
           <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />
           <Route exact path="/managerDashboard/challengeForm" component={ChallengeForm} />
+          <Route path="/managerDashborad/all-challenges" component={AllChallenges} />
         </div>
       </div>
     );
