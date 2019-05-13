@@ -52,8 +52,6 @@ class App extends React.Component {
   };
 
   render() {
-    const currentChallengeId =
-      this.state.currentChallenge && this.state.currentChallenge._id;
     return (
       <div>
         <div className="App">
@@ -83,6 +81,7 @@ class App extends React.Component {
                 />
               )}
             />
+
             <Layout setUser={this.setUser} loggedIn={this.state.loggedIn} currentChallenge={this.state.currentChallenge}>
               {/* IDEA ROUTES */}
               <Route path="/submit-idea" component={IdeaForm} />
@@ -104,7 +103,7 @@ class App extends React.Component {
               <Route exact path="/drafts" component={Drafts} />
 
               <Route
-                path={`/challenge/${currentChallengeId}`}
+                path="/"
                 render={props => (
                   <Dashboard
                     {...props}

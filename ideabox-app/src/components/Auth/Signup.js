@@ -2,7 +2,7 @@ import React from "react";
 import { signup } from "../../services/auth";
 import { Form } from "semantic-ui-react";
 import { fileUpload } from "../../services/ideaSubmission";
-import {currentChallenge} from "../../services/challenge"
+import { currentChallenge } from "../../services/challenge"
 
 class Signup extends React.Component {
   state = {
