@@ -6,7 +6,7 @@ const service = axios.create({
 });
 
 const getSingleIdea = ideaId => {
-  return service.get(`/${ideaId}`);
+  return service.get(`/idea/${ideaId}`);
 };
 
 const myIdeas = () => {

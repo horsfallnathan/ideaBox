@@ -2,19 +2,12 @@ import React, { Component } from 'react'
 import { getSingleIdea } from '../../services/ideas'
 import { createComment } from '../../services/comments'
 
-// import Popover from 'react-text-selection-popover';
-// import placeRightBelow from 'react-text-selection-popover/lib/placeRightBelow'
-
 class PublicViewIdea extends Component {
-    constructor(props) {
-        super(props)
-        this.ref = React.createRef()
-    }
-
     state = {
         challenge: {},
         idea: {},
-        commentContent: ''
+        commentContent: '',
+        managComm: true
     }
 
     componentDidMount() {
@@ -33,101 +26,120 @@ class PublicViewIdea extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        let info = { content: this.state.commentContent, ideaId: this.state.idea._id }
+        let info = { content: this.state.commentContent, ideaId: this.state.idea._id, createdBy: this.props.loggedIn }
         createComment(info)
 
         let copyComm = this.state.idea.comments
         copyComm.push(info);
 
         this.setState({
-            commentContent: "",
-            idea: { comments: copyComm }
+            idea: { comments: copyComm },
+            commentContent: ''
         })
     }
 
-    selectedText = (id) => {
-        // let fullString = document.getElementsByTagName("body")[0].textContent;
-        var range = window.getSelection().getRangeAt(0)
+    managerComments = () => {
+        const { comments } = this.state.idea;
+        const managerCC = comments.filter(el => el.createdBy.role === "manager");
+        return managerCC.map((comment, i) => {
+            const { profileImage, firstName, lastName } = comment.createdBy
+            return (
+                <div key={i}>
+                    <h4> <img
+                        src={profileImage}
+                        width="30px"
+                        alt="ProfileImage"
+                    />
+                        {firstName} {lastName}</h4>
+                    <p>{comment.content}</p>
+                </div>
+            );
+        });
+    };
 
-        // var startPosition = fullString.search(range);
-        // var getPosition = range.toString();
-        // var endPosition = parseInt(getPosition.length) + parseInt(startPosition);
+    colleagueComments = () => {
+        const { comments } = this.state.idea;
+        const colleagueCC = comments.filter(el => el.createdBy.role === "employee");
+        return colleagueCC.map((comment, i) => {
+            const { profileImage, firstName, lastName } = comment.createdBy
+            return (
+                <div key={i}>
 
-        let element = document.createElement("span")
-        element.className = "Selected-text"
-        range.surroundContents(element)
+                    <h4><img
+                        src={profileImage}
+                        width="30px"
+                        alt="ProfileImage"
+                    />
+                        {firstName} {lastName}</h4>
+                    <p>{comment.content}</p>
+                </div>
+            );
+        });
+    };
 
-        // create a new div element 
-        // var newDiv = document.createElement("input");
+    handleManagToggle = () => {
+        this.setState({ managComm: true });
+    };
 
-        // add the newly created element and its content into the DOM 
-        // var currentDiv = document.getElementById(id)
-
-        var textdiv = document.createElement('input')
-
-        textdiv.style.left = '100px'
-        textdiv.style.top = '200px'
-        textdiv.style.position = 'absolute'
-
-        document.getElementsByTagName('body')[0].appendChild(textdiv)
-        // let currentDiv = document.getElementById("div1")
-        // document.body.insertBefore(newDiv, currentDiv);
-
-    }
+    handleColleagueToggle = () => {
+        this.setState({ managComm: false });
+    };
 
     render() {
         const { title, description, upVotes, need, benefit, estimatedResources, competition, teamMembers, comments } = this.state.idea
         const challengeTitle = this.state.challenge.title
         return (
             <div>
-                <div>
-                    {challengeTitle ? <h1>The Innovation Challenge: {challengeTitle}</h1> : <h1>Open Idea</h1>}
-                    <h1 onMouseUp={this.selectedText}>Submited Idea: {title}</h1>
+                <div className="flexed-div single-idea-public-col-container">
+                    <div className="single-idea-public-col single-idea-public-col-left">
+                        {challengeTitle ? <h1>The Innovation Challenge: {challengeTitle}</h1> : <h1>Open Idea</h1>}
+                        <div id="triangle-right"></div>
+                    </div>
+                    <div className="single-idea-public-col single-idea-public-col-right">
+                        <h1>Submitted Idea: {title}</h1>
+                    </div>
                 </div>
-                <div>
+                <div className="main-container single-idea-public-botom">
                     <h2>Engagement</h2>
+                    <img src="../../../public/Like.png" alt="upvotes-icon" />
                     {{ upVotes } === 1 ? <p>{upVotes} Up-Vote</p> : <p>{upVotes} Up-Votes</p>}
 
                     <h2>Idea Description</h2>
-                    <p id="idea-description" onMouseUp={() => this.selectedText("idea-description")}>{description}</p>
+                    <p>{description}</p>
 
-                    <h2>Need</h2>
-                    <p>Who is the target group for your idea?</p>
-                    <p id="need" onMouseUp={() => this.selectedText("need")}>{need}</p>
+                    <h2 className="single-idea-public-botom-inline">Need</h2>
+                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">Who is the target group for your idea?</i></p>
+                    <p>{need}</p>
 
-                    <h2>Benefit</h2>
-                    <p>How will the idea benefit the target group? </p>
-                    <p id="benefit" onMouseUp={() => this.selectedText("benefit")}>{benefit}</p>
+                    <h2 className="single-idea-public-botom-inline">Benefit</h2>
+                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">How will the idea benefit the target group? </i></p>
+                    <p>{benefit}</p>
 
-                    <h2>Estimated Resources</h2>
-                    <p>Which resources do you think are needed to work on this idea?</p>
-                    <p id="estimated-resources" onMouseUp={() => this.selectedText("estimated-resources")}>{estimatedResources}</p>
+                    <h2 className="single-idea-public-botom-inline">Estimated Resources</h2>
+                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">Which resources do you think are needed to work on this idea?</i></p>
+                    <p>{estimatedResources}</p>
 
-                    <h2>Competition</h2>
-                    <p>Are there any other products trying to solve the same problem?</p>
-                    <p id="competition" onMouseUp={() => this.selectedText("competition")}>{competition}</p>
+                    <h2 className="single-idea-public-botom-inline">Competition</h2>
+                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">Are there any other products trying to solve the same problem?</i></p>
+                    <p>{competition}</p>
 
                     <h2>Idea Team</h2>
                     <p>{teamMembers}</p>
 
-                    <div className="Org">
+                    <div>
                         <h2>Comments</h2>
-                        <h4>Manager Comments</h4>
-                        <h4>Colleague Comments</h4>
-
-                        {comments && comments.map((comment, i) => {
-                            return (
-                                <div key={i}>
-                                    <h4>Comment</h4>
-                                    <p>{comment.content}</p>
-                                </div>
-                            )
-                        })}
-
-                        <form onSubmit={this.handleSubmit}>
-                            <input type="text" placeholder="Leave a comment..." value={this.commentContent} name="commentContent" onChange={this.handleChange} />
-                        </form>
+                        <button onClick={this.handleManagToggle}>Manager Comments ( {comments && comments.filter(el => el.createdBy.role === "manager").length} )</button>
+                        <button onClick={this.handleColleagueToggle}>Collegue Comments ( {comments && comments.filter(el => el.createdBy.role === "employee").length} ) </button>
+                        <div className="single-idea-public-comment-box">
+                            {comments && this.state.managComm && (this.managerComments().length > 0 ? this.managerComments() : <p>No manager comments yet</p>)}
+                            {comments && !this.state.managComm && (this.colleagueComments().length > 0 ? this.colleagueComments() : <p>No colleague comments yet</p>)}
+                        </div>
                     </div>
+
+                    <form onSubmit={this.handleSubmit}>
+                        <img src={this.props.loggedIn.profileImage} alt="loggedIn-user" />
+                        <input type="text" placeholder="Leave a comment..." value={this.state.commentContent} name="commentContent" onChange={this.handleChange} />
+                    </form>
                 </div>
             </div >
 

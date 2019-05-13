@@ -12,7 +12,6 @@ import ManagerDashboard from "./components/manager-dashboard/ManagerDashboard";
 import ManagerDashboardChallenge from "./components/manager-dashboard/ManagerDashboardChallenge";
 import ChallengeForm from "./components/manager-dashboard/ChallengeForm";
 import Drafts from "./components/Ideas/Drafts";
-import Navbar from "./components/Navbar";
 import IdeaFeed from "./components/Ideas/IdeaFeed";
 import AllChallenges from "./components/manager-dashboard/AllChallenges"
 import Layout from "./components/Layout";

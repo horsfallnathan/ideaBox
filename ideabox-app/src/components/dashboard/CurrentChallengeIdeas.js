@@ -60,7 +60,7 @@ class CurrentChallengeIdeas extends React.Component {
             return <div className="relatedIdeasBox" key={i}>
                 <div className="relatedIdeasBoxInnerDiv">
                     <div className="relatedIdeasBoxNameDescription">
-                        <Link to={`/my-ideas/${el._id}`}>{el.title}</Link>
+                        <Link to={`/idea/${el._id}`}>{el.title}</Link>
                         <p>{el.description}</p>
                     </div>
                     <div className="relatedIdeasBoxStatus">

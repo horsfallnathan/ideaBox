@@ -70,13 +70,13 @@ class IdeaDetail extends Component {
     const challengeTitle = this.state.challenge.title;
     return (
       <div>
-        <div className="Org">
+        <div>
           <h1>Idea Title: {title}</h1>
           {challengeTitle ? (
             <h1>Innovation Challenge: {challengeTitle}</h1>
           ) : (
-            <h1>Open Idea</h1>
-          )}
+              <h1>Open Idea</h1>
+            )}
         </div>
         <div>
           <h2>Decision Panel</h2>
@@ -89,15 +89,15 @@ class IdeaDetail extends Component {
           <h2>Estimated Resources</h2>
           <p>{estimatedResources}</p>
 
-          <div className="Org">
+          <div>
             <h2>Comments</h2>
 
-            <button onClick={this.handleManagToggle}>Manager Comments</button>
-            <button onClick={this.handleColleagueToggle}>
-              Collegue Comments
-            </button>
-            {comments && this.state.managComm && this.managerComments()}
-            {comments && !this.state.managComm && this.colleagueComments()}
+            <button onClick={this.handleManagToggle}>Manager Comments ( {comments && comments.filter(el => el.createdBy.role === "manager").length} )</button>
+            <button onClick={this.handleColleagueToggle}>Collegue Comments ( {comments && comments.filter(el => el.createdBy.role === "employee").length} ) </button>
+            <div className="single-idea-public-comment-box">
+              {comments && this.state.managComm && this.managerComments()}
+              {comments && !this.state.managComm && this.colleagueComments()}
+            </div>
           </div>
 
           <p>
