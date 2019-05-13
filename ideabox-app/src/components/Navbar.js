@@ -26,7 +26,7 @@ export default class Navbar extends Component {
         {this.state.loggedIn ? (
           <ul>
             <Link to="/">Logo</Link>
-            <Link to={`/challenge/${currentChallengeId}`}>Home</Link>
+            <Link to="/">Home</Link>
             {this.state.loggedIn.role === "manager" && (
               <Link to={`/managerDashboard/${currentChallengeId}`}>Manager Dashboard</Link>
             )}

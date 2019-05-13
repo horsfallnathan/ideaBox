@@ -1,8 +1,31 @@
 import React from "react";
+// import { withRouter } from "react-router-dom";
 import { signup } from "../../services/auth";
-import { Form } from "semantic-ui-react";
+// import withStyles from "@material-ui/core/styles/withStyles";
 import { fileUpload } from "../../services/ideaSubmission";
-import { currentChallenge } from "../../services/challenge"
+// import classNames from "classnames";
+// import InputAdornment from "@material-ui/core/InputAdornment";
+// import TextField from "@material-ui/core/TextField";
+// import AccountCircle from "@material-ui/icons/AccountCircle";
+import { currentChallenge } from "../../services/challenge";
+
+// const styles = theme => ({
+
+//   sTextInput: {
+//     border: "1px solid #00646e",
+//     padding: "1rem 2rem"
+//   },
+//   sTextInput.focus: {
+//     border: "1px solid #00646e",
+//     padding: "1rem 2rem"
+//   }
+//   // input: {
+//   //   outline: "none !important"
+//   // },
+//   // sTextInput:focus {
+
+//   // }
+// });
 
 class Signup extends React.Component {
   state = {
@@ -39,8 +62,8 @@ class Signup extends React.Component {
     event.preventDefault();
 
     currentChallenge().then(challenge => {
-      this.props.setCurrentChallenge(challenge.data)
-    })
+      this.props.setCurrentChallenge(challenge.data);
+    });
 
     const { firstName, lastName, username, password, email, role } = this.state;
 
@@ -51,75 +74,72 @@ class Signup extends React.Component {
   };
 
   render() {
+    // const { classes } = this.props;
     return (
-      <div>
-        <img src={this.state.profileImage} width="30px" alt={"ProfileImage"} />
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>first name:</label>
+      <div className={"fullHeightWidth"}>
+        <form onSubmit={this.handleSubmit} className={"signupForm"}>
+          <img
+            src={this.state.profileImage}
+            width="30px"
+            alt={"ProfileImage"}
+          />
+          <div>
             <input
+              placeholder={"First Name"}
               value={this.state.firstName}
               onChange={this.handleChange}
               type="text"
               name="firstName"
             />
-          </Form.Field>
-          <Form.Field>
-            <label>last name:</label>
+          </div>
+          <div>
             <input
+              placeholder={"Last Name"}
               value={this.state.lastName}
               onChange={this.handleChange}
               type="text"
               name="lastName"
             />
-          </Form.Field>
-          <Form.Field>
-            <label>username:</label>
+          </div>
+          <div>
             <input
+              placeholder={"Username"}
               value={this.state.username}
               onChange={this.handleChange}
               type="text"
               name="username"
             />
-          </Form.Field>
-          <Form.Field>
-            <label>password:</label>
+          </div>
+          <div>
             <input
+              placeholder={"Password"}
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
               name="password"
             />
-          </Form.Field>
-          <Form.Field>
-            <label>email:</label>
+          </div>
+          <div>
             <input
+              placeholder={"Email"}
               value={this.state.email}
               onChange={this.handleChange}
               type="text"
               name="email"
             />
-          </Form.Field>
-          <Form.Field>
+          </div>
+          <div>
             <h3>Set Profile Image</h3>
             <input type="file" name="files" onChange={this.handleImageUpload} />
-          </Form.Field>
-          <Form.Field>
-            <label>role:</label>
-            <select
-              value={this.state.role}
-              onChange={this.handleChange}
-              name="role"
-            >
-              <option value="employee">employee</option>
-              <option value="manager">manager</option>
-            </select>
-          </Form.Field>
-          <input type="submit" value="signup" />
-        </Form>
+          </div>
+          <button type="submit" className={"sButton"}>
+            {"SignUp"}
+          </button>
+        </form>
       </div>
     );
   }
 }
 
 export default Signup;
+// export default withRouter(withStyles(styles)(Signup));

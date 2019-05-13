@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button, List } from "semantic-ui-react";
 
 export default class IdeaPreview extends Component {
   render() {
@@ -34,22 +33,14 @@ export default class IdeaPreview extends Component {
         <h3>Estimated Resources</h3>
         {estimatedResources &&
           estimatedResources.map((resource, i) => {
-            return (
-              <List.Item key={i}>
-                <List.Content>{resource}</List.Content>
-              </List.Item>
-            );
+            return <li key={i}>{resource}</li>;
           })}
         <h3>Competition</h3>
         <p>{competition}</p>
         <h3>Team Members</h3>
         {teamMembers &&
           teamMembers.map((name, i) => {
-            return (
-              <List.Item key={i}>
-                <List.Content>{name}</List.Content>
-              </List.Item>
-            );
+            return <li key={i}>{name}</li>;
           })}
         <h3>Message</h3>
         <p>{message}</p>
@@ -58,9 +49,9 @@ export default class IdeaPreview extends Component {
         <h3>Attached Files</h3>
         <p>{fileNames}</p>
         <p>{this.props.first}</p>
-        <Button onClick={this.props.prevStep}>Edit Form</Button>
-        <Button onClick={this.props.handleDraft}>Save as draft</Button>
-        <Button onClick={this.props.submitForm}>Submit Form</Button>
+        <button onClick={this.props.prevStep}>Edit Form</button>
+        <button onClick={this.props.handleDraft}>Save as draft</button>
+        <button onClick={this.props.submitForm}>Submit Form</button>
       </div>
     );
   }
