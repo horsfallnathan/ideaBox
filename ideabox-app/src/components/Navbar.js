@@ -20,13 +20,15 @@ export default class Navbar extends Component {
     });
   };
   render() {
+    const currentChallengeId = this.props.currentChallenge._id
     return (
       <div>
         {this.state.loggedIn ? (
           <ul>
             <Link to="/">Logo</Link>
+            <Link to={`/challenge/${currentChallengeId}`}>Home</Link>
             {this.state.loggedIn.role === "manager" && (
-              <Link to="/">Dashboard</Link>
+              <Link to={`/managerDashboard/${currentChallengeId}`}>Manager Dashboard</Link>
             )}
             {this.state.loggedIn.role === "super-manager" && (
               <React.Fragment>
