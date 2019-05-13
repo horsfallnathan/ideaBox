@@ -69,16 +69,18 @@ class IdeaDetail extends Component {
     } = this.state.idea;
     const challengeTitle = this.state.challenge.title;
     return (
-      <div>
+      <div className="flexed-col main-container">
         <div>
-          <h1>Idea Title: {title}</h1>
+          <h2>Idea Title: </h2><p> {title}</p>
           {challengeTitle ? (
-            <h1>Innovation Challenge: {challengeTitle}</h1>
+            <>
+              <h2>Innovation Challenge: </h2> <p>{challengeTitle}</p>
+            </>
           ) : (
-              <h1>Open Idea</h1>
+              <h2>Open Idea</h2>
             )}
         </div>
-        <div>
+        <div className="idea-detail-bottom">
           <h2>Decision Panel</h2>
 
           <h2>My Idea Description</h2>
@@ -99,6 +101,8 @@ class IdeaDetail extends Component {
           </div>
 
           <p>
+            <img src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png" width="26px" alt="upvotes-icon" />
+
             This idea has been up-voted by
             {{ upVotes } === 1
               ? ` ${upVotes} employee`
