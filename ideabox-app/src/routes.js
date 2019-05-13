@@ -11,7 +11,6 @@ import IdeaDetail from "./components/Ideas/IdeaDetail";
 import ManagerDashboard from "./components/manager-dashboard/ManagerDashboard";
 import ChallengeForm from "./components/manager-dashboard/ChallengeForm";
 import Drafts from "./components/Ideas/Drafts";
-import Navbar from "./components/Navbar";
 import IdeaFeed from "./components/Ideas/IdeaFeed";
 import AllChallenges from "./components/manager-dashboard/AllChallenges"
 import Layout from "./components/Layout";
@@ -51,7 +50,6 @@ class Routes extends React.Component {
     });
   };
   render() {
-    // const currentChallengeId = this.state.currentChallenge && this.state.currentChallenge._id;
     return (
       <div>
         <div className="App">

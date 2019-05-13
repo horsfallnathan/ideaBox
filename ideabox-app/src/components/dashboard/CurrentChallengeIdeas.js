@@ -66,18 +66,13 @@ class CurrentChallengeIdeas extends React.Component {
         let displayIdeas = ideasArr && ideasArr.map((el, i) => {
             return <div className="relatedIdeasBox" key={i}>
                         <div className="relatedIdeasBoxInnerDiv">
-                            
                                 <Link to={`/idea/${el._id}`}><h4>{el.title}</h4></Link>
-                                <p>{el.description}</p>
-                            
+                                <p>{el.description}</p>                          
                             <div className="relatedIdeasBoxStatus">
                                 <p>Current stage: {el.status}</p>
-                            </div>
-                            
-                                <div className="relatedIdeasBoxVotes"><img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png" alt=""/><p> {el.upVotes} up-votes</p></div>
-                                
-                                <p>{el.comments.length}comments</p>
-                            
+                            </div>                        
+                                <div className="relatedIdeasBoxVotes"><img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png" alt=""/><p> {el.upVotes} up-votes</p></div>                          
+                                <p>{el.comments.length}comments</p>        
                         </div>
                     </div>
         })

@@ -10,6 +10,10 @@ body {
   color: #262626;
 }
 
+h2 {
+  color: #00646e;
+}
+
 .main-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -464,5 +468,66 @@ button {
 
 .mDashboardIdeaBoxVotes {
   margin-right: 2rem;
+}
+
+.single-idea-public-col {
+  width: 50vw;
+  height: 305px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.single-idea-public-col-left {
+  background-color: #AEEAE8;
+  position: relative;
+}
+
+.single-idea-public-col-right {
+  background: -webkit-gradient(linear, left top, right top, from(#50bfd8), to(#3f87a6));
+  background: linear-gradient(to right, #50bfd8, #3f87a6);
+  color: #fff;
+}
+
+.specifications-single-idea-public {
+  color: #879baa;
+  font-size: 14px;
+}
+
+.single-idea-public-inline {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.single-idea-public-comment-box {
+  border: 2px solid #c7ced7;
+  padding: 10px;
+}
+
+.single-idea-public-comment-box h4 {
+  padding: 5px;
+  color: #00646e;
+}
+
+.upvotes {
+  color: #c7ced7;
+}
+
+#triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 152.5px solid transparent;
+  border-left: 5vw solid #AEEAE8;
+  border-bottom: 152.5px solid transparent;
+  position: absolute;
+  top: 0px;
+  left: 49.5vw;
 }
 /*# sourceMappingURL=App.css.map */
