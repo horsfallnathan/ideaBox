@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
 import SubmittedIdeas from './SubmittedIdeas'
-// import ChallengePres from './ChallengePres'
 import CurrentChallengeIdeas from './CurrentChallengeIdeas'
 
 
