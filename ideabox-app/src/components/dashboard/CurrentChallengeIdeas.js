@@ -57,8 +57,6 @@ class CurrentChallengeIdeas extends React.Component {
     render() {
         const challengeTitle = this.state.challenge.title
         
-
-    
         let ideasArr = this.state.filteredIdeas
         let displayIdeas = ideasArr && ideasArr.map((el, i) => {
             return <div className="relatedIdeasBox" key={i}>

@@ -58,6 +58,39 @@ $xl-desktop: 1200px;
   }
 }
 
+.headBar {
+  margin-top: 3rem; 
+}
+
+.headBar button {
+  width: 50%;
+  height: 70px; 
+}
+
+button:disabled {
+  background-color: white;
+  border: 1px solid $mainColor;
+  color: $mainColor;
+}
+
+.filteringMIdeas { 
+  margin-top: 1.5rem; 
+  margin-left: 2rem;
+  margin-right: 2rem; 
+}
+
+.filteringMIdeas button {
+  border: none; 
+  width: 25%;
+}
+
+.searchFieldMDashboard {
+  display:flex;
+  justify-content: center; 
+  align-items: center;
+  margin-top: 1.5rem; 
+}
+
 .flexed-div {
   display: flex;
 }
