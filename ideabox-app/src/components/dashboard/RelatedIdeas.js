@@ -14,6 +14,7 @@ class RelatedIdeas extends React.Component {
     handleSort = event => {
         const type = event.target.value
         const {challenge} = this.state
+        // const {challengeTitle} = challenge
         const {ideas} = challenge
         let ideasCopy = ideas.slice()
 
@@ -55,12 +56,16 @@ class RelatedIdeas extends React.Component {
 
     
     render() {
+        const challengeTitle = this.state.challenge.title
+        
+
+    
         let ideasArr = this.state.filteredIdeas
         let displayIdeas = ideasArr && ideasArr.map((el,i) => {
             return <div className="relatedIdeasBox" key={i}>
                 <div className="relatedIdeasBoxInnerDiv">
                     <div className="relatedIdeasBoxNameDescription">
-                        <Link to={`/my-ideas/${el._id}`}>{el.title}</Link>
+                        <Link to={`/idea/${el._id}`}>{el.title}</Link>
                         <p>{el.description}</p>
                     </div>
                     <div className="relatedIdeasBoxStatus">
@@ -79,6 +84,23 @@ class RelatedIdeas extends React.Component {
         
         return (
             <div>
+                <div className="challengePres">
+                    <div className="challengePresInnerDiv">
+                        <div className="challengePresKata">
+                            <h2>#</h2>
+                        </div>
+                        <div className="challengePresTitleBtns">
+                            <div className="challengePresTitle">
+                            <h1>{challengeTitle}</h1>
+                            </div>
+                            <div className="challengePresBtns">
+                                <button>Read more</button>
+                                <button>Submit Idea</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <button onClick={() => this.handleSort('title')}>Sort by votes</button>
                  <div className="discoverIdeas">
                     <h2>Discover Ideas</h2>

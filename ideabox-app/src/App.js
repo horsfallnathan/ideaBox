@@ -36,6 +36,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getUser();
+    
   }
 
   setCurrentChallenge = currentChallenge => {
@@ -64,7 +65,8 @@ class App extends React.Component {
         <Route path="/my-ideas/:ideaId" component={IdeaDetail} />
         <Route path="/idea/:ideaId" render={props => <PublicViewIdea {...props} loggedIn={this.state.loggedIn} />} />
         <Route path="/submit-idea" component={IdeaForm} />
-        <Route exact path="/managerDashboard" component={ManagerDashboard} />
+        <Route exact path="/managerDashboard/" component={ManagerDashboard} />
+        {/* <Route exact path= {`/managerDashboard/${currentChallengeId}`} render={props => <ManagerDashboard {...props} currentChallenge={this.state.currentChallenge} /> }/> */}
         <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />
         <Route exact path="/managerDashboard/challengeForm" component={challengeForm} />
       </div>

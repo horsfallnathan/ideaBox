@@ -21,6 +21,7 @@ class Login extends React.Component {
     login(username, password).then(user => {
       this.props.setUser(user);    });
     currentChallenge().then(challenge => {
+      console.log(challenge)
       this.props.setCurrentChallenge(challenge.data)
       this.props.history.push(`/challenge/${challenge.data._id}`)
     })

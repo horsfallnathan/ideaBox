@@ -25,23 +25,13 @@ class challengeForm extends React.Component {
     this.props.history.push(`/managerDashboard/${challengeId}`);
     });
     
-   
-    // :${challengeId}
 
 
 
     
   };
 
-//   submitForm = event => {
-//       event.preventDefault();
-//       const {
-//         title, 
-//         description, 
-//         deadline,
-//     } = this.state;
-//     console.log(title, description, deadline)
-//   } 
+
 
     render() {
         const { title, description, startDate, deadline } = this.state

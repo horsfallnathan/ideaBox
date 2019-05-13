@@ -1,7 +1,7 @@
 import React from 'react' 
 import Navbar from './Navbar'
 import SubmittedIdeas from './SubmittedIdeas'
-import ChallengePres from './ChallengePres'
+// import ChallengePres from './ChallengePres'
 import RelatedIdeas from './RelatedIdeas'
 
 
@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
             <div className="dashboard">
                <Navbar />
                <SubmittedIdeas />
-               <ChallengePres />
+               {/* <ChallengePres /> */}
                <RelatedIdeas currentChallenge={this.props.currentChallenge}/>
             </div>
         )
