@@ -51,7 +51,6 @@ class Routes extends React.Component {
     });
   };
   render() {
-    // const currentChallengeId = this.state.currentChallenge && this.state.currentChallenge._id;
     return (
       <div>
         <div className="App">

@@ -81,8 +81,6 @@ class IdeaDetail extends Component {
         <div>
           <h2>Decision Panel</h2>
 
-          <h1>Feedback</h1>
-
           <h2>My Idea Description</h2>
           <p>{description}</p>
 

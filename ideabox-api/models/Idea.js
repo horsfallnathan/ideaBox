@@ -44,12 +44,6 @@ ideaSchema = new Schema(
         ref: "Comment"
       }
     ],
-    feedback: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Feedback"
-      }
-    ],
     upVotes: {
       type: Number,
       default: 0
