@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
+// import Chip from "@material-ui/core/Chip";
+// import PropTypes from "prop-types";
+import CreatableSelect from "react-select/lib/Creatable";
 
-export default class IdeaNeedBenefit extends Component {
+const styles = theme => ({});
+class IdeaNeedBenefit extends Component {
   nextStep = event => {
     event.preventDefault();
     this.props.nextStep();
@@ -11,9 +16,9 @@ export default class IdeaNeedBenefit extends Component {
   };
 
   render() {
-    const { values } = this.props;
+    const { values, handleChange, classes } = this.props;
     return (
-      <div>
+      <div className={"ideaForm"}>
         <form>
           <div>
             <h3>Need</h3>
@@ -22,7 +27,7 @@ export default class IdeaNeedBenefit extends Component {
               type="text"
               name="need"
               value={values.need}
-              onChange={this.props.handleChange("need")}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -32,10 +37,11 @@ export default class IdeaNeedBenefit extends Component {
               your idea for the company?
             </label>
             <textarea
-              type="TextArea"
+              style={{ width: "100%" }}
+              rows="6"
               name="benefit"
               value={values.benefit}
-              onChange={this.props.handleChange("benefit")}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -53,26 +59,45 @@ export default class IdeaNeedBenefit extends Component {
               {values.estimatedResources &&
                 values.estimatedResources.map((resource, i) => {
                   return (
-                    <ul key={i}>
-                      <li>{resource}</li>
-                      <li>{i}</li>
-                      <li>
-                        <button
-                          onClick={() => this.props.handleResourceRemove(i)}
-                        >
-                          Delete
-                        </button>
-                      </li>
-                    </ul>
+                    // <Chip
+                    //   label={resource}
+                    //   onDelete={() => this.props.handleResourceRemove(i)}
+                    //   className={classes.chip}
+                    //   color="secondary"
+                    // />
+                    <CreatableSelect
+                      isMulti
+                      // styles={colourStyles}
+                      onChange={this.handleChange}
+                      // options={colourOptions}
+                    />
                   );
                 })}
             </div>
           </div>
-          <button onClick={this.prevStep}>Back</button>
-          <button onClick={this.props.handleDraft}>Save as draft</button>
-          <button onClick={this.nextStep}>Next</button>
+          <div className={"flexed-div spacedBetween"}>
+            <button className={"ideaFormButton"} onClick={this.prevStep}>
+              Back
+            </button>
+            <div className={"flexed-div flexed-end"}>
+              <button
+                className={"ideaFormButton"}
+                onClick={this.props.handleDraft}
+              >
+                Save as draft
+              </button>
+              <button
+                className={"ideaFormButton margin-left-15"}
+                onClick={this.nextStep}
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     );
   }
 }
+
+export default withStyles(styles)(IdeaNeedBenefit);

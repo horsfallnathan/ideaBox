@@ -64,6 +64,19 @@ $xl-desktop: 1200px;
 .flexed-col {
   flex-direction: column;
 }
+.verticalCenter {
+  align-items: center;
+}
+.spacedBetween {
+  justify-content: space-between;
+}
+.flexed-end {
+  justify-content: flex-end;
+}
+.selfJustifyLeft {
+  align-self: flex-start;
+}
+
 .login-box {
   width: 100%;
   @include tab() {
@@ -85,14 +98,24 @@ $xl-desktop: 1200px;
 }
 
 input {
-  border: 1px solid #00646e;
+  border: 1px solid $subBlue;
   padding: 1rem 1rem;
   border-radius: 2px;
   margin: 2rem 0;
 }
 input:focus {
   outline: none !important;
-  border: 2px solid #00646e;
+  border: 1px solid $mainColor;
+}
+textarea {
+  border: 1px solid $subBlue;
+  padding: 1rem 1rem;
+  border-radius: 2px;
+  margin: 2rem 0;
+}
+textarea:focus {
+  outline: none !important;
+  border: 1px solid $mainColor;
 }
 
 .signupForm {
@@ -106,12 +129,62 @@ input:focus {
 .signupForm input {
   width: 100%;
 }
-
+h1 {
+  color: $mainColor;
+}
 button {
   text-transform: uppercase;
-  background-color: $mainColor;
+  background-color: $subBlue;
   color: white;
   padding: 1rem;
   border: 0;
   border-radius: 2px;
+}
+button:hover {
+  background-color: $mainColor;
+}
+.ideaForm {
+  width: 100%;
+  @include tab() {
+    width: 40vw;
+  }
+}
+.ideaForm input {
+  width: 100%;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.attachFileIcon {
+  background-image: url("https://res.cloudinary.com/nthnh/image/upload/v1557750626/ideaBox/baseline-create_new_folder-24px_vjlsfj.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+.inputfile + label {
+  color: $subBlue;
+  border: 0;
+  border-radius: 2px;
+}
+.padding-left-15 {
+  padding-left: 1.5rem;
+}
+.margin-left-15 {
+  margin-left: 1.5rem;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+  color: $mainColor;
+}
+.ideaFormButton {
+  width: 12rem;
 }
