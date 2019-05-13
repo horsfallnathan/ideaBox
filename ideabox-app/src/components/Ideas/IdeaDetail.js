@@ -69,19 +69,19 @@ class IdeaDetail extends Component {
     } = this.state.idea;
     const challengeTitle = this.state.challenge.title;
     return (
-      <div>
-        <div className="Org">
-          <h1>Idea Title: {title}</h1>
-          {challengeTitle ? (
-            <h1>Innovation Challenge: {challengeTitle}</h1>
-          ) : (
-            <h1>Open Idea</h1>
-          )}
-        </div>
+      <div className="flexed-col main-container">
         <div>
+          <h2>Idea Title: </h2><p> {title}</p>
+          {challengeTitle ? (
+            <>
+              <h2>Innovation Challenge: </h2> <p>{challengeTitle}</p>
+            </>
+          ) : (
+              <h2>Open Idea</h2>
+            )}
+        </div>
+        <div className="idea-detail-bottom">
           <h2>Decision Panel</h2>
-
-          <h1>Feedback</h1>
 
           <h2>My Idea Description</h2>
           <p>{description}</p>
@@ -89,18 +89,20 @@ class IdeaDetail extends Component {
           <h2>Estimated Resources</h2>
           <p>{estimatedResources}</p>
 
-          <div className="Org">
+          <div>
             <h2>Comments</h2>
 
-            <button onClick={this.handleManagToggle}>Manager Comments</button>
-            <button onClick={this.handleColleagueToggle}>
-              Collegue Comments
-            </button>
-            {comments && this.state.managComm && this.managerComments()}
-            {comments && !this.state.managComm && this.colleagueComments()}
+            <button onClick={this.handleManagToggle}>Manager Comments ( {comments && comments.filter(el => el.createdBy.role === "manager").length} )</button>
+            <button onClick={this.handleColleagueToggle}>Collegue Comments ( {comments && comments.filter(el => el.createdBy.role === "employee").length} ) </button>
+            <div className="single-idea-public-comment-box">
+              {comments && this.state.managComm && this.managerComments()}
+              {comments && !this.state.managComm && this.colleagueComments()}
+            </div>
           </div>
 
           <p>
+            <img src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png" width="26px" alt="upvotes-icon" />
+
             This idea has been up-voted by
             {{ upVotes } === 1
               ? ` ${upVotes} employee`

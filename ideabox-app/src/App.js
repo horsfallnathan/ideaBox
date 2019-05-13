@@ -27,7 +27,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <Routes />
         </MuiThemeProvider>
-      </div>
+      </div >
     );
   }
 }

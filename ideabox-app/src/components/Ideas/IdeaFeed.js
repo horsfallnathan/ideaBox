@@ -25,7 +25,6 @@ class IdeaFeed extends Component {
                         status,
                         upVotes,
                         comments,
-                        feedback,
                         _id
                     } = idea;
                     return (
@@ -35,7 +34,6 @@ class IdeaFeed extends Component {
                             <p>Current stage: {status}</p>
                             <p>{upVotes} up-votes</p>
                             <p>{comments.length} comments</p>
-                            <p>{feedback.length} feedback</p>
                         </div>
                     );
                 })}
