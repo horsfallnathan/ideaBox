@@ -9,7 +9,6 @@ import IdeaForm from "./components/form/IdeaForm";
 import Dashboard from "./components/dashboard/Dashboard";
 import IdeaDetail from "./components/Ideas/IdeaDetail";
 import ManagerDashboard from "./components/manager-dashboard/ManagerDashboard";
-import ManagerDashboardChallenge from "./components/manager-dashboard/ManagerDashboardChallenge";
 import ChallengeForm from "./components/manager-dashboard/ChallengeForm";
 import Drafts from "./components/Ideas/Drafts";
 import IdeaFeed from "./components/Ideas/IdeaFeed";
@@ -113,8 +112,13 @@ class Routes extends React.Component {
 
 
               {/* MANAGER ROUTES */}
-              <Route exact path="/managerDashboard" component={ManagerDashboard} />
-              <Route exact path="/managerDasboard/:challengeId" component={ManagerDashboardChallenge} />
+              <Route exact path="/managerDashboard" render={props => (
+              <ManagerDashboard
+                {...props}
+                currentChallenge={this.state.currentChallenge}
+              />
+            )}
+            />
               <Route exact path="/managerDashboard/challengeForm" component={ChallengeForm} />
               <Route path="/managerDashborad/all-challenges" component={AllChallenges} />
 

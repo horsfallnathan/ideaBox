@@ -62,6 +62,40 @@ h2{
   }
 }
 
+.headBar {
+  margin-top: 3rem; 
+  width: 100vw; 
+}
+
+.headBar button {
+  width: 50%;
+  height: 70px; 
+}
+
+button:disabled {
+  background-color: white;
+  border: 1px solid $mainColor;
+  color: $mainColor;
+}
+
+.filteringMIdeas { 
+  margin-top: 1.5rem; 
+  margin-left: 2rem;
+  margin-right: 2rem; 
+}
+
+.filteringMIdeas button {
+  border: none; 
+  width: 25%;
+}
+
+.searchFieldMDashboard {
+  display:flex;
+  justify-content: center; 
+  align-items: center;
+  margin-top: 1.5rem; 
+}
+
 .flexed-div {
   display: flex;
 }
@@ -119,6 +153,239 @@ button {
   border: 0;
   border-radius: 2px;
 }
+
+.navBar {
+  width: 100%;
+  display:flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+  // align-items: flex-end;
+  height: 5rem; 
+  margin-bottom: -3rem; 
+}
+
+.navBarLogo img{
+  margin: 1rem; 
+}
+
+.navBarLinks {
+  list-style-type: none; 
+  display:flex; 
+  flex-direction: row; 
+  align-items: flex-end;
+  margin-bottom: 0.5rem; 
+}
+
+.navBarLinks a {
+  text-decoration: none; 
+}
+
+.navBarIcons { 
+  margin-right: 2rem; 
+  display:flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.navBarIcons img{
+  margin-bottom: 0.5rem; 
+  width: 1.5rem; 
+  height: 2rem; 
+}
+
+
+// Employee Dashboard
+
+.submittedIdeas {
+  width:100vw; 
+  height: 80px;
+  background-color: darkgrey;
+  display: flex; 
+  flex-direction: row; 
+}
+
+.submittedIdeasBox {
+  width: 50vw; 
+  height: inherit; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  border: 1px solid black; 
+}
+
+.challengePres {
+  width: inherit; 
+  height: 26.8rem; 
+  background-image: url('./1187329.png'); 
+  background-size: cover; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center; 
+}
+
+.challengePresInnerDiv {
+  width: 60rem; 
+  height: 26.8rem;
+  display: flex; 
+  flex-direction: row; 
+   
+}
+.challengePresKata {
+  width: 30%; 
+  height: inherit; 
+  display:flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.challengePresTitleBtns {
+  width: 50%; 
+  height: inherit; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  // align-items: center; 
+}
+
+.challengePresTitle {
+  width: inherit; 
+  height: 150px; 
+  display:flex;
+  /* justify-content: center;  */
+  align-items: center; 
+}
+
+.challengePresBtns {
+  width: inherit; 
+  height: 150px; 
+  display:flex;
+  /* justify-content: center;  */
+  align-items: center; 
+}
+
+.challengePresBtns button {
+  margin-right: 40px; 
+}
+
+.discoverIdeas {
+  height: 12.5rem; 
+  width: inherit; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-around;
+  align-items: center; 
+}
+
+.relatedIdeas {
+  display: flex; 
+  flex-wrap: wrap; 
+  flex-direction: row; 
+}
+
+.relatedIdeasBox {
+  width: 45%;
+  height: 21.6rem;
+  margin: 2.5%;
+  background-color: grey;
+  display: flex; 
+  flex-wrap: wrap; 
+  flex-direction: row; 
+  justify-content: center; 
+}
+
+.relatedIdeasBoxInnerDiv {
+  width: 80%;
+  background-color: lightgray;
+  margin: 5%; 
+}
+
+.relatedIdeasBoxInnerDiv p {
+  margin: 1.5rem 0; 
+}
+
+.relatedIdeasBoxVotes {
+  display:flex; 
+  flex-direction: row; 
+  height: 2rem; 
+}
+
+.relatedIdeasBoxVotes img {
+  width: 1.5rem;
+  height: 1.5rem; 
+   
+}
+
+
+// Manager Dashboard
+
+.ideasContainer {
+  width: 52rem; 
+  height: max-content;
+  margin-top: 4rem; 
+  display: flex; 
+  flex-wrap: wrap; 
+  
+}
+
+.mDashboardIdeaBox {
+  width: 19rem; 
+  height: 26rem;
+  margin-right: 1rem; 
+  border: 1px solid black; 
+  display:flex; 
+  align-items: center; 
+  flex-direction: column; 
+}
+
+.mDashboardIdeaBoxTagOuterDiv {
+  width: inherit; 
+  height: 2.8rem; 
+  display:flex; 
+  justify-content: flex-end;
+  flex-direction: row; 
+  margin-top: 1rem; 
+}
+
+.mDashboardIdeaBoxTag {
+  width: 7rem; 
+  height: 2.8rem; 
+  background-color: lightblue;
+  color: white; 
+}
+
+.mDashboardIdeaBoxContent {
+  width: 14.8rem; 
+  height: 20rem;
+  margin-top: 1rem; 
+}
+
+.mDashboardIdeaBoxText {
+  width: inherit; 
+  height: 10.6rem; 
+}
+
+.mDashboardIdeaBox h2 {
+  margin-bottom: 1rem; 
+}
+
+.mDashboardIdeaBoxStatus {
+  width: inherit; 
+  height: 3rem; 
+}
+
+.mDashboardIdeaBoxVotesComments {
+  width: inherit; 
+  height: 3rem; 
+  display: flex; 
+  flex-direction: row; 
+  color: $mainColor;
+}
+
+.mDashboardIdeaBoxVotes {
+  margin-right: 2rem; 
+}
+
+
 
 
 // Public idea view
