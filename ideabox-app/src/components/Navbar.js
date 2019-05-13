@@ -25,9 +25,8 @@ export default class Navbar extends Component {
       <div>
         {this.state.loggedIn ? (
           <div class="navBar">
-            <div>
-            <Link to="/">Logo</Link>
-            <Link to="/">Home</Link>
+            <div class="navBarLogo">
+            <Link to="/managerDashboard"><img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557764459/IdeaBox/logo_pwottr.png" alt=""/></Link>
             </div>
             {this.state.loggedIn.role === "manager" && (
               <Link to="/managerDashboard">Manager Dashboard</Link>
@@ -39,23 +38,23 @@ export default class Navbar extends Component {
               </React.Fragment>
             )}
             <ul className="navBarLinks">
-              <div className="NavBarIcons">
+              <div className="navBarIcons">
                 <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557764443/IdeaBox/lightbulb-new_jkbzyw.png" alt=""/>
                 <li><Link to="/idea-feed">Idea Feed</Link></li>
               </div>
-              <div className="NavBarIcons">
-                <img src="" alt=""/>
+              <div className="navBarIcons">
+                <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/Group_twzivq.png" alt=""/>
                 <li><Link to="/my-ideas">My Ideas</Link></li>
               </div>
-              <div className="NavBarIcons">
-                <img src="" alt=""/>
+              <div className="navBarIcons">
+                <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/ProfileIcon_n7k0lx.png" alt=""/>
                 <li><Link to="/">Profile</Link></li>
               </div>
-              <div className="NavBarIcons">
-                <img src="" alt=""/>
+              <div className="navBarIcons">
+                <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762768/IdeaBox/comment_schndj.png" alt=""/>
                 <li><Link to="/">Notification</Link></li>
               </div>
-              <div className="NavBarIcons">
+              <div className="navBarIcons">
                 <img src="" alt=""/>
                 <li onClick={this.handleLogout}>
               <Link to="/">Logout</Link>

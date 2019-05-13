@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -160,11 +161,12 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
   height: 5rem;
   margin-bottom: -3rem;
+}
+
+.navBarLogo {
+  margin: 1rem;
 }
 
 .navBarLinks {
@@ -176,6 +178,14 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.navBarLinks a  {
+  text-decoration: none;
 }
 
 .navBarIcons {
@@ -187,9 +197,15 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navBarIcons img {
+  margin-bottom: 0.5rem;
+  width: 1.5rem;
+  height: 2rem;
 }
 
 .submittedIdeas {

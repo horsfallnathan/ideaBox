@@ -159,24 +159,38 @@ button {
   display:flex; 
   flex-direction: row; 
   justify-content: space-between;
-  align-items: flex-end;
+  // align-items: flex-end;
   height: 5rem; 
   margin-bottom: -3rem; 
+}
+
+.navBarLogo img{
+  margin: 1rem; 
 }
 
 .navBarLinks {
   list-style-type: none; 
   display:flex; 
   flex-direction: row; 
-  
+  align-items: flex-end;
+  margin-bottom: 0.5rem; 
 }
 
-.navBarIcons {
+.navBarLinks a {
+  text-decoration: none; 
+}
+
+.navBarIcons { 
   margin-right: 2rem; 
   display:flex; 
   flex-direction: column; 
-  justify-content: center; 
-  
+  align-items: center; 
+}
+
+.navBarIcons img{
+  margin-bottom: 0.5rem; 
+  width: 1.5rem; 
+  height: 2rem; 
 }
 
 
