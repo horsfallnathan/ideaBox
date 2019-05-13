@@ -1,8 +1,8 @@
-import React from 'react' 
+import React from 'react'
 import Navbar from './Navbar'
 import SubmittedIdeas from './SubmittedIdeas'
 // import ChallengePres from './ChallengePres'
-import RelatedIdeas from './RelatedIdeas'
+import CurrentChallengeIdeas from './CurrentChallengeIdeas'
 
 
 class Dashboard extends React.Component {
@@ -11,14 +11,13 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="dashboard">
-               <Navbar />
-               <SubmittedIdeas />
-               {/* <ChallengePres /> */}
-               <RelatedIdeas currentChallenge={this.props.currentChallenge}/>
+                <Navbar />
+                <SubmittedIdeas />
+                {/* <ChallengePres /> */}
+                <CurrentChallengeIdeas currentChallenge={this.props.currentChallenge} />
             </div>
         )
     }
-
 }
 
 export default Dashboard

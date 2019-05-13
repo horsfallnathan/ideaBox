@@ -1,222 +1,103 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #262626;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    padding-left: calc((100vw - 960px) / 2);
+    padding-right: calc((100vw - 960px) / 2);
+  }
+}
+
+.flexed-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.flexed-col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.Org {
-  border: solid;
-  margin: 20px;
+.login-box {
+  width: 100%;
 }
 
-.Selected-text {
-  background-color: lightsalmon;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 768px) {
+  .login-box {
+    width: 40%;
   }
 }
 
-/* Dashboard */
-
-/* Navbar */
-
-.navbar {
-  width: 100vw; 
-  height: 80px; 
-  background-color: grey; 
-  display: flex; 
-  flex-direction: row; 
-  justify-content: space-between;
+.full-height-width {
+  height: 100vh;
+  width: 100vw;
 }
 
-.navbarIcons {
-  display: flex; 
-  flex-direction: row; 
-  width: 400px; 
-  justify-content: space-between;
-  height: inherit; 
+.fullHeightWidth {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.siemensLogo {
-  width: 100px; 
-  height: 50px; 
+input {
+  border: 1px solid #00646e;
+  padding: 1rem 1rem;
+  border-radius: 2px;
+  margin: 2rem 0;
 }
 
-
-/* SubmittedIdeas */
-
-.submittedIdeas {
-  width:100vw; 
-  height: 80px;
-  background-color: darkgrey;
-  display: flex; 
-  flex-direction: row; 
+input:focus {
+  outline: none !important;
+  border: 2px solid #00646e;
 }
 
-.submittedIdeasBox {
-  width: 50vw; 
-  height: inherit; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  border: 1px solid black; 
+.signupForm {
+  width: 100vw;
+  padding: 1.5rem;
 }
 
-/* ChallengePresentation */
-
-.challengePres {
-  width: 100vw; 
-  height: 429px; 
-  background-color: lightblue;
-  display: flex; 
-  justify-content: center; 
+@media (min-width: 768px) {
+  .signupForm {
+    width: 40vw;
+  }
 }
 
-.challengePresInnerDiv {
-  width: 80vw; 
-  height: inherit; 
-  background-color: blue; 
-  display: flex; 
-  flex-direction: row; 
+.signupForm input {
+  width: 100%;
 }
 
-.challengePresKata {
-  width: 30vw; 
-  height: inherit; 
-  display:flex; 
-  justify-content: center; 
-  align-items: center; 
+button .sButtons {
+  text-transform: uppercase;
+  background-color: #00646e;
+  padding: 2rem;
 }
-
-.challengePresTitleBtns {
-  width: 50vw; 
-  height: inherit; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-}
-
-.challengePresTitle {
-  width: inherit; 
-  height: 150px; 
-  display:flex;
-  /* justify-content: center;  */
-  align-items: center; 
-}
-
-.challengePresBtns {
-  width: inherit; 
-  height: 150px; 
-  display:flex;
-  /* justify-content: center;  */
-  align-items: center; 
-}
-
-.challengePresBtns button {
-  margin-right: 40px; 
-}
-
-/* Discover Ideas */
-
-.discoverIdeas {
-  height: 200px; 
-  width: 100vw; 
-  background-color: lightgray;
-  display: flex; 
-  flex-direction: row; 
-  justify-content: space-around;
-  align-items: center; 
-}
-
-.relatedIdeas {
-  height: max-content; 
-  width: 100vw; 
-  display: flex; 
-  justify-content: center;
-  align-items: center; 
-}
-
-.relatedIdeasInnerDiv {
-  height: max-content;
-  width: 1060;
-  display: flex; 
-  flex-wrap: wrap;
-  flex-direction: row; 
-  justify-content: center; 
-  overflow-x: auto; 
-}
-
-.relatedIdeasBox {
-  width: 495px; 
-  height: 346px; 
-  background-color: lightblue;
-  display:flex; 
-  justify-content: center; 
-  align-items: center; 
-  margin-top: 80px; 
-  margin-right: 40px; 
-  margin-left: 40px; 
-}
-
-.relatedIdeasBoxInnerDiv {
-  width: 360px; 
-  height: 250px; 
-  background-color: white; 
-}
-
-.relatedIdeasBoxNameDescription {
-  width: inherit; 
-  height: 116px;
-  background-color: lightcyan;
-}
-
-.relatedIdeasBoxStatus {
-  width: inherit; 
-  height: 60px;
-  background-color: lightgray;
-  margin-top: 40px; 
-}
-
-.relatedIdeasBoxVotes {
-  width: inherit; 
-  height: 16px; 
-  background-color: lightslategray;
-  display:flex; 
-  flex-direction: row; 
-  margin-top: 20px; 
-}
-
-
-/* Manager Dashboard  */
-
-.mDashboardIdeaBox {
-  width: 200px; 
-  height: 200px; 
-  background-color: grey; 
-}
+/*# sourceMappingURL=App.css.map */

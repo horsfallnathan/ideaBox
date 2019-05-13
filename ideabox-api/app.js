@@ -98,10 +98,6 @@ app.use("/api", authRoutes);
 const ideaRoutes = require("./routes/ideas");
 app.use("/", ideaRoutes);
 
-const challengeRoutes = require("./routes/challenges");
-app.use("/", challengeRoutes);
-
-module.exports = app;
 const commentRoutes = require("./routes/comments");
 app.use("/", commentRoutes);
 
@@ -113,5 +109,10 @@ app.use("/api", getUsers);
 
 const draftsRoute = require("./routes/drafts");
 app.use("/api", draftsRoute);
+
+const timeRoute = require("./routes/timeKeeper");
+app.use("/", timeRoute);
+const challengeRoutes = require("./routes/challenges");
+app.use("/", challengeRoutes);
 
 module.exports = app;

@@ -1,6 +1,6 @@
 import React from "react";
 import { login } from "../../services/auth";
-import {currentChallenge} from "../../services/challenge"
+import { currentChallenge } from "../../services/challenge";
 
 class Login extends React.Component {
   state = {
@@ -16,20 +16,20 @@ class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    
+
     const { username, password } = this.state;
     login(username, password).then(user => {
-      this.props.setUser(user);    });
+      this.props.setUser(user);
+    });
     currentChallenge().then(challenge => {
-      console.log(challenge)
-      this.props.setCurrentChallenge(challenge.data)
-      this.props.history.push(`/challenge/${challenge.data._id}`)
-    })
+      this.props.setCurrentChallenge(challenge.data);
+      this.props.history.push(`/challenge/${challenge.data._id}`);
+    });
   };
 
   render() {
     return (
-      <div>
+      <div className="flexed-div">
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>username</label>

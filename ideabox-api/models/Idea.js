@@ -5,7 +5,8 @@ ideaSchema = new Schema(
   {
     title: String,
     challenge: {
-      type: Boolean
+      type: Schema.Types.ObjectId,
+      ref: "Challenge"
     },
     category: {
       type: String,

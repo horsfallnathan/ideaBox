@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button, Form, TextArea, Checkbox, List } from "semantic-ui-react";
 
 export default class IdeaDescription extends Component {
   state = {
@@ -14,7 +13,7 @@ export default class IdeaDescription extends Component {
     const { values } = this.props;
     return (
       <div>
-        <Form>
+        <form>
           <h3>Title</h3>
           <input
             type="text"
@@ -22,10 +21,10 @@ export default class IdeaDescription extends Component {
             value={values.title}
             onChange={this.props.handleChange("title")}
           />
-          <Form.Field />
+          <div />
           <h3>Category</h3>
-          <Form.Field>
-            <Checkbox
+          <div>
+            <input
               radio
               label="Innovation Challenge"
               name="categoryRadio"
@@ -34,9 +33,9 @@ export default class IdeaDescription extends Component {
               onChange={this.props.handleCategoryChange}
             />
             <p>Ideas only related to the current innovation challenge</p>
-          </Form.Field>
-          <Form.Field>
-            <Checkbox
+          </div>
+          <div>
+            <input
               radio
               label="Free Ideas"
               name="categoryRadio"
@@ -45,9 +44,9 @@ export default class IdeaDescription extends Component {
               onChange={this.props.handleCategoryChange}
             />
             <p>Ideas on any topic of your choice</p>
-          </Form.Field>
+          </div>
           <h3>Description</h3>
-          <TextArea
+          <textarea
             type="textArea"
             name="description"
             value={values.description}
@@ -62,19 +61,19 @@ export default class IdeaDescription extends Component {
           {values.fileNames &&
             values.fileNames.map((file, i) => {
               return (
-                <List.Item key={i}>
-                  <List.Content>{file}</List.Content>
-                  <List.Content>
-                    <Button onClick={() => this.props.handleFileRemove(i)}>
+                <ul key={i}>
+                  <li>{file}</li>
+                  <li>
+                    <button onClick={() => this.props.handleFileRemove(i)}>
                       Delete
-                    </Button>
-                  </List.Content>
-                </List.Item>
+                    </button>
+                  </li>
+                </ul>
               );
             })}
-          <Button onClick={this.props.handleDraft}>Save as draft</Button>
-          <Button onClick={this.nextStep}>Next</Button>
-        </Form>
+          <button onClick={this.props.handleDraft}>Save as draft</button>
+          <button onClick={this.nextStep}>Next</button>
+        </form>
       </div>
     );
   }

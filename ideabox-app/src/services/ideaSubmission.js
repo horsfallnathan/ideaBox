@@ -7,28 +7,32 @@ const service = axios.create({
 
 const submitIdea = (
   title,
+  challenge,
   category,
   description,
   files,
   need,
   benefit,
-  competition,
   estimatedResources,
-  ideaPrivacy,
-  teamMembers
+  competition,
+  teamMembers,
+  message,
+  privacy
 ) => {
   return service
     .post("/submit-idea", {
       title,
+      challenge,
       category,
       description,
       files,
       need,
       benefit,
-      competition,
       estimatedResources,
-      ideaPrivacy,
-      teamMembers
+      competition,
+      teamMembers,
+      message,
+      privacy
     })
     .then(response => response.data);
 };
@@ -43,4 +47,10 @@ const fileUpload = data => {
     .then(response => response.data.secure_url);
 };
 
-export { submitIdea, getUsers, fileUpload };
+const editIdea = (ideaId, values) => {
+  return service
+    .post(`/edit-idea/${ideaId}`, { values })
+    .then(response => response.data);
+};
+
+export { submitIdea, getUsers, fileUpload, editIdea };

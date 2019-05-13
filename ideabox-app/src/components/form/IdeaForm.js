@@ -5,9 +5,14 @@ import IdeaCompetition from "./IdeaCompetition";
 import AddTeam from "./AddTeam";
 import IdeaPrivacy from "./IdeaPrivacy";
 import IdeaPreview from "./IdeaPreview";
-import { submitIdea, fileUpload } from "../../services/ideaSubmission";
-import { getUsers } from "../../services/ideaSubmission";
+import {
+  submitIdea,
+  fileUpload,
+  getUsers,
+  editIdea
+} from "../../services/ideaSubmission";
 import { createDraft, updateDraft } from "../../services/drafts";
+import { getIdeaToEdit } from "../../services/ideas";
 
 export default class IdeaForm extends Component {
   state = {
@@ -25,9 +30,42 @@ export default class IdeaForm extends Component {
     estimatedResources: [],
     estimatedResource: [],
     teamMembers: [],
-    teamMemberMessage: "",
-    ideaPrivacy: ""
+    message: "",
+    privacy: true
   };
+  componentDidMount() {
+    this.props.match.params.ideaId &&
+      getIdeaToEdit(this.props.match.params.ideaId).then(response => {
+        const {
+          title,
+          challenge,
+          category,
+          description,
+          files,
+          need,
+          benefit,
+          estimatedResources,
+          competition,
+          teamMembers,
+          message,
+          privacy
+        } = response.data;
+        this.setState({
+          title,
+          challenge,
+          category,
+          description,
+          files,
+          need,
+          benefit,
+          estimatedResources,
+          competition,
+          teamMembers,
+          message,
+          privacy
+        });
+      });
+  }
   getUserList = () => {
     getUsers().then(response => {
       this.setState({
@@ -44,30 +82,33 @@ export default class IdeaForm extends Component {
   handleDraft = event => {
     const {
       title,
+      challenge,
       category,
       description,
       files,
       need,
       benefit,
-      competition,
       estimatedResources,
-      ideaPrivacy,
-      teamMembers
+      competition,
+      teamMembers,
+      message,
+      privacy
     } = this.state;
     const values = {
       title,
+      challenge,
       category,
       description,
       files,
       need,
       benefit,
-      competition,
       estimatedResources,
-      ideaPrivacy,
-      teamMembers
+      competition,
+      teamMembers,
+      message,
+      privacy
     };
     if (this.state.draftId !== "") {
-      console.log(this.state.draftId);
       updateDraft(this.state.draftId, values).then({});
     } else {
       createDraft(values).then(draft => {
@@ -85,6 +126,41 @@ export default class IdeaForm extends Component {
     });
   };
 
+  editForm = () => {
+    console.log(this.state);
+    const {
+      title,
+      challenge,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      estimatedResources,
+      competition,
+      teamMembers,
+      message,
+      privacy
+    } = this.state;
+    const values = {
+      title,
+      challenge,
+      category,
+      description,
+      files,
+      need,
+      benefit,
+      estimatedResources,
+      competition,
+      teamMembers,
+      message,
+      privacy
+    };
+    editIdea(this.props.match.params.ideaId, values).then(response => {
+      console.log(this.props.match.params.ideaId, response);
+    });
+  };
+
   handleFileUpload = event => {
     const fileName = event.target.files[0].name;
     const file = event.target.files[0];
@@ -97,6 +173,7 @@ export default class IdeaForm extends Component {
       });
     });
   };
+
   handleFileRemove = index => {
     const newFileList = this.state.files.slice(index + 1);
     const newFileNameList = this.state.fileNames.slice(index + 1);
@@ -111,8 +188,10 @@ export default class IdeaForm extends Component {
     });
   };
   handlePrivacyChange = (e, { value }) => {
+    const bool = value === "true" ? true : false;
+    console.log(bool);
     this.setState({
-      ideaPrivacy: value
+      privacy: bool
     });
   };
   handleTeamChange = (e, option) => {
@@ -129,10 +208,8 @@ export default class IdeaForm extends Component {
   };
 
   handleResourceChange = event => {
-    event.preventDefault();
-    console.log(event);
+    // event.preventDefault();
     const { value } = event.target;
-    console.log(event.key);
     if (value.includes(",")) {
       const newValue = value.slice(0, -1);
       this.setState({
@@ -157,27 +234,31 @@ export default class IdeaForm extends Component {
     event.preventDefault();
     const {
       title,
+      challenge,
       category,
       description,
       files,
       need,
       benefit,
-      competition,
       estimatedResources,
-      ideaPrivacy,
-      teamMembers
+      competition,
+      teamMembers,
+      message,
+      privacy
     } = this.state;
     submitIdea(
       title,
+      challenge,
       category,
       description,
       files,
       need,
       benefit,
-      competition,
       estimatedResources,
-      ideaPrivacy,
-      teamMembers
+      competition,
+      teamMembers,
+      message,
+      privacy
     ).then(idea => {
       console.log(idea);
     });
@@ -195,10 +276,10 @@ export default class IdeaForm extends Component {
       benefit,
       competition,
       teamMembers,
-      teamMemberMessage,
+      message,
       estimatedResource,
       estimatedResources,
-      ideaPrivacy
+      privacy
     } = this.state;
     const values = {
       title,
@@ -210,11 +291,13 @@ export default class IdeaForm extends Component {
       fileNames,
       need,
       benefit,
-      teamMemberMessage,
+      message,
       estimatedResource,
       estimatedResources,
-      ideaPrivacy
+      privacy
     };
+    const first = "firstOption";
+    const second = "secondOption";
     switch (step) {
       case 1:
         return (
@@ -237,7 +320,6 @@ export default class IdeaForm extends Component {
             handleResourceChange={this.handleResourceChange}
             handleResourceRemove={this.handleResourceRemove}
             handleChange={this.handleChange}
-            handlexChange={this.handlexChange}
             values={values}
           />
         );
@@ -277,10 +359,19 @@ export default class IdeaForm extends Component {
           />
         );
       case 6:
-        return (
+        return !this.props.match.params.ideaId ? (
           <IdeaPreview
+            first={first}
             values={values}
             submitForm={this.submitForm}
+            prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
+          />
+        ) : (
+          <IdeaPreview
+            first={second}
+            values={values}
+            submitForm={this.editForm}
             prevStep={this.prevStep}
             handleDraft={this.handleDraft}
           />
