@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button, Form, TextArea, FormField, Dropdown } from "semantic-ui-react";
 
 export default class AddTeam extends Component {
   nextStep = event => {
@@ -22,36 +21,36 @@ export default class AddTeam extends Component {
     }));
     return (
       <div>
-        <Form>
-          <FormField>
+        <form>
+          <div>
             <h3>Add Team Members</h3>
             <label htmlFor="teamMember">
               Choose team members to work with you on this idea
             </label>
-            <Dropdown
+            {/* <Dropdown
               placeholder="Select team member"
               fluid
               multiple
               selection
               options={userList}
               onChange={this.props.handleTeamChange}
-            />
+            /> */}
             <label htmlFor="message">
               Leave them a message! They will reveive it as soon as you submit
               your idea.
             </label>
-            <TextArea
+            <textarea
               type="TextArea"
               name="message"
               value={values.message}
               onChange={this.props.handleChange("message")}
             />
-          </FormField>
+          </div>
           <p>Got here: {this.props.draftId}</p>
-          <Button onClick={this.prevStep}>Back</Button>
-          <Button onClick={this.props.handleDraft}>Save as draft</Button>
-          <Button onClick={this.nextStep}>Next</Button>
-        </Form>
+          <button onClick={this.prevStep}>Back</button>
+          <button onClick={this.props.handleDraft}>Save as draft</button>
+          <button onClick={this.nextStep}>Next</button>
+        </form>
       </div>
     );
   }

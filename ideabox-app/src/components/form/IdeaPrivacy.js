@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button, Form, FormField, Radio } from "semantic-ui-react";
 
 export default class IdeaPrivacy extends Component {
   nextStep = event => {
@@ -15,10 +14,10 @@ export default class IdeaPrivacy extends Component {
     const { values } = this.props;
     return (
       <div>
-        <Form>
+        <form>
           <h3>Who should see this idea?</h3>
-          <FormField>
-            <Radio
+          <div>
+            <input
               label="Make Idea Public"
               name="ideaPrivacy"
               value="false"
@@ -26,9 +25,9 @@ export default class IdeaPrivacy extends Component {
               onChange={this.props.handlePrivacyChange}
             />
             <p>Your idea will be shared with all Siemens employees</p>
-          </FormField>
-          <FormField>
-            <Radio
+          </div>
+          <div>
+            <input
               label="Keep Idea Private"
               name="ideaPrivacy"
               value="true"
@@ -38,11 +37,11 @@ export default class IdeaPrivacy extends Component {
             <p>
               Only you, your selected team members, and managers can view this
             </p>
-          </FormField>
-          <Button onClick={this.prevStep}>Back</Button>
-          <Button onClick={this.props.handleDraft}>Save as draft</Button>
-          <Button onClick={this.nextStep}>Next</Button>
-        </Form>
+          </div>
+          <button onClick={this.prevStep}>Back</button>
+          <button onClick={this.props.handleDraft}>Save as draft</button>
+          <button onClick={this.nextStep}>Next</button>
+        </form>
       </div>
     );
   }

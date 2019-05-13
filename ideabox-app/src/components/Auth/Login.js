@@ -29,7 +29,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="flexed-div">
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>username</label>
