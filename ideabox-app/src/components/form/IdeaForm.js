@@ -201,9 +201,12 @@ export default class IdeaForm extends Component {
     });
   };
 
-  handleChange = input => event => {
+  handleChange = event => {
+    const { name, value } = event.target;
+    console.log("TCL: name, value", name, value);
+
     this.setState({
-      [input]: event.target.value
+      [name]: value
     });
   };
 
@@ -296,85 +299,131 @@ export default class IdeaForm extends Component {
       estimatedResources,
       privacy
     };
-    const first = "firstOption";
-    const second = "secondOption";
+
     switch (step) {
       case 1:
         return (
-          <IdeaDescription
-            nextStep={this.nextStep}
-            handleCategoryChange={this.handleCategoryChange}
-            handleChange={this.handleChange}
-            values={values}
-            handleDraft={this.handleDraft}
-            handleFileUpload={this.handleFileUpload}
-            handleFileRemove={this.handleFileRemove}
-          />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
+            </div>
+            <IdeaDescription
+              nextStep={this.nextStep}
+              handleCategoryChange={this.handleCategoryChange}
+              handleChange={this.handleChange}
+              values={values}
+              handleDraft={this.handleDraft}
+              handleFileUpload={this.handleFileUpload}
+              handleFileRemove={this.handleFileRemove}
+            />
+          </div>
         );
       case 2:
         return (
-          <IdeaNeedBenefit
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleDraft={this.handleDraft}
-            handleResourceChange={this.handleResourceChange}
-            handleResourceRemove={this.handleResourceRemove}
-            handleChange={this.handleChange}
-            values={values}
-          />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
+            </div>
+            <IdeaNeedBenefit
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleDraft={this.handleDraft}
+              handleResourceChange={this.handleResourceChange}
+              handleResourceRemove={this.handleResourceRemove}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          </div>
         );
       case 3:
         return (
-          <IdeaCompetition
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleDraft={this.handleDraft}
-            handleChange={this.handleChange}
-            values={values}
-          />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
+            </div>
+            <IdeaCompetition
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleDraft={this.handleDraft}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          </div>
         );
       case 4:
         return (
-          <AddTeam
-            draftId={this.draftId}
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            getUserList={this.getUserList}
-            users={this.state.users}
-            handleDraft={this.handleDraft}
-            handleTeamChange={this.handleTeamChange}
-            handleChange={this.handleChange}
-            values={values}
-          />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
+            </div>
+            <AddTeam
+              draftId={this.draftId}
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              getUserList={this.getUserList}
+              users={this.state.users}
+              handleDraft={this.handleDraft}
+              handleTeamChange={this.handleTeamChange}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          </div>
         );
       case 5:
         return (
-          <IdeaPrivacy
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleDraft={this.handleDraft}
-            handlePrivacyChange={this.handlePrivacyChange}
-            handleResourceChange={this.handleResourceChange}
-            values={values}
-          />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
+            </div>
+            <IdeaPrivacy
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleDraft={this.handleDraft}
+              handlePrivacyChange={this.handlePrivacyChange}
+              handleResourceChange={this.handleResourceChange}
+              values={values}
+            />
+          </div>
         );
       case 6:
         return !this.props.match.params.ideaId ? (
-          <IdeaPreview
-            first={first}
-            values={values}
-            submitForm={this.submitForm}
-            prevStep={this.prevStep}
-            handleDraft={this.handleDraft}
-          />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
+            </div>
+            <IdeaPreview
+              values={values}
+              submitForm={this.submitForm}
+              prevStep={this.prevStep}
+              handleDraft={this.handleDraft}
+            />
+          </div>
         ) : (
-          <IdeaPreview
-            first={second}
-            values={values}
-            submitForm={this.editForm}
-            prevStep={this.prevStep}
-            handleDraft={this.handleDraft}
-          />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
+            </div>
+            <IdeaPreview
+              values={values}
+              submitForm={this.editForm}
+              prevStep={this.prevStep}
+              handleDraft={this.handleDraft}
+            />
+          </div>
         );
       default:
         return console.log("error");
