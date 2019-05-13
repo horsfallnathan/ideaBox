@@ -20,13 +20,17 @@ export default class Navbar extends Component {
     });
   };
   render() {
+    //const currentChallengeId = this.props.currentChallenge._id
     return (
       <div>
         {this.state.loggedIn ? (
-          <ul>
+          <div class="navBar">
+            <div>
             <Link to="/">Logo</Link>
+            <Link to="/">Home</Link>
+            </div>
             {this.state.loggedIn.role === "manager" && (
-              <Link to="/">Dashboard</Link>
+              <Link to="/managerDashboard">Manager Dashboard</Link>
             )}
             {this.state.loggedIn.role === "super-manager" && (
               <React.Fragment>
@@ -34,14 +38,31 @@ export default class Navbar extends Component {
                 <Link to="/">Dashboard</Link>
               </React.Fragment>
             )}
-            <Link to="/idea-feed">Idea Feed</Link>
-            <Link to="/my-ideas">My Ideas</Link>
-            <Link to="/">Profile</Link>
-            <Link to="/">Notification</Link>
-            <li onClick={this.handleLogout}>
+            <ul className="navBarLinks">
+              <div className="NavBarIcons">
+                <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557764443/IdeaBox/lightbulb-new_jkbzyw.png" alt=""/>
+                <li><Link to="/idea-feed">Idea Feed</Link></li>
+              </div>
+              <div className="NavBarIcons">
+                <img src="" alt=""/>
+                <li><Link to="/my-ideas">My Ideas</Link></li>
+              </div>
+              <div className="NavBarIcons">
+                <img src="" alt=""/>
+                <li><Link to="/">Profile</Link></li>
+              </div>
+              <div className="NavBarIcons">
+                <img src="" alt=""/>
+                <li><Link to="/">Notification</Link></li>
+              </div>
+              <div className="NavBarIcons">
+                <img src="" alt=""/>
+                <li onClick={this.handleLogout}>
               <Link to="/">Logout</Link>
-            </li>
-          </ul>
+              </li>
+              </div>
+            </ul>
+          </div>
         ) : (
             <ul>
               <li>

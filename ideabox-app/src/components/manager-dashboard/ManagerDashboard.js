@@ -11,29 +11,37 @@ class ManagerDashboard extends React.Component {
         filteredIdeas: []
     }
 
-    componentDidMount() {
-        let { currentChallenge } = this.props
-        console.log(this.props)
-        challengeIdeas(currentChallenge._id).then(challengeinfo => {
-            this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
-           
-        })
+    componentDidUpdate(prevProp){
+        if(prevProp.currentChallenge !== this.props.currentChallenge)
+        {
+            
+            let { currentChallenge } = this.props
+            challengeIdeas(currentChallenge._id).then(challengeinfo => {
+                this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
+            })
+        }
     }
 
 
     render() {
-
         let ideasArr = this.state.filteredIdeas
         let displayIdeas = ideasArr && ideasArr.map((el, i) => {
-            console.log(ideasArr)
-            console.log(this.state.filteredIdeas)
-            return <div className="mDashboardIdeaBox">
-                <div className="mDashboardIdeaBoxTag"></div>
+            return <div className="mDashboardIdeaBox" key={i}>
+                <div className="mDashboardIdeaBoxTagOuterDiv">
+                <div className="mDashboardIdeaBoxTag">
+                    <p>Pending your review</p>
+                </div>
+                </div>
                 <div className="mDashboardIdeaBoxContent">
-                <h2>Title</h2>
-                <p>description</p>
-                <div className="mDashboardIdeaBoxStatus">Status</div>
-                <div className="mDashboardIdeaBoxVotesComments"></div>
+                <div className="mDashboardIdeaBoxText">
+                <h2>{el.title}</h2>
+                <p>{el.description}</p>
+                </div>
+                <div className="mDashboardIdeaBoxStatus">status: {el.status}</div>
+                <div className="mDashboardIdeaBoxVotesComments">
+                    <div className="mDashboardIdeaBoxVotes"> {el.upVotes} <img src="/public/Sketch-images/like.png" alt="votes" /> </div>
+                    <div className="mDashboardIdeaBoxComments"> {el.comments.length} <img src="" alt=""/> </div>
+                </div>
                 </div>
             </div>
 
