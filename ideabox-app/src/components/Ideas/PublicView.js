@@ -99,28 +99,28 @@ class PublicViewIdea extends Component {
                         <h1>Submitted Idea: {title}</h1>
                     </div>
                 </div>
-                <div className="main-container single-idea-public-botom">
+                <div className="main-container single-idea-public-bottom">
                     <h2>Engagement</h2>
-                    <img src="../../../public/Like.png" alt="upvotes-icon" />
-                    {{ upVotes } === 1 ? <p>{upVotes} Up-Vote</p> : <p>{upVotes} Up-Votes</p>}
+                    <img src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png" width="26px" alt="upvotes-icon" />
+                    {{ upVotes } === 1 ? <><h2 className="single-idea-public-inline">{upVotes}</h2> <p className="upvotes single-idea-public-inline">Up-Vote</p></> : <> <h2 className="single-idea-public-inline">{upVotes}</h2> <p className="upvotes single-idea-public-inline">Up-Votes</p> </>}
 
                     <h2>Idea Description</h2>
                     <p>{description}</p>
 
-                    <h2 className="single-idea-public-botom-inline">Need</h2>
-                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">Who is the target group for your idea?</i></p>
+                    <h2 className="single-idea-public-inline">Need</h2>
+                    <p className="single-idea-public-inline"><i className="specifications-single-idea-public">Who is the target group for your idea?</i></p>
                     <p>{need}</p>
 
-                    <h2 className="single-idea-public-botom-inline">Benefit</h2>
-                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">How will the idea benefit the target group? </i></p>
+                    <h2 className="single-idea-public-inline">Benefit</h2>
+                    <p className="single-idea-public-inline"><i className="specifications-single-idea-public">How will the idea benefit the target group? </i></p>
                     <p>{benefit}</p>
 
-                    <h2 className="single-idea-public-botom-inline">Estimated Resources</h2>
-                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">Which resources do you think are needed to work on this idea?</i></p>
+                    <h2 className="single-idea-public-inline">Estimated Resources</h2>
+                    <p className="single-idea-public-inline"><i className="specifications-single-idea-public">Which resources do you think are needed to work on this idea?</i></p>
                     <p>{estimatedResources}</p>
 
-                    <h2 className="single-idea-public-botom-inline">Competition</h2>
-                    <p className="single-idea-public-botom-inline"><i className="specifications-single-idea-public">Are there any other products trying to solve the same problem?</i></p>
+                    <h2 className="single-idea-public-inline">Competition</h2>
+                    <p className="single-idea-public-inline"><i className="specifications-single-idea-public">Are there any other products trying to solve the same problem?</i></p>
                     <p>{competition}</p>
 
                     <h2>Idea Team</h2>

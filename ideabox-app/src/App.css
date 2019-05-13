@@ -139,11 +139,8 @@ button {
   font-size: 14px;
 }
 
-.single-idea-public-botom-inline {
+.single-idea-public-inline {
   display: inline-block;
-}
-
-.single-idea-public-botom-inline {
   margin-left: 5px;
 }
 
@@ -155,6 +152,10 @@ button {
 .single-idea-public-comment-box h4 {
   padding: 5px;
   color: #00646e;
+}
+
+.upvotes {
+  color: #c7ced7;
 }
 
 #triangle-right {
