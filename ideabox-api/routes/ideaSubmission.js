@@ -36,21 +36,16 @@ router.post("/submit-idea", (req, res) => {
     privacy
   })
     .then(response => {
-      return res.status(200).json(response);
+      Challenge.findOneAndUpdate({ $and: [{ startDate: { $lte: Date.now() } }, { deadline: { $gte: Date.now() } }] }, {
+        $push: { ideas: response._id }
+      }).then(currentChallenge => {
+        res.status(200).json(currentChallenge);
+      })
+      res.json(response)
     })
     .catch(error => {
       res.json(error);
     });
-});
-router.post("/add-idea-tochallenge", (req, res) => {
-  const { challengeId, ideaId } = req.body;
-  // console.log(challengeId, ideaId);
-  Challenge.findByIdAndUpdate(
-    { _id: challengeId },
-    {
-      $push: { ideas: ideaId }
-    }
-  );
 });
 
 router.post("/edit-idea/:ideaId", (req, res) => {

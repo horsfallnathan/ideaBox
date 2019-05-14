@@ -34,16 +34,9 @@ const submitIdea = (
       message,
       privacy
     })
-    .then(response => {
-      addIdeaToChallenge(challenge, response.data._id);
-    });
-};
-const addIdeaToChallenge = (challengeId, ideaId) => {
-  return service.post(`/add-idea-tochallenge`, { challengeId, ideaId });
 };
 
 const getUsers = () => {
-  console.log("getting users");
   return service.get("/get-users").then(response => response.data);
 };
 
