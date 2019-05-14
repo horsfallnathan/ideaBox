@@ -31,7 +31,9 @@ router.get("/challenges/:challengeId", (req, res) => {
         })
 })
 router.get("/current-challenge", (req, res) => {
-    Challenge.findOne({ $and: [{ startDate: { $lte: Date.now() } }, { deadline: { $gte: Date.now() } }] }).then(currentChallenge => {
+    Challenge.findOne({ $and: [{ startDate: { $lte: Date.now() } }, { deadline: { $gte: Date.now() } }] })
+    .populate('ideas')
+    .then(currentChallenge => {
         res.json(currentChallenge)
     }).catch(err => {
         res.json(err)

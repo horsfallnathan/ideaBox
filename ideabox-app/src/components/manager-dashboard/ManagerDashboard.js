@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchField from "react-search-field";
 import { challengeIdeas } from '../../services/challenge'
-// import challengeForm from "../manager-dashboard/challengeForm"
 
 class ManagerDashboard extends React.Component {
 
@@ -49,9 +48,9 @@ class ManagerDashboard extends React.Component {
 
         return (
             <div>
-                <div className="headBar">
-                    <button>Ideas submitted to me</button>
-                    <button disabled>All employees submissions</button>
+                <div className="headBar">                
+                     <button>Ideas submitted to me</button>  
+                     <Link to={'/managerDashboard/all-employees-submissions'}><button>All employees submissions</button></Link>  
                 </div>
                 <div className="main-container">
                     <div className="filteringMIdeas">

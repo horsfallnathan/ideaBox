@@ -9,7 +9,7 @@ class CurrentChallengeIdeas extends React.Component {
         challenge: {},
         filteredIdeas: []
     }
-
+ 
 
     handleSort = event => {
         const type = event.target.value
