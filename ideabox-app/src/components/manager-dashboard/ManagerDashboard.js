@@ -68,7 +68,7 @@ class ManagerDashboard extends React.Component {
                 </div>
                 <div>
                 <Link to={`/managerDashboard/challengeForm`}>Create new Challenge</Link>    
-                <button>View current Challenge</button>
+                <Link to={`/managerDashboard/all-challenges`}>View upcoming challenges</Link>
                 </div>
                 <div className="ideasContainer">
                 {displayIdeas}
