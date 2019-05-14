@@ -29,7 +29,7 @@ ideaSchema = new Schema(
     ],
     message: String,
     privacy: {
-      type: Boolean
+      type: String
     },
     status: {
       type: String,

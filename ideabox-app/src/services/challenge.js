@@ -9,10 +9,7 @@ const challengeIdeas = challengeId => {
   return service.get(`/challenges/${challengeId}`);
 };
 const setDeadline = value => {
-  console.log(value);
-  return service.post("/set-deadline", { value }).then(response => {
-    console.log(response.data);
-  });
+  return service.post("/set-deadline", { value }).then(response => {});
 };
 const currentChallenge = () => {
   return service.get("/current-challenge");

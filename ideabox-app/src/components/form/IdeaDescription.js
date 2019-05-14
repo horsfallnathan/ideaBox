@@ -17,26 +17,34 @@ class IdeaDescription extends Component {
   };
 
   render() {
-    const { values, classes, handleChange, handleFileUpload } = this.props;
+    const {
+      values,
+      classes,
+      handleChange,
+      handleFileUpload,
+      addCurrentChallenge
+    } = this.props;
     // const { classes } = this.props;
     return (
       <div className={"ideaForm"}>
         <form>
-          <h3>Title</h3>
-          <input
-            type="text"
-            name="title"
-            value={values.title}
-            onChange={handleChange}
-          />
-          <div />
-          <h3>Category</h3>
           <div>
-            <FormControl component="fieldset" className={classes.formControl}>
+            <h3>Title</h3>
+            <input
+              type="text"
+              name="title"
+              value={values.title}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <h3>Category</h3>
+            <FormControl component="fieldset">
               <RadioGroup
                 aria-label="Category"
                 name="category"
-                onChange={handleChange}
+                value={values.category}
+                onChange={addCurrentChallenge}
               >
                 <FormControlLabel
                   value="Innovation Challenge"
@@ -55,15 +63,16 @@ class IdeaDescription extends Component {
               </RadioGroup>
             </FormControl>
           </div>
-          <div />
-          <h3>Description</h3>
-          <textarea
-            style={{ width: "100%" }}
-            rows="6"
-            name="description"
-            value={values.description}
-            onChange={handleChange}
-          />
+          <div>
+            <h3>Description</h3>
+            <textarea
+              style={{ width: "100%" }}
+              rows="6"
+              name="description"
+              value={values.description}
+              onChange={handleChange}
+            />
+          </div>
           <div className={"flexed-div verticalCenter"}>
             <div className={"attachFileIcon"}> </div>
             <input

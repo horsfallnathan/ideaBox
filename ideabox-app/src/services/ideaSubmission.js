@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+  baseURL: process.env.REACT_APP_SERVER_URL,
   withCredentials: true
 });
 
@@ -38,6 +38,7 @@ const submitIdea = (
 };
 
 const getUsers = () => {
+  console.log("getting users");
   return service.get("/get-users").then(response => response.data);
 };
 
