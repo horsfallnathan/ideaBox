@@ -12,13 +12,13 @@ import {
   editIdea
 } from "../../services/ideaSubmission";
 import { createDraft, updateDraft } from "../../services/drafts";
-import { getIdeaToEdit } from "../../services/ideas";
+// import { getIdeaToEdit } from "../../services/ideas";
 import { currentChallenge } from "../../services/challenge";
 
-const createOption = (label: string) => ({
-  label,
-  value: label
-});
+// const createOption = (label: string) => ({
+//   label,
+//   value: label
+// });
 
 export default class IdeaForm extends Component {
   state = {
@@ -42,48 +42,50 @@ export default class IdeaForm extends Component {
     message: "",
     privacy: ""
   };
-  componentDidMount() {
-    this.props.match.params.ideaId &&
-      getIdeaToEdit(this.props.match.params.ideaId).then(response => {
-        const {
-          title,
-          challenge,
-          category,
-          description,
-          files,
-          need,
-          benefit,
-          estimatedResources,
-          competition,
-          teamMembers,
-          message,
-          privacy
-        } = response.data;
-        this.setState({
-          title,
-          challenge,
-          category,
-          description,
-          files,
-          need,
-          benefit,
-          estimatedResources,
-          competition,
-          teamMembers,
-          message,
-          privacy
-        });
-      });
-  }
+  // componentDidMount() {
+  //   this.props.match.params.ideaId &&
+  //     getIdeaToEdit(this.props.match.params.ideaId).then(response => {
+  //       const {
+  //         title,
+  //         challenge,
+  //         category,
+  //         description,
+  //         files,
+  //         need,
+  //         benefit,
+  //         estimatedResources,
+  //         competition,
+  //         teamMembers,
+  //         message,
+  //         privacy
+  //       } = response.data;
+  //       this.setState({
+  //         title,
+  //         challenge,
+  //         category,
+  //         description,
+  //         files,
+  //         need,
+  //         benefit,
+  //         estimatedResources,
+  //         competition,
+  //         teamMembers,
+  //         message,
+  //         privacy
+  //       });
+  //     });
+  // }
   getUserList = () => {
     getUsers().then(response => {
-      response.map(user => {
-        this.setState({
-          users: [
-            ...this.state.users,
-            { firstName: user.firstName, lastName: user.lastName, id: user._id }
-          ]
-        });
+      const users = response.map(user => {
+        return {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          id: user._id
+        };
+      });
+      this.setState({
+        users
       });
     });
   };
@@ -192,14 +194,15 @@ export default class IdeaForm extends Component {
     const { name, value } = event.target;
     if (value === "Innovation Challenge") {
       currentChallenge().then(response => {
+        console.log(response.data._id);
         this.setState({
-          challenge: response._id,
+          challenge: response.data._id,
           [name]: value,
-          challengeName: response.title
+          challengeName: response.data.title
         });
       });
     }
-    if (value === "Free Ideas") {
+    if (value === "Free Idea") {
       this.setState({
         [name]: value
       });
@@ -240,15 +243,12 @@ export default class IdeaForm extends Component {
     });
   };
 
-  handleKeyDown = (event: SyntheticKeyboardEvent<HTMLElement>) => {
+  handleKeyDown = event => {
     const { estimatedResource, estimatedResources } = this.state;
     if (!estimatedResource) return;
     switch (event.key) {
       case "Enter":
       case "Tab":
-        console.group("Value Added");
-        console.log(estimatedResources);
-        console.groupEnd();
         this.setState({
           estimatedResource: "",
           estimatedResources: [
@@ -257,19 +257,17 @@ export default class IdeaForm extends Component {
           ]
         });
         event.preventDefault();
+        break;
+      default:
     }
   };
 
-  handleResourceChange = (value: any, actionMeta: any) => {
-    console.group("Value Changed");
-    console.log(value);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
+  handleResourceChange = (value, actionMeta) => {
     this.setState({
       estimatedResources: value
     });
   };
-  handleInputChange = (inputValue: string) => {
+  handleInputChange = inputValue => {
     this.setState({
       estimatedResource: inputValue
     });
@@ -277,6 +275,9 @@ export default class IdeaForm extends Component {
 
   submitForm = event => {
     event.preventDefault();
+    const estimatedResources = this.state.estimatedResources.map(el => {
+      return el.value;
+    });
     const {
       title,
       challenge,
@@ -285,7 +286,6 @@ export default class IdeaForm extends Component {
       files,
       need,
       benefit,
-      estimatedResources,
       competition,
       teamMembers,
       message,

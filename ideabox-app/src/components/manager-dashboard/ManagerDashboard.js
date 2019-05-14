@@ -49,11 +49,12 @@ class ManagerDashboard extends React.Component {
         })
 
         return (
-            <div className="main-container">
+            <div>
                 <div className="headBar">                
                      <button>Ideas submitted to me</button>  
                      <button disabled>All employees submissions</button>  
                 </div>
+                <div className="main-container">
                 <div className="filteringMIdeas">
                     <button disabled>Ideas pending your approval</button>
                     <button disabled>Accepted Ideas</button>
@@ -63,15 +64,15 @@ class ManagerDashboard extends React.Component {
                     <SearchField placeholder="Search..." onSearchClick={this.onSearchClick} searchText=""
                     className="test-class"/>
                     </div>
-                    
+                
                 </div>
                 <div>
                 <Link to={`/managerDashboard/challengeForm`}>Create new Challenge</Link>    
-                <button>View current Challenge</button>
+                <Link to={`/managerDashboard/all-challenges`}>View upcoming challenges</Link>
                 </div>
                 <div className="ideasContainer">
                 {displayIdeas}
-
+                </div>
                 </div>
             </div>
         )

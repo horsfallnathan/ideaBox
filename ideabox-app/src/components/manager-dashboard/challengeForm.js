@@ -1,14 +1,33 @@
 import React from "react";
 import { createChallenge, getAllChallenges } from "../../services/challenge";
-import SetDeadline from "./SetDeadline";
+// import SetDeadline from "./SetDeadline";
+// import {getUsers} from "../../services/ideaSubmission"
 
 class challengeForm extends React.Component {
   state = {
     title: "",
     description: "",
     startDate: Date.now(),
-    deadline: Date.now()
+    deadline: Date.now(),
+    managerPanel: []
   };
+
+  // getUserList = () => {
+  //   getUsers().then(response => {
+  //     this.setState({
+  //       users: response
+  //     });
+  //   });
+  // };
+
+  // handleManagerPanelChange = (e, option) => {
+  //   const { value } = option;
+  //   this.setState({
+  //     teamMembers: value
+  //   });
+  // };
+
+  
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -17,7 +36,7 @@ class challengeForm extends React.Component {
   };
 
   handleSubmit = event => {
-    const { title, description, startDate, deadline } = this.state;
+    const { title, description, startDate, deadline, managerPanel } = this.state;
     event.preventDefault();
     getAllChallenges().then(allChallenges => {
       const conflictingChallenge = allChallenges.data.filter(
@@ -25,7 +44,7 @@ class challengeForm extends React.Component {
       );
       conflictingChallenge.length > 0
         ? alert("Challenge timeline conflicts with another challenge")
-        : createChallenge(title, description, startDate, deadline).then(
+        : createChallenge(title, description, startDate, deadline, managerPanel).then(
             challenge => {
               let challengeId = challenge._id;
               this.props.history.push(`/managerDashboard/${challengeId}`);
@@ -34,8 +53,17 @@ class challengeForm extends React.Component {
     });
   };
 
+  // componentWillMount() {
+  //   this.getUserList();
+  // }
+
   render() {
-    const { title, description, startDate, deadline } = this.state;
+    const { title, description, startDate, deadline, managerPanel } = this.state;
+    // const userList = this.props.users.map((user, index) => ({
+    //   key: user._id,
+    //   text: user.username,
+    //   value: user._id
+    // }));
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -68,6 +96,7 @@ class challengeForm extends React.Component {
             value={deadline}
             onChange={this.handleChange}
           />
+          
           <input type="submit" value="submit" />
         </form>
       </div>

@@ -54,7 +54,7 @@ class IdeaNeedBenefit extends Component {
   };
 
   render() {
-    const { values, handleChange, classes } = this.props;
+    const { values, handleChange } = this.props;
     return (
       <div className={"ideaForm"}>
         <form>

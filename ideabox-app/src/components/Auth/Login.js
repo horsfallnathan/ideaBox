@@ -24,13 +24,13 @@ class Login extends React.Component {
     });
     currentChallenge().then(challenge => {
       this.props.setCurrentChallenge(challenge.data);
-      this.props.history.push("/");
+      this.props.history.push(`/challenge/${challenge.data._id}`);
     });
   };
 
   render() {
     return (
-      <div className="flexed-div">
+      <div className="main-container login">
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>username</label>

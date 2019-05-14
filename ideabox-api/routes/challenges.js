@@ -5,13 +5,14 @@ const Idea = require('../models/Idea')
 
 
 router.post('/managerDashboard/challengeForm', (req, res, next) => {
-    const { title, description, startDate, deadline } = req.body
+    const { title, description, startDate, deadline, managerPanel } = req.body
 
     Challenge.create({
         title: title,
         description: description,
         startDate: startDate,
-        deadline: deadline
+        deadline: deadline,
+        managerPanel: managerPanel
     })
         .then(response => {
             res.status(200).json(response);
