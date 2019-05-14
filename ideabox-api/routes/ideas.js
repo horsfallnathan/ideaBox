@@ -19,7 +19,6 @@ router.get("/my-ideas", (req, res) => {
 router.get("/edit-idea/:ideaId", (req, res) => {
   Idea.findById(req.params.ideaId)
     .then(response => {
-      console.log(response);
       res.status(200).json(response);
     })
     .catch(error => {

@@ -18,7 +18,7 @@ const passport = require("passport");
 require("./passport");
 
 const mongoConnectURI =
-  process.env.NODE_ENV === "dev"
+  process.env.ENV === "development"
     ? "mongodb://localhost/ideabox-api"
     : process.env.MONGODB_URI;
 mongoose
@@ -100,10 +100,10 @@ const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes);
 
 const ideaRoutes = require("./routes/ideas");
-app.use("/", ideaRoutes);
+app.use("/api", ideaRoutes);
 
 const commentRoutes = require("./routes/comments");
-app.use("/", commentRoutes);
+app.use("/api", commentRoutes);
 
 const ideaSubmissionRoute = require("./routes/ideaSubmission");
 app.use("/api", ideaSubmissionRoute);
@@ -115,9 +115,9 @@ const draftsRoute = require("./routes/drafts");
 app.use("/api", draftsRoute);
 
 const timeRoute = require("./routes/timeKeeper");
-app.use("/", timeRoute);
+app.use("/api", timeRoute);
 const challengeRoutes = require("./routes/challenges");
-app.use("/", challengeRoutes);
+app.use("/api", challengeRoutes);
 
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
