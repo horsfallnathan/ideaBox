@@ -37,6 +37,7 @@ class MyIdeas extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { ideas } = this.state;
     return (
       <div>

@@ -19,6 +19,7 @@ class Login extends React.Component {
 
     const { username, password } = this.state;
     login(username, password).then(user => {
+      console.log(user)
       this.props.setUser(user);
     });
     currentChallenge().then(challenge => {

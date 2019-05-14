@@ -50,6 +50,7 @@ class Routes extends React.Component {
     });
   };
   render() {
+    //console.log(this.state.loggedIn)
     return (
       <div>
         <div className="App">
