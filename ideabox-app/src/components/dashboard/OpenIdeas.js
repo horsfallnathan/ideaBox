@@ -9,6 +9,19 @@ class Dashboard extends React.Component {
         filteredIdeas: []
     }
 
+    componentDidMount() {
+        getAllIdeas().then(allIdeas => {
+            let ideas = allIdeas.data
+            let openIdeas = ideas.filter((el, i) =>{
+                return (el.category === 'Free Idea')
+            })
+            console.log(openIdeas)
+            this.setState({ideas: openIdeas})
+        })
+        
+    }
+    
+    
     handleSort = event => {
         const type = event.target.value
         const { ideas } = this.state
@@ -25,12 +38,6 @@ class Dashboard extends React.Component {
 
         this.setState({
             ideas: ideasCopy
-        })
-    }
-    componentDidMount() {
-        getAllIdeas().then(allIdeas => {
-            console.log(allIdeas.data)
-            this.setState({ideas: allIdeas.data})
         })
     }
 
