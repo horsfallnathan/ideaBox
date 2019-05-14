@@ -31,9 +31,9 @@ class Dashboard extends React.Component {
                                 </div>
                                 <div className="challengePresTitleBtns">
                                     <div className="challengePresTitle">
-                                        <h1>
-                                            {this.state.currentChallenge && this.state.currentChallenge.title ? this.state.currentChallenge.title : <h1>No current challenge</h1>}
-                                        </h1>
+
+                                        <h1>{this.state.currentChallenge && this.state.currentChallenge.title ? this.state.currentChallenge.title : "No current challenge"}</h1>
+
                                     </div>
                                     <div className="challengePresBtns">
                                         <button>Read more</button>
