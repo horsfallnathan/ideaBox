@@ -49,7 +49,7 @@ $xl-desktop: 1200px;
   }
 }
 
-h2{
+h2 {
   color: $mainColor;
 }
 
@@ -63,13 +63,13 @@ h2{
 }
 
 .headBar {
-  margin-top: 3rem; 
-  width: 100vw; 
+  margin-top: 3rem;
+  width: 100vw;
 }
 
 .headBar button {
   width: 50%;
-  height: 70px; 
+  height: 70px;
 }
 
 button:disabled {
@@ -78,22 +78,22 @@ button:disabled {
   color: $mainColor;
 }
 
-.filteringMIdeas { 
-  margin-top: 1.5rem; 
+.filteringMIdeas {
+  margin-top: 1.5rem;
   margin-left: 2rem;
-  margin-right: 2rem; 
+  margin-right: 2rem;
 }
 
 .filteringMIdeas button {
-  border: none; 
+  border: none;
   width: 25%;
 }
 
 .searchFieldMDashboard {
-  display:flex;
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-top: 1.5rem; 
+  margin-top: 1.5rem;
 }
 
 .flexed-div {
@@ -102,6 +102,19 @@ button:disabled {
 .flexed-col {
   flex-direction: column;
 }
+.verticalCenter {
+  align-items: center;
+}
+.spacedBetween {
+  justify-content: space-between;
+}
+.flexed-end {
+  justify-content: flex-end;
+}
+.selfJustifyLeft {
+  align-self: flex-start;
+}
+
 .login-box {
   width: 100%;
   @include tab() {
@@ -123,14 +136,24 @@ button:disabled {
 }
 
 input {
-  border: 1px solid #00646e;
+  border: 1px solid $subBlue;
   padding: 1rem 1rem;
   border-radius: 2px;
   margin: 2rem 0;
 }
 input:focus {
   outline: none !important;
-  border: 2px solid #00646e;
+  border: 1px solid $mainColor;
+}
+textarea {
+  border: 1px solid $subBlue;
+  padding: 1rem 1rem;
+  border-radius: 2px;
+  margin: 2rem 0;
+}
+textarea:focus {
+  outline: none !important;
+  border: 1px solid $mainColor;
 }
 
 .signupForm {
@@ -144,10 +167,12 @@ input:focus {
 .signupForm input {
   width: 100%;
 }
-
+h1 {
+  color: $mainColor;
+}
 button {
   text-transform: uppercase;
-  background-color: $mainColor;
+  background-color: $subBlue;
   color: white;
   padding: 1rem;
   border: 0;
@@ -161,130 +186,128 @@ button {
 
 .navBar {
   width: 100%;
-  display:flex; 
-  flex-direction: row; 
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   // align-items: flex-end;
-  height: 5rem; 
-  margin-bottom: -3rem; 
+  height: 5rem;
+  margin-bottom: -3rem;
 }
 
-.navBarLogo img{
-  margin: 1rem; 
+.navBarLogo img {
+  margin: 1rem;
 }
 
 .navBarLinks {
-  list-style-type: none; 
-  display:flex; 
-  flex-direction: row; 
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
   align-items: flex-end;
-  margin-bottom: 0.5rem; 
+  margin-bottom: 0.5rem;
 }
 
-.navBarLinks a {
-  text-decoration: none; 
+.navBarLinks a  {
+  text-decoration: none;
 }
 
-.navBarIcons { 
-  margin-right: 2rem; 
-  display:flex; 
-  flex-direction: column; 
-  align-items: center; 
+.navBarIcons {
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.navBarIcons img{
-  margin-bottom: 0.5rem; 
-  width: 1.5rem; 
-  height: 2rem; 
+.navBarIcons img {
+  margin-bottom: 0.5rem;
+  width: 1.5rem;
+  height: 2rem;
 }
-
 
 // Employee Dashboard
 
 .submittedIdeas {
-  width:100vw; 
+  width: 100vw;
   height: 80px;
   background-color: darkgrey;
-  display: flex; 
-  flex-direction: row; 
+  display: flex;
+  flex-direction: row;
 }
 
 .submittedIdeasBox {
-  width: 50vw; 
-  height: inherit; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  border: 1px solid black; 
+  width: 50vw;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
 }
 
 .challengePres {
-  width: inherit; 
-  height: 26.8rem; 
-  background-image: url('./1187329.png'); 
-  background-size: cover; 
-  display: flex; 
-  flex-direction: row; 
-  justify-content: center; 
+  width: inherit;
+  height: 26.8rem;
+  background-image: url("./1187329.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .challengePresInnerDiv {
-  width: 60rem; 
+  width: 60rem;
   height: 26.8rem;
-  display: flex; 
-  flex-direction: row; 
-   
+  display: flex;
+  flex-direction: row;
 }
 .challengePresKata {
-  width: 30%; 
-  height: inherit; 
-  display:flex; 
-  justify-content: center; 
-  align-items: center; 
+  width: 30%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .challengePresTitleBtns {
-  width: 50%; 
-  height: inherit; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  // align-items: center; 
+  width: 50%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
 }
 
 .challengePresTitle {
-  width: inherit; 
-  height: 150px; 
-  display:flex;
+  width: inherit;
+  height: 150px;
+  display: flex;
   /* justify-content: center;  */
-  align-items: center; 
+  align-items: center;
 }
 
 .challengePresBtns {
-  width: inherit; 
-  height: 150px; 
-  display:flex;
+  width: inherit;
+  height: 150px;
+  display: flex;
   /* justify-content: center;  */
-  align-items: center; 
+  align-items: center;
 }
 
 .challengePresBtns button {
-  margin-right: 40px; 
+  margin-right: 40px;
 }
 
 .discoverIdeas {
-  height: 12.5rem; 
-  width: inherit; 
-  display: flex; 
-  flex-direction: row; 
+  height: 12.5rem;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  align-items: center; 
+  align-items: center;
 }
 
 .relatedIdeas {
-  display: flex; 
-  flex-wrap: wrap; 
-  flex-direction: row; 
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .relatedIdeasBox {
@@ -292,106 +315,100 @@ button {
   height: 21.6rem;
   margin: 2.5%;
   background-color: grey;
-  display: flex; 
-  flex-wrap: wrap; 
-  flex-direction: row; 
-  justify-content: center; 
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .relatedIdeasBoxInnerDiv {
   width: 80%;
   background-color: lightgray;
-  margin: 5%; 
+  margin: 5%;
 }
 
 .relatedIdeasBoxInnerDiv p {
-  margin: 1.5rem 0; 
+  margin: 1.5rem 0;
 }
 
 .relatedIdeasBoxVotes {
-  display:flex; 
-  flex-direction: row; 
-  height: 2rem; 
+  display: flex;
+  flex-direction: row;
+  height: 2rem;
 }
 
 .relatedIdeasBoxVotes img {
   width: 1.5rem;
-  height: 1.5rem; 
-   
+  height: 1.5rem;
 }
-
 
 // Manager Dashboard
 
 .ideasContainer {
-  width: 52rem; 
+  width: 52rem;
   height: max-content;
-  margin-top: 4rem; 
-  display: flex; 
-  flex-wrap: wrap; 
-  
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .mDashboardIdeaBox {
-  width: 19rem; 
+  width: 19rem;
   height: 26rem;
-  margin-right: 1rem; 
-  border: 1px solid black; 
-  display:flex; 
-  align-items: center; 
-  flex-direction: column; 
+  margin-right: 1rem;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .mDashboardIdeaBoxTagOuterDiv {
-  width: inherit; 
-  height: 2.8rem; 
-  display:flex; 
+  width: inherit;
+  height: 2.8rem;
+  display: flex;
   justify-content: flex-end;
-  flex-direction: row; 
-  margin-top: 1rem; 
+  flex-direction: row;
+  margin-top: 1rem;
 }
 
 .mDashboardIdeaBoxTag {
-  width: 7rem; 
-  height: 2.8rem; 
+  width: 7rem;
+  height: 2.8rem;
   background-color: lightblue;
-  color: white; 
+  color: white;
 }
 
 .mDashboardIdeaBoxContent {
-  width: 14.8rem; 
+  width: 14.8rem;
   height: 20rem;
-  margin-top: 1rem; 
+  margin-top: 1rem;
 }
 
 .mDashboardIdeaBoxText {
-  width: inherit; 
-  height: 10.6rem; 
+  width: inherit;
+  height: 10.6rem;
 }
 
 .mDashboardIdeaBox h2 {
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
 }
 
 .mDashboardIdeaBoxStatus {
-  width: inherit; 
-  height: 3rem; 
+  width: inherit;
+  height: 3rem;
 }
 
 .mDashboardIdeaBoxVotesComments {
-  width: inherit; 
-  height: 3rem; 
-  display: flex; 
-  flex-direction: row; 
+  width: inherit;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
   color: $mainColor;
 }
 
 .mDashboardIdeaBoxVotes {
-  margin-right: 2rem; 
+  margin-right: 2rem;
 }
-
-
-
 
 // Public idea view
 .single-idea-public-col {
@@ -403,18 +420,18 @@ button {
   align-items: center;
 }
 .single-idea-public-col-left {
-  background-color:#AEEAE8;
+  background-color: #aeeae8;
   position: relative;
 }
 .single-idea-public-col-right {
-  background: linear-gradient(to right,$secBlue, #3f87a6);
+  background: linear-gradient(to right, $secBlue, #3f87a6);
   color: #fff;
 }
 .specifications-single-idea-public {
   color: $textBlack;
-  font-size:14px;
+  font-size: 14px;
 }
-.single-idea-public-inline{
+.single-idea-public-inline {
   display: inline-block;
   margin-left: 5px;
 }
@@ -422,7 +439,7 @@ button {
   border: 2px solid $notValidgrey;
   padding: 10px;
 }
-.single-idea-public-comment-box h4{
+.single-idea-public-comment-box h4 {
   padding: 5px;
   color: $mainColor;
 }
@@ -433,12 +450,17 @@ button {
 #triangle-right {
   width: 0;
   height: 0;
-  
+
   border-top: 152.5px solid transparent;
   // Height
-  border-left: 5vw solid #AEEAE8;
+  border-left: 5vw solid #aeeae8;
   border-bottom: 152.5px solid transparent;
   position: absolute;
-  top: 0px; 
+  top: 0px;
   left: 49.5vw;
+}
+
+//Idea Detail
+.idea-detail-bottom h2 {
+  padding-top: 1.5rem;
 }

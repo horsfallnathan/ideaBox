@@ -17,8 +17,12 @@ const passport = require("passport");
 
 require("./passport");
 
+const mongoConnectURI =
+  process.env.NODE_ENV === "dev"
+    ? "mongodb://localhost/ideabox-api"
+    : process.env.MONGODB_URI;
 mongoose
-  .connect("mongodb://localhost/ideabox-api", { useNewUrlParser: true })
+  .connect(mongoConnectURI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -114,5 +118,9 @@ const timeRoute = require("./routes/timeKeeper");
 app.use("/", timeRoute);
 const challengeRoutes = require("./routes/challenges");
 app.use("/", challengeRoutes);
+
+app.use((req, res, next) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 module.exports = app;

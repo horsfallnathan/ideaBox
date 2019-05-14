@@ -16,7 +16,6 @@ import AllChallenges from "./components/manager-dashboard/AllChallenges"
 import Layout from "./components/Layout";
 import { currentChallenge } from "./services/challenge";
 
-
 class Routes extends React.Component {
   state = {
     loggedIn: {},

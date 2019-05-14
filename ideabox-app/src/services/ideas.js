@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.REACT_APP_SERVER_URL,
   withCredentials: true
 });
 
@@ -14,8 +14,8 @@ const myIdeas = () => {
 };
 
 const getAllIdeas = () => {
-  return service.get("/all-ideas")
-}
+  return service.get("/all-ideas");
+};
 
 const getIdeaToEdit = ideaId => {
   return service.get(`/edit-idea/${ideaId}`);

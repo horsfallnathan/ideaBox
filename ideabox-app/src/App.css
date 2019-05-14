@@ -80,6 +80,29 @@ button:disabled {
           flex-direction: column;
 }
 
+.verticalCenter {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.spacedBetween {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.flexed-end {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.selfJustifyLeft {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
 .login-box {
   width: 100%;
 }
@@ -114,7 +137,7 @@ button:disabled {
 }
 
 input {
-  border: 1px solid #00646e;
+  border: 1px solid #40aaaa;
   padding: 1rem 1rem;
   border-radius: 2px;
   margin: 2rem 0;
@@ -122,7 +145,19 @@ input {
 
 input:focus {
   outline: none !important;
-  border: 2px solid #00646e;
+  border: 1px solid #00646e;
+}
+
+textarea {
+  border: 1px solid #40aaaa;
+  padding: 1rem 1rem;
+  border-radius: 2px;
+  margin: 2rem 0;
+}
+
+textarea:focus {
+  outline: none !important;
+  border: 1px solid #00646e;
 }
 
 .signupForm {
@@ -140,9 +175,13 @@ input:focus {
   width: 100%;
 }
 
+h1 {
+  color: #00646e;
+}
+
 button {
   text-transform: uppercase;
-  background-color: #00646e;
+  background-color: #40aaaa;
   color: white;
   padding: 1rem;
   border: 0;
@@ -165,7 +204,7 @@ button {
   margin-bottom: -3rem;
 }
 
-.navBarLogo {
+.navBarLogo img {
   margin: 1rem;
 }
 
@@ -502,7 +541,7 @@ button {
 }
 
 .single-idea-public-col-left {
-  background-color: #AEEAE8;
+  background-color: #aeeae8;
   position: relative;
 }
 
@@ -540,10 +579,14 @@ button {
   width: 0;
   height: 0;
   border-top: 152.5px solid transparent;
-  border-left: 5vw solid #AEEAE8;
+  border-left: 5vw solid #aeeae8;
   border-bottom: 152.5px solid transparent;
   position: absolute;
   top: 0px;
   left: 49.5vw;
+}
+
+.idea-detail-bottom h2 {
+  padding-top: 1.5rem;
 }
 /*# sourceMappingURL=App.css.map */

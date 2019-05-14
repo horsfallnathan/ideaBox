@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+// import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
 
-export default class IdeaDescription extends Component {
+const styles = theme => ({});
+class IdeaDescription extends Component {
   state = {
     value: this.props.values.category
   };
@@ -10,54 +17,66 @@ export default class IdeaDescription extends Component {
   };
 
   render() {
-    const { values } = this.props;
+    const { values, classes, handleChange, handleFileUpload } = this.props;
+    // const { classes } = this.props;
     return (
-      <div>
+      <div className={"ideaForm"}>
         <form>
           <h3>Title</h3>
           <input
             type="text"
             name="title"
             value={values.title}
-            onChange={this.props.handleChange("title")}
+            onChange={handleChange}
           />
           <div />
           <h3>Category</h3>
           <div>
-            <input
-              radio
-              label="Innovation Challenge"
-              name="categoryRadio"
-              value="Innovation Challenge"
-              checked={values.category === "Innovation Challenge"}
-              onChange={this.props.handleCategoryChange}
-            />
-            <p>Ideas only related to the current innovation challenge</p>
+            <FormControl component="fieldset" className={classes.formControl}>
+              <RadioGroup
+                aria-label="Category"
+                name="category"
+                onChange={handleChange}
+              >
+                <FormControlLabel
+                  value="Innovation Challenge"
+                  control={<Radio />}
+                  label="Innovation Challenge"
+                />
+                {/* <p>Ideas only related to the current innovation challenge</p> */}
+                <FormControlLabel
+                  value="Free Ideas"
+                  control={<Radio />}
+                  label="Free Ideas"
+                />
+                <p className={"disabledTest"}>
+                  {/* Ideas only related to the current innovation challenge */}
+                </p>
+              </RadioGroup>
+            </FormControl>
           </div>
-          <div>
-            <input
-              radio
-              label="Free Ideas"
-              name="categoryRadio"
-              value="Free Idea"
-              checked={values.category === "Free Idea"}
-              onChange={this.props.handleCategoryChange}
-            />
-            <p>Ideas on any topic of your choice</p>
-          </div>
+          <div />
           <h3>Description</h3>
           <textarea
-            type="textArea"
+            style={{ width: "100%" }}
+            rows="6"
             name="description"
             value={values.description}
-            onChange={this.props.handleChange("description")}
+            onChange={handleChange}
           />
-          <h3>Attach File</h3>
-          <input
-            type="file"
-            name="files"
-            onChange={this.props.handleFileUpload}
-          />
+          <div className={"flexed-div verticalCenter"}>
+            <div className={"attachFileIcon"}> </div>
+            <input
+              type="file"
+              name="files"
+              id="files"
+              className="inputfile"
+              onChange={handleFileUpload}
+            />
+            <label htmlFor={"files"}>
+              <h3>Attach Files</h3>
+            </label>
+          </div>
           {values.fileNames &&
             values.fileNames.map((file, i) => {
               return (
@@ -71,10 +90,24 @@ export default class IdeaDescription extends Component {
                 </ul>
               );
             })}
-          <button onClick={this.props.handleDraft}>Save as draft</button>
-          <button onClick={this.nextStep}>Next</button>
+          <div className={"flexed-div flexed-end"}>
+            <button
+              className={"ideaFormButton"}
+              onClick={this.props.handleDraft}
+            >
+              Save as draft
+            </button>
+            <button
+              className={"ideaFormButton margin-left-15"}
+              onClick={this.nextStep}
+            >
+              Next
+            </button>
+          </div>
         </form>
       </div>
     );
   }
 }
+
+export default withStyles(styles)(IdeaDescription);
