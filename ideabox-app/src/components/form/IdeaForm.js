@@ -15,10 +15,10 @@ import { createDraft, updateDraft } from "../../services/drafts";
 import { getIdeaToEdit } from "../../services/ideas";
 import { currentChallenge } from "../../services/challenge";
 
-const createOption = (label: string) => ({
-  label,
-  value: label
-});
+// const createOption = (label: string) => ({
+//   label,
+//   value: label
+// });
 
 export default class IdeaForm extends Component {
   state = {
@@ -240,40 +240,40 @@ export default class IdeaForm extends Component {
     });
   };
 
-  handleKeyDown = (event: SyntheticKeyboardEvent<HTMLElement>) => {
-    const { estimatedResource, estimatedResources } = this.state;
-    if (!estimatedResource) return;
-    switch (event.key) {
-      case "Enter":
-      case "Tab":
-        console.group("Value Added");
-        console.log(estimatedResources);
-        console.groupEnd();
-        this.setState({
-          estimatedResource: "",
-          estimatedResources: [
-            ...estimatedResources,
-            createOption(estimatedResource)
-          ]
-        });
-        event.preventDefault();
-    }
-  };
+  // handleKeyDown = (event: SyntheticKeyboardEvent<HTMLElement>) => {
+  //   const { estimatedResource, estimatedResources } = this.state;
+  //   if (!estimatedResource) return;
+  //   switch (event.key) {
+  //     case "Enter":
+  //     case "Tab":
+  //       console.group("Value Added");
+  //       console.log(estimatedResources);
+  //       console.groupEnd();
+  //       this.setState({
+  //         estimatedResource: "",
+  //         estimatedResources: [
+  //           ...estimatedResources,
+  //           createOption(estimatedResource)
+  //         ]
+  //       });
+  //       event.preventDefault();
+  //   }
+  // };
 
-  handleResourceChange = (value: any, actionMeta: any) => {
-    console.group("Value Changed");
-    console.log(value);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
-    this.setState({
-      estimatedResources: value
-    });
-  };
-  handleInputChange = (inputValue: string) => {
-    this.setState({
-      estimatedResource: inputValue
-    });
-  };
+  // handleResourceChange = (value: any, actionMeta: any) => {
+  //   console.group("Value Changed");
+  //   console.log(value);
+  //   console.log(`action: ${actionMeta.action}`);
+  //   console.groupEnd();
+  //   this.setState({
+  //     estimatedResources: value
+  //   });
+  // };
+  // handleInputChange = (inputValue: string) => {
+  //   this.setState({
+  //     estimatedResource: inputValue
+  //   });
+  // };
 
   submitForm = event => {
     event.preventDefault();

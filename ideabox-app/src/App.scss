@@ -374,7 +374,8 @@ button:hover {
   width: 45%;
   height: 21.6rem;
   margin: 2.5%;
-  background-color: grey;
+  border-radius: 10px;
+  border: 1px solid $mainColor;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -382,24 +383,35 @@ button:hover {
 }
 
 .relatedIdeasBoxInnerDiv {
-  width: 80%;
-  background-color: lightgray;
-  margin: 5%;
+  width: 70%;
+  margin: 10%;
 }
 
-.relatedIdeasBoxInnerDiv p {
-  margin: 1.5rem 0;
+.relatedIdeasBoxInnerDiv h4 {
+  margin-bottom: 1.5rem; 
+}
+
+.relatedIdeasBoxStatus {
+  margin: 1.5rem 0; 
 }
 
 .relatedIdeasBoxVotes {
   display: flex;
-  flex-direction: row;
-  height: 2rem;
+}
+
+.relatedIdeasBoxComments {
+  margin-left: 1rem; 
+}
+
+.relatedIdeasBoxThumbsUp {
+  width: 1rem; 
+  height: 1rem;
+  background-image: url('https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png')
 }
 
 .relatedIdeasBoxVotes img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 // Manager Dashboard

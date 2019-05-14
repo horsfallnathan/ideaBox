@@ -12,20 +12,20 @@ class challengeForm extends React.Component {
     managerPanel: []
   };
 
-  getUserList = () => {
-    getUsers().then(response => {
-      this.setState({
-        users: response
-      });
-    });
-  };
+  // getUserList = () => {
+  //   getUsers().then(response => {
+  //     this.setState({
+  //       users: response
+  //     });
+  //   });
+  // };
 
-  handleManagerPanelChange = (e, option) => {
-    const { value } = option;
-    this.setState({
-      teamMembers: value
-    });
-  };
+  // handleManagerPanelChange = (e, option) => {
+  //   const { value } = option;
+  //   this.setState({
+  //     teamMembers: value
+  //   });
+  // };
 
   
 
@@ -53,17 +53,17 @@ class challengeForm extends React.Component {
     });
   };
 
-  componentWillMount() {
-    this.props.getUserList();
-  }
+  // componentWillMount() {
+  //   this.getUserList();
+  // }
 
   render() {
     const { title, description, startDate, deadline, managerPanel } = this.state;
-    const userList = this.props.users.map((user, index) => ({
-      key: user._id,
-      text: user.username,
-      value: user._id
-    }));
+    // const userList = this.props.users.map((user, index) => ({
+    //   key: user._id,
+    //   text: user.username,
+    //   value: user._id
+    // }));
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
