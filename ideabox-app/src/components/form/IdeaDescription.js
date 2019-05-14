@@ -19,7 +19,6 @@ class IdeaDescription extends Component {
   render() {
     const {
       values,
-      classes,
       handleChange,
       handleFileUpload,
       addCurrentChallenge
@@ -51,15 +50,11 @@ class IdeaDescription extends Component {
                   control={<Radio />}
                   label="Innovation Challenge"
                 />
-                {/* <p>Ideas only related to the current innovation challenge</p> */}
                 <FormControlLabel
-                  value="Free Ideas"
+                  value="Free Idea"
                   control={<Radio />}
-                  label="Free Ideas"
+                  label="Free Idea"
                 />
-                <p className={"disabledTest"}>
-                  {/* Ideas only related to the current innovation challenge */}
-                </p>
               </RadioGroup>
             </FormControl>
           </div>

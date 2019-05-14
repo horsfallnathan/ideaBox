@@ -1,7 +1,7 @@
 import React from "react";
 import { createChallenge, getAllChallenges } from "../../services/challenge";
-import SetDeadline from "./SetDeadline";
-import {getUsers} from "../../services/ideaSubmission"
+// import SetDeadline from "./SetDeadline";
+// import {getUsers} from "../../services/ideaSubmission"
 
 class challengeForm extends React.Component {
   state = {

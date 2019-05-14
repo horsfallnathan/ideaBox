@@ -7,6 +7,7 @@ export default class IdeaPreview extends Component {
         title,
         category,
         challenge,
+        challengeName,
         description,
         need,
         benefit,
@@ -24,13 +25,13 @@ export default class IdeaPreview extends Component {
         <h3>Title</h3>
         <p>{title}</p>
         <h3>Category</h3>
-        <p>{category}</p>
+        <p>
+          {category}: {challengeName}
+        </p>
         <h3>Description</h3>
         <p>{description}</p>
         <h3>Need</h3>
         <p>{need}</p>
-        <h3>Challenge</h3>
-        <p>{challenge}</p>
         <h3>Benefit</h3>
         <p>{benefit}</p>
         <h3>Estimated Resources</h3>

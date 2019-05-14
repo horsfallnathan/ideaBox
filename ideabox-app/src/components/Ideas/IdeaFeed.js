@@ -27,7 +27,7 @@ class IdeaFeed extends Component {
             } = idea;
             return (
                 <div key={i}>
-                    <Link to={`/my-ideas/${_id}`}>{title}</Link>
+                    <Link to={`/idea/${_id}`}>{title}</Link>
                     <p>{description}</p>
                     <p>Current stage: {status}</p>
                     <p>{upVotes} up-votes</p>

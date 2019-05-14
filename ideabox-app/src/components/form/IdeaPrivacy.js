@@ -39,35 +39,26 @@ export default class IdeaPrivacy extends Component {
                   control={<Radio />}
                   label="Keep Idea Private"
                 />
-                <p className={"disabledTest"}>
-                  {/* Ideas only related to the current innovation challenge */}
-                </p>
               </RadioGroup>
             </FormControl>
-            {/* <input
-              label="Make Idea Public"
-              name="ideaPrivacy"
-              value="false"
-              checked={!values.privacy}
-              onChange={this.props.handlePrivacyChange}
-            />
-            <p>Your idea will be shared with all Siemens employees</p>
-          </div>
-          <div>
-            <input
-              label="Keep Idea Private"
-              name="ideaPrivacy"
-              value="true"
-              checked={values.privacy}
-              onChange={this.props.handlePrivacyChange}
-            /> */}
             <p>
               Only you, your selected team members, and managers can view this
             </p>
           </div>
-          <button onClick={this.prevStep}>Back</button>
-          <button onClick={this.props.handleDraft}>Save as draft</button>
-          <button onClick={this.nextStep}>Next</button>
+          <div className={"flexed-div flexed-end"}>
+            <button
+              className={"ideaFormButton"}
+              onClick={this.props.handleDraft}
+            >
+              Save as draft
+            </button>
+            <button
+              className={"ideaFormButton margin-left-15"}
+              onClick={this.nextStep}
+            >
+              Next
+            </button>
+          </div>
         </form>
       </div>
     );
