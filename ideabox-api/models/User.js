@@ -15,7 +15,8 @@ const userSchema = new Schema(
     email: String,
     role: {
       type: String,
-      enum: ["manager", "employee"]
+      enum: ["manager", "employee", "super-manager"],
+      default: "employee"
     },
     ideas: [
       {

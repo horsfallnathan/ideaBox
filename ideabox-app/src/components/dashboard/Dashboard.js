@@ -39,10 +39,11 @@ class Dashboard extends React.Component {
                                         <h1>{this.state.currentChallenge && this.state.currentChallenge.title ? this.state.currentChallenge.title : "No current challenge"}</h1>
 
                                     </div>
-                                    <div className="challengePresBtns">
-                                        <button><Link to="/current-challenge-information">Read more</Link></button>
-                                        <button><Link to="/submit-idea">Submit Idea</Link></button>
-                                    </div>
+                                    {this.state.currentChallenge && this.state.currentChallenge.title &&
+                                        <div className="challengePresBtns">
+                                            <button><Link to="/current-challenge-information">Read more</Link></button>
+                                            <button><Link to="/submit-idea">Submit Idea</Link></button>
+                                        </div>}
                                 </div>
                             </div>
                         </div>

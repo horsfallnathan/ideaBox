@@ -1,4 +1,4 @@
-import React from 'react' 
+import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchField from "react-search-field";
 import { challengeIdeas } from '../../services/challenge'
@@ -10,27 +10,9 @@ class ManagerDashboard extends React.Component {
         filteredIdeas: []
     }
 
+    componentDidUpdate(prevProp) {
+        if (prevProp.currentChallenge !== this.props.currentChallenge) {
 
-    // displayOpenIdeas = event => {
-    //     const {currentChallenge} = this.state
-    //     const {ideas} = currentChallenge
-    //     let ideasCopy = ideas.slice()
-
-    //     let filteredIdeas = ideasCopy.filter(el => {
-            
-    //         return (el.title == "Take part in more job fairs") 
-    //         // return (el.title.includes(searchText) || el.description.includes(searchText))
-    //     })
-    //     console.log(filteredIdeas)
-    //     this.setState({
-    //         filteredIdeas: filteredIdeas
-    //     })
-    // }
-
-    componentDidUpdate(prevProp){
-        if(prevProp.currentChallenge !== this.props.currentChallenge)
-        {
-            
             let { currentChallenge } = this.props
             challengeIdeas(currentChallenge._id).then(challengeinfo => {
                 this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
@@ -44,20 +26,20 @@ class ManagerDashboard extends React.Component {
         let displayIdeas = ideasArr && ideasArr.map((el, i) => {
             return <div className="mDashboardIdeaBox" key={i}>
                 <div className="mDashboardIdeaBoxTagOuterDiv">
-                <div className="mDashboardIdeaBoxTag">
-                    <p>Pending your review</p>
-                </div>
+                    <div className="mDashboardIdeaBoxTag">
+                        <p>Pending your review</p>
+                    </div>
                 </div>
                 <div className="mDashboardIdeaBoxContent">
-                <div className="mDashboardIdeaBoxText">
-                <h2>{el.title}</h2>
-                <p>{el.description}</p>
-                </div>
-                <div className="mDashboardIdeaBoxStatus">status: {el.status}</div>
-                <div className="mDashboardIdeaBoxVotesComments">
-                    <div className="mDashboardIdeaBoxVotes"> {el.upVotes} <img src="/public/Sketch-images/like.png" alt="votes" /> </div>
-                    <div className="mDashboardIdeaBoxComments"> {el.comments.length} <img src="" alt=""/> </div>
-                </div>
+                    <div className="mDashboardIdeaBoxText">
+                        <h2>{el.title}</h2>
+                        <p>{el.description}</p>
+                    </div>
+                    <div className="mDashboardIdeaBoxStatus">status: {el.status}</div>
+                    <div className="mDashboardIdeaBoxVotesComments">
+                        <div className="mDashboardIdeaBoxVotes"> {el.upVotes} <img src="/public/Sketch-images/like.png" alt="votes" /> </div>
+                        <div className="mDashboardIdeaBoxComments"> {el.comments.length} <img src="" alt="" /> </div>
+                    </div>
                 </div>
             </div>
 
@@ -71,24 +53,23 @@ class ManagerDashboard extends React.Component {
                      <Link to={'/managerDashboard/all-employees-submissions'}><button>All employees submissions</button></Link>  
                 </div>
                 <div className="main-container">
-                <div className="filteringMIdeas">
-                    <button disabled>Ideas pending your approval</button>
-                    <button disabled>Accepted Ideas</button>
-                    <button disabled>Rejected Ideas</button>
-                    <button disabled>Requesting more Info</button>
-                    <div className="searchFieldMDashboard">
-                    <SearchField placeholder="Search..." onSearchClick={this.onSearchClick} searchText=""
-                    className="test-class"/>
+                    <div className="filteringMIdeas">
+                        <button disabled>Ideas pending your approval</button>
+                        <button disabled>Accepted Ideas</button>
+                        <button disabled>Rejected Ideas</button>
+                        <button disabled>Requesting more Info</button>
+                        <div className="searchFieldMDashboard">
+                            <SearchField placeholder="Search..." onSearchClick={this.onSearchClick} searchText=""
+                                className="test-class" />
+                        </div>
+
                     </div>
-                
-                </div>
-                <div>
-                <Link to={`/managerDashboard/challengeForm`}>Create new Challenge</Link>    
-                <Link to={`/managerDashboard/all-challenges`}>View upcoming challenges</Link>
-                </div>
-                <div className="ideasContainer">
-                {displayIdeas}
-                </div>
+                    <div>
+                        <Link to={`/managerDashboard/all-challenges`}>View upcoming challenges</Link>
+                    </div>
+                    <div className="ideasContainer">
+                        {displayIdeas}
+                    </div>
                 </div>
             </div>
         )
