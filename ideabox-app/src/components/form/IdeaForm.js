@@ -256,6 +256,8 @@ export default class IdeaForm extends Component {
           ]
         });
         event.preventDefault();
+        break;
+      default:
     }
   };
 
@@ -275,7 +277,6 @@ export default class IdeaForm extends Component {
     const estimatedResources = this.state.estimatedResources.map(el => {
       return el.value;
     });
-    console.log(estimatedResources);
     const {
       title,
       challenge,

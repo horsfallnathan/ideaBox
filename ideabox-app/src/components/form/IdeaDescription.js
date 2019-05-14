@@ -50,15 +50,11 @@ class IdeaDescription extends Component {
                   control={<Radio />}
                   label="Innovation Challenge"
                 />
-                {/* <p>Ideas only related to the current innovation challenge</p> */}
                 <FormControlLabel
                   value="Free Idea"
                   control={<Radio />}
                   label="Free Idea"
                 />
-                <p className={"disabledTest"}>
-                  {/* Ideas only related to the current innovation challenge */}
-                </p>
               </RadioGroup>
             </FormControl>
           </div>

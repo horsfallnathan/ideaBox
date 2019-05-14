@@ -1,6 +1,5 @@
 import React from "react";
 import { createChallenge, getAllChallenges } from "../../services/challenge";
-import SetDeadline from "./SetDeadline";
 
 class challengeForm extends React.Component {
   state = {
