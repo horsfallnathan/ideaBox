@@ -68,6 +68,7 @@ class IdeaDetail extends Component {
       comments
     } = this.state.idea;
     const challengeTitle = this.state.challenge.title;
+    console.log(this.props)
     return (
       <div className="flexed-col main-container">
         <div>
