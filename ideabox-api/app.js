@@ -18,7 +18,7 @@ const passport = require("passport");
 require("./passport");
 
 const mongoConnectURI =
-  process.env.NODE_ENV === "dev"
+  process.env.ENV === "development"
     ? "mongodb://localhost/ideabox-api"
     : process.env.MONGODB_URI;
 mongoose

@@ -68,6 +68,7 @@ class IdeaDetail extends Component {
       comments
     } = this.state.idea;
     const challengeTitle = this.state.challenge.title;
+    console.log(this.props)
     return (
       <div className="flexed-col main-container">
         <div>
@@ -95,14 +96,13 @@ class IdeaDetail extends Component {
             <button onClick={this.handleManagToggle}>Manager Comments ( {comments && comments.filter(el => el.createdBy.role === "manager").length} )</button>
             <button onClick={this.handleColleagueToggle}>Collegue Comments ( {comments && comments.filter(el => el.createdBy.role === "employee").length} ) </button>
             <div className="single-idea-public-comment-box">
-              {comments && this.state.managComm && this.managerComments()}
-              {comments && !this.state.managComm && this.colleagueComments()}
+              {comments && this.state.managComm && (this.managerComments().length > 0 ? this.managerComments() : <p>No manager comments yet</p>)}
+              {comments && !this.state.managComm && (this.colleagueComments().length > 0 ? this.colleagueComments() : <p>No colleague comments yet</p>)}
             </div>
           </div>
 
           <p>
-            <img src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png" width="26px" alt="upvotes-icon" />
-
+            <img src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png" width="26px" height="auto" alt="upvotes-icon" />
             This idea has been up-voted by
             {{ upVotes } === 1
               ? ` ${upVotes} employee`

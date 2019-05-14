@@ -15,6 +15,7 @@ import IdeaFeed from "./components/Ideas/IdeaFeed";
 import AllChallenges from "./components/manager-dashboard/AllChallenges"
 import Layout from "./components/Layout";
 import { currentChallenge } from "./services/challenge";
+import CurrentChallengeInfo from "./components/dashboard/CurrentChallengeInfo";
 
 class Routes extends React.Component {
   state = {
@@ -49,6 +50,7 @@ class Routes extends React.Component {
     });
   };
   render() {
+    //console.log(this.state.loggedIn)
     return (
       <div>
         <div className="App">
@@ -80,7 +82,7 @@ class Routes extends React.Component {
             />
 
             <Layout setUser={this.setUser} loggedIn={this.state.loggedIn} currentChallenge={this.state.currentChallenge}>
-              {/* HOME */}
+              {/* DASHBOARD */}
               <Route
                 exact path="/"
                 render={props => (
@@ -90,6 +92,7 @@ class Routes extends React.Component {
                   />
                 )}
               />
+              <Route path="/current-challenge-information" component={CurrentChallengeInfo} />
 
               {/* IDEA ROUTES */}
               <Route path="/submit-idea" component={IdeaForm} />
@@ -113,12 +116,12 @@ class Routes extends React.Component {
 
               {/* MANAGER ROUTES */}
               <Route exact path="/managerDashboard" render={props => (
-              <ManagerDashboard
-                {...props}
-                currentChallenge={this.state.currentChallenge}
+                <ManagerDashboard
+                  {...props}
+                  currentChallenge={this.state.currentChallenge}
+                />
+              )}
               />
-            )}
-            />
               <Route exact path="/managerDashboard/challengeForm" component={ChallengeForm} />
               <Route path="/managerDashborad/all-challenges" component={AllChallenges} />
 

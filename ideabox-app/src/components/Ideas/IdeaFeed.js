@@ -13,30 +13,36 @@ class IdeaFeed extends Component {
         })
     }
 
+    mapIdeas = () => {
+        const { ideas } = this.state
+
+        return ideas.map((idea, i) => {
+            const {
+                title,
+                description,
+                status,
+                upVotes,
+                comments,
+                _id
+            } = idea;
+            return (
+                <div key={i}>
+                    <Link to={`/my-ideas/${_id}`}>{title}</Link>
+                    <p>{description}</p>
+                    <p>Current stage: {status}</p>
+                    <p>{upVotes} up-votes</p>
+                    <p>{comments.length} comments</p>
+                </div>
+            );
+        })
+    }
+
     render() {
         const { ideas } = this.state
         return (
             <div>
                 <h1>Idea Feed</h1>
-                {ideas.map((idea, i) => {
-                    const {
-                        title,
-                        description,
-                        status,
-                        upVotes,
-                        comments,
-                        _id
-                    } = idea;
-                    return (
-                        <div key={i}>
-                            <Link to={`/my-ideas/${_id}`}>{title}</Link>
-                            <p>{description}</p>
-                            <p>Current stage: {status}</p>
-                            <p>{upVotes} up-votes</p>
-                            <p>{comments.length} comments</p>
-                        </div>
-                    );
-                })}
+                {ideas && ideas.length && ideas.length > 0 ? this.mapIdeas() : <><h4>No ideas available to show in the feed</h4><Link to="/submit-idea">Click here to submit a new idea</Link></>}
             </div>
         )
     }
