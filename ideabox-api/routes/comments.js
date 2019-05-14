@@ -18,4 +18,12 @@ router.post('/add-comment', (req, res) => {
     })
 })
 
+router.delete("/delete-comment/:commentId", (req, res) => {
+    Comment.findByIdAndDelete(req.params.commentId).then(response => {
+        res.json(response)
+    }).catch(err => {
+        res.json(err)
+    })
+})
+
 module.exports = router
