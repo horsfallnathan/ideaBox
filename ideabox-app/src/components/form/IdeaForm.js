@@ -77,13 +77,15 @@ export default class IdeaForm extends Component {
   }
   getUserList = () => {
     getUsers().then(response => {
-      response.map(user => {
-        this.setState({
-          users: [
-            ...this.state.users,
-            { firstName: user.firstName, lastName: user.lastName, id: user._id }
-          ]
-        });
+      const users = response.map(user => {
+        return {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          id: user._id
+        };
+      });
+      this.setState({
+        users
       });
     });
   };
@@ -199,7 +201,7 @@ export default class IdeaForm extends Component {
         });
       });
     }
-    if (value === "Free Ideas") {
+    if (value === "Free Idea") {
       this.setState({
         [name]: value
       });
@@ -240,15 +242,12 @@ export default class IdeaForm extends Component {
     });
   };
 
-  handleKeyDown = (event: SyntheticKeyboardEvent<HTMLElement>) => {
+  handleKeyDown = event => {
     const { estimatedResource, estimatedResources } = this.state;
     if (!estimatedResource) return;
     switch (event.key) {
       case "Enter":
       case "Tab":
-        console.group("Value Added");
-        console.log(estimatedResources);
-        console.groupEnd();
         this.setState({
           estimatedResource: "",
           estimatedResources: [
@@ -260,16 +259,12 @@ export default class IdeaForm extends Component {
     }
   };
 
-  handleResourceChange = (value: any, actionMeta: any) => {
-    console.group("Value Changed");
-    console.log(value);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
+  handleResourceChange = (value, actionMeta) => {
     this.setState({
       estimatedResources: value
     });
   };
-  handleInputChange = (inputValue: string) => {
+  handleInputChange = inputValue => {
     this.setState({
       estimatedResource: inputValue
     });
@@ -277,6 +272,10 @@ export default class IdeaForm extends Component {
 
   submitForm = event => {
     event.preventDefault();
+    const estimatedResources = this.state.estimatedResources.map(el => {
+      return el.value;
+    });
+    console.log(estimatedResources);
     const {
       title,
       challenge,
@@ -285,7 +284,6 @@ export default class IdeaForm extends Component {
       files,
       need,
       benefit,
-      estimatedResources,
       competition,
       teamMembers,
       message,
