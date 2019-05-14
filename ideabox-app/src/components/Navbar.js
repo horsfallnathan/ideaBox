@@ -26,7 +26,7 @@ export default class Navbar extends Component {
         {this.state.loggedIn ? (
           <div className="navBar">
             <div className="navBarLogo">
-              <Link to="/managerDashboard"><img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557764459/IdeaBox/logo_pwottr.png" alt="" /></Link>
+              <Link to="/"><img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557764459/IdeaBox/logo_pwottr.png" alt="" /></Link>
             </div>
             {this.state.loggedIn.role === "manager" && (
               <Link to="/managerDashboard">Manager Dashboard</Link>

@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
 
                                     </div>
                                     <div className="challengePresBtns">
-                                        <button>Read more</button>
+                                        <button><Link to="/current-challenge-information">Read more</Link></button>
                                         <button><Link to="/submit-idea">Submit Idea</Link></button>
                                     </div>
                                 </div>
