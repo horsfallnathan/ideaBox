@@ -68,11 +68,15 @@ export default class AddTeam extends Component {
               closeMenuOnSelect={false}
               components={makeAnimated()}
               isMulti
+              value={values.teamMembers}
+              onInputChange={this.props.handleTeamInputChange}
+              onKeyDown={this.props.handleTeamKeyDown}
+              onChange={this.props.handleTeamChange}
               options={userList}
               styles={customStyle}
             />
             <label htmlFor="message">
-              Leave them a message! They will reveive it as soon as you submit
+              Leave them a message! They will receive it as soon as you submit
               your idea.
             </label>
             <textarea

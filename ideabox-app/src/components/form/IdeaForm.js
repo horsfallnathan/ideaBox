@@ -15,7 +15,7 @@ import { createDraft, updateDraft } from "../../services/drafts";
 // import { getIdeaToEdit } from "../../services/ideas";
 import { currentChallenge } from "../../services/challenge";
 
-const createOption = (label: string) => ({
+const createOption = label => ({
   label,
   value: label
 });
@@ -38,6 +38,7 @@ export default class IdeaForm extends Component {
     draftId: "",
     estimatedResources: [],
     estimatedResource: "",
+    teamMember: "",
     teamMembers: [],
     message: "",
     privacy: ""
@@ -228,16 +229,35 @@ export default class IdeaForm extends Component {
       privacy: bool
     });
   };
-  handleTeamChange = (e, option) => {
-    const { value } = option;
+
+  handleTeamChange = (value, actionMeta) => {
     this.setState({
       teamMembers: value
     });
   };
+  handleTeamInputChange = inputValue => {
+    this.setState({
+      teamMember: inputValue
+    });
+  };
+  handleTeamKeyDown = event => {
+    const { teamMember, teamMembers } = this.state;
+    if (!teamMember) return;
+    switch (event.key) {
+      case "Enter":
+      case "Tab":
+        this.setState({
+          teamMember: "",
+          teamMembers: [...teamMembers.value]
+        });
+        event.preventDefault();
+        break;
+      default:
+    }
+  };
 
   handleChange = event => {
     const { name, value } = event.target;
-    console.log("name,value", name, value);
     this.setState({
       [name]: value
     });
@@ -278,6 +298,9 @@ export default class IdeaForm extends Component {
     const estimatedResources = this.state.estimatedResources.map(el => {
       return el.value;
     });
+    const teamMembers = this.state.teamMembers.map(el => {
+      return el.value;
+    });
     const {
       title,
       challenge,
@@ -287,7 +310,6 @@ export default class IdeaForm extends Component {
       need,
       benefit,
       competition,
-      teamMembers,
       message,
       privacy
     } = this.state;
@@ -304,9 +326,7 @@ export default class IdeaForm extends Component {
       teamMembers,
       message,
       privacy
-    ).then(idea => {
-      console.log(idea);
-    });
+    ).then(idea => {});
   };
 
   render() {
@@ -417,9 +437,11 @@ export default class IdeaForm extends Component {
               prevStep={this.prevStep}
               getUserList={this.getUserList}
               users={this.state.users}
+              handleChange={this.handleChange}
               handleDraft={this.handleDraft}
               handleTeamChange={this.handleTeamChange}
-              handleChange={this.handleChange}
+              handleTeamInputChange={this.handleTeamInputChange}
+              handleTeamKeyDown={this.handleTeamKeyDown}
               values={values}
             />
           </div>
@@ -465,7 +487,7 @@ export default class IdeaForm extends Component {
             </div>
             <IdeaPreview
               values={values}
-              submitForm={this.editForm}
+              submitForm={this.submitForm}
               prevStep={this.prevStep}
               handleDraft={this.handleDraft}
             />

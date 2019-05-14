@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class IdeaCompetition extends Component {
+class IdeaCompetition extends Component {
   nextStep = event => {
     event.preventDefault();
     this.props.nextStep();
@@ -52,3 +52,4 @@ export default class IdeaCompetition extends Component {
     );
   }
 }
+export default IdeaCompetition;
