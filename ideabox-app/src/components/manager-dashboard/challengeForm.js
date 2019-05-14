@@ -53,6 +53,10 @@ class challengeForm extends React.Component {
     });
   };
 
+  componentWillMount() {
+    this.props.getUserList();
+  }
+
   render() {
     const { title, description, startDate, deadline, managerPanel } = this.state;
     const userList = this.props.users.map((user, index) => ({
