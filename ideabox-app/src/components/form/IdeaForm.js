@@ -13,10 +13,19 @@ import {
 } from "../../services/ideaSubmission";
 import { createDraft, updateDraft } from "../../services/drafts";
 import { getIdeaToEdit } from "../../services/ideas";
+import { currentChallenge } from "../../services/challenge";
+
+const createOption = (label: string) => ({
+  label,
+  value: label
+});
 
 export default class IdeaForm extends Component {
   state = {
     users: [],
+    challengeValue: "",
+    challenge: "",
+    challengeName: "",
     step: 1,
     title: "",
     category: "",
@@ -28,10 +37,10 @@ export default class IdeaForm extends Component {
     benefit: "",
     draftId: "",
     estimatedResources: [],
-    estimatedResource: [],
+    estimatedResource: "",
     teamMembers: [],
     message: "",
-    privacy: true
+    privacy: ""
   };
   componentDidMount() {
     this.props.match.params.ideaId &&
@@ -68,8 +77,13 @@ export default class IdeaForm extends Component {
   }
   getUserList = () => {
     getUsers().then(response => {
-      this.setState({
-        users: response
+      response.map(user => {
+        this.setState({
+          users: [
+            ...this.state.users,
+            { firstName: user.firstName, lastName: user.lastName, id: user._id }
+          ]
+        });
       });
     });
   };
@@ -174,6 +188,23 @@ export default class IdeaForm extends Component {
     });
   };
 
+  addCurrentChallenge = event => {
+    const { name, value } = event.target;
+    if (value === "Innovation Challenge") {
+      currentChallenge().then(response => {
+        this.setState({
+          challenge: response._id,
+          [name]: value,
+          challengeName: response.title
+        });
+      });
+    }
+    if (value === "Free Ideas") {
+      this.setState({
+        [name]: value
+      });
+    }
+  };
   handleFileRemove = index => {
     const newFileList = this.state.files.slice(index + 1);
     const newFileNameList = this.state.fileNames.slice(index + 1);
@@ -203,36 +234,47 @@ export default class IdeaForm extends Component {
 
   handleChange = event => {
     const { name, value } = event.target;
-    console.log("TCL: name, value", name, value);
-
+    console.log("name,value", name, value);
     this.setState({
       [name]: value
     });
   };
 
-  handleResourceChange = event => {
-    // event.preventDefault();
-    const { value } = event.target;
-    if (value.includes(",")) {
-      const newValue = value.slice(0, -1);
-      this.setState({
-        estimatedResources: [...this.state.estimatedResources, newValue],
-        estimatedResource: ""
-      });
-    } else {
-      this.setState({
-        estimatedResource: value
-      });
+  handleKeyDown = (event: SyntheticKeyboardEvent<HTMLElement>) => {
+    const { estimatedResource, estimatedResources } = this.state;
+    if (!estimatedResource) return;
+    switch (event.key) {
+      case "Enter":
+      case "Tab":
+        console.group("Value Added");
+        console.log(estimatedResources);
+        console.groupEnd();
+        this.setState({
+          estimatedResource: "",
+          estimatedResources: [
+            ...estimatedResources,
+            createOption(estimatedResource)
+          ]
+        });
+        event.preventDefault();
     }
   };
 
-  handleResourceRemove = index => {
-    const newResourceList = this.state.estimatedResources.slice(index + 1);
-    console.log(index, newResourceList);
+  handleResourceChange = (value: any, actionMeta: any) => {
+    console.group("Value Changed");
+    console.log(value);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
     this.setState({
-      estimatedResources: newResourceList
+      estimatedResources: value
     });
   };
+  handleInputChange = (inputValue: string) => {
+    this.setState({
+      estimatedResource: inputValue
+    });
+  };
+
   submitForm = event => {
     event.preventDefault();
     const {
@@ -272,6 +314,7 @@ export default class IdeaForm extends Component {
     const {
       title,
       category,
+      challengeName,
       description,
       files,
       fileNames,
@@ -287,6 +330,7 @@ export default class IdeaForm extends Component {
     const values = {
       title,
       category,
+      challengeName,
       description,
       competition,
       teamMembers,
@@ -314,6 +358,7 @@ export default class IdeaForm extends Component {
               handleCategoryChange={this.handleCategoryChange}
               handleChange={this.handleChange}
               values={values}
+              addCurrentChallenge={this.addCurrentChallenge}
               handleDraft={this.handleDraft}
               handleFileUpload={this.handleFileUpload}
               handleFileRemove={this.handleFileRemove}
@@ -332,6 +377,8 @@ export default class IdeaForm extends Component {
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               handleDraft={this.handleDraft}
+              handleInputChange={this.handleInputChange}
+              handleKeyDown={this.handleKeyDown}
               handleResourceChange={this.handleResourceChange}
               handleResourceRemove={this.handleResourceRemove}
               handleChange={this.handleChange}
@@ -389,8 +436,7 @@ export default class IdeaForm extends Component {
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               handleDraft={this.handleDraft}
-              handlePrivacyChange={this.handlePrivacyChange}
-              handleResourceChange={this.handleResourceChange}
+              handleChange={this.handleChange}
               values={values}
             />
           </div>

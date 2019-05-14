@@ -6,6 +6,7 @@ export default class IdeaPreview extends Component {
       values: {
         title,
         category,
+        challenge,
         description,
         need,
         benefit,
@@ -28,12 +29,14 @@ export default class IdeaPreview extends Component {
         <p>{description}</p>
         <h3>Need</h3>
         <p>{need}</p>
+        <h3>Challenge</h3>
+        <p>{challenge}</p>
         <h3>Benefit</h3>
         <p>{benefit}</p>
         <h3>Estimated Resources</h3>
         {estimatedResources &&
           estimatedResources.map((resource, i) => {
-            return <li key={i}>{resource}</li>;
+            return <li key={i}>{resource.value}</li>;
           })}
         <h3>Competition</h3>
         <p>{competition}</p>

@@ -1,10 +1,48 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-// import Chip from "@material-ui/core/Chip";
-// import PropTypes from "prop-types";
 import CreatableSelect from "react-select/lib/Creatable";
+import makeAnimated from "react-select/lib/animated";
 
-const styles = theme => ({});
+// const components = {
+//   DropdownIndicator: null,
+//   makeAnimated: makeAnimated()
+// };
+
+const colorStyles = {
+  control: styles => ({
+    ...styles,
+    backgroundColor: "white",
+    borderColor: "#40aaaa",
+    borderRadius: "2px",
+    ":onFocus": {
+      backgroundColor: "black"
+    },
+    ":hover": {
+      borderColor: "#40aaaa"
+    }
+  }),
+  multiValue: (styles, { data }) => {
+    return {
+      ...styles,
+      borderRadius: 50,
+      padding: "0.5rem",
+      backgroundColor: "#40aaaa"
+    };
+  },
+  multiValueLabel: (styles, { data }) => ({
+    ...styles,
+    color: "#ffffff"
+  }),
+  multiValueRemove: (styles, { data }) => ({
+    ...styles,
+    borderRadius: 50,
+    color: "white",
+    ":hover": {
+      backgroundColor: "#00646e",
+      color: "white"
+    }
+  })
+};
+
 class IdeaNeedBenefit extends Component {
   nextStep = event => {
     event.preventDefault();
@@ -49,37 +87,33 @@ class IdeaNeedBenefit extends Component {
             <label htmlFor="estimatedResource">
               What resources do you think are needed to work on this idea?
             </label>
-            <input
-              type="text"
-              name="estimatedResource"
-              value={values.estimatedResource}
+            <CreatableSelect
+              className={"margin-top-15"}
+              components={makeAnimated()}
+              inputValue={values.estimatedResource}
+              isClearable
+              isMulti
+              menuIsOpen={false}
               onChange={this.props.handleResourceChange}
+              onInputChange={this.props.handleInputChange}
+              onKeyDown={this.props.handleKeyDown}
+              placeholder="Type something and press enter..."
+              value={values.estimatedResources}
+              styles={colorStyles}
+              theme={theme => ({
+                ...theme,
+                colors: {
+                  ...theme.colors,
+                  primary: "#40aaaa"
+                }
+              })}
             />
-            <div>
-              {values.estimatedResources &&
-                values.estimatedResources.map((resource, i) => {
-                  return (
-                    // <Chip
-                    //   label={resource}
-                    //   onDelete={() => this.props.handleResourceRemove(i)}
-                    //   className={classes.chip}
-                    //   color="secondary"
-                    // />
-                    <CreatableSelect
-                      isMulti
-                      // styles={colourStyles}
-                      onChange={this.handleChange}
-                      // options={colourOptions}
-                    />
-                  );
-                })}
-            </div>
           </div>
-          <div className={"flexed-div spacedBetween"}>
+          <div className={"flexed-div spacedBetween margin-top-15"}>
             <button className={"ideaFormButton"} onClick={this.prevStep}>
               Back
             </button>
-            <div className={"flexed-div flexed-end"}>
+            <div className={"flexed-div flexed-end "}>
               <button
                 className={"ideaFormButton"}
                 onClick={this.props.handleDraft}
@@ -100,4 +134,4 @@ class IdeaNeedBenefit extends Component {
   }
 }
 
-export default withStyles(styles)(IdeaNeedBenefit);
+export default IdeaNeedBenefit;

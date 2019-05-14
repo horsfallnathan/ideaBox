@@ -13,23 +13,40 @@ export default class IdeaCompetition extends Component {
   render() {
     const { values } = this.props;
     return (
-      <div>
+      <div className={"ideaForm"}>
         <form>
           <div>
             <h3>Competition</h3>
-            <label htmlFor="need">
+            <label htmlFor="competition">
               Are there any other products trying to solve the same problem?
             </label>
             <textarea
-              type="TextArea"
+              style={{ width: "100%" }}
+              rows="6"
               name="competition"
               value={values.competition}
-              onChange={this.props.handleChange("competition")}
+              onChange={this.props.handleChange}
             />
           </div>
-          <button onClick={this.prevStep}>Back</button>
-          <button onClick={this.props.handleDraft}>Save as draft</button>
-          <button onClick={this.nextStep}>Next</button>
+          <div className={"flexed-div spacedBetween margin-top-15"}>
+            <button className={"ideaFormButton"} onClick={this.prevStep}>
+              Back
+            </button>
+            <div className={"flexed-div flexed-end "}>
+              <button
+                className={"ideaFormButton"}
+                onClick={this.props.handleDraft}
+              >
+                Save as draft
+              </button>
+              <button
+                className={"ideaFormButton margin-left-15"}
+                onClick={this.nextStep}
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     );
