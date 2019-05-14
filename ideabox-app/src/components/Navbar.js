@@ -33,8 +33,8 @@ export default class Navbar extends Component {
             )}
             {this.state.loggedIn.role === "super-manager" && (
               <React.Fragment>
-                <Link to="/">Admin Roles</Link>
-                <Link to="/">Dashboard</Link>
+                <Link to="/admin">Admin Roles</Link>
+                <Link to="/managerDashboard">Manager Dashboard</Link>
               </React.Fragment>
             )}
             <ul className="navBarLinks">

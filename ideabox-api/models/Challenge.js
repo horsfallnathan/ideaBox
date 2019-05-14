@@ -12,6 +12,12 @@ challengeSchema = new Schema({
             ref: 'Idea'
         }
     ],
+    managerPanel: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'

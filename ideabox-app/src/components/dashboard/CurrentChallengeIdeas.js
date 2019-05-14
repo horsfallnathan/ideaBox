@@ -9,7 +9,7 @@ class CurrentChallengeIdeas extends React.Component {
         challenge: {},
         filteredIdeas: []
     }
-
+ 
 
     handleSort = event => {
         const type = event.target.value
@@ -67,8 +67,12 @@ class CurrentChallengeIdeas extends React.Component {
                     <div className="relatedIdeasBoxStatus">
                         <p>Current stage: {el.status}</p>
                     </div>
-                    <div className="relatedIdeasBoxVotes"><img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png" alt="" /><p> {el.upVotes} up-votes</p></div>
-                    <p>{el.comments.length}comments</p>
+                    <div className="relatedIdeasBoxVotes">
+                        <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png"></img>
+                        <div><p>{el.upVotes} up-votes</p></div>
+                        <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762768/IdeaBox/comment_schndj.png"></img>
+                        <div><p>{el.comments.length} comments</p></div>
+                    </div>
                 </div>
             </div>
         })

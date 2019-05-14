@@ -114,8 +114,12 @@ app.use("/api", getUsers);
 const draftsRoute = require("./routes/drafts");
 app.use("/api", draftsRoute);
 
+const adminRoutes = require("./routes/admin")
+app.use("/api", adminRoutes)
+
 const timeRoute = require("./routes/timeKeeper");
 app.use("/api", timeRoute);
+
 const challengeRoutes = require("./routes/challenges");
 app.use("/api", challengeRoutes);
 

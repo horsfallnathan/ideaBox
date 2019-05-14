@@ -19,13 +19,14 @@ const getAllChallenges = () => {
   return service.get("/all-challenges");
 };
 
-const createChallenge = (title, description, startDate, deadline) => {
+const createChallenge = (title, description, startDate, deadline, managerPanel) => {
   return service
     .post("/managerDashboard/challengeForm", {
       title,
       description,
       startDate,
-      deadline
+      deadline,
+      managerPanel
     })
     .then(response => response.data);
 };

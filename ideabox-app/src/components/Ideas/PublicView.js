@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getSingleIdea } from '../../services/ideas'
-import { createComment } from '../../services/comments'
+import { createComment, deleteComment } from '../../services/comments'
 
 class PublicViewIdea extends Component {
     state = {
@@ -38,21 +38,31 @@ class PublicViewIdea extends Component {
         })
     }
 
+    deleteComment = commentId => {
+        deleteComment(commentId)
+    }
+
     managerComments = () => {
         const { comments } = this.state.idea;
         const managerCC = comments.filter(el => el.createdBy.role === "manager");
         return managerCC.map((comment, i) => {
             const { profileImage, firstName, lastName } = comment.createdBy
             return (
-                <div key={i}>
-                    <h4> <img
-                        src={profileImage}
-                        width="30px"
-                        alt="ProfileImage"
-                    />
-                        {firstName} {lastName}</h4>
-                    <p>{comment.content}</p>
-                </div>
+                <div key={i} className="flexed-div">
+                    <div>
+                        <h4> <img
+                            src={profileImage}
+                            width="30px"
+                            alt="ProfileImage"
+                        />
+                            {firstName} {lastName}</h4>
+                        <p>{comment.content}</p>
+                    </div>
+                    <form className="single-idea-public-comment-box" onSubmit={() => this.deleteComment(comment._id)}>
+                        <img src="https://res-console.cloudinary.com/dxbwwhlc6/thumbnails/v1/image/upload/v1557855541/ZGVsZXRlX252bDhjaw==/grid" width="25px" alt="delete" />
+                        <input value="Delete comment" type="submit" />
+                    </form>
+                </div >
             );
         });
     };

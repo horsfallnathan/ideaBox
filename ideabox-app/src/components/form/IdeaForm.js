@@ -12,7 +12,7 @@ import {
   editIdea
 } from "../../services/ideaSubmission";
 import { createDraft, updateDraft } from "../../services/drafts";
-// import { getIdeaToEdit } from "../../services/ideas";
+import { getIdeaToEdit } from "../../services/ideas";
 import { currentChallenge } from "../../services/challenge";
 
 const createOption = label => ({
@@ -43,39 +43,39 @@ export default class IdeaForm extends Component {
     message: "",
     privacy: ""
   };
-  // componentDidMount() {
-  //   this.props.match.params.ideaId &&
-  //     getIdeaToEdit(this.props.match.params.ideaId).then(response => {
-  //       const {
-  //         title,
-  //         challenge,
-  //         category,
-  //         description,
-  //         files,
-  //         need,
-  //         benefit,
-  //         estimatedResources,
-  //         competition,
-  //         teamMembers,
-  //         message,
-  //         privacy
-  //       } = response.data;
-  //       this.setState({
-  //         title,
-  //         challenge,
-  //         category,
-  //         description,
-  //         files,
-  //         need,
-  //         benefit,
-  //         estimatedResources,
-  //         competition,
-  //         teamMembers,
-  //         message,
-  //         privacy
-  //       });
-  //     });
-  // }
+  componentDidMount() {
+    this.props.match.params.ideaId &&
+      getIdeaToEdit(this.props.match.params.ideaId).then(response => {
+        const {
+          title,
+          challenge,
+          category,
+          description,
+          files,
+          need,
+          benefit,
+          estimatedResources,
+          competition,
+          teamMembers,
+          message,
+          privacy
+        } = response.data;
+        this.setState({
+          title,
+          challenge,
+          category,
+          description,
+          files,
+          need,
+          benefit,
+          estimatedResources,
+          competition,
+          teamMembers,
+          message,
+          privacy
+        });
+      });
+  }
   getUserList = () => {
     getUsers().then(response => {
       const users = response.map(user => {
@@ -479,12 +479,20 @@ export default class IdeaForm extends Component {
             />
           </div>
         ) : (
-          <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
-          >
-            <div className={"ideaForm"}>
-              <h1>Idea Submission</h1>
+            <div
+              className={"main-container flexed-div flexed-col verticalCenter"}
+            >
+              <div className={"ideaForm"}>
+                <h1>Idea Submission</h1>
+              </div>
+              <IdeaPreview
+                values={values}
+                submitForm={this.editForm}
+                prevStep={this.prevStep}
+                handleDraft={this.handleDraft}
+              />
             </div>
+<<<<<<< HEAD
             <IdeaPreview
               values={values}
               submitForm={this.submitForm}
@@ -493,6 +501,9 @@ export default class IdeaForm extends Component {
             />
           </div>
         );
+=======
+          );
+>>>>>>> 20aa799a82e7032d7564b1420cfb06199727205a
       default:
         return console.log("error");
     }

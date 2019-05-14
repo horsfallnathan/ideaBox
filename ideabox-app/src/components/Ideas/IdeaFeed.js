@@ -26,12 +26,14 @@ class IdeaFeed extends Component {
                 _id
             } = idea;
             return (
-                <div key={i}>
-                    <Link to={`/idea/${_id}`}>{title}</Link>
-                    <p>{description}</p>
-                    <p>Current stage: {status}</p>
-                    <p>{upVotes} up-votes</p>
-                    <p>{comments.length} comments</p>
+                <div className="relatedIdeasBox" >
+                    <div key={i} className="relatedIdeasBoxInnerDiv" >
+                        <Link to={`/idea/${_id}`}>{title}</Link>
+                        <p>{description}</p>
+                        <div className="relatedIdeasBoxStatus"><p>Current stage: {status}</p></div>
+                        <p>{upVotes} up-votes</p>
+                        <p>{comments.length} comments</p>
+                    </div>
                 </div>
             );
         })
@@ -40,7 +42,7 @@ class IdeaFeed extends Component {
     render() {
         const { ideas } = this.state
         return (
-            <div>
+            <div className="main-container">
                 <h1>Idea Feed</h1>
                 {ideas && ideas.length && ideas.length > 0 ? this.mapIdeas() : <><h4>No ideas available to show in the feed</h4><Link to="/submit-idea">Click here to submit a new idea</Link></>}
             </div>
