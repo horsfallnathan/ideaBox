@@ -178,6 +178,66 @@ button {
   border: 0;
   border-radius: 2px;
 }
+button:hover {
+  background-color: #00646e;
+}
+
+// ideaForm
+
+.ideaForm input {
+  width: 100%;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.attachFileIcon {
+  background-image: url("https://res.cloudinary.com/nthnh/image/upload/v1557750626/ideaBox/baseline-create_new_folder-24px_vjlsfj.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+.inputfile + label {
+  color: #40aaaa;
+  border: 0;
+  border-radius: 2px;
+}
+
+.padding-left-15 {
+  padding-left: 1.5rem;
+}
+
+.margin-left-15 {
+  margin-left: 1.5rem;
+}
+.margin-top-15 {
+  margin-top: 1.5rem;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  color: #00646e;
+}
+
+.ideaFormButton {
+  width: 12rem;
+}
+
+.creatable {
+  border: 1px solid $subBlue !important;
+  border-radius: 2px;
+}
+// Idea Form
 
 .navBar {
   width: 100%;
