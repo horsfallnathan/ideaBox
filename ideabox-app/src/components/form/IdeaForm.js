@@ -479,20 +479,12 @@ export default class IdeaForm extends Component {
             />
           </div>
         ) : (
-            <div
-              className={"main-container flexed-div flexed-col verticalCenter"}
-            >
-              <div className={"ideaForm"}>
-                <h1>Idea Submission</h1>
-              </div>
-              <IdeaPreview
-                values={values}
-                submitForm={this.editForm}
-                prevStep={this.prevStep}
-                handleDraft={this.handleDraft}
-              />
+          <div
+            className={"main-container flexed-div flexed-col verticalCenter"}
+          >
+            <div className={"ideaForm"}>
+              <h1>Idea Submission</h1>
             </div>
-<<<<<<< HEAD
             <IdeaPreview
               values={values}
               submitForm={this.submitForm}
@@ -501,9 +493,6 @@ export default class IdeaForm extends Component {
             />
           </div>
         );
-=======
-          );
->>>>>>> 20aa799a82e7032d7564b1420cfb06199727205a
       default:
         return console.log("error");
     }

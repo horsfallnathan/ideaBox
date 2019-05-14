@@ -7,7 +7,6 @@ const uploader = require("../configs/cloudinary");
 // const Challenge = require("../models/Challenge");
 
 router.post("/submit-idea", (req, res) => {
-  console.log("here");
   const {
     title,
     challenge,
@@ -37,18 +36,19 @@ router.post("/submit-idea", (req, res) => {
     privacy
   })
     .then(response => {
-      return res.status(200).json(response)
+      return res.status(200).json(response);
+    })
     .catch(error => {
       res.json(error);
     });
 });
 router.post("/add-idea-tochallenge", (req, res) => {
-  console.log("got here backend");
   const { challengeId, ideaId } = req.body;
-  Challenge.findOneAndUpdate(
+  // console.log(challengeId, ideaId);
+  Challenge.findByIdAndUpdate(
     { _id: challengeId },
     {
-      $set: { ideas: [...ideas, ideaId] }
+      $push: { ideas: ideaId }
     }
   );
 });
