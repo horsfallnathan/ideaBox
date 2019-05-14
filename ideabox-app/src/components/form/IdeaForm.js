@@ -15,10 +15,10 @@ import { createDraft, updateDraft } from "../../services/drafts";
 // import { getIdeaToEdit } from "../../services/ideas";
 import { currentChallenge } from "../../services/challenge";
 
-// const createOption = (label: string) => ({
-//   label,
-//   value: label
-// });
+const createOption = (label) => ({
+  label,
+  value: label
+});
 
 export default class IdeaForm extends Component {
   state = {
@@ -457,20 +457,20 @@ export default class IdeaForm extends Component {
             />
           </div>
         ) : (
-          <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
-          >
-            <div className={"ideaForm"}>
-              <h1>Idea Submission</h1>
+            <div
+              className={"main-container flexed-div flexed-col verticalCenter"}
+            >
+              <div className={"ideaForm"}>
+                <h1>Idea Submission</h1>
+              </div>
+              <IdeaPreview
+                values={values}
+                submitForm={this.editForm}
+                prevStep={this.prevStep}
+                handleDraft={this.handleDraft}
+              />
             </div>
-            <IdeaPreview
-              values={values}
-              submitForm={this.editForm}
-              prevStep={this.prevStep}
-              handleDraft={this.handleDraft}
-            />
-          </div>
-        );
+          );
       default:
         return console.log("error");
     }

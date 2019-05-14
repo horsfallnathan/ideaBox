@@ -16,6 +16,8 @@ import AllChallenges from "./components/manager-dashboard/AllChallenges"
 import Layout from "./components/Layout";
 import { currentChallenge } from "./services/challenge";
 import CurrentChallengeInfo from "./components/dashboard/CurrentChallengeInfo";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import EditUserRole from "./components/Admin/EditUserRole";
 
 class Routes extends React.Component {
   state = {
@@ -122,8 +124,12 @@ class Routes extends React.Component {
                 />
               )}
               />
-              <Route exact path="/managerDashboard/challengeForm" component={ChallengeForm} />
               <Route path="/managerDashborad/all-challenges" component={AllChallenges} />
+
+              {/* SUPER MANAGER ROUTES */}
+              <Route path="/admin" component={AdminDashboard} />
+              <Route exact path="/challenge-form" component={ChallengeForm} />
+              <Route path="/edit-user-role" component={EditUserRole} />
 
             </Layout>
           </Switch>
