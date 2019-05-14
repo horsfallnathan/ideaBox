@@ -1,48 +1,25 @@
-import React from 'react' 
+import React from 'react'
+import {getAllIdeas} from '../../services/ideas'
 import { Link } from 'react-router-dom'
 import SearchField from "react-search-field";
-import { challengeIdeas } from '../../services/challenge'
 
-class ManagerDashboard extends React.Component {
-
+class AllEmployeeSubmissions extends React.Component {
     state = {
-        challenge: {},
+        ideas: [],
         filteredIdeas: []
     }
 
-
-    // displayOpenIdeas = event => {
-    //     const {currentChallenge} = this.state
-    //     const {ideas} = currentChallenge
-    //     let ideasCopy = ideas.slice()
-
-    //     let filteredIdeas = ideasCopy.filter(el => {
-            
-    //         return (el.title == "Take part in more job fairs") 
-    //         // return (el.title.includes(searchText) || el.description.includes(searchText))
-    //     })
-    //     console.log(filteredIdeas)
-    //     this.setState({
-    //         filteredIdeas: filteredIdeas
-    //     })
-    // }
-
-    componentDidUpdate(prevProp){
-        if(prevProp.currentChallenge !== this.props.currentChallenge)
-        {
-            
-            let { currentChallenge } = this.props
-            challengeIdeas(currentChallenge._id).then(challengeinfo => {
-                this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
-            })
-        }
+    componentDidMount() {
+        getAllIdeas().then(allIdeas => {
+            console.log(allIdeas.data)
+            this.setState({ideas: allIdeas.data})
+        })
     }
 
-
-    render() {
-        let ideasArr = this.state.filteredIdeas
-        let displayIdeas = ideasArr && ideasArr.map((el, i) => {
-            return <div className="mDashboardIdeaBox" key={i}>
+render() {
+    let ideas = this.state.ideas
+    let displayIdeas = ideas.map((el, i) => {
+        return <div className="mDashboardIdeaBox" key={i}>
                 <div className="mDashboardIdeaBoxTagOuterDiv">
                 <div className="mDashboardIdeaBoxTag">
                     <p>Pending your review</p>
@@ -60,17 +37,14 @@ class ManagerDashboard extends React.Component {
                 </div>
                 </div>
             </div>
-
-
-        })
-
-        return (
-            <div>
-                <div className="headBar">                
-                     <button>Ideas submitted to me</button>  
-                     <Link to={'/managerDashboard/all-employees-submissions'}><button>All employees submissions</button></Link>  
-                </div>
-                <div className="main-container">
+    })
+    return (
+        <div>
+            <div className="headBar">                 
+                <Link to={'/managerDashboard'}><button>Ideas submitted to me</button></Link>   
+                <button>All employees submissions</button>  
+            </div>
+            <div className="main-container">
                 <div className="filteringMIdeas">
                     <button disabled>Ideas pending your approval</button>
                     <button disabled>Accepted Ideas</button>
@@ -90,9 +64,10 @@ class ManagerDashboard extends React.Component {
                 {displayIdeas}
                 </div>
                 </div>
-            </div>
+        </div>
         )
     }
-}
 
-export default ManagerDashboard;
+}   
+
+export default AllEmployeeSubmissions

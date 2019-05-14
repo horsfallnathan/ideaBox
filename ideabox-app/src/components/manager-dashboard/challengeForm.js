@@ -3,7 +3,7 @@ import { createChallenge, getAllChallenges } from "../../services/challenge";
 // import SetDeadline from "./SetDeadline";
 // import {getUsers} from "../../services/ideaSubmission"
 
-class challengeForm extends React.Component {
+class ChallengeForm extends React.Component {
   state = {
     title: "",
     description: "",
@@ -104,4 +104,4 @@ class challengeForm extends React.Component {
   }
 }
 
-export default challengeForm;
+export default ChallengeForm;

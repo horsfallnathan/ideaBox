@@ -12,13 +12,13 @@ import {
   editIdea
 } from "../../services/ideaSubmission";
 import { createDraft, updateDraft } from "../../services/drafts";
-// import { getIdeaToEdit } from "../../services/ideas";
+import { getIdeaToEdit } from "../../services/ideas";
 import { currentChallenge } from "../../services/challenge";
 
-// const createOption = (label: string) => ({
-//   label,
-//   value: label
-// });
+const createOption = (label) => ({
+  label,
+  value: label
+});
 
 export default class IdeaForm extends Component {
   state = {
@@ -42,39 +42,39 @@ export default class IdeaForm extends Component {
     message: "",
     privacy: ""
   };
-  // componentDidMount() {
-  //   this.props.match.params.ideaId &&
-  //     getIdeaToEdit(this.props.match.params.ideaId).then(response => {
-  //       const {
-  //         title,
-  //         challenge,
-  //         category,
-  //         description,
-  //         files,
-  //         need,
-  //         benefit,
-  //         estimatedResources,
-  //         competition,
-  //         teamMembers,
-  //         message,
-  //         privacy
-  //       } = response.data;
-  //       this.setState({
-  //         title,
-  //         challenge,
-  //         category,
-  //         description,
-  //         files,
-  //         need,
-  //         benefit,
-  //         estimatedResources,
-  //         competition,
-  //         teamMembers,
-  //         message,
-  //         privacy
-  //       });
-  //     });
-  // }
+  componentDidMount() {
+    this.props.match.params.ideaId &&
+      getIdeaToEdit(this.props.match.params.ideaId).then(response => {
+        const {
+          title,
+          challenge,
+          category,
+          description,
+          files,
+          need,
+          benefit,
+          estimatedResources,
+          competition,
+          teamMembers,
+          message,
+          privacy
+        } = response.data;
+        this.setState({
+          title,
+          challenge,
+          category,
+          description,
+          files,
+          need,
+          benefit,
+          estimatedResources,
+          competition,
+          teamMembers,
+          message,
+          privacy
+        });
+      });
+  }
   getUserList = () => {
     getUsers().then(response => {
       const users = response.map(user => {
@@ -465,7 +465,7 @@ export default class IdeaForm extends Component {
             </div>
             <IdeaPreview
               values={values}
-              submitForm={this.editForm}
+              submitForm={this.submitForm}
               prevStep={this.prevStep}
               handleDraft={this.handleDraft}
             />

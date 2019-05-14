@@ -6,12 +6,16 @@ import { Link } from 'react-router-dom'
 
 class Dashboard extends React.Component {
     state = {
-        currentChallenge: {}
+        currentChallenge: {},
+        filteredIdes: []
     }
 
+
     componentDidMount() {
+
         currentChallenge().then(currentChallengeInfo => {
-            this.setState({ currentChallenge: currentChallengeInfo.data })
+            this.setState({ currentChallenge: currentChallengeInfo.data})
+            console.log(currentChallengeInfo)
         })
     }
 
@@ -21,7 +25,7 @@ class Dashboard extends React.Component {
                 <div className="dashboard">
                     <div className="headBar">
                         <button>Innovation Challenge Idea Submissions</button>
-                        <button disabled>Open Idea Submissions</button>
+                        <button disabled> <Link to="/open-ideas">Open Idea Submissions</Link></button>
                     </div>
                     <div className="challengePres">
                         <div className="main-container">
