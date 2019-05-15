@@ -3,10 +3,11 @@ const router = express.Router();
 const Idea = require("../models/Idea");
 const Challenge = require("../models/Challenge");
 const uploader = require("../configs/cloudinary");
-// const User = require("../models/User");
+const User = require("../models/User");
 // const Challenge = require("../models/Challenge");
 
 router.post("/submit-idea", (req, res) => {
+  const userId = req.user._id
   const {
     title,
     challenge,
@@ -36,6 +37,9 @@ router.post("/submit-idea", (req, res) => {
     privacy
   })
     .then(response => {
+      User.findByIdAndUpdate(userId, { $push: { ideas: response._id } }).then(updatedUser => {
+        res.json(updatedUser)
+      })
       Challenge.findOneAndUpdate(
         {
           $and: [
