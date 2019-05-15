@@ -24,7 +24,7 @@ class Login extends React.Component {
     });
     currentChallenge().then(challenge => {
       this.props.setCurrentChallenge(challenge.data);
-      this.props.history.push(`/challenge/${challenge.data._id}`);
+      this.props.history.push("/");
     });
   };
 
