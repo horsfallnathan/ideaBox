@@ -17,4 +17,8 @@ const updateRoleToEmployee = userId => {
     return service.put(`/update-role-to-employee/${userId}`)
 }
 
-export { getAllUsers, updateRoleToManager, updateRoleToEmployee }
+const updateIdeaStatus = (ideaId, newStatus) => {
+    return service.put(`/update-idea-status/${ideaId}/${newStatus}`)
+}
+
+export { getAllUsers, updateRoleToManager, updateRoleToEmployee, updateIdeaStatus }

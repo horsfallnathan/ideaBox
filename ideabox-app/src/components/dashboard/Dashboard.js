@@ -14,8 +14,7 @@ class Dashboard extends React.Component {
     componentDidMount() {
 
         currentChallenge().then(currentChallengeInfo => {
-            this.setState({ currentChallenge: currentChallengeInfo.data})
-            console.log(currentChallengeInfo)
+            this.setState({ currentChallenge: currentChallengeInfo.data })
         })
     }
 

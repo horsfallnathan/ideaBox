@@ -53,8 +53,8 @@ class Routes extends React.Component {
       currentChallenge
     });
   };
+
   render() {
-    //console.log(this.state.loggedIn)
     return (
       <div>
         <div className="App">

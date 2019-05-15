@@ -33,7 +33,8 @@ ideaSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["submitted","requesting more info","accepted", "rejected","Development", "Pitch", "Implementation"]
+      enum: ["Submitted", "Requesting more info", "Accepted", "Rejected", "Development", "Pitch", "Implementation"],
+      default: "Submitted"
     },
     selected: {
       type: Boolean

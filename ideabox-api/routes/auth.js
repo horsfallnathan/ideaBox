@@ -70,7 +70,7 @@ router.post("/logout", (req, res) => {
 
 router.get("/loggedin", (req, res) => {
   if (req.isAuthenticated()) return res.json(req.user);
-  return res.json(null);
+  else return res.json(null);
 });
 
 // router.get('/userFind', (req, res, next) => {
