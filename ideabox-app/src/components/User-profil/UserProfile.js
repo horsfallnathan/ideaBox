@@ -1,6 +1,6 @@
 import React from 'react' 
 
-class UserProfil extends React.Component {
+class UserProfile extends React.Component {
     render () {
         return (
             <div>
@@ -10,4 +10,4 @@ class UserProfil extends React.Component {
     }
 }
 
-export default UserProfil 
+export default UserProfile 
