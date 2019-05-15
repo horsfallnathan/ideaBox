@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { getSingleIdea } from "../../services/ideas";
 import { createComment, deleteComment } from "../../services/comments";
+import { updateIdeaStatus } from "../../services/admin";
+// import { loggedin } from '../../services/auth';
 
 class PublicViewIdea extends Component {
   state = {
     challenge: {},
     idea: {},
     commentContent: "",
-    managComm: true
+    managComm: true,
+    statusSelection: "",
+    loggedIn: {}
   };
 
   componentDidMount() {
@@ -15,7 +19,11 @@ class PublicViewIdea extends Component {
     getSingleIdea(ideaId).then(ideainfo => {
       const { challenge } = ideainfo.data;
       const { idea } = ideainfo.data;
+      // loggedin().then(user => {
+      //     console.log(user)
+      // console.log('hey there')
       this.setState({ challenge, idea, commentContent: "" });
+      // })
     });
   }
 
@@ -94,12 +102,55 @@ class PublicViewIdea extends Component {
     });
   };
 
+  afterIdeaAcceptedForm = () => {
+    return (
+      <form onSubmit={this.handleStatusUpdateSubmit}>
+        <h2>Idea ACCEPTED</h2>
+        <label htmlFor="status-select">Update status: </label>
+
+        <select onChange={this.handleStatusUpdate} id="status-select">
+          <option value="">--Choose an option--</option>
+          <option value="Development">Development</option>
+          <option value="Pitch">Pitch</option>
+          <option value="Implementation">Implementation</option>
+          <option value="Rejected">Reject</option>
+        </select>
+        <button type="submit">Save status</button>
+      </form>
+    );
+  };
+
+  beforeIdeaAcceptedForm = () => {
+    return (
+      <form onSubmit={this.handleStatusUpdateSubmit}>
+        <label htmlFor="status-select">Update status: </label>
+
+        <select onChange={this.handleStatusUpdate} id="status-select">
+          <option value="">--Choose an option--</option>
+          <option value="Requesting more info">Request more info</option>
+          <option value="Accepted">Accept</option>
+          <option value="Rejected">Reject</option>
+        </select>
+        <button type="submit">Save status</button>
+      </form>
+    );
+  };
+
   handleManagToggle = () => {
     this.setState({ managComm: true });
   };
 
   handleColleagueToggle = () => {
     this.setState({ managComm: false });
+  };
+
+  handleStatusUpdate = event => {
+    this.setState({ statusSelection: event.target.value });
+  };
+
+  handleStatusUpdateSubmit = event => {
+    event.preventDefault();
+    updateIdeaStatus(this.state.idea._id, this.state.statusSelection);
   };
 
   render() {
@@ -112,7 +163,8 @@ class PublicViewIdea extends Component {
       estimatedResources,
       competition,
       teamMembers,
-      comments
+      comments,
+      status
     } = this.state.idea;
     const challengeTitle = this.state.challenge.title;
     return (
@@ -131,6 +183,19 @@ class PublicViewIdea extends Component {
           </div>
         </div>
         <div className="main-container single-idea-public-bottom">
+          {this.props.loggedIn &&
+          this.props.loggedIn.role === "super-manager" ? (
+            status === "Rejected" ||
+            status === "Requesting more info" ||
+            status === "Submitted" ? (
+              this.beforeIdeaAcceptedForm()
+            ) : (
+              this.afterIdeaAcceptedForm()
+            )
+          ) : (
+            <h1>Status: {status}</h1>
+          )}
+
           <h2>Engagement</h2>
           <img
             src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png"
@@ -223,10 +288,7 @@ class PublicViewIdea extends Component {
           </div>
 
           <form onSubmit={this.handleSubmit}>
-            <img
-              src={this.props.loggedIn && this.props.loggedIn.profileImage}
-              alt="loggedIn-user"
-            />
+            <img src={this.props.loggedIn.profileImage} alt="loggedIn-user" />
             <input
               type="text"
               placeholder="Leave a comment..."

@@ -5,12 +5,10 @@ import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
 import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 // import { mailFolderListItems, otherMailFolderListItems } from "./tileData";
 
@@ -61,8 +59,9 @@ const styles = theme => ({
   }
 });
 
-class ResponsiveDrawer extends React.Component {
+class Navbar extends React.Component {
   state = {
+    loggedIn: this.props.loggedIn,
     mobileOpen: false
   };
 
@@ -154,7 +153,9 @@ class ResponsiveDrawer extends React.Component {
                   src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
                   alt="profile icon"
                 />
-                <Link className={"snavBarLinks"}>Profile</Link>
+                <Link to="/user-profile" className={"snavBarLinks"}>
+                  Profile
+                </Link>
               </div>
               <div
                 className={"flexed-div flexed-col margin-left-15 alignedCenter"}
@@ -189,12 +190,12 @@ class ResponsiveDrawer extends React.Component {
   }
 }
 
-ResponsiveDrawer.propTypes = {
+Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default withStyles(styles, { withTheme: true })(Navbar);
 
 // import React, { Component } from "react";
 // import { Link } from "react-router-dom";
