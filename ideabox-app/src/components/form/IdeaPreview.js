@@ -6,7 +6,6 @@ export default class IdeaPreview extends Component {
       values: {
         title,
         category,
-        challenge,
         challengeName,
         description,
         need,
@@ -44,7 +43,7 @@ export default class IdeaPreview extends Component {
         <h3>Team Members</h3>
         {teamMembers &&
           teamMembers.map((name, i) => {
-            return <li key={i}>{name}</li>;
+            return <li key={i}>{name.label}</li>;
           })}
         <h3>Message</h3>
         <p>{message}</p>
@@ -53,9 +52,27 @@ export default class IdeaPreview extends Component {
         <h3>Attached Files</h3>
         <p>{fileNames}</p>
         <p>{this.props.first}</p>
-        <button onClick={this.props.prevStep}>Edit Form</button>
-        <button onClick={this.props.handleDraft}>Save as draft</button>
-        <button onClick={this.props.submitForm}>Submit Form</button>
+        <div className={"flexed-div spacedBetween margin-top-15"}>
+          <div className={"flexed-div flexed-end"}>
+            <button className={"ideaFormButton"} onClick={this.props.prevStep}>
+              Edit Form
+            </button>
+            <button
+              className={"ideaFormButton margin-left-15"}
+              onClick={this.props.handleDraft}
+            >
+              Save as draft
+            </button>
+          </div>
+          <div>
+            <button
+              className={"ideaFormButton"}
+              onClick={this.props.submitForm}
+            >
+              Submit Form
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

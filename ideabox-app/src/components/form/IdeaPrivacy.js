@@ -17,7 +17,7 @@ export default class IdeaPrivacy extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <div>
+      <div className={"ideaForm"}>
         <form>
           <h3>Who should see this idea?</h3>
           <div>
@@ -45,19 +45,24 @@ export default class IdeaPrivacy extends Component {
               Only you, your selected team members, and managers can view this
             </p>
           </div>
-          <div className={"flexed-div flexed-end"}>
-            <button
-              className={"ideaFormButton"}
-              onClick={this.props.handleDraft}
-            >
-              Save as draft
+          <div className={"flexed-div spacedBetween margin-top-15"}>
+            <button className={"ideaFormButton"} onClick={this.prevStep}>
+              Back
             </button>
-            <button
-              className={"ideaFormButton margin-left-15"}
-              onClick={this.nextStep}
-            >
-              Next
-            </button>
+            <div className={"flexed-div flexed-end "}>
+              <button
+                className={"ideaFormButton"}
+                onClick={this.props.handleDraft}
+              >
+                Save as draft
+              </button>
+              <button
+                className={"ideaFormButton margin-left-15"}
+                onClick={this.nextStep}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </form>
       </div>

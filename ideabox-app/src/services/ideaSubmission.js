@@ -34,11 +34,9 @@ const submitIdea = (
       message,
       privacy
     })
-    .then(response => response.data);
 };
 
 const getUsers = () => {
-  console.log("getting users");
   return service.get("/get-users").then(response => response.data);
 };
 

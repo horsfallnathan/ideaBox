@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Idea = require("../models/Idea");
+const Challenge = require("../models/Challenge");
 const uploader = require("../configs/cloudinary");
 // const User = require("../models/User");
 // const Challenge = require("../models/Challenge");
@@ -35,7 +36,12 @@ router.post("/submit-idea", (req, res) => {
     privacy
   })
     .then(response => {
-      res.status(200).json(response);
+      Challenge.findOneAndUpdate({ $and: [{ startDate: { $lte: Date.now() } }, { deadline: { $gte: Date.now() } }] }, {
+        $push: { ideas: response._id }
+      }).then(currentChallenge => {
+        res.status(200).json(currentChallenge);
+      })
+      res.json(response)
     })
     .catch(error => {
       res.json(error);

@@ -12,4 +12,8 @@ const createComment = commentInput => {
   });
 };
 
-export { createComment };
+const deleteComment = commentId => {
+  return service.delete(`/delete-comment/${commentId}`)
+}
+
+export { createComment, deleteComment };

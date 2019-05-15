@@ -68,32 +68,36 @@ class IdeaDescription extends Component {
               onChange={handleChange}
             />
           </div>
-          <div className={"flexed-div verticalCenter"}>
-            <div className={"attachFileIcon"}> </div>
-            <input
-              type="file"
-              name="files"
-              id="files"
-              className="inputfile"
-              onChange={handleFileUpload}
-            />
-            <label htmlFor={"files"}>
-              <h3>Attach Files</h3>
-            </label>
+          <div>
+            <div className={"flexed-div verticalCenter"}>
+              <div className={"attachFileIcon"}> </div>
+              <input
+                type="file"
+                name="files"
+                id="files"
+                className="inputfile"
+                onChange={handleFileUpload}
+              />
+              <label htmlFor={"files"}>
+                <h3>Attach Files</h3>
+              </label>
+            </div>
           </div>
-          {values.fileNames &&
-            values.fileNames.map((file, i) => {
-              return (
-                <ul key={i}>
-                  <li>{file}</li>
-                  <li>
-                    <button onClick={() => this.props.handleFileRemove(i)}>
-                      Delete
-                    </button>
-                  </li>
-                </ul>
-              );
-            })}
+          <div>
+            {values.fileNames &&
+              values.fileNames.map((file, i) => {
+                return (
+                  <ul key={i}>
+                    <li>{file}</li>
+                    <li>
+                      <button onClick={() => this.props.handleFileRemove(i)}>
+                        Delete
+                      </button>
+                    </li>
+                  </ul>
+                );
+              })}
+          </div>
           <div className={"flexed-div flexed-end"}>
             <button
               className={"ideaFormButton"}
