@@ -12,11 +12,11 @@ import ManagerDashboard from "./components/manager-dashboard/ManagerDashboard";
 import ChallengeForm from "./components/manager-dashboard/ChallengeForm";
 import Drafts from "./components/Ideas/Drafts";
 import IdeaFeed from "./components/Ideas/IdeaFeed";
-import AllChallenges from "./components/manager-dashboard/AllChallenges"
+import AllChallenges from "./components/manager-dashboard/AllChallenges";
 import Layout from "./components/Layout";
 import { currentChallenge } from "./services/challenge";
 import CurrentChallengeInfo from "./components/dashboard/CurrentChallengeInfo";
-import OpenIdeas from "./components/dashboard/OpenIdeas"
+import OpenIdeas from "./components/dashboard/OpenIdeas";
 import ManagerDashboardOpenIdeas from "./components/manager-dashboard/ManagerDashboardOpenIdeas";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import EditUserRole from "./components/Admin/EditUserRole";
@@ -41,7 +41,7 @@ class Routes extends React.Component {
           loggedIn: user,
           currentChallenge: challenge.data
         });
-      })
+      });
     });
   };
 
@@ -59,13 +59,8 @@ class Routes extends React.Component {
     return (
       <div>
         <div className="App">
-
- 
-          
-
           {/* AUTH ROUTES */}
           <Switch>
-
             <Route
               exact
               path="/signup"
@@ -89,10 +84,15 @@ class Routes extends React.Component {
               )}
             />
 
-            <Layout setUser={this.setUser} loggedIn={this.state.loggedIn} currentChallenge={this.state.currentChallenge}>
+            <Layout
+              setUser={this.setUser}
+              loggedIn={this.state.loggedIn}
+              currentChallenge={this.state.currentChallenge}
+            >
               {/* DASHBOARD */}
               <Route
-                exact path="/"
+                exact
+                path="/"
                 render={props => (
                   <Dashboard
                     {...props}
@@ -122,24 +122,42 @@ class Routes extends React.Component {
               />
               <Route exact path="/drafts" component={Drafts} />
 
-
               {/* MANAGER ROUTES */}
-              <Route exact path="/managerDashboard" render={props => (
-                <ManagerDashboard
-                  {...props}
-                  currentChallenge={this.state.currentChallenge}
-                />
-              )}
+              <Route
+                exact
+                path="/managerDashboard"
+                render={props => (
+                  <ManagerDashboard
+                    {...props}
+                    currentChallenge={this.state.currentChallenge}
+                  />
+                )}
               />
-              <Route path="/managerDashboard/challengeForm" component={ChallengeForm} />
-              <Route path="/managerDashborad/all-challenges" component={AllChallenges} />
-              <Route path="/managerDashboard/open-ideas" component={ManagerDashboardOpenIdeas} />
+              <Route
+                path="/managerDashboard/challengeForm"
+                component={ChallengeForm}
+              />
+              <Route
+                path="/managerDashborad/all-challenges"
+                component={AllChallenges}
+              />
+              <Route
+                path="/managerDashboard/challengeForm"
+                component={ChallengeForm}
+              />
+              <Route
+                path="/managerDashborad/all-challenges"
+                component={AllChallenges}
+              />
+              <Route
+                path="/managerDashboard/open-ideas"
+                component={ManagerDashboardOpenIdeas}
+              />
 
               {/* SUPER MANAGER ROUTES */}
               <Route path="/admin" component={AdminDashboard} />
               <Route exact path="/challenge-form" component={ChallengeForm} />
               <Route path="/edit-user-role" component={EditUserRole} />
-
             </Layout>
           </Switch>
         </div>

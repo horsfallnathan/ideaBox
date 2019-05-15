@@ -53,6 +53,9 @@ h2 {
   color: $mainColor;
 }
 
+.colorWhite {
+  color: #ffffff;
+}
 .main-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -110,6 +113,12 @@ h2 {
 }
 .flexed-end {
   justify-content: flex-end;
+}
+.flexed-center {
+  justify-content: center;
+}
+.textCenter {
+  text-align: center;
 }
 .selfJustifyLeft {
   align-self: flex-start;
@@ -179,7 +188,129 @@ button {
   border-radius: 2px;
 }
 button:hover {
+  background-color: rgb(0, 100, 110);
+}
+
+// Dashboard --> I'm sorry Theresa
+.dashboardBanner {
+  height: 70vh;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 100, 110, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url("https://res.cloudinary.com/nthnh/image/upload/v1557880962/ideaBox/764202_siemens-wallpaper_dgzpwj.jpg");
+  // background-image: url("https://res.cloudinary.com/nthnh/image/upload/v1557880962/ideaBox/764202_siemens-wallpaper_dgzpwj.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bannerButtonsDiv {
+  // height: 8rem;
+  justify-content: center;
+  align-items: center;
+}
+.bannerButtons {
+  width: 50%;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bannerButtons:hover {
   background-color: #00646e;
+  color: #ffffff;
+}
+.bannerButtons.active {
+  background-color: #00646e;
+  color: #ffffff;
+}
+.bannerButtons.active:hover {
+  background-color: $subBlue;
+}
+.bannerButtons.active h2 {
+  color: white;
+}
+.bannerButtons.inactive:hover {
+  background-color: $subBlue;
+}
+.bannerButtons.inactive {
+  background-color: #ffffff;
+  color: #00646e;
+}
+.flexed-wrap {
+  flex-wrap: wrap;
+}
+.bannerContentCont {
+  height: calc(80vh - (147px));
+  justify-content: center;
+  align-items: center;
+}
+.bannerContent {
+  width: 100%;
+  @include mob() {
+    width: 50%;
+  }
+}
+.down-arrow {
+  border-color: black transparent;
+  border-style: solid;
+  border-width: 20px 20px 0px 20px;
+  height: 0px;
+  width: 0px;
+}
+
+//ideaCards
+.ideaCard {
+  border: 1px solid $subBlue;
+  border-radius: 1rem;
+  padding: 4rem 6rem;
+  // height: 30rem;
+}
+.ideaCard p {
+  margin-top: 1.5rem;
+}
+.ideaCard img {
+  margin-top: 1.5rem;
+}
+.progressCircles {
+  width: 3em;
+  height: 3em;
+  text-align: center;
+  line-height: 3em;
+  border-radius: 50px;
+  background: $mainColor;
+  display: inline-block;
+  color: white;
+  position: relative;
+}
+
+.progressCircles::before {
+  content: "";
+  position: absolute;
+  top: 1.5em;
+  left: -6em;
+  width: 6em;
+  height: 0.3em;
+  background: $mainColor;
+  z-index: -1;
+}
+
+.progressCircles:first-child::before {
+  display: none;
+}
+
+.activeStat {
+  background: $mainColor;
+}
+
+.activeStat ~ .progressCircles {
+  background: $secBlue;
+}
+
+.activeStat ~ .progressCircles::before {
+  background: $secBlue;
 }
 
 // ideaForm
@@ -220,10 +351,15 @@ button:hover {
 .margin-left-15 {
   margin-left: 1.5rem;
 }
+.margin-left-30 {
+  margin-left: 3rem;
+}
 .margin-top-15 {
   margin-top: 1.5rem;
 }
-
+.marginBelowNavbar {
+  margin-top: 75px;
+}
 .inputfile:focus + label,
 .inputfile + label:hover {
   color: #00646e;
@@ -231,6 +367,27 @@ button:hover {
 
 .ideaFormButton {
   width: 12rem;
+}
+.col-50 {
+  width: 100%;
+  @include tab() {
+    width: 50%;
+  }
+}
+.col-40 {
+  width: 100%;
+  @include tab() {
+    width: 40%;
+  }
+}
+.col-45 {
+  width: 100%;
+  @include tab() {
+    width: 45%;
+  }
+}
+.width-100 {
+  width: 100vw;
 }
 
 .creatable {
@@ -240,8 +397,7 @@ button:hover {
 // Idea Form
 
 .login {
-  
-  justify-content: center; 
+  justify-content: center;
 }
 
 .navBar {
@@ -256,6 +412,30 @@ button:hover {
 
 .navBarLogo img {
   margin: 1rem;
+}
+.navBarList {
+  display: flex;
+}
+.alignedCenter {
+  align-items: center;
+}
+.navBarList img {
+  width: 24px;
+  height: 24px;
+}
+.snavBarLinks {
+  text-decoration: none;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: $subBlue;
+}
+
+.allLinks {
+  text-decoration: none;
+  color: inherit;
+}
+.allLinks:hover {
+  color: $subBlue;
 }
 
 .navBarLinks {
@@ -388,11 +568,11 @@ button:hover {
 }
 
 .relatedIdeasBoxInnerDiv h4 {
-  margin-bottom: 1.5rem; 
+  margin-bottom: 1.5rem;
 }
 
 .relatedIdeasBoxStatus {
-  margin: 1.5rem 0; 
+  margin: 1.5rem 0;
 }
 
 .relatedIdeasBoxVotes {
@@ -400,13 +580,13 @@ button:hover {
 }
 
 .relatedIdeasBoxComments {
-  margin-left: 1rem; 
+  margin-left: 1rem;
 }
 
 .relatedIdeasBoxThumbsUp {
-  width: 1rem; 
+  width: 1rem;
   height: 1rem;
-  background-image: url('https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png')
+  background-image: url("https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png");
 }
 
 .relatedIdeasBoxVotes img {
@@ -417,7 +597,6 @@ button:hover {
 // Manager Dashboard
 
 .ideasContainer {
-
   height: max-content;
   margin-top: 4rem;
   display: flex;

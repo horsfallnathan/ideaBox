@@ -15,6 +15,10 @@ h2 {
   color: #00646e;
 }
 
+.colorWhite {
+  color: #ffffff;
+}
+
 .main-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -96,6 +100,16 @@ button:disabled {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+.flexed-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.textCenter {
+  text-align: center;
 }
 
 .selfJustifyLeft {
@@ -192,6 +206,151 @@ button:hover {
   background-color: #00646e;
 }
 
+.dashboardBanner {
+  height: 70vh;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 100, 110, 0.52)), to(rgba(0, 0, 0, 0.73))), url("https://res.cloudinary.com/nthnh/image/upload/v1557880962/ideaBox/764202_siemens-wallpaper_dgzpwj.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 100, 110, 0.52), rgba(0, 0, 0, 0.73)), url("https://res.cloudinary.com/nthnh/image/upload/v1557880962/ideaBox/764202_siemens-wallpaper_dgzpwj.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bannerButtonsDiv {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bannerButtons {
+  width: 50%;
+  height: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bannerButtons:hover {
+  background-color: #00646e;
+  color: #ffffff;
+}
+
+.bannerButtons.active {
+  background-color: #00646e;
+  color: #ffffff;
+}
+
+.bannerButtons.active:hover {
+  background-color: #40aaaa;
+}
+
+.bannerButtons.active h2 {
+  color: white;
+}
+
+.bannerButtons.inactive:hover {
+  background-color: #40aaaa;
+}
+
+.bannerButtons.inactive {
+  background-color: #ffffff;
+  color: #00646e;
+}
+
+.flexed-wrap {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.bannerContentCont {
+  height: calc(80vh - (147px));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bannerContent {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .bannerContent {
+    width: 50%;
+  }
+}
+
+.down-arrow {
+  border-color: black transparent;
+  border-style: solid;
+  border-width: 20px 20px 0px 20px;
+  height: 0px;
+  width: 0px;
+}
+
+.ideaCard {
+  border: 1px solid #40aaaa;
+  border-radius: 1rem;
+  padding: 4rem 6rem;
+}
+
+.ideaCard p {
+  margin-top: 1.5rem;
+}
+
+.ideaCard img {
+  margin-top: 1.5rem;
+}
+
+.progressCircles {
+  width: 3em;
+  height: 3em;
+  text-align: center;
+  line-height: 3em;
+  border-radius: 50px;
+  background: #00646e;
+  display: inline-block;
+  color: white;
+  position: relative;
+}
+
+.progressCircles::before {
+  content: "";
+  position: absolute;
+  top: 1.5em;
+  left: -6em;
+  width: 6em;
+  height: 0.3em;
+  background: #00646e;
+  z-index: -1;
+}
+
+.progressCircles:first-child::before {
+  display: none;
+}
+
+.activeStat {
+  background: #00646e;
+}
+
+.activeStat ~ .progressCircles {
+  background: #50bfd8;
+}
+
+.activeStat ~ .progressCircles::before {
+  background: #50bfd8;
+}
+
 .ideaForm input {
   width: 100%;
 }
@@ -229,8 +388,16 @@ button:hover {
   margin-left: 1.5rem;
 }
 
+.margin-left-30 {
+  margin-left: 3rem;
+}
+
 .margin-top-15 {
   margin-top: 1.5rem;
+}
+
+.marginBelowNavbar {
+  margin-top: 75px;
 }
 
 .inputfile:focus + label,
@@ -240,6 +407,40 @@ button:hover {
 
 .ideaFormButton {
   width: 12rem;
+}
+
+.col-50 {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .col-50 {
+    width: 50%;
+  }
+}
+
+.col-40 {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .col-40 {
+    width: 40%;
+  }
+}
+
+.col-45 {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .col-45 {
+    width: 45%;
+  }
+}
+
+.width-100 {
+  width: 100vw;
 }
 
 .creatable {
@@ -271,6 +472,39 @@ button:hover {
 
 .navBarLogo img {
   margin: 1rem;
+}
+
+.navBarList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.alignedCenter {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navBarList img {
+  width: 24px;
+  height: 24px;
+}
+
+.snavBarLinks {
+  text-decoration: none;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #40aaaa;
+}
+
+.allLinks {
+  text-decoration: none;
+  color: inherit;
+}
+
+.allLinks:hover {
+  color: #40aaaa;
 }
 
 .navBarLinks {

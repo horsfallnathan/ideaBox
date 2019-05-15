@@ -36,12 +36,20 @@ router.post("/submit-idea", (req, res) => {
     privacy
   })
     .then(response => {
-      Challenge.findOneAndUpdate({ $and: [{ startDate: { $lte: Date.now() } }, { deadline: { $gte: Date.now() } }] }, {
-        $push: { ideas: response._id }
-      }).then(currentChallenge => {
+      Challenge.findOneAndUpdate(
+        {
+          $and: [
+            { startDate: { $lte: Date.now() } },
+            { deadline: { $gte: Date.now() } }
+          ]
+        },
+        {
+          $push: { ideas: response._id }
+        }
+      ).then(currentChallenge => {
         res.status(200).json(currentChallenge);
-      })
-      res.json(response)
+      });
+      res.json(response);
     })
     .catch(error => {
       res.json(error);
