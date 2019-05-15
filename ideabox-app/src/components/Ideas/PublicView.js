@@ -52,7 +52,7 @@ class PublicViewIdea extends Component {
 
   managerComments = () => {
     const { comments } = this.state.idea;
-    const managerCC = comments.filter(el => el.createdBy.role === "manager");
+    const managerCC = comments.filter(el => el.createdBy.role === "manager" || el.createdBy.role === "super-manager");
     return managerCC.map((comment, i) => {
       const { profileImage, firstName, lastName } = comment.createdBy;
       return (
@@ -162,7 +162,6 @@ class PublicViewIdea extends Component {
       comments,
       status
     } = this.state.idea;
-    console.log(teamMembers)
     return (
       <div>
         <div className="flexed-div single-idea-public-col-container">

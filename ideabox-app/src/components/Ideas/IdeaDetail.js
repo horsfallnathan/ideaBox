@@ -26,7 +26,7 @@ class IdeaDetail extends Component {
 
   managerComments = () => {
     const { comments } = this.state.idea;
-    const managerCC = comments.filter(el => el.createdBy.role === "manager");
+    const managerCC = comments.filter(el => el.createdBy.role === "manager" || el.createdBy.role === "super-manager");
     return managerCC.map((comment, i) => {
       return (
         <div key={i}>
@@ -87,7 +87,11 @@ class IdeaDetail extends Component {
           <p>{description}</p>
 
           <h2>Estimated Resources</h2>
-          <p>{estimatedResources}</p>
+          <ul>{estimatedResources && estimatedResources.map((resource, i) => {
+            return (
+              <li key={i}>{resource}</li>
+            )
+          })}</ul>
 
           <div>
             <h2>Comments</h2>
@@ -109,7 +113,14 @@ class IdeaDetail extends Component {
           </p>
 
           <h2>Team Members</h2>
-          <p>{teamMembers}</p>
+          {teamMembers && teamMembers.map((member, i) => {
+            return (
+              <>
+                <img src={member.profileImage} alt="team-member" />
+                <p key={i}>{member.firstName}{member.lastName}</p>
+              </>
+            )
+          })}
           <p>Add a team member</p>
 
           <Link to="/">Edit idea</Link>
