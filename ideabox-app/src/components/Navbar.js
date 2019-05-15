@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../services/auth";
-import userProfil from "./User-profil/UserProfil";
+
 
 export default class Navbar extends Component {
   state = {
