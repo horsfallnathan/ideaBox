@@ -20,7 +20,6 @@ class ManagerDashboard extends React.Component {
         }
     }
 
-
     render() {
         let ideasArr = this.state.filteredIdeas
         let displayIdeas = ideasArr && ideasArr.map((el, i) => {
@@ -49,15 +48,15 @@ class ManagerDashboard extends React.Component {
         return (
             <div>
                 <div className="headBar">                
-                     <button>Ideas submitted to me</button>  
-                     <Link to={'/managerDashboard/all-employees-submissions'}><button>All employees submissions</button></Link>  
+                     <button>Innovation Challenge Idea Submissions</button>  
+                     <Link to={'/managerDashboard/open-ideas'}><button>Open Idea submissions</button></Link>  
                 </div>
                 <div className="main-container">
                     <div className="filteringMIdeas">
-                        <button disabled>Ideas pending your approval</button>
-                        <button disabled>Accepted Ideas</button>
-                        <button disabled>Rejected Ideas</button>
-                        <button disabled>Requesting more Info</button>
+                        <button className="disabled">Ideas pending on approval</button>
+                        <button className="disabled">Accepted Ideas</button>
+                        <button className="disabled">Rejected Ideas</button>
+                        <button className="disabled">Requesting more Info</button>
                         <div className="searchFieldMDashboard">
                             <SearchField placeholder="Search..." onSearchClick={this.onSearchClick} searchText=""
                                 className="test-class" />

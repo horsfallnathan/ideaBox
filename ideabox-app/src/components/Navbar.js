@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../services/auth";
+import userProfil from "./User-profil/UserProfil";
 
 export default class Navbar extends Component {
   state = {
@@ -48,7 +49,7 @@ export default class Navbar extends Component {
               </div>
               <div className="navBarIcons">
                 <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/ProfileIcon_n7k0lx.png" alt="" />
-                <li><Link to="/">Profile</Link></li>
+                <li><Link to="/user-profile">Profile</Link></li>
               </div>
               <div className="navBarIcons">
                 <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762768/IdeaBox/comment_schndj.png" alt="" />

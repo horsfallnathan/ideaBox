@@ -48,7 +48,7 @@ class CurrentChallengeIdeas extends React.Component {
         let ideasCopy = ideas.slice()
 
         let filteredIdeas = ideasCopy.filter(el => {
-            return (el.title.includes(searchText) || el.description.includes(searchText))
+            return (el.title.toLowerCase().includes(searchText.toLowerCase()) || el.description.toLowerCase().includes(searchText.toLowerCase()))
         });
 
         this.setState({

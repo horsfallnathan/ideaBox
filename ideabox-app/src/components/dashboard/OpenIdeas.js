@@ -12,22 +12,20 @@ class Dashboard extends React.Component {
     componentDidMount() {
         getAllIdeas().then(allIdeas => {
             let ideas = allIdeas.data
-            let openIdeas = ideas.filter((el, i) =>{
+            let openIdeas = ideas.filter((el) =>{
                 return (el.category === 'Free Idea')
             })
-            console.log(openIdeas)
-            this.setState({ideas: openIdeas})
+            this.setState({ideas: openIdeas, filteredIdeas: openIdeas})
         })
-        
     }
     
     
     handleSort = event => {
         const type = event.target.value
-        const { ideas } = this.state
+        const { ideas } = this.state 
         let ideasCopy = ideas.slice()
-
-        ideasCopy.sort((a, b) => {
+        
+        let filteredIdeas = ideasCopy.sort((a, b) => {
             return b[type] - a[type]
         })
         if (type === 'title') {
@@ -35,30 +33,30 @@ class Dashboard extends React.Component {
                 return a.title.localeCompare(b.title);
             })
         }
-
+        
         this.setState({
-            ideas: ideasCopy
+            filteredIdeas
         })
     }
-
+    
     onSearchClick = (searchText) => {
         const { ideas } = this.state
         let ideasCopy = ideas.slice()
-
+        
         let filteredIdeas = ideasCopy.filter(el => {
-            return (el.title.includes(searchText) || el.description.includes(searchText))
+            return (el.title.toLowerCase().includes(searchText.toLowerCase()) || el.description.toLowerCase().includes(searchText.toLowerCase()))
         });
-
+        
         this.setState({
-            ideas: filteredIdeas
+            filteredIdeas
         })
     }
-
-
-
+    
+    
+    
     render () {
-        let {ideas} = this.state
-        let displayIdeas = ideas.map((el, i) => {
+        let {filteredIdeas} = this.state
+        let displayIdeas = filteredIdeas.map((el, i) => {
             return <div className="relatedIdeasBox" key={i}>
             <div className="relatedIdeasBoxInnerDiv">
                 <Link to={`/idea/${el._id}`}><h4>{el.title}</h4></Link>

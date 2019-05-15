@@ -17,9 +17,10 @@ import Layout from "./components/Layout";
 import { currentChallenge } from "./services/challenge";
 import CurrentChallengeInfo from "./components/dashboard/CurrentChallengeInfo";
 import OpenIdeas from "./components/dashboard/OpenIdeas"
-import AllEmployeeSubmissions from "./components/manager-dashboard/AllEmployeesSubmissions";
+import ManagerDashboardOpenIdeas from "./components/manager-dashboard/ManagerDashboardOpenIdeas";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import EditUserRole from "./components/Admin/EditUserRole";
+import UserProfil from "./components/User-profil/userProfil"
 
 class Routes extends React.Component {
   state = {
@@ -58,6 +59,9 @@ class Routes extends React.Component {
     return (
       <div>
         <div className="App">
+
+ 
+          
 
           {/* AUTH ROUTES */}
           <Switch>
@@ -98,7 +102,7 @@ class Routes extends React.Component {
               />
               <Route path="/open-ideas" component={OpenIdeas} />
               <Route path="/current-challenge-information" component={CurrentChallengeInfo} />
-
+              <Route path="/user-profile" component={UserProfil} />
               {/* IDEA ROUTES */}
               <Route path="/submit-idea" component={IdeaForm} />
               <Route exact path="/my-ideas" component={MyIdeas} />
@@ -129,7 +133,7 @@ class Routes extends React.Component {
               />
               <Route path="/managerDashboard/challengeForm" component={ChallengeForm} />
               <Route path="/managerDashborad/all-challenges" component={AllChallenges} />
-              <Route path="/managerDashboard/all-employees-submissions" component={AllEmployeeSubmissions} />
+              <Route path="/managerDashboard/open-ideas" component={ManagerDashboardOpenIdeas} />
 
               {/* SUPER MANAGER ROUTES */}
               <Route path="/admin" component={AdminDashboard} />
