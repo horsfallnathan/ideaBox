@@ -162,7 +162,7 @@ class PublicViewIdea extends Component {
                 </div>
                 <div className="main-container single-idea-public-bottom">
 
-                    {this.props.loggedIn.role === "super-manager" ? ((status === "Rejected" || status === "Requesting more info" || status === "Submitted") ? this.beforeIdeaAcceptedForm() : this.afterIdeaAcceptedForm()) : <h1>Status: {status}</h1>
+                    {this.props.loggedIn && this.props.loggedIn.role === "super-manager" ? ((status === "Rejected" || status === "Requesting more info" || status === "Submitted") ? this.beforeIdeaAcceptedForm() : this.afterIdeaAcceptedForm()) : <h1>Status: {status}</h1>
                     }
 
                     <h2>Engagement</h2>
