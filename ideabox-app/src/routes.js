@@ -21,6 +21,7 @@ import ManagerDashboardOpenIdeas from "./components/manager-dashboard/ManagerDas
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import EditUserRole from "./components/Admin/EditUserRole";
 import UserProfil from "./components/User-profil/UserProfil";
+import LandingPage from "./components/LandingPage";
 
 class Routes extends React.Component {
   state = {
@@ -93,6 +94,16 @@ class Routes extends React.Component {
               <Route
                 exact
                 path="/"
+                render={props => (
+                  <Dashboard
+                    {...props}
+                    currentChallenge={this.state.currentChallenge}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/dashboard"
                 render={props => (
                   <Dashboard
                     {...props}

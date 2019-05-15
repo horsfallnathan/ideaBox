@@ -1,7 +1,7 @@
 import React from "react";
 import { currentChallenge } from "../../services/challenge";
 import CurrentChallengeIdeas from "./CurrentChallengeIdeas";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Dashboard extends React.Component {
   state = {
@@ -13,10 +13,15 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    currentChallenge().then(currentChallengeInfo => {
-      this.setState({ currentChallenge: currentChallengeInfo.data });
-      console.log(currentChallengeInfo);
-    });
+    console.log(this.props);
+    return this.props.user ? (
+      <Redirect to={{ pathname: "/" }} />
+    ) : (
+      currentChallenge().then(currentChallengeInfo => {
+        this.setState({ currentChallenge: currentChallengeInfo.data });
+        console.log(currentChallengeInfo);
+      })
+    );
   }
   flipChallengeViewOpen = () => {
     this.setState({
