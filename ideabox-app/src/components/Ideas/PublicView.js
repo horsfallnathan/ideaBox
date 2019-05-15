@@ -6,7 +6,7 @@ import { updateIdeaStatus } from "../../services/admin";
 
 class PublicViewIdea extends Component {
   state = {
-    challenge: {},
+    challenge: null,
     idea: {},
     commentContent: "",
     managComm: true,
@@ -19,11 +19,7 @@ class PublicViewIdea extends Component {
     getSingleIdea(ideaId).then(ideainfo => {
       const { challenge } = ideainfo.data;
       const { idea } = ideainfo.data;
-      // loggedin().then(user => {
-      //     console.log(user)
-      // console.log('hey there')
       this.setState({ challenge, idea, commentContent: "" });
-      // })
     });
   }
 
@@ -166,16 +162,16 @@ class PublicViewIdea extends Component {
       comments,
       status
     } = this.state.idea;
-    const challengeTitle = this.state.challenge.title;
+    console.log(teamMembers)
     return (
       <div>
         <div className="flexed-div single-idea-public-col-container">
           <div className="single-idea-public-col single-idea-public-col-left">
-            {challengeTitle ? (
-              <h1>The Innovation Challenge: {challengeTitle}</h1>
+            {this.state.challenge ? (
+              <h1>The Innovation Challenge: {this.state.challenge.title}</h1>
             ) : (
-              <h1>Open Idea</h1>
-            )}
+                <h1>Open Idea</h1>
+              )}
             <div id="triangle-right" />
           </div>
           <div className="single-idea-public-col single-idea-public-col-right">
@@ -184,17 +180,17 @@ class PublicViewIdea extends Component {
         </div>
         <div className="main-container single-idea-public-bottom">
           {this.props.loggedIn &&
-          this.props.loggedIn.role === "super-manager" ? (
-            status === "Rejected" ||
-            status === "Requesting more info" ||
-            status === "Submitted" ? (
-              this.beforeIdeaAcceptedForm()
+            this.props.loggedIn.role === "super-manager" ? (
+              status === "Rejected" ||
+                status === "Requesting more info" ||
+                status === "Submitted" ? (
+                  this.beforeIdeaAcceptedForm()
+                ) : (
+                  this.afterIdeaAcceptedForm()
+                )
             ) : (
-              this.afterIdeaAcceptedForm()
-            )
-          ) : (
-            <h1>Status: {status}</h1>
-          )}
+              <h1>Status: {status}</h1>
+            )}
 
           <h2>Engagement</h2>
           <img
@@ -208,12 +204,12 @@ class PublicViewIdea extends Component {
               <p className="upvotes single-idea-public-inline">Up-Vote</p>
             </>
           ) : (
-            <>
-              {" "}
-              <h2 className="single-idea-public-inline">{upVotes}</h2>{" "}
-              <p className="upvotes single-idea-public-inline">Up-Votes</p>{" "}
-            </>
-          )}
+              <>
+                {" "}
+                <h2 className="single-idea-public-inline">{upVotes}</h2>{" "}
+                <p className="upvotes single-idea-public-inline">Up-Votes</p>{" "}
+              </>
+            )}
 
           <h2>Idea Description</h2>
           <p>{description}</p>
@@ -240,7 +236,11 @@ class PublicViewIdea extends Component {
               Which resources do you think are needed to work on this idea?
             </i>
           </p>
-          <p>{estimatedResources}</p>
+          <ul>{estimatedResources && estimatedResources.map((resource, i) => {
+            return (
+              <li key={i}>{resource}</li>
+            )
+          })}</ul>
 
           <h2 className="single-idea-public-inline">Competition</h2>
           <p className="single-idea-public-inline">
@@ -251,7 +251,14 @@ class PublicViewIdea extends Component {
           <p>{competition}</p>
 
           <h2>Idea Team</h2>
-          <p>{teamMembers}</p>
+          {teamMembers && teamMembers.map((member, i) => {
+            return (
+              <>
+                <img src={member.profileImage} alt="team-member" />
+                <p key={i}>{member.firstName}{member.lastName}</p>
+              </>
+            )
+          })}
 
           <div>
             <h2>Comments</h2>
@@ -275,20 +282,20 @@ class PublicViewIdea extends Component {
                 (this.managerComments().length > 0 ? (
                   this.managerComments()
                 ) : (
-                  <p>No manager comments yet</p>
-                ))}
+                    <p>No manager comments yet</p>
+                  ))}
               {comments &&
                 !this.state.managComm &&
                 (this.colleagueComments().length > 0 ? (
                   this.colleagueComments()
                 ) : (
-                  <p>No colleague comments yet</p>
-                ))}
+                    <p>No colleague comments yet</p>
+                  ))}
             </div>
           </div>
 
           <form onSubmit={this.handleSubmit}>
-            <img src={this.props.loggedIn.profileImage} alt="loggedIn-user" />
+            <img src={this.props.loggedIn && this.props.loggedIn.profileImage} alt="loggedIn-user" />
             <input
               type="text"
               placeholder="Leave a comment..."

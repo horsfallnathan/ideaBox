@@ -49,7 +49,7 @@ router.get("/idea/:ideaId", (req, res) => {
       path: "comments",
       model: "Comment",
       populate: { path: "createdBy", model: "User" }
-    })
+    }).populate('teamMembers')
     .then(idea => {
       if (idea.challenge) {
         Challenge.findOne({ ideas: { $in: [req.params.ideaId] } })
