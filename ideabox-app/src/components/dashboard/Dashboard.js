@@ -107,13 +107,13 @@ class Dashboard extends React.Component {
             <div>
               <input
                 type="text"
-                onchange={this.handleChange}
+                onChange={this.handleChange}
                 placeholder="Sort"
               />
               <input
                 className="margin-left-15"
                 type="text"
-                onchange={this.handleChange}
+                onChange={this.handleChange}
                 placeholder="Search"
               />
             </div>

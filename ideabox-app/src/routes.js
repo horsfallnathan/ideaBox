@@ -20,7 +20,7 @@ import OpenIdeas from "./components/dashboard/OpenIdeas";
 import ManagerDashboardOpenIdeas from "./components/manager-dashboard/ManagerDashboardOpenIdeas";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import EditUserRole from "./components/Admin/EditUserRole";
-import UserProfil from "./components/User-profil/userProfil";
+import UserProfil from "./components/User-profil/UserProfil";
 
 class Routes extends React.Component {
   state = {
