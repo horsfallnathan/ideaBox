@@ -45,12 +45,9 @@ router.post("/submit-idea", (req, res) => {
 router.post("/add-idea-tochallenge", (req, res) => {
   const { challengeId, ideaId } = req.body;
   // console.log(challengeId, ideaId);
-  Challenge.findByIdAndUpdate(
-    { _id: challengeId },
-    {
-      $push: { ideas: ideaId }
-    }
-  );
+  Challenge.findByIdAndUpdate(challengeId, {
+    $push: { ideas: ideaId }
+  });
 });
 
 router.post("/edit-idea/:ideaId", (req, res) => {

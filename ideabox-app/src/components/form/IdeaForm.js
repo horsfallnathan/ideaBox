@@ -368,7 +368,9 @@ export default class IdeaForm extends Component {
       case 1:
         return (
           <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
+            className={
+              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
+            }
           >
             <div className={"ideaForm"}>
               <h1>Idea Submission</h1>
@@ -388,7 +390,9 @@ export default class IdeaForm extends Component {
       case 2:
         return (
           <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
+            className={
+              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
+            }
           >
             <div className={"ideaForm"}>
               <h1>Idea Submission</h1>
@@ -409,7 +413,9 @@ export default class IdeaForm extends Component {
       case 3:
         return (
           <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
+            className={
+              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
+            }
           >
             <div className={"ideaForm"}>
               <h1>Idea Submission</h1>
@@ -426,7 +432,9 @@ export default class IdeaForm extends Component {
       case 4:
         return (
           <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
+            className={
+              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
+            }
           >
             <div className={"ideaForm"}>
               <h1>Idea Submission</h1>
@@ -449,7 +457,9 @@ export default class IdeaForm extends Component {
       case 5:
         return (
           <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
+            className={
+              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
+            }
           >
             <div className={"ideaForm"}>
               <h1>Idea Submission</h1>
@@ -466,7 +476,9 @@ export default class IdeaForm extends Component {
       case 6:
         return !this.props.match.params.ideaId ? (
           <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
+            className={
+              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
+            }
           >
             <div className={"ideaForm"}>
               <h1>Idea Submission</h1>
@@ -480,7 +492,9 @@ export default class IdeaForm extends Component {
           </div>
         ) : (
           <div
-            className={"main-container flexed-div flexed-col verticalCenter"}
+            className={
+              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
+            }
           >
             <div className={"ideaForm"}>
               <h1>Idea Submission</h1>

@@ -14,6 +14,14 @@ const theme = createMuiTheme({
       contrastText: "#ffffff"
     }
   },
+  // MuiToolbar: {
+  //   background: "#ffffff"
+  // },
+  // MuiAppBar: {
+  //   backgroundColor: "#ffffff",
+  //   color: "#00646e"
+  // }
+
   typography: {
     useNextVariants: true,
     fontFamily: ['"Arial"', "sans-serif"]
@@ -27,7 +35,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <Routes />
         </MuiThemeProvider>
-      </div >
+      </div>
     );
   }
 }
