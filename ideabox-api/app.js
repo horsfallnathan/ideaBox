@@ -123,6 +123,9 @@ app.use("/api", timeRoute);
 const challengeRoutes = require("./routes/challenges");
 app.use("/api", challengeRoutes);
 
+const userProfileRoute = require("./routes/userProfile");
+app.use("/api", userProfileRoute)
+
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
 });
