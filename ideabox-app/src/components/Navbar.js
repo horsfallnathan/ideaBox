@@ -102,11 +102,7 @@ class Navbar extends React.Component {
         </List>
         <Divider style={{ backgroundColor: "#40aaaa" }} />
         <List>
-          <Link className={"snavBarLinks margin-left-15"}>Profile</Link>
-        </List>
-        <Divider style={{ backgroundColor: "#40aaaa" }} />
-        <List>
-          <Link className={"snavBarLinks margin-left-15"}>Notifications</Link>
+          <Link to="/user-profile" className={"snavBarLinks margin-left-15"}>Profile</Link>
         </List>
         <Divider style={{ backgroundColor: "#40aaaa" }} />
         <List>
