@@ -59,7 +59,7 @@ class UserProfile extends React.Component {
     // }
 
     render () {
-        const {firstName, lastName, username, role, email, profileImage} = this.state
+        const {firstName, lastName, username, role, email, profileImage} = this.state.user
         return (
             <>
             
@@ -70,19 +70,19 @@ class UserProfile extends React.Component {
   
                 <form>
                     <label>First name: </label>
-                    <input type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder={firstName}/>
+                    <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChange} placeholder={firstName}/>
                     <br/>
                     <label>Last name: </label>
-                    <input type="text" name="lastName" value={lastName} onChange={this.handleChange} placeholder={lastName}/>
+                    <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleChange} placeholder={lastName}/>
                     <br/>
                     <label>username: </label>
-                    <input type="text" name="username" value={username} onChange={this.handleChange} placeholder={username}/>
+                    <input type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder={username}/>
                     <br/>
                     <label>Email: </label>
-                    <input type="text" name="email" value={email} onChange={this.handleChange} placeholder={email}/>
+                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} placeholder={email}/>
                     <br/>
                     <label>profile image </label>
-                    <input type="file" name="profileImage" value={profileImage} onChange={this.handleChange} placeholder={profileImage}/>
+                    <input type="file" name="profileImage" value={this.state.profileImage} onChange={this.handleChange} placeholder={profileImage}/>
                     <br/>
                     <input onClick={this.handleSubmit} type="submit" value="Submit" />
                 </form>

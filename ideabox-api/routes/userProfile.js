@@ -3,8 +3,8 @@ const router = express.Router();
 const User = require('../models/User')
 
 router.get("/user-profile", (req, res) => {
-    const { _Id } = req.user;
-    User.findOne({_Id})
+    const { _id } = req.user;
+    User.findOne({_id})
     .then(info => {
         res.json(info)
     }).catch(error => {
@@ -20,7 +20,7 @@ router.put("/user-profile", (req, res) => {
         email, 
         profileImage
     } = req.body;
-    console.log(req.body)
+    console.log(req.user)
     User.findOneAndUpdate(
         {_id: req.user._id},
         {

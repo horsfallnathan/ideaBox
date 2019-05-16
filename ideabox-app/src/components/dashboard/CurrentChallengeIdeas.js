@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 class CurrentChallengeIdeas extends React.Component {
   state = {
     challenge: {},
+    ideas: [],
     filteredIdeas: [],
     searchText: "",
     countdown: 0
@@ -52,22 +53,24 @@ class CurrentChallengeIdeas extends React.Component {
     });
   };
 
+  componentDidMount() {
+    let { currentChallenge } = this.props
+    this.setCountdown();
+  this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
+  }
+
   componentDidUpdate(prevProp) {
     if (prevProp.currentChallenge !== this.props.currentChallenge) {
       let { currentChallenge } = this.props;
-      currentChallenge &&
-        challengeIdeas(currentChallenge._id)
-          .then(challengeinfo => {
-            this.setState({
-              challenge: challengeinfo.data,
-              filteredIdeas: challengeinfo.data.ideas
-            });
-          })
-          .then(() => {
-            this.setCountdown();
-          });
-    }
+      this.setState({
+        challenge: currentChallenge,
+        filteredIdeas: currentChallenge.ideas,
+        ideas: currentChallenge.ideas
+      })
+      this.setCountdown();
   }
+  }
+
 
   setCountdown = () => {
     let { deadline } = this.props.currentChallenge;

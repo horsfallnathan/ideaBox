@@ -72,7 +72,6 @@ class Dashboard extends React.Component {
             </div>
             {this.state.openView ? (
               <div>
-                <h1>Show Something Elese oooo</h1>
                 <OpenIdeas />
               </div>
             ) : (

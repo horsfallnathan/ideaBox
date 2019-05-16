@@ -111,17 +111,17 @@ class Dashboard extends React.Component {
             </div>
             <div className="bannerContent flexed-center">
               <h1 className="colorWhite">
-                No Challenge
+                Ideas - without related Challenge
               </h1>
               <div className="flexed-div margin-top-15">
-                <button>
+                {/* <button>
                   <Link
                     className="allLinks"
                     to="/current-challenge-information"
                   >
                     Read More
                   </Link>
-                </button>
+                </button> */}
                 <button className="margin-left-15">
                   <Link className="allLinks" to="/submit-idea">
                     Submit Idea
