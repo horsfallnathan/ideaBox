@@ -102,11 +102,11 @@ class MyIdeas extends Component {
             {this.mapIdeas()}
           </div>
         ) : (
-          <>
-            <h4>You haven't submitted any ideas yet</h4>{" "}
-            <Link to="/submit-idea">Submit New Idea</Link>
-          </>
-        )}
+            <>
+              <h4>You haven't submitted any ideas yet</h4>{" "}
+              <Link to="/submit-idea">Submit New Idea</Link>
+            </>
+          )}
       </div>
     );
   }

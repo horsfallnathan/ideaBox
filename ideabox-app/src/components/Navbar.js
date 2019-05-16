@@ -145,15 +145,43 @@ class Navbar extends React.Component {
                     width="173"
                   />
                 </Link>
-
                 <div className={classes.navIconHide}>
+                  {this.state.loggedIn.role === "super-manager" &&
+                    <div
+                      className={
+                        "flexed-div flexed-col margin-left-15 alignedCenter"
+                      }
+                    >
+                      <img
+                        src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558006232/admin_wzghes.png"
+                        style={{ height: "24px" }}
+                        alt="notification icon"
+                      />
+                      <Link to="/admin" className={"snavBarLinks"}>Admin</Link>
+                    </div>
+                  }
+                  {(this.state.loggedIn.role === "manager" || this.state.loggedIn.role === "super-manager") &&
+                    <div
+                      className={
+                        "flexed-div flexed-col margin-left-15 alignedCenter"
+                      }
+                    >
+                      <img
+                        src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558002849/manager-dashboard_ytzwy2.png"
+                        style={{ height: "24px" }}
+                        alt="notification icon"
+                      />
+                      <Link to="/managerDashboard" className={"snavBarLinks"}>Dashboard</Link>
+                    </div>
+                  }
                   <div
                     className={
                       "flexed-div flexed-col margin-left-15 alignedCenter"
                     }
                   >
                     <img
-                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558001893/idea-feed_fmn812.png"
+                      style={{ height: "24px" }}
                       alt="Idea Feed"
                     />
                     <Link to="/idea-feed" className={"snavBarLinks"}>
@@ -166,7 +194,8 @@ class Navbar extends React.Component {
                     }
                   >
                     <img
-                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/Group_twzivq.png"
+                      style={{ width: "24px" }}
                       alt="my ideas"
                     />
                     <Link to="/my-ideas" className={"snavBarLinks"}>
@@ -179,7 +208,8 @@ class Navbar extends React.Component {
                     }
                   >
                     <img
-                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/ProfileIcon_n7k0lx.png"
+                      style={{ width: "24px" }}
                       alt="profile icon"
                     />
                     <Link to="/user-profile" className={"snavBarLinks"}>
@@ -192,18 +222,8 @@ class Navbar extends React.Component {
                     }
                   >
                     <img
-                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
-                      alt="notification icon"
-                    />
-                    <Link className={"snavBarLinks"}>Notifications</Link>
-                  </div>
-                  <div
-                    className={
-                      "flexed-div flexed-col margin-left-15 alignedCenter"
-                    }
-                  >
-                    <img
-                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557855541/delete_nvl8ck.png"
+                      style={{ width: "24px" }}
                       alt="notification icon"
                     />
                     <Link
@@ -234,13 +254,13 @@ class Navbar extends React.Component {
             </Hidden>
           </React.Fragment>
         ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: this.props.location
-            }}
-          />
-        )}
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: this.props.location
+              }}
+            />
+          )}
       </React.Fragment>
     );
   }

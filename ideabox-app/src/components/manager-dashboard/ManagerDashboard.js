@@ -16,7 +16,6 @@ class ManagerDashboard extends React.Component {
   componentDidUpdate(prevProp) {
     if (prevProp.currentChallenge !== this.props.currentChallenge) {
       let { currentChallenge } = this.props;
-      console.log(currentChallenge);
       challengeIdeas(currentChallenge._id).then(challengeinfo => {
         this.setState({
           challenge: challengeinfo.data,
@@ -64,28 +63,28 @@ class ManagerDashboard extends React.Component {
               <div
                 className={`progressCircles ${
                   el.status === "Submitted" ? "activeStat" : " "
-                }`}
+                  }`}
               >
                 1
               </div>
               <div
                 className={`progressCircles ${
                   el.status === "Validation" ? "activeStat" : " "
-                }`}
+                  }`}
               >
                 2
               </div>
               <div
                 className={`progressCircles ${
                   el.status === "Development" ? "activeStat" : " "
-                }`}
+                  }`}
               >
                 3
               </div>
               <div
                 className={`progressCircles ${
                   el.status === "Pitch" ? "activeStat" : " "
-                }`}
+                  }`}
               >
                 4
               </div>
@@ -93,7 +92,7 @@ class ManagerDashboard extends React.Component {
               <div
                 className={`progressCircles ${
                   el.status === "Implementation" ? "activeStat" : " "
-                }`}
+                  }`}
               >
                 5
               </div>
@@ -130,14 +129,14 @@ class ManagerDashboard extends React.Component {
               onClick={this.flipChallengeViewInnovation}
               className={`allLinks bannerButtons greenBorder textCenter ${
                 this.state.leftBannerButton ? "active" : "inactive"
-              }`}
+                }`}
             >
               <h2>Innovation Challenge Idea Submissions</h2>
             </Link>
             <Link
               className={`allLinks bannerButtons greenBorder textCenter ${
                 this.state.rightBannerButton ? "active" : "inactive"
-              }`}
+                }`}
               onClick={this.flipChallengeViewOpen}
             >
               <h2>Open Idea Submissions</h2>
@@ -150,14 +149,14 @@ class ManagerDashboard extends React.Component {
               onClick={this.flipChallengeViewInnovation}
               className={`allLinks subButtons textCenter ${
                 this.state.leftBannerButton ? "active" : "inactive"
-              }`}
+                }`}
             >
               <h2>Ideas Pending Your Approval</h2>
             </Link>
             <Link
               className={`allLinks subButtons textCenter ${
                 this.state.rightBannerButton ? "active" : "inactive"
-              }`}
+                }`}
               onClick={this.flipChallengeViewOpen}
             >
               <h2>Accepted Ideas</h2>
@@ -165,7 +164,7 @@ class ManagerDashboard extends React.Component {
             <Link
               className={`allLinks subButtons textCenter ${
                 this.state.rightBannerButton ? "active" : "inactive"
-              }`}
+                }`}
               onClick={this.flipChallengeViewOpen}
             >
               <h2>Rejected Ideas</h2>
@@ -173,7 +172,7 @@ class ManagerDashboard extends React.Component {
             <Link
               className={`allLinks subButtons textCenter ${
                 this.state.rightBannerButton ? "active" : "inactive"
-              }`}
+                }`}
               onClick={this.flipChallengeViewOpen}
             >
               <h2>Requesting More Info</h2>

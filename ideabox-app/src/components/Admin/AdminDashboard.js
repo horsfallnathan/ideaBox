@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 class AdminDashboard extends Component {
     render() {
         return (
-            <div className="main-container">
+            <div className="marginBelowNavbar main-container">
+                <br />
                 <h1>Idea Box Admin Dashboard</h1>
-                <button><Link to="/challenge-form">Create New Challenge</Link></button>
-                <button><Link to="/edit-user-role">Edit User Role</Link></button>
+                <br />
+                <button><Link to="/challenge-form" className="allLinks">Create New Challenge</Link></button>
+                <br /><br />
+                <button><Link to="/edit-user-role" className="allLinks">Edit User Role</Link></button>
             </div>
         )
     }
