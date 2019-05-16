@@ -1,5 +1,4 @@
 import React from 'react'
-import { challengeIdeas } from '../../services/challenge'
 import { Link } from 'react-router-dom'
 
 
@@ -57,6 +56,7 @@ class CurrentChallengeIdeas extends React.Component {
 
     componentDidUpdate(prevProp) {
         if (prevProp.currentChallenge !== this.props.currentChallenge) {
+
             let { currentChallenge } = this.props
             this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
             // challengeIdeas(currentChallenge._id).then(challengeinfo => {
@@ -66,50 +66,55 @@ class CurrentChallengeIdeas extends React.Component {
     }
 
     render() {
-        let {challenge} = this.state
-        let {title} = challenge
-        let ideasArr = this.state.filteredIdeas        
-        let displayIdeas = ideasArr && ideasArr.map((el, i) => {
-            return <div className="flexed-div flexed-wrap spacedBetween" key={i}>
-                <div className="ideaCard marginBelowNavbar flexed-div flexed-col col-45">
-                    <Link to={`/idea/${el._id}`}><h2>{el.title}</h2></Link>
-                    <p>{el.description}</p>
-                    <h3 className="margin-top-15">Current Stage: {el.status}</h3>
-                    <div className="flexed-div spacedBetween margin-top-15">
-                <div className="progressCircles">1</div>
-                <div className="progressCircles activeStat">2</div>
-                <div className="progressCircles">3</div>
-                <div className="progressCircles">4</div>
-                <div className="progressCircles">5</div>
-              </div>
-              <div className="flexed-div">
-                <div className="flexed-div verticalCenter">
-                  <img
-                    src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
-                    width="16px"
-                    alt="up votes"
-                  />
-                  <p className="margin-left-15">{`${el.upVotes} up-vote${
-                    el.upVotes !== 1 ? "s" : ""
-                  }`}</p>
+      let { challenge } = this.state;
+      let { title } = challenge;
+      let ideasArr = this.state.filteredIdeas;
+      let displayIdeas =
+        ideasArr &&
+        ideasArr.map((el, i) => {
+          return (
+            
+              <div className="ideaCard marginBelowNavbar main-container flexed-div flexed-col col-45" key={i}>
+                <Link to={`/idea/${el._id}`}>
+                  <h2>{el.title}</h2>
+                </Link>
+                <p>{el.description}</p>
+                <h3 className="margin-top-15">Current Stage: {el.status}</h3>
+                <div className="flexed-div spacedBetween margin-top-15">
+                  <div className="progressCircles">1</div>
+                  <div className="progressCircles activeStat">2</div>
+                  <div className="progressCircles">3</div>
+                  <div className="progressCircles">4</div>
+                  <div className="progressCircles">5</div>
                 </div>
-                <div className="flexed-div verticalCenter margin-left-30">
-                  <img
-                    src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
-                    width="16px"
-                    alt="up votes"
-                  />
-                  <p className="margin-left-15">{`${el.comments} comment${
-                    el.comments !== 1 ? "s" : ""
-                  }`}</p>
+                <div className="flexed-div">
+                  <div className="flexed-div verticalCenter">
+                    <img
+                      src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                      width="16px"
+                      alt="up votes"
+                    />
+                    <p className="margin-left-15">{`${el.upVotes} up-vote${
+                      el.upVotes !== 1 ? "s" : ""
+                    }`}</p>
+                  </div>
+                  <div className="flexed-div verticalCenter margin-left-30">
+                    <img
+                      src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                      width="16px"
+                      alt="up votes"
+                    />
+                    <p className="margin-left-15">{`${el.comments} comment${
+                      el.comments !== 1 ? "s" : ""
+                    }`}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        })
-
-
-        return (
+            
+          );
+        });
+  
+      return (
         <div>
           <div className="flexed-div main-container flexed-wrap bannerContentCont flexed-center">
             <div className="challengeCountdown bannerContent flexed-div flexed-col textCenter">
@@ -121,15 +126,10 @@ class CurrentChallengeIdeas extends React.Component {
               </h4>
             </div>
             <div className="bannerContent flexed-center">
-              <h1 className="colorWhite">
-                {title}
-              </h1>
+              <h1 className="colorWhite">{title}</h1>
               <div className="flexed-div margin-top-15">
                 <button>
-                  <Link
-                    className="allLinks"
-                    to="/current-challenge-information"
-                  >
+                  <Link className="allLinks" to="/current-challenge-information">
                     Read More
                   </Link>
                 </button>
@@ -141,31 +141,34 @@ class CurrentChallengeIdeas extends React.Component {
               </div>
             </div>
           </div>
-          
+  
           <main className="marginBelowNavbar main-container">
-          <div className="flexed-div verticalCenter spacedBetween flexed-wrap">
-            <h1>Discover Submitted Ideas</h1>
-            <div>
-              <select onChange={this.sortIdeas} value="Sort by" >
-                   <option value="z" hidden >Sort by</ option>
-                   <option value="upVotes">UpVotes</option>
-                   <option value="title">Names</option>
-              </select>
-              <input
-                className="margin-left-15"
-                type="text"
-                value={this.state.searchText}
-                onChange={this.searchThroughIdeas}
-                placeholder="Search"
-              />
+            <div className="flexed-div verticalCenter spacedBetween flexed-wrap">
+              <h1>Discover Submitted Ideas</h1>
+              <div>
+                <select onChange={this.sortIdeas} value="Sort by">
+                  <option value="z" hidden>
+                    Sort by
+                  </option>
+                  <option value="upVotes">UpVotes</option>
+                  <option value="title">Names</option>
+                </select>
+                <input
+                  className="margin-left-15"
+                  type="text"
+                  value={this.state.searchText}
+                  onChange={this.searchThroughIdeas}
+                  placeholder="Search"
+                />
+              </div>
             </div>
-          </div>
+            <div className="flexed-div flexed-wrap spacedBetween" >
             {displayIdeas}
+            </div>
           </main>
         </div>
-        )
+      );
     }
-}
-
-
-export default CurrentChallengeIdeas
+  }
+  
+  export default CurrentChallengeIdeas;

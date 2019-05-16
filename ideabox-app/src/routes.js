@@ -20,7 +20,7 @@ import OpenIdeas from "./components/dashboard/OpenIdeas";
 import ManagerDashboardOpenIdeas from "./components/manager-dashboard/ManagerDashboardOpenIdeas";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import EditUserRole from "./components/Admin/EditUserRole";
-import UserProfile from "./components/user-profile/UserProfile"
+import UserProfile from "./components/user-profile/UserProfile";
 
 class Routes extends React.Component {
   state = {
@@ -100,9 +100,22 @@ class Routes extends React.Component {
                   />
                 )}
               />
+              <Route
+                exact
+                path="/dashboard"
+                render={props => (
+                  <Dashboard
+                    {...props}
+                    currentChallenge={this.state.currentChallenge}
+                  />
+                )}
+              />
               <Route path="user-profile" component={UserProfile} />
               <Route path="/open-ideas" component={OpenIdeas} />
-              <Route path="/current-challenge-information" component={CurrentChallengeInfo} />
+              <Route
+                path="/current-challenge-information"
+                component={CurrentChallengeInfo}
+              />
               <Route path="/user-profile" component={UserProfile} />
               {/* IDEA ROUTES */}
               <Route path="/submit-idea" component={IdeaForm} />

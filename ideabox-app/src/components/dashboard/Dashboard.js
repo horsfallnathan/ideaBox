@@ -1,16 +1,16 @@
 import React from "react";
 import { currentChallenge } from "../../services/challenge";
 import CurrentChallengeIdeas from "./CurrentChallengeIdeas";
-import OpenIdeas from "./OpenIdeas"
 import { Link } from "react-router-dom";
-
+import OpenIdeas from "./OpenIdeas";
 
 class Dashboard extends React.Component {
   state = {
     currentChallenge: {},
     openView: false,
     leftBannerButtonState: "active",
-    rightBannerButtonState: "inactive"
+    rightBannerButtonState: "inactive",
+   
   };
 
   componentDidMount() {
@@ -41,6 +41,8 @@ class Dashboard extends React.Component {
       rightBannerButton: false
     });
   };
+
+  
   render() {
     // // just to test
     // const value = {
@@ -78,14 +80,13 @@ class Dashboard extends React.Component {
                 <OpenIdeas />
               </div>
             ) : (
-              
-              <CurrentChallengeIdeas currentChallenge={this.props.currentChallenge}/>
-              
+              <CurrentChallengeIdeas
+                currentChallenge={this.props.currentChallenge}
+              />
             )}
           </div>
           <div />
         </div>
-        
       </React.Fragment>
     );
   }

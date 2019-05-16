@@ -12,7 +12,7 @@ router.get("/user-profile", (req, res) => {
     })
 })
 
-router.post("/user-profile", (req, res) => {
+router.put("/user-profile", (req, res) => {
     const {
         firstName,
         lastName,
