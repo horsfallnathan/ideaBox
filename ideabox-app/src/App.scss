@@ -194,6 +194,7 @@ button:hover {
 // Dashboard --> I'm sorry Theresa
 .dashboardBanner {
   height: 70vh;
+
   background-image: linear-gradient(
       to bottom,
       rgba(0, 100, 110, 0.52),
@@ -260,6 +261,56 @@ button:hover {
   height: 0px;
   width: 0px;
 }
+// Manager Dashboard
+.subButtons {
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid $subBlue;
+}
+.greenBorder {
+  border: 1px solid $subBlue;
+}
+
+.managerIdeaCard {
+  width: 100%;
+  padding: 8rem 1.5rem 1.5rem 1.5rem;
+  border: 1px solid $subBlue;
+  position: relative;
+  @include tab() {
+    width: 45%;
+  }
+  @include dsk() {
+    width: 32%;
+  }
+}
+.nbannerCont {
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+}
+.notificationBanner {
+  background: $subBlue;
+  display: flex;
+  color: #ffffff;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 120px;
+}
+.notificationBanner:before {
+  border-right: 17.5px solid $subBlue;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  content: "";
+  height: 0;
+  left: -17.5px;
+  position: absolute;
+  top: 0px;
+  width: 0;
+}
 
 //ideaCards
 .ideaCard {
@@ -269,6 +320,9 @@ button:hover {
   // height: 30rem;
 }
 .ideaCard p {
+  margin-top: 1.5rem;
+}
+.managerIdeaCard p {
   margin-top: 1.5rem;
 }
 .ideaCard img {
@@ -357,6 +411,12 @@ button:hover {
 .margin-top-15 {
   margin-top: 1.5rem;
 }
+.margin-top-30 {
+  margin-top: 3rem;
+}
+.margin-bot-30 {
+  margin-bottom: 3rem;
+}
 .marginBelowNavbar {
   margin-top: 75px;
 }
@@ -399,6 +459,32 @@ button:hover {
 .login {
   justify-content: center;
 }
+// Landing Page
+.landingPage {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 100, 110, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url("https://res.cloudinary.com/nthnh/image/upload/v1557939252/ideaBox/764261_siemens-wallpaper_rfdltg.jpg");
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.landingPageFont {
+  font-size: 3rem;
+  color: $subBlue;
+}
+.landingPage button {
+  width: 8rem;
+}
+.spacedEvenly {
+  justify-content: space-evenly;
+}
+// Landing Page
 
 .navBar {
   width: 100%;

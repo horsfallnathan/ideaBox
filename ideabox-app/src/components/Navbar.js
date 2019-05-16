@@ -9,7 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
 import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { logout } from "../services/auth";
 // import { mailFolderListItems, otherMailFolderListItems } from "./tileData";
 
 const drawerWidth = 240;
@@ -65,6 +66,18 @@ class Navbar extends React.Component {
     mobileOpen: false
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.loggedIn !== prevProps.loggedIn) {
+      this.setState({ loggedIn: this.props.loggedIn });
+    }
+  }
+
+  handleLogout = () => {
+    logout().then(() => {
+      this.setState({ loggedIn: null });
+      this.props.setUser(null);
+    });
+  };
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
@@ -96,95 +109,138 @@ class Navbar extends React.Component {
           <Link className={"snavBarLinks margin-left-15"}>Notifications</Link>
         </List>
         <Divider style={{ backgroundColor: "#40aaaa" }} />
-        {/* <List>{otherMailFolderListItems}</List> */}
+        <List>
+          <Link
+            className={"snavBarLinks margin-left-15"}
+            onClick={this.handleLogout}
+          >
+            Logout
+          </Link>
+        </List>
+        <Divider style={{ backgroundColor: "#40aaaa" }} />
       </div>
     );
 
     return (
       <React.Fragment>
-        <AppBar
-          className={classes.appBar}
-          style={{ boxShadow: "none", borderBottom: "2px solid #40aaaa" }}
-        >
-          <Toolbar className={"spacedBetween"}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerToggle}
-              className={classes.navIconShow}
+        {this.state.loggedIn ? (
+          <React.Fragment>
+            <AppBar
+              className={classes.appBar}
+              style={{ boxShadow: "none", borderBottom: "2px solid #40aaaa" }}
             >
-              <MenuIcon />
-            </IconButton>
-            <Link to="/">
-              <img
-                src={`https://res.cloudinary.com/nthnh/image/upload/v1557877811/ideaBox/Logo1_soiz0u.svg`}
-                alt="Brand Logo"
-                width="173"
-              />
-            </Link>
+              <Toolbar className={"spacedBetween"}>
+                <IconButton
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerToggle}
+                  className={classes.navIconShow}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Link to="/">
+                  <img
+                    src={`https://res.cloudinary.com/nthnh/image/upload/v1557877811/ideaBox/Logo1_soiz0u.svg`}
+                    alt="Brand Logo"
+                    width="173"
+                  />
+                </Link>
 
-            <div className={classes.navIconHide}>
-              <div
-                className={"flexed-div flexed-col margin-left-15 alignedCenter"}
+                <div className={classes.navIconHide}>
+                  <div
+                    className={
+                      "flexed-div flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <img
+                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      alt="Idea Feed"
+                    />
+                    <Link to="/idea-feed" className={"snavBarLinks"}>
+                      Idea Feed
+                    </Link>
+                  </div>
+                  <div
+                    className={
+                      "flexed-div alignedCenter flexed-col margin-left-15"
+                    }
+                  >
+                    <img
+                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      alt="my ideas"
+                    />
+                    <Link to="/my-ideas" className={"snavBarLinks"}>
+                      My Ideas
+                    </Link>
+                  </div>
+                  <div
+                    className={
+                      "flexed-div flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <img
+                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      alt="profile icon"
+                    />
+                    <Link to="/user-profile" className={"snavBarLinks"}>
+                      Profile
+                    </Link>
+                  </div>
+                  <div
+                    className={
+                      "flexed-div flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <img
+                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      alt="notification icon"
+                    />
+                    <Link className={"snavBarLinks"}>Notifications</Link>
+                  </div>
+                  <div
+                    className={
+                      "flexed-div flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <img
+                      src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
+                      alt="notification icon"
+                    />
+                    <Link
+                      className={"snavBarLinks"}
+                      onClick={this.handleLogout}
+                    >
+                      Logout
+                    </Link>
+                  </div>
+                </div>
+              </Toolbar>
+            </AppBar>
+            <Hidden mdUp>
+              <Drawer
+                variant="temporary"
+                anchor={theme.direction === "rtl" ? "right" : "left"}
+                open={this.state.mobileOpen}
+                onClose={this.handleDrawerToggle}
+                classes={{
+                  paper: classes.drawerPaper
+                }}
+                ModalProps={{
+                  keepMounted: true // Better open performance on mobile.
+                }}
               >
-                <img
-                  src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
-                  alt="Idea Feed"
-                />
-                <Link to="/idea-feed" className={"snavBarLinks"}>
-                  Idea Feed
-                </Link>
-              </div>
-              <div
-                className={"flexed-div alignedCenter flexed-col margin-left-15"}
-              >
-                <img
-                  src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
-                  alt="my ideas"
-                />
-                <Link to="/my-ideas" className={"snavBarLinks"}>
-                  My Ideas
-                </Link>
-              </div>
-              <div
-                className={"flexed-div flexed-col margin-left-15 alignedCenter"}
-              >
-                <img
-                  src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
-                  alt="profile icon"
-                />
-                <Link to="/user-profile" className={"snavBarLinks"}>
-                  Profile
-                </Link>
-              </div>
-              <div
-                className={"flexed-div flexed-col margin-left-15 alignedCenter"}
-              >
-                <img
-                  src={`https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg`}
-                  alt="notification icon"
-                />
-                <Link className={"snavBarLinks"}>Notifications</Link>
-              </div>
-            </div>
-          </Toolbar>
-        </AppBar>
-        <Hidden mdUp>
-          <Drawer
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={this.state.mobileOpen}
-            onClose={this.handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </React.Fragment>
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: this.props.location
             }}
-            ModalProps={{
-              keepMounted: true // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
+          />
+        )}
       </React.Fragment>
     );
   }

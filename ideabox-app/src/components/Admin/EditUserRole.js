@@ -3,12 +3,14 @@ import { getAllUsers, updateRoleToEmployee, updateRoleToManager } from '../../se
 
 class EditUserRole extends Component {
     state = {
-        users: []
+        users: [],
+        filteredUsers: [],
+        searchText: ""
     }
 
     componentDidMount() {
         getAllUsers().then(allUsersInfo => {
-            this.setState({ users: allUsersInfo.data })
+            this.setState({ users: allUsersInfo.data, filteredUsers: allUsersInfo.data })
         })
     }
 
@@ -20,8 +22,25 @@ class EditUserRole extends Component {
         updateRoleToEmployee(userId)
     }
 
+    searchThroughUsers = (event) => {
+        const searchText = event.target.value
+        
+        event.preventDefault()
+        const { users } = this.state
+        let usersCopy = users.slice()
+        
+        let filteredUsers = usersCopy.filter(el => {
+            return (el.username.toLowerCase().includes(searchText.toLowerCase() || el.email.toLowerCase().includes(searchText.toLowerCase())))
+        });
+        
+        this.setState({
+            searchText,
+            filteredUsers
+        })
+    }
+
     render() {
-        const usersWithoutSuperManager = this.state.users.filter(el => el.role === "manager" || el.role === "employee")
+        const usersWithoutSuperManager = this.state.filteredUsers.filter(el => el.role === "manager" || el.role === "employee")
         const usersMapped = usersWithoutSuperManager.map((user, i) => {
             const { firstName, lastName, username, role, email, _id } = user
             return (
@@ -43,6 +62,13 @@ class EditUserRole extends Component {
         return (
             <div className="main-container">
                 <h2>Edit User Role</h2>
+                <input
+                className="margin-left-15"
+                type="text"
+                value={this.state.searchText}
+                onChange={this.searchThroughUsers}
+                placeholder="Search"
+              />
                 {usersMapped}
             </div>
         )

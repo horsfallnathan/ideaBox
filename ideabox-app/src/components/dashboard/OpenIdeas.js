@@ -1,12 +1,13 @@
 import React from 'react'
 import {getAllIdeas} from '../../services/ideas'
 import { Link } from 'react-router-dom'
-import SearchField from "react-search-field";
+
 
 class Dashboard extends React.Component {
     state = {
         ideas: [],
-        filteredIdeas: []
+        filteredIdeas: [],
+        searchText: ''
     }
 
     componentDidMount() {
@@ -19,8 +20,7 @@ class Dashboard extends React.Component {
         })
     }
     
-    
-    handleSort = event => {
+    sortIdeas = event => {
         const type = event.target.value
         const { ideas } = this.state 
         let ideasCopy = ideas.slice()
@@ -39,8 +39,12 @@ class Dashboard extends React.Component {
         })
     }
     
-    onSearchClick = (searchText) => {
-        const { ideas } = this.state
+    searchThroughIdeas = (event) => {
+        const searchText = event.target.value
+        
+        event.preventDefault()
+        const { challenge } = this.state
+        const { ideas } = challenge
         let ideasCopy = ideas.slice()
         
         let filteredIdeas = ideasCopy.filter(el => {
@@ -48,68 +52,106 @@ class Dashboard extends React.Component {
         });
         
         this.setState({
+            searchText,
             filteredIdeas
         })
     }
     
-    
-    
     render () {
         let {filteredIdeas} = this.state
         let displayIdeas = filteredIdeas.map((el, i) => {
-            return <div className="relatedIdeasBox" key={i}>
-            <div className="relatedIdeasBoxInnerDiv">
-                <Link to={`/idea/${el._id}`}><h4>{el.title}</h4></Link>
-                <p>{el.description}</p>
-                <div className="relatedIdeasBoxStatus">
-                    <p>Current stage: {el.status}</p>
+            return <div className="flexed-div flexed-wrap spacedBetween" key={i}>
+                <div className="ideaCard marginBelowNavbar flexed-div flexed-col col-45">
+                    <Link to={`/idea/${el._id}`}><h2>{el.title}</h2></Link>
+                    <p>{el.description}</p>
+                    <h3 className="margin-top-15">Current Stage: {el.status}</h3>
+                    <div className="flexed-div spacedBetween margin-top-15">
+                <div className="progressCircles">1</div>
+                <div className="progressCircles activeStat">2</div>
+                <div className="progressCircles">3</div>
+                <div className="progressCircles">4</div>
+                <div className="progressCircles">5</div>
+              </div>
+              <div className="flexed-div">
+                <div className="flexed-div verticalCenter">
+                  <img
+                    src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                    width="16px"
+                    alt="up votes"
+                  />
+                  <p className="margin-left-15">{`${el.upVotes} up-vote${
+                    el.upVotes !== 1 ? "s" : ""
+                  }`}</p>
                 </div>
-                <div className="relatedIdeasBoxVotes">
-                    <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png" alt="."></img>
-                    <div><p>{el.upVotes} up-votes</p></div>
-                    <img src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557762768/IdeaBox/comment_schndj.png" alt="."></img>
-                    <div><p>{el.comments.length} comments</p></div>
+                <div className="flexed-div verticalCenter margin-left-30">
+                  <img
+                    src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                    width="16px"
+                    alt="up votes"
+                  />
+                  <p className="margin-left-15">{`${el.comments} comment${
+                    el.comments !== 1 ? "s" : ""
+                  }`}</p>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
         })
 
         return (
-            <div className="openIdeas">
-                    <div className="headBar">
-                        <button disabled> <Link to="/">Innovation Challenge Idea Submissions</Link></button>
-                        <button>Open Idea Submissions</button>
-                    </div>
-                    <div className="challengePres">
-                        <div className="main-container">
-                            <div className="challengePresInnerDiv">
-                                <div className="challengePresTitleBtns">             
-                                        <button><Link to="/submit-idea">Submit Idea</Link></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="main-container">
-                    <div className="discoverIdeas">
-                        <h2>Discover Ideas</h2>
-                        <select onChange={this.handleSort} name="" id="" value="Sort by" >
-                            <option value="z" hidden >Sort by</ option>
-                            <option value="upVotes">UpVotes</option>
-                            <option value="title">Names</option>
-                        </select>
-                        <SearchField
-                            placeholder="Search..."
-                            onSearchClick={this.onSearchClick}
-                            searchText=""
-                            className="test-class"
-                        />
-                    </div>
-
-                    <div className="relatedIdeas">
-                    {displayIdeas}
-                    </div>
-                    </div>
+            <div>
+          <div className="flexed-div main-container flexed-wrap bannerContentCont flexed-center">
+            <div className="challengeCountdown bannerContent flexed-div flexed-col textCenter">
+              <h1 style={{ fontSize: "72px", color: "#ffffff" }}>
+                {/* {value.day} */}
+              </h1>
+              <h4 className="colorWhite">
+                {/* {value.day === 1 ? "day" : "days"} left to submit */}
+              </h4>
             </div>
+            <div className="bannerContent flexed-center">
+              <h1 className="colorWhite">
+                No Challenge
+              </h1>
+              <div className="flexed-div margin-top-15">
+                <button>
+                  <Link
+                    className="allLinks"
+                    to="/current-challenge-information"
+                  >
+                    Read More
+                  </Link>
+                </button>
+                <button className="margin-left-15">
+                  <Link className="allLinks" to="/submit-idea">
+                    Submit Idea
+                  </Link>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <main className="marginBelowNavbar main-container">
+          <div className="flexed-div verticalCenter spacedBetween flexed-wrap">
+            <h1>Discover Submitted Ideas</h1>
+            <div>
+              <select onChange={this.sortIdeas} value="Sort by" >
+                   <option value="z" hidden >Sort by</ option>
+                   <option value="upVotes">UpVotes</option>
+                   <option value="title">Names</option>
+              </select>
+              <input
+                className="margin-left-15"
+                type="text"
+                value={this.state.searchText}
+                onChange={this.searchThroughIdeas}
+                placeholder="Search"
+              />
+            </div>
+          </div>
+            {displayIdeas}
+          </main>
+        </div>
 
         )
     }
