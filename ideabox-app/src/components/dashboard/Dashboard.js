@@ -7,10 +7,10 @@ import OpenIdeas from "./OpenIdeas";
 class Dashboard extends React.Component {
   state = {
     currentChallenge: {},
-    filteredIdes: [],
     openView: false,
     leftBannerButtonState: "active",
-    rightBannerButtonState: "inactive"
+    rightBannerButtonState: "inactive",
+   
   };
 
   componentDidMount() {
@@ -37,6 +37,8 @@ class Dashboard extends React.Component {
       rightBannerButton: false
     });
   };
+
+  
   render() {
     // // just to test
     // const value = {

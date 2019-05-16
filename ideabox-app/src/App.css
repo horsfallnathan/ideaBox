@@ -215,6 +215,38 @@ button:hover {
   background-repeat: no-repeat;
 }
 
+.filterButton1.inactive {
+  color: grey;
+}
+
+.filterButton2.inactive {
+  color: grey;
+}
+
+.filterButton3.inactive {
+  color: grey;
+}
+
+.filterButton4.inactive {
+  color: grey;
+}
+
+.filterButton1.active {
+  color: #00646e;
+}
+
+.filterButton2.active {
+  color: #00646e;
+}
+
+.filterButton3.active {
+  color: #00646e;
+}
+
+.filterButton4.active {
+  color: #00646e;
+}
+
 .bannerButtonsDiv {
   -webkit-box-pack: center;
       -ms-flex-pack: center;

@@ -142,9 +142,7 @@ class CurrentChallengeIdeas extends React.Component {
                   alt="up votes"
                 />
                 <p className="margin-left-15">{`${el.upVotes &&
-                  el.upVotes.length} up-vote${
-                  el.upVotes.length !== 1 ? "s" : ""
-                }`}</p>
+                  el.upVotes} up-vote${el.upVotes !== 1 ? "s" : ""}`}</p>
               </div>
               <div className="flexed-div verticalCenter margin-left-30">
                 <img

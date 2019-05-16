@@ -1,21 +1,33 @@
 import React from 'react' 
-import { getUser } from '../../services/userProfile';
+import { getUser, editUser } from '../../services/userProfile';
 
 class UserProfile extends React.Component {
 
     state = {
         user: {},
-        editUser: false
+        changedUser: {},
+        editUser: false,
+        firstName: "",
+        lastName: "",
+        username: "",
+        email: "",
+        profileImage: ""
     }
 
     componentDidMount() {
         getUser().then(userInfo => {
           let user = userInfo.data 
           console.log(userInfo.data);
-          this.setState({user: user })
+          this.setState({user: user, changedUser: user })
         });
-        
       }
+    
+    // componentDidUpdate(prevProp) {
+    //     if (prevProp.currentChallenge !== this.props.currentChallenge) {
+    //         const {firstName, lastName, username, role, email, profileImage} = this.state
+    //         this.setState({firstName, lastName, username, role, email, profileImage})
+    //     }
+    // }
 
       handleChange = event => {
         const { name, value } = event.target;
@@ -24,26 +36,30 @@ class UserProfile extends React.Component {
         });
       };
 
+      handleSubmit(event) {
+          let {firstName, lastName, username, role, email, profileImage} = this.state;
+        editUser({firstName, lastName, username, role, email, profileImage})
+      }
+
       handleEditForm = () => {
         this.setState({
             editUser:true
         })
     }
 
-    editForm = () => { 
-        const {
-            firstName, lastName, username, role, email, profileImage
-        } = this.state
-        const values = {
-            firstName, lastName, username, role, email, profileImage
-        };
-        // editUser(values).then(response)
+    // editForm = () => { 
+    //     const {
+    //         firstName, lastName, username, role, email, profileImage
+    //     } = this.state
+    //     const values = {
+    //         firstName, lastName, username, role, email, profileImage
+    //     };
+    //     // editUser(values).then(response)
         
-    }
+    // }
 
     render () {
-        const {user} = this.state
-        const {firstName, lastName, username, role, email, profileImage } = user
+        const {firstName, lastName, username, role, email, profileImage} = this.state
         return (
             <>
             
@@ -51,9 +67,24 @@ class UserProfile extends React.Component {
 
             {this.state.editUser ? (
                 <div className="marginBelowNavbar">
-                <form action="POST">
-                    <input type="text" value={firstName}/>
-                    <input type="text" value={username}/>
+  
+                <form>
+                    <label>First name: </label>
+                    <input type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder={firstName}/>
+                    <br/>
+                    <label>Last name: </label>
+                    <input type="text" name="lastName" value={lastName} onChange={this.handleChange} placeholder={lastName}/>
+                    <br/>
+                    <label>username: </label>
+                    <input type="text" name="username" value={username} onChange={this.handleChange} placeholder={username}/>
+                    <br/>
+                    <label>Email: </label>
+                    <input type="text" name="email" value={email} onChange={this.handleChange} placeholder={email}/>
+                    <br/>
+                    <label>profile image </label>
+                    <input type="file" name="profileImage" value={profileImage} onChange={this.handleChange} placeholder={profileImage}/>
+                    <br/>
+                    <input onClick={this.handleSubmit} type="submit" value="Submit" />
                 </form>
 
                 </div> ) : (  

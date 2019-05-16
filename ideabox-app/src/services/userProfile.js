@@ -11,7 +11,7 @@ const service = axios.create({
 
   const editUser = (values) => {
     return service
-    .post("/user-profile", {values})
+    .put("/user-profile", {values})
     .then(response => response.data)
   }
   
