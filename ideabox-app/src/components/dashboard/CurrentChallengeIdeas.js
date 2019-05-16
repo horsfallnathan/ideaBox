@@ -142,6 +142,7 @@ class CurrentChallengeIdeas extends React.Component {
             </div>
             <div className="bannerContent flexed-center">
               <h1 className="colorWhite">{title}</h1>
+              <h1 className="colorWhite"> Days left: {this.state.challenge.title && this.state.countdown}</h1>
               <div className="flexed-div margin-top-15">
                 <button>
                   <Link className="allLinks" to="/current-challenge-information">
