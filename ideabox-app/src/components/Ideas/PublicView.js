@@ -60,22 +60,25 @@ class PublicViewIdea extends Component {
           <div>
             <h4>
               {" "}
-              <img src={profileImage} width="30px" alt="ProfileImage" />
+              <img src={profileImage} style={{ width: "24px" }} alt="ProfileImage" />
               {firstName} {lastName}
             </h4>
             <p>{comment.content}</p>
           </div>
-          <form
-            className="single-idea-public-comment-box"
+          {/* <form
+            // className="single-idea-public-comment-box"
             onSubmit={() => this.deleteComment(comment._id)}
           >
-            <img
+             <img
               src="https://res-console.cloudinary.com/dxbwwhlc6/thumbnails/v1/image/upload/v1557855541/ZGVsZXRlX252bDhjaw==/grid"
               width="25px"
               alt="delete"
-            />
-            <input value="Delete comment" type="submit" />
-          </form>
+            /> 
+            <input className="del-com"
+              value="Delete comment" type="submit" />
+          </form> 
+          */}
+
         </div>
       );
     });
@@ -89,7 +92,7 @@ class PublicViewIdea extends Component {
       return (
         <div key={i}>
           <h4>
-            <img src={profileImage} width="30px" alt="ProfileImage" />
+            <img src={profileImage} style={{ width: "24px" }} alt="ProfileImage" />
             {firstName} {lastName}
           </h4>
           <p>{comment.content}</p>
@@ -111,7 +114,7 @@ class PublicViewIdea extends Component {
           <option value="Implementation">Implementation</option>
           <option value="Rejected">Reject</option>
         </select>
-        <button type="submit">Save status</button>
+        <button className="left-p" type="submit">Save status</button>
       </form>
     );
   };
@@ -127,7 +130,7 @@ class PublicViewIdea extends Component {
           <option value="Accepted">Accept</option>
           <option value="Rejected">Reject</option>
         </select>
-        <button type="submit">Save status</button>
+        <button className="left-p" type="submit">Save status</button>
       </form>
     );
   };
@@ -164,7 +167,7 @@ class PublicViewIdea extends Component {
     } = this.state.idea;
     return (
       <div>
-        <div className="flexed-div single-idea-public-col-container">
+        <div className="flexed-div single-idea-public-col-container marginBelowNavbar">
           <div className="single-idea-public-col single-idea-public-col-left">
             {this.state.challenge ? (
               <h1>The Innovation Challenge: {this.state.challenge.title}</h1>
@@ -177,7 +180,7 @@ class PublicViewIdea extends Component {
             <h1>Submitted Idea: {title}</h1>
           </div>
         </div>
-        <div className="main-container single-idea-public-bottom">
+        <div className="main-container single-idea-public-bottom marginBelowNavbar">
           {this.props.loggedIn &&
             this.props.loggedIn.role === "super-manager" ? (
               status === "Rejected" ||
@@ -211,7 +214,7 @@ class PublicViewIdea extends Component {
             )}
 
           <h2>Idea Description</h2>
-          <p>{description}</p>
+          <p >{description}</p>
 
           <h2 className="single-idea-public-inline">Need</h2>
           <p className="single-idea-public-inline">
@@ -219,7 +222,7 @@ class PublicViewIdea extends Component {
               Who is the target group for your idea?
             </i>
           </p>
-          <p>{need}</p>
+          <p >{need}</p>
 
           <h2 className="single-idea-public-inline">Benefit</h2>
           <p className="single-idea-public-inline">
@@ -237,7 +240,7 @@ class PublicViewIdea extends Component {
           </p>
           <ul>{estimatedResources && estimatedResources.map((resource, i) => {
             return (
-              <li key={i}>{resource}</li>
+              <li key={i} className="left-p">{resource}</li>
             )
           })}</ul>
 
@@ -253,8 +256,8 @@ class PublicViewIdea extends Component {
           {teamMembers && teamMembers.map((member, i) => {
             return (
               <>
-                <img src={member.profileImage} alt="team-member" />
-                <p key={i}>{member.firstName}{member.lastName}</p>
+                <img className="pic-marg" src={member.profileImage} alt="team-member" style={{ width: "24px" }} />
+                <p key={i}>{member.firstName}  {member.lastName}</p>
               </>
             )
           })}
@@ -294,7 +297,7 @@ class PublicViewIdea extends Component {
           </div>
 
           <form onSubmit={this.handleSubmit}>
-            <img src={this.props.loggedIn && this.props.loggedIn.profileImage} alt="loggedIn-user" />
+            <img style={{ width: "24px" }} src={this.props.loggedIn && this.props.loggedIn.profileImage} alt="loggedIn-user" />
             <input
               type="text"
               placeholder="Leave a comment..."
