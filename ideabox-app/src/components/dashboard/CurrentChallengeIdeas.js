@@ -6,7 +6,8 @@ class CurrentChallengeIdeas extends React.Component {
   state = {
     challenge: {},
     filteredIdeas: [],
-    searchText: ""
+    searchText: "",
+    countdown: 0
   };
 
   sortIdeas = event => {
@@ -60,9 +61,20 @@ class CurrentChallengeIdeas extends React.Component {
             challenge: challengeinfo.data,
             filteredIdeas: challengeinfo.data.ideas
           });
-          console.log("error");
-        });
+        }).then(() => {
+          this.setCountdown()
+        })
     }
+  }
+
+  setCountdown = () => {
+    let { deadline } = this.props.currentChallenge
+
+    const milisecLeft = Date.parse(deadline) - Date.now()
+    let days = Math.floor(milisecLeft / (1000 * 60 * 60 * 24)) + 1
+    //const hours = Math.floor((milisecLeft / (1000 * 60 * 60)) % 24)
+
+    this.setState({ countdown: days })
   }
 
   render() {
@@ -73,7 +85,7 @@ class CurrentChallengeIdeas extends React.Component {
       ideasArr &&
       ideasArr.map((el, i) => {
         return (
-          <div className="flexed-div flexed-wrap spacedBetween" key={i}>
+          < div className="flexed-div flexed-wrap spacedBetween" key={i} >
             <div className="ideaCard marginBelowNavbar flexed-div flexed-col col-45">
               <Link to={`/idea/${el._id}`}>
                 <h2>{el.title}</h2>
@@ -110,7 +122,7 @@ class CurrentChallengeIdeas extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div >
         );
       });
 
@@ -127,6 +139,7 @@ class CurrentChallengeIdeas extends React.Component {
           </div>
           <div className="bannerContent flexed-center">
             <h1 className="colorWhite">{title}</h1>
+            <h1 className="colorWhite">Days left: {this.state.challenge.title && this.state.countdown}</h1>
             <div className="flexed-div margin-top-15">
               <button>
                 <Link className="allLinks" to="/current-challenge-information">
@@ -164,7 +177,7 @@ class CurrentChallengeIdeas extends React.Component {
           </div>
           {displayIdeas}
         </main>
-      </div>
+      </div >
     );
   }
 }

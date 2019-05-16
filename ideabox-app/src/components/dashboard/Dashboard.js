@@ -14,16 +14,15 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    // console.log(this.props);
     return this.props.user ? (
       <Redirect to={{ pathname: "/" }} />
     ) : (
         currentChallenge().then(currentChallengeInfo => {
           this.setState({ currentChallenge: currentChallengeInfo.data });
-          // console.log(currentChallengeInfo);
         })
       );
   }
+
   flipChallengeViewOpen = () => {
     this.setState({
       openView: true,
