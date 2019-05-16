@@ -4,6 +4,7 @@ import IdeaNeedBenefit from "./IdeaNeedBenefit";
 import IdeaCompetition from "./IdeaCompetition";
 import AddTeam from "./AddTeam";
 import IdeaPrivacy from "./IdeaPrivacy";
+import userAlert, { openSnackbar } from "./Alert";
 import IdeaPreview from "./IdeaPreview";
 import {
   submitIdea,
@@ -195,12 +196,13 @@ export default class IdeaForm extends Component {
     const { name, value } = event.target;
     if (value === "Innovation Challenge") {
       currentChallenge().then(response => {
-        console.log(response.data._id);
-        this.setState({
-          challenge: response.data._id,
-          [name]: value,
-          challengeName: response.data.title
-        });
+        response.data
+          ? this.setState({
+              challenge: response.data._id,
+              [name]: value,
+              challengeName: response.data.title
+            })
+          : alert("No current Challenge");
       });
     }
     if (value === "Free Idea") {
@@ -281,7 +283,14 @@ export default class IdeaForm extends Component {
       default:
     }
   };
+  // Snackbar
 
+  showAlert = event => {
+    event.preventDefault();
+    openSnackbar({ message: "Idea Submitted!" });
+  };
+
+  // Snackbar
   handleResourceChange = (value, actionMeta) => {
     this.setState({
       estimatedResources: value
@@ -295,6 +304,7 @@ export default class IdeaForm extends Component {
 
   submitForm = event => {
     event.preventDefault();
+    this.showAlert(event);
     const estimatedResources = this.state.estimatedResources.map(el => {
       return el.value;
     });
@@ -345,9 +355,15 @@ export default class IdeaForm extends Component {
       message,
       estimatedResource,
       estimatedResources,
-      privacy
+      privacy,
+      vertical,
+      horizontal,
+      open
     } = this.state;
     const values = {
+      vertical,
+      horizontal,
+      open,
       title,
       category,
       challengeName,
