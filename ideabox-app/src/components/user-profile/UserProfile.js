@@ -78,7 +78,7 @@ class UserProfile extends React.Component {
                 <p>username: {username}</p>
                 <p>role: {role}</p>
                 <p>email: {email}</p>
-                <p>profileImage: <img src={profileImage} alt="your pic" /></p>
+                <p>profileImage: <img src={profileImage} style={{ width: "24px" }} alt="your pic" /></p>
                 <br />
                 <button onClick={this.handleEditForm}>Edit user</button>
               </div>
