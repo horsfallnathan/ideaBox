@@ -51,10 +51,6 @@ class CurrentChallengeIdeas extends React.Component {
     });
   };
 
-  componentDidMount() {
-    console.log("this.props in MOUNT", this.props);
-  }
-
   componentDidUpdate(prevProp) {
     if (prevProp.currentChallenge !== this.props.currentChallenge) {
       let { currentChallenge } = this.props;
@@ -100,7 +96,7 @@ class CurrentChallengeIdeas extends React.Component {
                   />
                   <p className="margin-left-15">{`${el.upVotes} up-vote${
                     el.upVotes !== 1 ? "s" : ""
-                  }`}</p>
+                    }`}</p>
                 </div>
                 <div className="flexed-div verticalCenter margin-left-30">
                   <img
@@ -110,7 +106,7 @@ class CurrentChallengeIdeas extends React.Component {
                   />
                   <p className="margin-left-15">{`${el.comments} comment${
                     el.comments !== 1 ? "s" : ""
-                  }`}</p>
+                    }`}</p>
                 </div>
               </div>
             </div>
