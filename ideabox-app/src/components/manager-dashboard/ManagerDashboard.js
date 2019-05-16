@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchField from "react-search-field";
-import { challengeIdeas } from '../../services/challenge'
 
 class ManagerDashboard extends React.Component {
 
@@ -10,13 +9,15 @@ class ManagerDashboard extends React.Component {
         filteredIdeas: []
     }
 
+    componentDidMount() {
+        let { currentChallenge } = this.props
+      this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
+      }
+
     componentDidUpdate(prevProp) {
         if (prevProp.currentChallenge !== this.props.currentChallenge) {
-
             let { currentChallenge } = this.props
-            challengeIdeas(currentChallenge._id).then(challengeinfo => {
-                this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
-            })
+            this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
         }
     }
 

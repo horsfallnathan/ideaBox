@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 class Dashboard extends React.Component {
   state = {
     currentChallenge: {},
-    filteredIdes: [],
     openView: false,
     leftBannerButtonState: "active",
     rightBannerButtonState: "inactive"
@@ -17,9 +16,17 @@ class Dashboard extends React.Component {
   componentDidMount() {
     currentChallenge().then(currentChallengeInfo => {
       this.setState({ currentChallenge: currentChallengeInfo.data });
-      console.log(currentChallengeInfo);
+      // console.log(currentChallengeInfo);
     });
   }
+
+  componentDidUpdate(prevProps) {
+    // console.log(this.state.currentChallenge)
+    // console.log("PROPS AT DASHBOARD UPDATE: ", this.props.currentChallenge)
+    // const {currentChallenge} = this.props
+    // if (prevProps.currentChallenge !== currentChallenge) this.setState({currentChallenge})
+  }
+
   flipChallengeViewOpen = () => {
     this.setState({
       openView: true,

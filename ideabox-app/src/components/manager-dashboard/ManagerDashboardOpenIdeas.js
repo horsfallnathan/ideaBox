@@ -11,7 +11,11 @@ class ManagerDashboardOpenIdeas extends React.Component {
 
     componentDidMount() {
         getAllIdeas().then(allIdeas => {
-            this.setState({ideas: allIdeas.data, filteredIdeas: allIdeas.data})
+            let ideas = allIdeas.data
+            let openIdeas = ideas.filter((el) =>{
+                return (el.category === 'Free Idea')
+            })
+            this.setState({ideas: openIdeas, filteredIdeas: openIdeas})
         })
     }
 

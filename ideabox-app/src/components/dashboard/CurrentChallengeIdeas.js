@@ -51,24 +51,24 @@ class CurrentChallengeIdeas extends React.Component {
     }
     
     componentDidMount() {
-        console.log("this.props in MOUNT",this.props)
+      let { currentChallenge } = this.props
+      this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
     }
 
     componentDidUpdate(prevProp) {
         if (prevProp.currentChallenge !== this.props.currentChallenge) {
-
             let { currentChallenge } = this.props
-            challengeIdeas(currentChallenge._id).then(challengeinfo => {
-                this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
-                console.log(challengeinfo)
-            })
+            this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
+            // challengeIdeas(currentChallenge._id).then(challengeinfo => {
+            //     this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
+            // })
         }
     }
 
     render() {
         let {challenge} = this.state
         let {title} = challenge
-        let ideasArr = this.state.filteredIdeas
+        let ideasArr = this.state.filteredIdeas        
         let displayIdeas = ideasArr && ideasArr.map((el, i) => {
             return <div className="flexed-div flexed-wrap spacedBetween" key={i}>
                 <div className="ideaCard marginBelowNavbar flexed-div flexed-col col-45">
