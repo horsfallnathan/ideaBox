@@ -206,11 +206,12 @@ export default class IdeaForm extends Component {
             })
           : alert("No current Challenge");
       });
-    }
-    if (value === "Free Idea") {
-      this.setState({
-        [name]: value
-      });
+    } else {
+      if (value === "Free Idea") {
+        this.setState({
+          [name]: value
+        });
+      }
     }
   };
   handleFileRemove = index => {
@@ -383,7 +384,7 @@ export default class IdeaForm extends Component {
               "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
             }
           >
-            <div className={"ideaForm"}>
+            <div className={"ideaForm margin-top-30 margin-bot-30"}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaDescription
@@ -405,7 +406,7 @@ export default class IdeaForm extends Component {
               "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
             }
           >
-            <div className={"ideaForm"}>
+            <div className={"ideaForm margin-top-30 margin-bot-30"}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaNeedBenefit
@@ -428,7 +429,7 @@ export default class IdeaForm extends Component {
               "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
             }
           >
-            <div className={"ideaForm"}>
+            <div className={"ideaForm margin-top-30 margin-bot-30"}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaCompetition
@@ -447,7 +448,7 @@ export default class IdeaForm extends Component {
               "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
             }
           >
-            <div className={"ideaForm"}>
+            <div className={"ideaForm margin-top-30 margin-bot-30"}>
               <h1>Idea Submission</h1>
             </div>
             <AddTeam
@@ -472,7 +473,7 @@ export default class IdeaForm extends Component {
               "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
             }
           >
-            <div className={"ideaForm"}>
+            <div className={"ideaForm margin-top-30 margin-bot-30"}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaPrivacy
@@ -486,37 +487,19 @@ export default class IdeaForm extends Component {
         );
       case 6:
         return !this.props.match.params.ideaId ? (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
-              <h1>Idea Submission</h1>
-            </div>
-            <IdeaPreview
-              values={values}
-              submitForm={this.submitForm}
-              prevStep={this.prevStep}
-              handleDraft={this.handleDraft}
-            />
-          </div>
+          <IdeaPreview
+            values={values}
+            submitForm={this.submitForm}
+            prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
+          />
         ) : (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
-              <h1>Idea Submission</h1>
-            </div>
-            <IdeaPreview
-              values={values}
-              submitForm={this.submitForm}
-              prevStep={this.prevStep}
-              handleDraft={this.handleDraft}
-            />
-          </div>
+          <IdeaPreview
+            values={values}
+            submitForm={this.submitForm}
+            prevStep={this.prevStep}
+            handleDraft={this.handleDraft}
+          />
         );
       default:
         return console.log("error");

@@ -22,7 +22,7 @@ class MyIdeas extends Component {
           key={i}
           className="ideaCard marginBelowNavbar flexed-div flexed-col col-45"
         >
-          <Link className="allLinks" to={`/idea/${_id}`}>
+          <Link className="allLinks" to={`/my-ideas/${_id}`}>
             <h2>{title}</h2>
           </Link>
           <p>{description}</p>
@@ -102,11 +102,11 @@ class MyIdeas extends Component {
             {this.mapIdeas()}
           </div>
         ) : (
-            <>
-              <h4>You haven't submitted any ideas yet</h4>{" "}
-              <Link to="/submit-idea">Submit New Idea</Link>
-            </>
-          )}
+          <>
+            <h4>You haven't submitted any ideas yet</h4>{" "}
+            <Link to="/submit-idea">Submit New Idea</Link>
+          </>
+        )}
       </div>
     );
   }

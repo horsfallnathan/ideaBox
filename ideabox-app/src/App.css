@@ -458,8 +458,28 @@ button:hover {
   background: #50bfd8;
 }
 
+.ideaForm {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .ideaForm {
+    width: 80%;
+  }
+}
+
+@media (min-width: 992px) {
+  .ideaForm {
+    width: 60%;
+  }
+}
+
 .ideaForm input {
   width: 100%;
+}
+
+.ideaForm h3 {
+  margin-bottom: 1rem;
 }
 
 .inputfile {

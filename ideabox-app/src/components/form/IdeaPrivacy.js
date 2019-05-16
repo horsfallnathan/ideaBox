@@ -31,19 +31,16 @@ export default class IdeaPrivacy extends Component {
                 <FormControlLabel
                   value="Public"
                   control={<Radio />}
-                  label="Make Idea Public"
+                  label={`Make Idea Public (Your Idea will be shared with all Siemens employees)`}
                 />
-                {/* <p>Ideas only related to the current innovation challenge</p> */}
                 <FormControlLabel
                   value="Private"
                   control={<Radio />}
-                  label="Keep Idea Private"
+                  label="Keep Idea Private (Only you, your selected team members, and managers can view this)"
                 />
               </RadioGroup>
             </FormControl>
-            <p>
-              Only you, your selected team members, and managers can view this
-            </p>
+            <p />
           </div>
           <div className={"flexed-div spacedBetween margin-top-15"}>
             <button className={"ideaFormButton"} onClick={this.prevStep}>

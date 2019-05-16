@@ -207,36 +207,36 @@ button:hover {
   background-repeat: no-repeat;
 }
 
-.filterButton1.inactive  {
+.filterButton1.inactive {
   color: grey;
 }
 
-.filterButton2.inactive  {
+.filterButton2.inactive {
   color: grey;
 }
 
-.filterButton3.inactive  {
+.filterButton3.inactive {
   color: grey;
 }
 
-.filterButton4.inactive  {
+.filterButton4.inactive {
   color: grey;
 }
 
-.filterButton1.active   {
-  color: $mainColor
+.filterButton1.active {
+  color: $mainColor;
 }
 
-.filterButton2.active   {
-  color: $mainColor
+.filterButton2.active {
+  color: $mainColor;
 }
 
-.filterButton3.active   {
-  color: $mainColor
+.filterButton3.active {
+  color: $mainColor;
 }
 
-.filterButton4.active   {
-  color: $mainColor
+.filterButton4.active {
+  color: $mainColor;
 }
 
 .bannerButtonsDiv {
@@ -401,10 +401,21 @@ button:hover {
 
 // ideaForm
 
+.ideaForm {
+  width: 100%;
+  @include tab() {
+    width: 80%;
+  }
+  @include dsk() {
+    width: 60%;
+  }
+}
 .ideaForm input {
   width: 100%;
 }
-
+.ideaForm h3 {
+  margin-bottom: 1rem;
+}
 .inputfile {
   width: 0.1px;
   height: 0.1px;

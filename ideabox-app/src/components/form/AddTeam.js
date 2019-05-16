@@ -6,6 +6,8 @@ const customStyle = {
   control: styles => ({
     ...styles,
     backgroundColor: "white",
+    marginTop: "1.5rem",
+    marginBottom: "3rem",
     borderColor: "#40aaaa",
     borderRadius: "2px",
     ":onFocus": {
@@ -14,6 +16,9 @@ const customStyle = {
     ":hover": {
       borderColor: "#40aaaa"
     }
+  }),
+  indicatorSeparator: styles => ({
+    backgroundColor: "#ffffff"
   }),
   multiValue: (styles, { data }) => {
     return {
@@ -57,10 +62,10 @@ export default class AddTeam extends Component {
     });
     console.log(userList);
     return (
-      <div>
+      <div className={"ideaForm"}>
         <form>
           <div>
-            <h3>Add Team Members</h3>
+            <h3 style={{ marginBottom: "1rem" }}>Add Team Members</h3>
             <label htmlFor="teamMember">
               Choose team members to work with you on this idea
             </label>

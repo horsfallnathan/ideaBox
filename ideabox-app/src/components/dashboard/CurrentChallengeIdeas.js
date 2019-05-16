@@ -1,6 +1,26 @@
 import React from "react";
 import { challengeIdeas } from "../../services/challenge";
 import { Link } from "react-router-dom";
+import Select from "react-select";
+
+const customStyle = {
+  control: styles => ({
+    ...styles,
+    backgroundColor: "white",
+    marginTop: "1.5rem",
+    marginBottom: "3rem",
+    borderColor: "#40aaaa",
+    borderRadius: "2px",
+    height: "3rem",
+    minHeight: "3rem",
+    ":onFocus": {
+      backgroundColor: "black"
+    },
+    ":hover": {
+      borderColor: "#40aaaa"
+    }
+  })
+};
 
 class CurrentChallengeIdeas extends React.Component {
   state = {
@@ -8,11 +28,21 @@ class CurrentChallengeIdeas extends React.Component {
     ideas: [],
     filteredIdeas: [],
     searchText: "",
-    countdown: 0
+    countdown: 0,
+    options: [
+      {
+        label: "Name",
+        value: "title"
+      },
+      {
+        label: "Up Votes",
+        value: "upVotes"
+      }
+    ]
   };
 
-  sortIdeas = event => {
-    const type = event.target.value;
+  sortIdeas = value => {
+    const type = value;
     const { challenge } = this.state;
     const { ideas } = challenge;
     let ideasCopy = ideas.slice();
@@ -54,9 +84,12 @@ class CurrentChallengeIdeas extends React.Component {
   };
 
   componentDidMount() {
-    let { currentChallenge } = this.props
+    let { currentChallenge } = this.props;
     this.setCountdown();
-  this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
+    this.setState({
+      challenge: currentChallenge,
+      filteredIdeas: currentChallenge.ideas
+    });
   }
 
   componentDidUpdate(prevProp) {
@@ -66,11 +99,10 @@ class CurrentChallengeIdeas extends React.Component {
         challenge: currentChallenge,
         filteredIdeas: currentChallenge.ideas,
         ideas: currentChallenge.ideas
-      })
+      });
       this.setCountdown();
+    }
   }
-  }
-
 
   setCountdown = () => {
     let { deadline } = this.props.currentChallenge;
@@ -83,6 +115,7 @@ class CurrentChallengeIdeas extends React.Component {
   };
 
   render() {
+    console.log(this.state.options);
     let { challenge } = this.state;
     let { title } = challenge;
     let ideasArr = this.state.filteredIdeas;
@@ -199,13 +232,25 @@ class CurrentChallengeIdeas extends React.Component {
           <div className="flexed-div verticalCenter spacedBetween flexed-wrap">
             <h1>Discover Submitted Ideas</h1>
             <div>
-              <select onChange={this.sortIdeas} value="Sort by">
+              <Select
+                closeMenuOnSelect={true}
+                components={{ IndicatorSeparator: null }}
+                // value={"Sort"}
+                onChange={this.sortIdeas}
+                options={[
+                  { label: "Up Votes", value: "upVotes" },
+                  { label: "Names", value: "names" }
+                ]}
+                styles={customStyle}
+              />
+              {/* </FormControl> */}
+              {/* <select onChange={this.sortIdeas} value="Sort by">
                 <option value="z" hidden>
                   Sort by
                 </option>
                 <option value="upVotes">UpVotes</option>
                 <option value="title">Names</option>
-              </select>
+              </select> */}
               <input
                 className="margin-left-15"
                 type="text"

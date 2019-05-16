@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
-const styles = theme => ({});
 class IdeaDescription extends Component {
   state = {
     value: this.props.values.category
@@ -23,9 +20,8 @@ class IdeaDescription extends Component {
       handleFileUpload,
       addCurrentChallenge
     } = this.props;
-    // const { classes } = this.props;
     return (
-      <div className={"ideaForm"}>
+      <div className={" ideaForm flexed-div flexed-col"}>
         <form>
           <div>
             <h3>Title</h3>
@@ -71,16 +67,18 @@ class IdeaDescription extends Component {
           <div>
             <div className={"flexed-div verticalCenter"}>
               <div className={"attachFileIcon"}> </div>
-              <input
-                type="file"
-                name="files"
-                id="files"
-                className="inputfile"
-                onChange={handleFileUpload}
-              />
-              <label htmlFor={"files"}>
-                <h3>Attach Files</h3>
-              </label>
+              <div>
+                <input
+                  type="file"
+                  name="files"
+                  id="files"
+                  className="inputfile"
+                  onChange={handleFileUpload}
+                />
+                <label htmlFor={"files"}>
+                  <h3>Attach Files</h3>
+                </label>
+              </div>
             </div>
           </div>
           <div>
@@ -118,4 +116,4 @@ class IdeaDescription extends Component {
   }
 }
 
-export default withStyles(styles)(IdeaDescription);
+export default IdeaDescription;
