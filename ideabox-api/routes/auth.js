@@ -67,7 +67,6 @@ router.post("/logout", (req, res) => {
   res.status(200).json({ message: "User successfully logged out" });
 });
 
-
 router.get("/loggedin", (req, res) => {
   if (req.isAuthenticated()) return res.json(req.user);
   else return res.json(null);

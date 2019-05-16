@@ -15,7 +15,7 @@ class AllChallenges extends Component {
     render() {
         const { challenges } = this.state
         return (
-            <div>
+            <div className="main-container marginBelowNavbar">
                 <h1>All Challenges</h1>
                 {challenges.map((challenge, i) => {
                     const { title, description, startDate, deadline, challengeNumber } = challenge
@@ -23,8 +23,8 @@ class AllChallenges extends Component {
                         <div key={i}>
                             <h2>{challengeNumber}{title}</h2>
                             <p>{description}</p>
-                            <p>Start Date: {startDate}</p>
-                            <p>Deadline: {deadline}</p>
+                            <p>Start Date: {startDate.substring(0, 10)}</p>
+                            <p>Deadline: {deadline.substring(0, 10)}</p>
                         </div>
                     )
                 })}

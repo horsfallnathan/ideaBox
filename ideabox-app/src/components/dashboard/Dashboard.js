@@ -1,7 +1,7 @@
 import React from "react";
 import { currentChallenge } from "../../services/challenge";
 import CurrentChallengeIdeas from "./CurrentChallengeIdeas";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import OpenIdeas from "./OpenIdeas";
 
 class Dashboard extends React.Component {
@@ -14,17 +14,13 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    currentChallenge().then(currentChallengeInfo => {
-      this.setState({ currentChallenge: currentChallengeInfo.data });
-      // console.log(currentChallengeInfo);
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    // console.log(this.state.currentChallenge)
-    // console.log("PROPS AT DASHBOARD UPDATE: ", this.props.currentChallenge)
-    // const {currentChallenge} = this.props
-    // if (prevProps.currentChallenge !== currentChallenge) this.setState({currentChallenge})
+    return this.props.user ? (
+      <Redirect to={{ pathname: "/" }} />
+    ) : (
+        currentChallenge().then(currentChallengeInfo => {
+          this.setState({ currentChallenge: currentChallengeInfo.data });
+        })
+      );
   }
 
   flipChallengeViewOpen = () => {
@@ -61,14 +57,14 @@ class Dashboard extends React.Component {
                 onClick={this.flipChallengeViewInnovation}
                 className={`allLinks bannerButtons textCenter ${
                   this.state.leftBannerButton ? "active" : "inactive"
-                }`}
+                  }`}
               >
                 <h2>Innovation Challenge Idea Submissions</h2>
               </Link>
               <Link
                 className={`allLinks bannerButtons textCenter ${
                   this.state.rightBannerButton ? "active" : "inactive"
-                }`}
+                  }`}
                 onClick={this.flipChallengeViewOpen}
               >
                 <h2>Open Idea Submissions</h2>
@@ -80,10 +76,10 @@ class Dashboard extends React.Component {
                 <OpenIdeas />
               </div>
             ) : (
-              <CurrentChallengeIdeas
-                currentChallenge={this.props.currentChallenge}
-              />
-            )}
+                <CurrentChallengeIdeas
+                  currentChallenge={this.props.currentChallenge}
+                />
+              )}
           </div>
           <div />
         </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {challengeIdeas} from '../../services/challenge'
 
 
 class CurrentChallengeIdeas extends React.Component {
@@ -7,7 +8,8 @@ class CurrentChallengeIdeas extends React.Component {
     state = {
         challenge: {},
         filteredIdeas: [],
-        searchText: ''
+        searchText: '',
+        countdown: 0
     }
  
     sortIdeas = event => {
@@ -54,17 +56,30 @@ class CurrentChallengeIdeas extends React.Component {
       this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
     }
 
-    componentDidUpdate(prevProp) {
-        if (prevProp.currentChallenge !== this.props.currentChallenge) {
-
-            let { currentChallenge } = this.props
-            this.setState({ challenge: currentChallenge, filteredIdeas: currentChallenge.ideas })
-            // challengeIdeas(currentChallenge._id).then(challengeinfo => {
-            //     this.setState({ challenge: challengeinfo.data, filteredIdeas: challengeinfo.data.ideas })
-            // })
-        }
+  componentDidUpdate(prevProp) {
+    if (prevProp.currentChallenge !== this.props.currentChallenge) {
+      let { currentChallenge } = this.props;
+      currentChallenge &&
+        challengeIdeas(currentChallenge._id).then(challengeinfo => {
+          this.setState({
+            challenge: challengeinfo.data,
+            filteredIdeas: challengeinfo.data.ideas
+          });
+        }).then(() => {
+          this.setCountdown()
+        })
+      }
     }
-
+      
+      setCountdown = () => {
+        let { deadline } = this.props.currentChallenge
+    
+        const milisecLeft = Date.parse(deadline) - Date.now()
+        let days = Math.floor(milisecLeft / (1000 * 60 * 60 * 24)) + 1
+        //const hours = Math.floor((milisecLeft / (1000 * 60 * 60)) % 24)
+    
+        this.setState({ countdown: days })
+      }
     render() {
       let { challenge } = this.state;
       let { title } = challenge;
@@ -140,6 +155,7 @@ class CurrentChallengeIdeas extends React.Component {
                 </button>
               </div>
             </div>
+          
           </div>
   
           <main className="marginBelowNavbar main-container">
