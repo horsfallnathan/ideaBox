@@ -1,19 +1,14 @@
-import React, { Component } from "react";
-import IdeaDescription from "./IdeaDescription";
-import IdeaNeedBenefit from "./IdeaNeedBenefit";
-import IdeaCompetition from "./IdeaCompetition";
-import AddTeam from "./AddTeam";
-import IdeaPrivacy from "./IdeaPrivacy";
-import IdeaPreview from "./IdeaPreview";
-import {
-  submitIdea,
-  fileUpload,
-  getUsers,
-  editIdea
-} from "../../services/ideaSubmission";
-import { createDraft, updateDraft } from "../../services/drafts";
-import { getIdeaToEdit } from "../../services/ideas";
-import { currentChallenge } from "../../services/challenge";
+import React, { Component } from 'react';
+import IdeaDescription from './IdeaDescription';
+import IdeaNeedBenefit from './IdeaNeedBenefit';
+import IdeaCompetition from './IdeaCompetition';
+import AddTeam from './AddTeam';
+import IdeaPrivacy from './IdeaPrivacy';
+import IdeaPreview from './IdeaPreview';
+import { submitIdea, fileUpload, getUsers, editIdea } from '../../services/ideaSubmission';
+import { createDraft, updateDraft } from '../../services/drafts';
+import { getIdeaToEdit } from '../../services/ideas';
+import { currentChallenge } from '../../services/challenge';
 
 const createOption = label => ({
   label,
@@ -23,25 +18,25 @@ const createOption = label => ({
 export default class IdeaForm extends Component {
   state = {
     users: [],
-    challengeValue: "",
-    challenge: "",
-    challengeName: "",
+    challengeValue: '',
+    challenge: '',
+    challengeName: '',
     step: 1,
-    title: "",
-    category: "",
-    description: "",
+    title: '',
+    category: '',
+    description: '',
     files: [],
     fileNames: [],
-    need: "",
-    competition: "",
-    benefit: "",
-    draftId: "",
+    need: '',
+    competition: '',
+    benefit: '',
+    draftId: '',
     estimatedResources: [],
-    estimatedResource: "",
-    teamMember: "",
+    estimatedResource: '',
+    teamMember: '',
     teamMembers: [],
-    message: "",
-    privacy: ""
+    message: '',
+    privacy: ''
   };
   componentDidMount() {
     this.props.match.params.ideaId &&
@@ -126,12 +121,12 @@ export default class IdeaForm extends Component {
       message,
       privacy
     };
-    if (this.state.draftId !== "") {
-      console.log("here");
+    if (this.state.draftId !== '') {
+      console.log('here');
       updateDraft(this.state.draftId, values).then({});
     } else {
       createDraft(values).then(draft => {
-        console.log("second here");
+        console.log('second here');
         const { _id } = draft.data;
         this.setState({
           draftId: _id
@@ -185,7 +180,7 @@ export default class IdeaForm extends Component {
     const fileName = event.target.files[0].name;
     const file = event.target.files[0];
     const data = new FormData();
-    data.append("files", file);
+    data.append('files', file);
     fileUpload(data).then(response => {
       this.setState({
         files: [...this.state.files, response],
@@ -196,7 +191,7 @@ export default class IdeaForm extends Component {
 
   addCurrentChallenge = event => {
     const { name, value } = event.target;
-    if (value === "Innovation Challenge") {
+    if (value === 'Innovation Challenge') {
       currentChallenge().then(response => {
         response.data
           ? this.setState({
@@ -204,13 +199,14 @@ export default class IdeaForm extends Component {
               [name]: value,
               challengeName: response.data.title
             })
-          : alert("No current Challenge");
+          : alert('No current Challenge');
       });
-    }
-    if (value === "Free Idea") {
-      this.setState({
-        [name]: value
-      });
+    } else {
+      if (value === 'Free Idea') {
+        this.setState({
+          [name]: value
+        });
+      }
     }
   };
   handleFileRemove = index => {
@@ -227,7 +223,7 @@ export default class IdeaForm extends Component {
     });
   };
   handlePrivacyChange = (e, { value }) => {
-    const bool = value === "true" ? true : false;
+    const bool = value === 'true' ? true : false;
     console.log(bool);
     this.setState({
       privacy: bool
@@ -248,10 +244,10 @@ export default class IdeaForm extends Component {
     const { teamMember, teamMembers } = this.state;
     if (!teamMember) return;
     switch (event.key) {
-      case "Enter":
-      case "Tab":
+      case 'Enter':
+      case 'Tab':
         this.setState({
-          teamMember: "",
+          teamMember: '',
           teamMembers: [...teamMembers.value]
         });
         event.preventDefault();
@@ -271,14 +267,11 @@ export default class IdeaForm extends Component {
     const { estimatedResource, estimatedResources } = this.state;
     if (!estimatedResource) return;
     switch (event.key) {
-      case "Enter":
-      case "Tab":
+      case 'Enter':
+      case 'Tab':
         this.setState({
-          estimatedResource: "",
-          estimatedResources: [
-            ...estimatedResources,
-            createOption(estimatedResource)
-          ]
+          estimatedResource: '',
+          estimatedResources: [...estimatedResources, createOption(estimatedResource)]
         });
         event.preventDefault();
         break;
@@ -378,12 +371,8 @@ export default class IdeaForm extends Component {
     switch (step) {
       case 1:
         return (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
+          <div className={'main-container flexed-div flexed-col verticalCenter marginBelowNavbar'}>
+            <div className={'ideaForm'}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaDescription
@@ -400,12 +389,8 @@ export default class IdeaForm extends Component {
         );
       case 2:
         return (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
+          <div className={'main-container flexed-div flexed-col verticalCenter marginBelowNavbar'}>
+            <div className={'ideaForm'}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaNeedBenefit
@@ -423,12 +408,8 @@ export default class IdeaForm extends Component {
         );
       case 3:
         return (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
+          <div className={'main-container flexed-div flexed-col verticalCenter marginBelowNavbar'}>
+            <div className={'ideaForm'}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaCompetition
@@ -442,12 +423,8 @@ export default class IdeaForm extends Component {
         );
       case 4:
         return (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
+          <div className={'main-container flexed-div flexed-col verticalCenter marginBelowNavbar'}>
+            <div className={'ideaForm'}>
               <h1>Idea Submission</h1>
             </div>
             <AddTeam
@@ -467,12 +444,8 @@ export default class IdeaForm extends Component {
         );
       case 5:
         return (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
+          <div className={'main-container flexed-div flexed-col verticalCenter marginBelowNavbar'}>
+            <div className={'ideaForm'}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaPrivacy
@@ -486,12 +459,8 @@ export default class IdeaForm extends Component {
         );
       case 6:
         return !this.props.match.params.ideaId ? (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
+          <div className={'main-container flexed-div flexed-col verticalCenter marginBelowNavbar'}>
+            <div className={'ideaForm'}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaPreview
@@ -502,12 +471,8 @@ export default class IdeaForm extends Component {
             />
           </div>
         ) : (
-          <div
-            className={
-              "main-container flexed-div flexed-col verticalCenter marginBelowNavbar"
-            }
-          >
-            <div className={"ideaForm"}>
+          <div className={'main-container flexed-div flexed-col verticalCenter marginBelowNavbar'}>
+            <div className={'ideaForm'}>
               <h1>Idea Submission</h1>
             </div>
             <IdeaPreview
@@ -519,7 +484,7 @@ export default class IdeaForm extends Component {
           </div>
         );
       default:
-        return console.log("error");
+        return console.log('error');
     }
   }
 }

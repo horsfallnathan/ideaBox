@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 // import { withRouter } from "react-router-dom";
-import { signup } from "../../services/auth";
+import { signup } from '../../services/auth';
 // import withStyles from "@material-ui/core/styles/withStyles";
-import { fileUpload } from "../../services/ideaSubmission";
+import { fileUpload } from '../../services/ideaSubmission';
 // import classNames from "classnames";
 // import InputAdornment from "@material-ui/core/InputAdornment";
 // import TextField from "@material-ui/core/TextField";
 // import AccountCircle from "@material-ui/icons/AccountCircle";
-import { currentChallenge } from "../../services/challenge";
+import { currentChallenge } from '../../services/challenge';
 
 // const styles = theme => ({
 
@@ -29,14 +29,14 @@ import { currentChallenge } from "../../services/challenge";
 
 class Signup extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    email: "",
+    firstName: '',
+    lastName: '',
+    username: '',
+    password: '',
+    email: '',
     profileImage:
-      "https://res.cloudinary.com/nthnh/image/upload/v1557486717/ideaBox/defaultProfileImage_sde62e.png",
-    role: "employee"
+      'https://res.cloudinary.com/nthnh/image/upload/v1557486717/ideaBox/defaultProfileImage_sde62e.png',
+    role: 'employee'
   };
 
   handleChange = event => {
@@ -49,7 +49,7 @@ class Signup extends React.Component {
   handleImageUpload = event => {
     const file = event.target.files[0];
     const data = new FormData();
-    data.append("files", file);
+    data.append('files', file);
     fileUpload(data).then(response => {
       this.setState({
         profileImage: response
@@ -68,23 +68,19 @@ class Signup extends React.Component {
 
     signup(firstName, lastName, username, password, email, role).then(user => {
       this.props.setUser(user);
-      this.props.history.push("/");
+      this.props.history.push('/');
     });
   };
 
   render() {
     // const { classes } = this.props;
     return (
-      <div className={"fullHeightWidth"}>
-        <form onSubmit={this.handleSubmit} className={"signupForm"}>
-          <img
-            src={this.state.profileImage}
-            width="30px"
-            alt={"ProfileImage"}
-          />
+      <div className={'fullHeightWidth signupBackground'}>
+        <form onSubmit={this.handleSubmit} className={'signupForm'}>
+          <img src={this.state.profileImage} width="30px" alt={'ProfileImage'} />
           <div>
             <input
-              placeholder={"First Name"}
+              placeholder={'First Name'}
               value={this.state.firstName}
               onChange={this.handleChange}
               type="text"
@@ -93,7 +89,7 @@ class Signup extends React.Component {
           </div>
           <div>
             <input
-              placeholder={"Last Name"}
+              placeholder={'Last Name'}
               value={this.state.lastName}
               onChange={this.handleChange}
               type="text"
@@ -102,7 +98,7 @@ class Signup extends React.Component {
           </div>
           <div>
             <input
-              placeholder={"Username"}
+              placeholder={'Username'}
               value={this.state.username}
               onChange={this.handleChange}
               type="text"
@@ -111,7 +107,7 @@ class Signup extends React.Component {
           </div>
           <div>
             <input
-              placeholder={"Password"}
+              placeholder={'Password'}
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
@@ -120,7 +116,7 @@ class Signup extends React.Component {
           </div>
           <div>
             <input
-              placeholder={"Email"}
+              placeholder={'Email'}
               value={this.state.email}
               onChange={this.handleChange}
               type="text"
@@ -131,8 +127,8 @@ class Signup extends React.Component {
             <h3>Set Profile Image</h3>
             <input type="file" name="files" onChange={this.handleImageUpload} />
           </div>
-          <button type="submit" className={"sButton"}>
-            {"SignUp"}
+          <button type="submit" className={'sButton'}>
+            {'SignUp'}
           </button>
         </form>
       </div>

@@ -81,6 +81,44 @@ h2 {
   color: $mainColor;
 }
 
+.fullvh {
+  height: 90vh;
+}
+
+.halfvh {
+  height: 50%;
+}
+
+.borderBottom {
+  border-bottom: 1px solid black;
+}
+
+.infoBox {
+  height: 80vh;
+  width: 80%;
+  border: 2px solid $subBlue;
+  border-radius: 20px;
+}
+
+.infoBox h1 {
+  margin-left: 4rem;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+.infoBoxDescription {
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-bottom: 1rem;
+  max-height: 30rem;
+  height: 30rem;
+}
+
+// .infoBox p {
+//   margin-left: 4rem;
+//   padding-right: ;
+// }
+
 .filteringMIdeas {
   margin-top: 1.5rem;
   margin-left: 2rem;
@@ -111,6 +149,9 @@ h2 {
 .spacedBetween {
   justify-content: space-between;
 }
+.spaceAround {
+  justify-content: space-around;
+}
 .flexed-end {
   justify-content: flex-end;
 }
@@ -122,6 +163,9 @@ h2 {
 }
 .selfJustifyLeft {
   align-self: flex-start;
+}
+.positionFixed {
+  position: fixed;
 }
 
 .login-box {
@@ -165,9 +209,16 @@ textarea:focus {
   border: 1px solid $mainColor;
 }
 
+.signupBackground {
+  background-image: url('https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558029449/ideabox-background_tq8upf.jpg');
+  background-size: cover;
+}
+
 .signupForm {
   width: 100vw;
-  padding: 1.5rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
   @include tab() {
     width: 40vw;
   }
@@ -195,48 +246,44 @@ button:hover {
 .dashboardBanner {
   height: 70vh;
 
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 100, 110, 0.52),
-      rgba(0, 0, 0, 0.73)
-    ),
-    url("https://res.cloudinary.com/nthnh/image/upload/v1557880962/ideaBox/764202_siemens-wallpaper_dgzpwj.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 100, 110, 0.52), rgba(0, 0, 0, 0.73)),
+    url('https://res.cloudinary.com/nthnh/image/upload/v1557880962/ideaBox/764202_siemens-wallpaper_dgzpwj.jpg');
   // background-image: url("https://res.cloudinary.com/nthnh/image/upload/v1557880962/ideaBox/764202_siemens-wallpaper_dgzpwj.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.filterButton1.inactive  {
+.filterButton1.inactive {
   color: grey;
 }
 
-.filterButton2.inactive  {
+.filterButton2.inactive {
   color: grey;
 }
 
-.filterButton3.inactive  {
+.filterButton3.inactive {
   color: grey;
 }
 
-.filterButton4.inactive  {
+.filterButton4.inactive {
   color: grey;
 }
 
-.filterButton1.active   {
-  color: $mainColor
+.filterButton1.active {
+  color: $mainColor;
 }
 
-.filterButton2.active   {
-  color: $mainColor
+.filterButton2.active {
+  color: $mainColor;
 }
 
-.filterButton3.active   {
-  color: $mainColor
+.filterButton3.active {
+  color: $mainColor;
 }
 
-.filterButton4.active   {
-  color: $mainColor
+.filterButton4.active {
+  color: $mainColor;
 }
 
 .bannerButtonsDiv {
@@ -336,7 +383,7 @@ button:hover {
   border-right: 17.5px solid $subBlue;
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
-  content: "";
+  content: '';
   height: 0;
   left: -17.5px;
   position: absolute;
@@ -373,7 +420,7 @@ button:hover {
 }
 
 .progressCircles::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 1.5em;
   left: -6em;
@@ -415,7 +462,7 @@ button:hover {
 }
 
 .attachFileIcon {
-  background-image: url("https://res.cloudinary.com/nthnh/image/upload/v1557750626/ideaBox/baseline-create_new_folder-24px_vjlsfj.svg");
+  background-image: url('https://res.cloudinary.com/nthnh/image/upload/v1557750626/ideaBox/baseline-create_new_folder-24px_vjlsfj.svg');
   background-position: center;
   background-repeat: no-repeat;
   width: 24px;
@@ -433,6 +480,12 @@ button:hover {
 .padding-left-15 {
   padding-left: 1.5rem;
 }
+.padding-bottom-45 {
+  padding-bottom: 4.5rem;
+}
+.padding-top-45 {
+  padding-top: 4.5rem;
+}
 
 .margin-left-15 {
   margin-left: 1.5rem;
@@ -445,6 +498,9 @@ button:hover {
 }
 .margin-top-30 {
   margin-top: 3rem;
+}
+.margin-top-70 {
+  margin-top: 7rem;
 }
 .margin-bot-30 {
   margin-bottom: 3rem;
@@ -482,6 +538,10 @@ button:hover {
   width: 100vw;
 }
 
+.width-20 {
+  width: 20rem;
+}
+
 .creatable {
   border: 1px solid $subBlue !important;
   border-radius: 2px;
@@ -493,12 +553,8 @@ button:hover {
 }
 // Landing Page
 .landingPage {
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 100, 110, 0.52),
-      rgba(0, 0, 0, 0.73)
-    ),
-    url("https://res.cloudinary.com/nthnh/image/upload/v1557939252/ideaBox/764261_siemens-wallpaper_rfdltg.jpg");
+  background-image: url('https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558029449/ideabox-background_tq8upf.jpg');
+  background-size: cover;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -506,6 +562,12 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+
+.loginBox {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
+}
+
 .landingPageFont {
   font-size: 3rem;
   color: $subBlue;
@@ -603,7 +665,7 @@ button:hover {
 .challengePres {
   width: inherit;
   height: 26.8rem;
-  background-image: url("./1187329.png");
+  background-image: url('./1187329.png');
   background-size: cover;
   display: flex;
   flex-direction: row;
@@ -704,7 +766,7 @@ button:hover {
 .relatedIdeasBoxThumbsUp {
   width: 1rem;
   height: 1rem;
-  background-image: url("https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png");
+  background-image: url('https://res.cloudinary.com/dpcx0po55/image/upload/v1557762758/IdeaBox/like_giijkj.png');
 }
 
 .relatedIdeasBoxVotes img {
