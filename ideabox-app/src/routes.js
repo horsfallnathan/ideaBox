@@ -137,20 +137,12 @@ class Routes extends React.Component {
                 )}
               />
               <Route
-                path="/managerDashboard/challengeForm"
-                component={ChallengeForm}
-              />
-              <Route
                 path="/managerDashborad/all-challenges"
                 component={AllChallenges}
               />
               <Route
                 path="/managerDashboard/challengeForm"
                 component={ChallengeForm}
-              />
-              <Route
-                path="/managerDashborad/all-challenges"
-                component={AllChallenges}
               />
               <Route
                 path="/managerDashboard/open-ideas"

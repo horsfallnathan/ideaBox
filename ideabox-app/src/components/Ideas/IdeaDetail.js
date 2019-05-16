@@ -121,7 +121,6 @@ class IdeaDetail extends Component {
               </>
             )
           })}
-          <p>Add a team member</p>
 
           <Link to="/">Edit idea</Link>
           <button onClick={this.deleteIdea}>Delete idea</button>
