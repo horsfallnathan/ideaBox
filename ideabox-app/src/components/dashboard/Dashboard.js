@@ -14,7 +14,6 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     return this.props.user ? (
       <Redirect to={{ pathname: "/" }} />
     ) : (

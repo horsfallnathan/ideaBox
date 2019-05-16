@@ -64,7 +64,7 @@ class CurrentChallengeIdeas extends React.Component {
             challenge: challengeinfo.data,
             filteredIdeas: challengeinfo.data.ideas
           });
-          console.log("error");
+          // console.log("error");
         });
     }
   }
@@ -77,41 +77,75 @@ class CurrentChallengeIdeas extends React.Component {
       ideasArr &&
       ideasArr.map((el, i) => {
         return (
-          <div className="flexed-div flexed-wrap spacedBetween" key={i}>
-            <div className="ideaCard marginBelowNavbar flexed-div flexed-col col-45">
-              <Link to={`/idea/${el._id}`}>
-                <h2>{el.title}</h2>
-              </Link>
-              <p>{el.description}</p>
-              <h3 className="margin-top-15">Current Stage: {el.status}</h3>
-              <div className="flexed-div spacedBetween margin-top-15">
-                <div className="progressCircles">1</div>
-                <div className="progressCircles activeStat">2</div>
-                <div className="progressCircles">3</div>
-                <div className="progressCircles">4</div>
-                <div className="progressCircles">5</div>
+          <div
+            key={i}
+            className="ideaCard marginBelowNavbar flexed-div flexed-col col-45"
+          >
+            <Link className="allLinks" to={`/idea/${el._id}`}>
+              <h2>{el.title}</h2>
+            </Link>
+            <p>{el.description}</p>
+            <h3 className="margin-top-15">Current Stage: {el.status}</h3>
+            <div className="flexed-div spacedBetween margin-top-15">
+              <div
+                className={`progressCircles ${
+                  el.status === "Submitted" ? "activeStat" : " "
+                }`}
+              >
+                1
               </div>
-              <div className="flexed-div">
-                <div className="flexed-div verticalCenter">
-                  <img
-                    src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
-                    width="16px"
-                    alt="up votes"
-                  />
-                  <p className="margin-left-15">{`${el.upVotes} up-vote${
-                    el.upVotes !== 1 ? "s" : ""
-                  }`}</p>
-                </div>
-                <div className="flexed-div verticalCenter margin-left-30">
-                  <img
-                    src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
-                    width="16px"
-                    alt="up votes"
-                  />
-                  <p className="margin-left-15">{`${el.comments} comment${
-                    el.comments !== 1 ? "s" : ""
-                  }`}</p>
-                </div>
+              <div
+                className={`progressCircles ${
+                  el.status === "Validation" ? "activeStat" : " "
+                }`}
+              >
+                2
+              </div>
+              <div
+                className={`progressCircles ${
+                  el.status === "Development" ? "activeStat" : " "
+                }`}
+              >
+                3
+              </div>
+              <div
+                className={`progressCircles ${
+                  el.status === "Pitch" ? "activeStat" : " "
+                }`}
+              >
+                4
+              </div>
+
+              <div
+                className={`progressCircles ${
+                  el.status === "Implementation" ? "activeStat" : " "
+                }`}
+              >
+                5
+              </div>
+            </div>
+            <div className="flexed-div">
+              <div className="flexed-div verticalCenter">
+                <img
+                  src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                  width="16px"
+                  alt="up votes"
+                />
+                <p className="margin-left-15">{`${el.upVotes &&
+                  el.upVotes.length} up-vote${
+                  el.upVotes.length !== 1 ? "s" : ""
+                }`}</p>
+              </div>
+              <div className="flexed-div verticalCenter margin-left-30">
+                <img
+                  src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                  width="16px"
+                  alt="up votes"
+                />
+                <p className="margin-left-15">{`${el.comments &&
+                  el.comments.length} comment${
+                  el.comments.length !== 1 ? "s" : ""
+                }`}</p>
               </div>
             </div>
           </div>
@@ -166,7 +200,9 @@ class CurrentChallengeIdeas extends React.Component {
               />
             </div>
           </div>
-          {displayIdeas}
+          <div className="flexed-div flexed-wrap spacedBetween">
+            {displayIdeas}
+          </div>
         </main>
       </div>
     );

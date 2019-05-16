@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { drafts } from "../../services/drafts";
 import { Link } from "react-router-dom";
+import IdeaForm from "../form/IdeaForm";
 
 class Drafts extends Component {
   state = {
@@ -16,7 +17,7 @@ class Drafts extends Component {
   render() {
     const { drafts } = this.state;
     return (
-      <div>
+      <div className="marginBelowNavbar">
         <h3>My Drafts</h3>
         {drafts.map((draft, i) => {
           const { title, _id } = draft;

@@ -27,12 +27,14 @@ router.get("/edit-idea/:ideaId", (req, res) => {
 });
 
 router.get("/all-ideas", (req, res) => {
-  Idea.find({}).then(allIdeas => {
-    res.json(allIdeas)
-  }).catch(err => {
-    res.json(err)
-  })
-})
+  Idea.find({})
+    .then(allIdeas => {
+      res.json(allIdeas);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 // router.get("/idea/:ideaId", (req, res) => {
 //   Idea.findById(req.params.ideaId)
@@ -43,13 +45,25 @@ router.get("/all-ideas", (req, res) => {
 //           .then(challenge => {
 // })
 
+router.get("/user/:userId", (req, res) => {
+  const { userId } = req.body;
+  User.findById(userId)
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 router.get("/idea/:ideaId", (req, res) => {
   Idea.findById(req.params.ideaId)
     .populate({
       path: "comments",
       model: "Comment",
       populate: { path: "createdBy", model: "User" }
-    }).populate('teamMembers')
+    })
+    .populate("teamMembers")
     .then(idea => {
       if (idea.challenge) {
         Challenge.findOne({ ideas: { $in: [req.params.ideaId] } })

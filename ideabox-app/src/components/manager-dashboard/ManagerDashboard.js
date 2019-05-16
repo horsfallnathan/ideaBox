@@ -48,7 +48,6 @@ class ManagerDashboard extends React.Component {
   };
   render() {
     const ideasArr = this.state.filteredIdeas;
-    console.log("got here");
     const displayIdeas =
       ideasArr &&
       ideasArr.map((el, i) => {

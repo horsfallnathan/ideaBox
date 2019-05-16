@@ -18,13 +18,17 @@ class Login extends React.Component {
     event.preventDefault();
 
     const { username, password } = this.state;
-    login(username, password).then(user => {
-      this.props.setUser(user);
-    });
-    currentChallenge().then(challenge => {
-      this.props.setCurrentChallenge(challenge.data);
-      this.props.history.push("/dashboard");
-    });
+
+    login(username, password)
+      .then(user => {
+        this.props.setUser(user);
+      })
+      .then(() => {
+        currentChallenge().then(challenge => {
+          this.props.setCurrentChallenge(challenge.data);
+          this.props.history.push("/dashboard");
+        });
+      });
   };
 
   render() {

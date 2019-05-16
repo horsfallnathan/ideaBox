@@ -21,4 +21,8 @@ const updateDraft = (draftId, values) => {
   return service.post(`update-draft/:draftId`, values);
 };
 
-export { createDraft, getDraft, drafts, updateDraft };
+const deleteDraft = draftId => {
+  return service.delete(`/my-drafts/${draftId}`);
+};
+
+export { createDraft, getDraft, drafts, updateDraft, deleteDraft };

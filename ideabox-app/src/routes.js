@@ -37,6 +37,7 @@ class Routes extends React.Component {
   getUser = () => {
     loggedin().then(user => {
       currentChallenge().then(challenge => {
+        console.log(user, challenge);
         this.setState({
           loggedIn: user,
           currentChallenge: challenge.data

@@ -21,6 +21,7 @@ const mongoConnectURI =
   process.env.ENV === "development"
     ? "mongodb://localhost/ideabox-api"
     : process.env.MONGODB_URI;
+
 mongoose
   .connect(mongoConnectURI, { useNewUrlParser: true })
   .then(x => {
@@ -114,8 +115,8 @@ app.use("/api", getUsers);
 const draftsRoute = require("./routes/drafts");
 app.use("/api", draftsRoute);
 
-const adminRoutes = require("./routes/admin")
-app.use("/api", adminRoutes)
+const adminRoutes = require("./routes/admin");
+app.use("/api", adminRoutes);
 
 const timeRoute = require("./routes/timeKeeper");
 app.use("/api", timeRoute);
@@ -124,7 +125,7 @@ const challengeRoutes = require("./routes/challenges");
 app.use("/api", challengeRoutes);
 
 const userProfileRoute = require("./routes/userProfile");
-app.use("/api", userProfileRoute)
+app.use("/api", userProfileRoute);
 
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");

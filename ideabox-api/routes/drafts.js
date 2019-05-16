@@ -3,6 +3,7 @@ const router = express.Router();
 const Draft = require("../models/Drafts");
 
 router.post("/create-draft", (req, res) => {
+  console.log(req.body);
   const {
     title,
     challenge,
@@ -32,6 +33,7 @@ router.post("/create-draft", (req, res) => {
     privacy
   })
     .then(response => {
+      console.log(response);
       res.status(200).json(response);
     })
     .catch(error => {

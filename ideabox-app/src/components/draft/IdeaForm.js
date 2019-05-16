@@ -299,7 +299,7 @@ export default class IdeaForm extends Component {
 
   submitForm = event => {
     event.preventDefault();
-    // this.showAlert(event);
+    this.showAlert(event);
     const estimatedResources = this.state.estimatedResources.map(el => {
       return el.value;
     });

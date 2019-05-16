@@ -19,21 +19,20 @@ const submitIdea = (
   message,
   privacy
 ) => {
-  return service
-    .post("/submit-idea", {
-      title,
-      challenge,
-      category,
-      description,
-      files,
-      need,
-      benefit,
-      estimatedResources,
-      competition,
-      teamMembers,
-      message,
-      privacy
-    })
+  return service.post("/submit-idea", {
+    title,
+    challenge,
+    category,
+    description,
+    files,
+    need,
+    benefit,
+    estimatedResources,
+    competition,
+    teamMembers,
+    message,
+    privacy
+  });
 };
 
 const getUsers = () => {
@@ -52,4 +51,8 @@ const editIdea = (ideaId, values) => {
     .then(response => response.data);
 };
 
-export { submitIdea, getUsers, fileUpload, editIdea };
+const getTeamMember = userId => {
+  return service.get(`/user/${userId}`);
+};
+
+export { submitIdea, getUsers, fileUpload, editIdea, getTeamMember };

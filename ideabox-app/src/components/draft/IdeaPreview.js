@@ -24,7 +24,7 @@ export default class IdeaPreview extends Component {
 
   internalSubmit = event => {
     this.props.submitForm(event);
-    // this.handleClick();
+    this.handleClick();
   };
 
   render() {
@@ -109,6 +109,7 @@ export default class IdeaPreview extends Component {
           </div>
         </div>
         <div>
+          <Button onClick={this.handleClick}>Open simple snackbar</Button>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
@@ -127,7 +128,7 @@ export default class IdeaPreview extends Component {
                 aria-label="Close"
                 color="inherit"
                 // className={classes.close}
-                // onClick={this.handleClose}
+                onClick={this.handleClose}
               >
                 <CloseIcon />
               </IconButton>
