@@ -1165,6 +1165,22 @@ button.bSpecial {
   left: 49.5vw;
 }
 
+.single-idea-public-bottom p, h2 {
+  padding: 8px 8px 8px 8px;
+}
+
+.left-p {
+  margin-left: 1.5rem;
+}
+
+.pic-marg {
+  margin-left: 0.8rem;
+}
+
+.del-com {
+  padding-left: 10rem;
+}
+
 .idea-detail-bottom h2 {
   padding-top: 1.5rem;
 }

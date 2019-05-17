@@ -125,7 +125,7 @@ export default class IdeaPreview extends Component {
             <Snackbar
               anchorOrigin={{
                 vertical: "top",
-                horizontal: "left"
+                horizontal: "right"
               }}
               open={this.state.open}
               autoHideDuration={6000}

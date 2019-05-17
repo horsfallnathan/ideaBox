@@ -28,17 +28,7 @@ class CurrentChallengeIdeas extends React.Component {
     ideas: [],
     filteredIdeas: [],
     searchText: "",
-    countdown: 0,
-    options: [
-      {
-        label: "Name",
-        value: "title"
-      },
-      {
-        label: "Up Votes",
-        value: "upVotes"
-      }
-    ]
+    countdown: 0
   };
 
   sortIdeas = value => {
@@ -241,7 +231,7 @@ class CurrentChallengeIdeas extends React.Component {
           <div className="flexed-div verticalCenter spacedBetween flexed-wrap">
             <h1>Discover Submitted Ideas</h1>
             <div>
-              <Select
+              {/* <Select
                 closeMenuOnSelect={true}
                 components={{ IndicatorSeparator: null }}
                 // value={"Sort"}
@@ -252,14 +242,14 @@ class CurrentChallengeIdeas extends React.Component {
                 ]}
                 styles={customStyle}
               />
-              {/* </FormControl> */}
-              {/* <select onChange={this.sortIdeas} value="Sort by">
+              </FormControl> */}
+              <select onChange={this.sortIdeas} value="Sort by">
                 <option value="z" hidden>
                   Sort by
                 </option>
                 <option value="upVotes">UpVotes</option>
                 <option value="title">Names</option>
-              </select> */}
+              </select>
               <input
                 className="margin-left-15"
                 type="text"
