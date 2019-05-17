@@ -95,18 +95,27 @@ class CurrentChallengeIdeas extends React.Component {
   componentDidUpdate(prevProp) {
     if (prevProp.currentChallenge !== this.props.currentChallenge) {
       let { currentChallenge } = this.props;
-      this.setState({
-        challenge: currentChallenge,
-        filteredIdeas: currentChallenge.ideas,
-        ideas: currentChallenge.ideas
-      });
-      this.setCountdown();
+      currentChallenge &&
+        this.setState({
+          challenge: currentChallenge,
+          filteredIdeas: currentChallenge.ideas,
+          ideas: currentChallenge.ideas
+        });
+      currentChallenge && this.setCountdown();
     }
   }
 
+  // setCountdown = () => {
+  //   let { deadline } = this.props.currentChallenge;
+  //   const milisecLeft = Date.parse(deadline) - Date.now();
+  //   let days = Math.floor(milisecLeft / (1000 * 60 * 60 * 24)) + 1;
+  //   //const hours = Math.floor((milisecLeft / (1000 * 60 * 60)) % 24)
+
+  //   this.setState({ countdown: days });
+  // };
+
   setCountdown = () => {
     let { deadline } = this.props.currentChallenge;
-
     const milisecLeft = Date.parse(deadline) - Date.now();
     let days = Math.floor(milisecLeft / (1000 * 60 * 60 * 24)) + 1;
     //const hours = Math.floor((milisecLeft / (1000 * 60 * 60)) % 24)
@@ -173,7 +182,7 @@ class CurrentChallengeIdeas extends React.Component {
             <div className="flexed-div">
               <div className="flexed-div verticalCenter">
                 <img
-                  src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                  src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png"
                   width="16px"
                   alt="up votes"
                 />

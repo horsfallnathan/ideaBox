@@ -72,49 +72,62 @@ class IdeaDetail extends Component {
     } = this.state.idea;
     const challengeTitle = this.state.challenge.title;
     return (
-      <div className="flexed-col main-container">
-        <div>
-          <h2>Idea Title: </h2>
-          <p> {title}</p>
-          {challengeTitle ? (
-            <>
-              <h2>Innovation Challenge: </h2> <p>{challengeTitle}</p>
-            </>
-          ) : (
-            <h2>Open Idea</h2>
-          )}
+      <>
+        <div className="ideaDetailBanner marginBelowNavbar flexed-div flexed-col main-container alignedCenter verticalCenter">
+          <div className="flexed-div ideaDetailBanner-cont">
+            <div className="col-50 idbc-item flexed-div verticalCenter flexed-col">
+              <h2>Idea Title: </h2>
+              <h1 className="margin-top-15"> {title}</h1>
+            </div>
+            {challengeTitle ? (
+              <>
+                <div className="col-50 idbc-item flexed-div alignedCenter flexed-col">
+                  <h2 className="colorWhite">Innovation Challenge: </h2>
+                  <h1 className="colorWhite margin-top-15">{challengeTitle}</h1>
+                </div>
+              </>
+            ) : (
+              <div className="col-50 idbc-item flexed-div verticalCenter flexed-col">
+                <h2 className="colorWhite">Open Idea</h2>
+              </div>
+            )}
+          </div>
         </div>
-        <div className="idea-detail-bottom">
+        <div className="idea-detail-bottom main-container margin-top-30">
           <h2>Decision Panel</h2>
 
-          <h2>My Idea Description</h2>
-          <p>{description}</p>
+          <h2 className="margin-top-30">My Idea Description</h2>
+          <p className="margin-top-15">{description}</p>
 
-          <h2>Estimated Resources</h2>
-          <ul>
-            {estimatedResources &&
-              estimatedResources.map((resource, i) => {
-                return <li key={i}>{resource}</li>;
-              })}
-          </ul>
+          <h2 className="margin-top-30">Estimated Resources</h2>
+
+          {estimatedResources &&
+            estimatedResources.map((resource, i) => {
+              return (
+                <p className="margin-top-15" key={i}>
+                  {i + 1}:<span className="margin-left-15">{resource}</span>
+                </p>
+              );
+            })}
 
           <div>
-            <h2>Comments</h2>
-
-            <button onClick={this.handleManagToggle}>
-              Manager Comments ({" "}
-              {comments &&
-                comments.filter(el => el.createdBy.role === "manager")
-                  .length}{" "}
-              )
-            </button>
-            <button onClick={this.handleColleagueToggle}>
-              Collegue Comments ({" "}
-              {comments &&
-                comments.filter(el => el.createdBy.role === "employee")
-                  .length}{" "}
-              ){" "}
-            </button>
+            <h2 className="margin-top-30">Comments</h2>
+            <div className="flexed-div margin-top-30">
+              <button onClick={this.handleManagToggle} className="bSpecial">
+                Manager Comments ({" "}
+                {comments &&
+                  comments.filter(el => el.createdBy.role === "manager")
+                    .length}{" "}
+                )
+              </button>
+              <button onClick={this.handleColleagueToggle} className="bSpecial">
+                Colleague Comments ({" "}
+                {comments &&
+                  comments.filter(el => el.createdBy.role === "employee")
+                    .length}{" "}
+                ){" "}
+              </button>
+            </div>
             <div className="single-idea-public-comment-box">
               {comments &&
                 this.state.managComm &&
@@ -132,39 +145,52 @@ class IdeaDetail extends Component {
                 ))}
             </div>
           </div>
-
-          <p>
+          <div className="flexed-div margin-top-15 aligned-end">
             <img
               src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png"
-              width="26px"
+              width="24px"
               height="auto"
               alt="upvotes-icon"
             />
-            This idea has been up-voted by
-            {{ upVotes } === 1
-              ? ` ${upVotes} employee`
-              : ` ${upVotes} employees`}
-          </p>
+            <p className="margin-left-15">
+              This idea has been up-voted by
+              {{ upVotes } === 1
+                ? ` ${upVotes} employee`
+                : ` ${upVotes} employees`}
+            </p>
+          </div>
+          <h2 className="margin-top-30">Team Members</h2>
+          <div className="flexed-div flexed-wrap margin-top-15">
+            {teamMembers &&
+              teamMembers.map((member, i) => {
+                return (
+                  <>
+                    <div className="flexed-div flexed-col alignedCenter margin-left-15">
+                      <img
+                        src={member.profileImage}
+                        alt="team-member"
+                        width="50rem"
+                      />
+                      <p key={i}>
+                        {member.firstName}
+                        {member.lastName}
+                      </p>
+                    </div>
+                  </>
+                );
+              })}
+          </div>
+          {/* <p>Add a team member</p> */}
 
-          <h2>Team Members</h2>
-          {teamMembers &&
-            teamMembers.map((member, i) => {
-              return (
-                <>
-                  <img src={member.profileImage} alt="team-member" />
-                  <p key={i}>
-                    {member.firstName}
-                    {member.lastName}
-                  </p>
-                </>
-              );
-            })}
-          <p>Add a team member</p>
-
-          <Link to="/">Edit idea</Link>
-          <button onClick={this.deleteIdea}>Delete idea</button>
+          <button className="margin-top-30" to="/">
+            Edit idea
+          </button>
+          <button className="margin-left-30" onClick={this.deleteIdea}>
+            Delete idea
+          </button>
         </div>
-      </div>
+        {/* </div> */}
+      </>
     );
   }
 }

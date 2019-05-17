@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { myIdeas } from "../../services/ideas";
 import { Link } from "react-router-dom";
-
 class MyIdeas extends Component {
   state = {
     ideas: []
   };
-
   componentDidMount() {
     myIdeas().then(userInfo => {
       this.setState({ ideas: userInfo.data.ideas });
     });
   }
-
   mapIdeas = () => {
     const { ideas } = this.state;
     return ideas.map((idea, i) => {
@@ -56,7 +53,6 @@ class MyIdeas extends Component {
             >
               4
             </div>
-
             <div
               className={`progressCircles ${
                 status === "Implementation" ? "activeStat" : " "
@@ -91,12 +87,12 @@ class MyIdeas extends Component {
       );
     });
   };
-
   render() {
     const { ideas } = this.state;
     return (
-      <div className="marginBelowNavbar main-container">
-        <h1>My Submitted Ideas</h1>
+      <div className="margin-top-70 main-container marginBelowNavbar">
+        <br />
+        <h1 className="margin-top-15">My Submitted Ideas</h1>
         {ideas && ideas.length > 0 ? (
           <div className="flexed-div flexed-wrap spacedBetween">
             {this.mapIdeas()}
@@ -111,5 +107,4 @@ class MyIdeas extends Component {
     );
   }
 }
-
 export default MyIdeas;

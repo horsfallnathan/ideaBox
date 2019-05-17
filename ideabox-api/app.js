@@ -17,10 +17,10 @@ const passport = require("passport");
 
 require("./passport");
 
-const mongoConnectURI =
-  process.env.ENV === "development"
-    ? "mongodb://localhost/ideabox-api"
-    : process.env.MONGODB_URI;
+const mongoConnectURI = "mongodb://localhost/ideabox-api";
+// process.env.ENV === "development"
+//   ? "mongodb://localhost/ideabox-api"
+//   : process.env.MONGODB_URI;
 
 mongoose
   .connect(mongoConnectURI, { useNewUrlParser: true })

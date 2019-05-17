@@ -6,10 +6,8 @@ class IdeaFeed extends Component {
   state = {
     ideas: [],
     filteredIdeas: [],
-    searchText: ''
+    searchText: ""
   };
-
-
 
   componentDidMount() {
     getAllIdeas().then(ideas => {
@@ -18,42 +16,43 @@ class IdeaFeed extends Component {
   }
 
   sortIdeas = event => {
-    
-    const type = event.target.value
-    const { ideas } = this.state
-    let ideasCopy = ideas.slice()
+    const type = event.target.value;
+    const { ideas } = this.state;
+    let ideasCopy = ideas.slice();
 
     let filteredIdeas = ideasCopy.sort((a, b) => {
-        return b[type] - a[type]
-    })
-    if (type === 'title') {
-        ideasCopy.sort((a, b) => {
-            return a.title.localeCompare(b.title);
-        })
+      return b[type] - a[type];
+    });
+    if (type === "title") {
+      ideasCopy.sort((a, b) => {
+        return a.title.localeCompare(b.title);
+      });
     }
 
     this.setState({
-        filteredIdeas
-    })
-}
-
-searchThroughIdeas = (event) => {
-
-    const searchText = event.target.value
-    
-    event.preventDefault()
-    const { ideas } = this.state
-    let ideasCopy = ideas.slice()
-    
-    let filteredIdeas = ideasCopy.filter(el => {
-        return (el.title.toLowerCase().includes(searchText.toLowerCase()) || el.description.toLowerCase().includes(searchText.toLowerCase()))
+      filteredIdeas
     });
-    
+  };
+
+  searchThroughIdeas = event => {
+    const searchText = event.target.value;
+
+    event.preventDefault();
+    const { ideas } = this.state;
+    let ideasCopy = ideas.slice();
+
+    let filteredIdeas = ideasCopy.filter(el => {
+      return (
+        el.title.toLowerCase().includes(searchText.toLowerCase()) ||
+        el.description.toLowerCase().includes(searchText.toLowerCase())
+      );
+    });
+
     this.setState({
-        searchText,
-        filteredIdeas
-    })
-}
+      searchText,
+      filteredIdeas
+    });
+  };
 
   mapIdeas = () => {
     const { filteredIdeas } = this.state;
@@ -111,7 +110,7 @@ searchThroughIdeas = (event) => {
             <div className="flexed-div">
               <div className="flexed-div verticalCenter">
                 <img
-                  src="https://res.cloudinary.com/nthnh/image/upload/v1557750841/ideaBox/baseline-create_new_folder-24px_1_vpiqrs.svg"
+                  src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png"
                   width="16px"
                   alt="up votes"
                 />
@@ -132,15 +131,6 @@ searchThroughIdeas = (event) => {
             </div>
           </div>
         </React.Fragment>
-        // <div className="relatedIdeasBox" >
-        //     <div key={i} className="relatedIdeasBoxInnerDiv" >
-        //         <Link to={`/idea/${_id}`}>{title}</Link>
-        //         <p>{description}</p>
-        //         <div className="relatedIdeasBoxStatus"><p>Current stage: {status}</p></div>
-        //         <p>{upVotes} up-votes</p>
-        //         <p>{comments.length} comments</p>
-        //     </div>
-        // </div>
       );
     });
   };
@@ -152,18 +142,20 @@ searchThroughIdeas = (event) => {
         <div className="flexed-div verticalCenter spacedBetween flexed-wrap">
           <h1>Idea Feed</h1>
           <div>
-              <select onChange={this.sortIdeas} value="Sort by" >
-                   <option value="z" hidden >Sort by</ option>
-                   <option value="upVotes">UpVotes</option>
-                   <option value="title">Names</option>
-              </select>
-              <input
-                className="margin-left-15"
-                type="text"
-                value={this.state.searchText}
-                onChange={this.searchThroughIdeas}
-                placeholder="Search"
-              />
+            <select onChange={this.sortIdeas} value="Sort by">
+              <option value="z" hidden>
+                Sort by
+              </option>
+              <option value="upVotes">UpVotes</option>
+              <option value="title">Names</option>
+            </select>
+            <input
+              className="margin-left-15"
+              type="text"
+              value={this.state.searchText}
+              onChange={this.searchThroughIdeas}
+              placeholder="Search"
+            />
           </div>
         </div>
         {ideas && ideas.length && ideas.length > 0 ? (

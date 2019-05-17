@@ -1,11 +1,11 @@
-import React from "react";
-import { login } from "../../services/auth";
-import { currentChallenge } from "../../services/challenge";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { login } from '../../services/auth';
+import { currentChallenge } from '../../services/challenge';
+import { Link } from 'react-router-dom';
 class Login extends React.Component {
   state = {
-    username: "",
-    password: ""
+    username: '',
+    password: ''
   };
 
   handleChange = event => {
@@ -26,7 +26,7 @@ class Login extends React.Component {
       .then(() => {
         currentChallenge().then(challenge => {
           this.props.setCurrentChallenge(challenge.data);
-          this.props.history.push("/dashboard");
+          this.props.history.push('/dashboard');
         });
       });
   };
@@ -34,10 +34,11 @@ class Login extends React.Component {
   render() {
     return (
       <div className="landingPage">
-        <div className="col-50 flexed-div flexed-center">
+        <div className="col-50 flexed-div flexed-center padding-top-45 padding-bottom-45 loginBox">
           <form onSubmit={this.handleSubmit}>
             <div>
               <input
+                className="width-20"
                 placeholder="Username"
                 type="text"
                 name="username"
@@ -47,6 +48,7 @@ class Login extends React.Component {
             </div>
             <div>
               <input
+                className="width-20"
                 placeholder="password"
                 type="password"
                 name="password"

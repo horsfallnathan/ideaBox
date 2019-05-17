@@ -102,11 +102,9 @@ class Navbar extends React.Component {
         </List>
         <Divider style={{ backgroundColor: "#40aaaa" }} />
         <List>
-          <Link className={"snavBarLinks margin-left-15"}>Profile</Link>
-        </List>
-        <Divider style={{ backgroundColor: "#40aaaa" }} />
-        <List>
-          <Link className={"snavBarLinks margin-left-15"}>Notifications</Link>
+          <Link to="/user-profile" className={"snavBarLinks margin-left-15"}>
+            Profile
+          </Link>
         </List>
         <Divider style={{ backgroundColor: "#40aaaa" }} />
         <List>
@@ -146,92 +144,126 @@ class Navbar extends React.Component {
                   />
                 </Link>
                 <div className={classes.navIconHide}>
-                  {this.state.loggedIn.role === "super-manager" &&
+                  {this.state.loggedIn.role === "super-manager" && (
                     <div
                       className={
                         "flexed-div flexed-col margin-left-15 alignedCenter"
                       }
                     >
+                      <div>
+                        <img
+                          src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558006232/admin_wzghes.png"
+                          style={{ height: "24px" }}
+                          alt="notification icon"
+                        />
+                      </div>
+                      <div>
+                        <Link to="/admin" className={"snavBarLinks"}>
+                          Admin
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  {(this.state.loggedIn.role === "manager" ||
+                    this.state.loggedIn.role === "super-manager") && (
+                    <>
+                      <div
+                        className={
+                          "flexed-div flexed-col margin-left-15 alignedCenter"
+                        }
+                      >
+                        <div>
+                          <img
+                            src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558002849/manager-dashboard_ytzwy2.png"
+                            style={{ height: "24px" }}
+                            alt="notification icon"
+                          />
+                        </div>
+                        <div>
+                          <Link
+                            to="/managerDashboard"
+                            className={"snavBarLinks"}
+                          >
+                            Dashboard
+                          </Link>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  <div
+                    className={
+                      "flexed-div flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <div>
                       <img
-                        src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558006232/admin_wzghes.png"
+                        src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558001893/idea-feed_fmn812.png"
                         style={{ height: "24px" }}
+                        alt="Idea Feed"
+                      />
+                    </div>
+                    <div>
+                      <Link to="/idea-feed" className={"snavBarLinks"}>
+                        Idea Feed
+                      </Link>
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      "flexed-div  flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <div className="navFix">
+                      <img
+                        src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/Group_twzivq.png"
+                        style={{ width: "24px", height: "24px" }}
+                        alt="my ideas"
+                      />
+                    </div>
+                    <div className="navFixLink">
+                      <Link to="/my-ideas" className={"snavBarLinks"}>
+                        My Ideas
+                      </Link>
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      "flexed-div flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <div className="navFix">
+                      <img
+                        src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/ProfileIcon_n7k0lx.png"
+                        style={{ width: "24px" }}
+                        alt="profile icon"
+                      />
+                    </div>
+                    <div className="navFix">
+                      <Link to="/user-profile" className={"snavBarLinks"}>
+                        Profile
+                      </Link>
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      "flexed-div flexed-col margin-left-15 alignedCenter"
+                    }
+                  >
+                    <div className="navFix">
+                      <img
+                        src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557855541/delete_nvl8ck.png"
+                        style={{ width: "24px" }}
                         alt="notification icon"
                       />
-                      <Link to="/admin" className={"snavBarLinks"}>Admin</Link>
                     </div>
-                  }
-                  {(this.state.loggedIn.role === "manager" || this.state.loggedIn.role === "super-manager") &&
-                    <div
-                      className={
-                        "flexed-div flexed-col margin-left-15 alignedCenter"
-                      }
-                    >
-                      <img
-                        src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558002849/manager-dashboard_ytzwy2.png"
-                        style={{ height: "24px" }}
-                        alt="notification icon"
-                      />
-                      <Link to="/managerDashboard" className={"snavBarLinks"}>Dashboard</Link>
+                    <div className="navFixLink">
+                      <Link
+                        className={"snavBarLinks"}
+                        onClick={this.handleLogout}
+                      >
+                        Logout
+                      </Link>
                     </div>
-                  }
-                  <div
-                    className={
-                      "flexed-div flexed-col margin-left-15 alignedCenter"
-                    }
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1558001893/idea-feed_fmn812.png"
-                      style={{ height: "24px" }}
-                      alt="Idea Feed"
-                    />
-                    <Link to="/idea-feed" className={"snavBarLinks"}>
-                      Idea Feed
-                    </Link>
-                  </div>
-                  <div
-                    className={
-                      "flexed-div alignedCenter flexed-col margin-left-15"
-                    }
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/Group_twzivq.png"
-                      style={{ width: "24px" }}
-                      alt="my ideas"
-                    />
-                    <Link to="/my-ideas" className={"snavBarLinks"}>
-                      My Ideas
-                    </Link>
-                  </div>
-                  <div
-                    className={
-                      "flexed-div flexed-col margin-left-15 alignedCenter"
-                    }
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dpcx0po55/image/upload/v1557765939/IdeaBox/ProfileIcon_n7k0lx.png"
-                      style={{ width: "24px" }}
-                      alt="profile icon"
-                    />
-                    <Link to="/user-profile" className={"snavBarLinks"}>
-                      Profile
-                    </Link>
-                  </div>
-                  <div
-                    className={
-                      "flexed-div flexed-col margin-left-15 alignedCenter"
-                    }
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557855541/delete_nvl8ck.png"
-                      style={{ width: "24px" }}
-                      alt="notification icon"
-                    />
-                    <Link
-                      className={"snavBarLinks"}
-                      onClick={this.handleLogout}
-                    >
-                      Logout
-                    </Link>
                   </div>
                 </div>
               </Toolbar>
@@ -254,13 +286,13 @@ class Navbar extends React.Component {
             </Hidden>
           </React.Fragment>
         ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: this.props.location
-              }}
-            />
-          )}
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: this.props.location
+            }}
+          />
+        )}
       </React.Fragment>
     );
   }

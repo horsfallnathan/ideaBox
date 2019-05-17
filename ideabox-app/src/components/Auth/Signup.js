@@ -1,31 +1,7 @@
 import React from "react";
-// import { withRouter } from "react-router-dom";
 import { signup } from "../../services/auth";
-// import withStyles from "@material-ui/core/styles/withStyles";
 import { fileUpload } from "../../services/ideaSubmission";
-// import classNames from "classnames";
-// import InputAdornment from "@material-ui/core/InputAdornment";
-// import TextField from "@material-ui/core/TextField";
-// import AccountCircle from "@material-ui/icons/AccountCircle";
 import { currentChallenge } from "../../services/challenge";
-
-// const styles = theme => ({
-
-//   sTextInput: {
-//     border: "1px solid #00646e",
-//     padding: "1rem 2rem"
-//   },
-//   sTextInput.focus: {
-//     border: "1px solid #00646e",
-//     padding: "1rem 2rem"
-//   }
-//   // input: {
-//   //   outline: "none !important"
-//   // },
-//   // sTextInput:focus {
-
-//   // }
-// });
 
 class Signup extends React.Component {
   state = {
@@ -75,7 +51,7 @@ class Signup extends React.Component {
   render() {
     // const { classes } = this.props;
     return (
-      <div className={"fullHeightWidth"}>
+      <div className={"fullHeightWidth signupBackground"}>
         <form onSubmit={this.handleSubmit} className={"signupForm"}>
           <img
             src={this.state.profileImage}
@@ -141,4 +117,3 @@ class Signup extends React.Component {
 }
 
 export default Signup;
-// export default withRouter(withStyles(styles)(Signup));

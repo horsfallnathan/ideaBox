@@ -52,7 +52,10 @@ class PublicViewIdea extends Component {
 
   managerComments = () => {
     const { comments } = this.state.idea;
-    const managerCC = comments.filter(el => el.createdBy.role === "manager" || el.createdBy.role === "super-manager");
+    const managerCC = comments.filter(
+      el =>
+        el.createdBy.role === "manager" || el.createdBy.role === "super-manager"
+    );
     return managerCC.map((comment, i) => {
       const { profileImage, firstName, lastName } = comment.createdBy;
       return (
@@ -164,137 +167,186 @@ class PublicViewIdea extends Component {
     } = this.state.idea;
     return (
       <div>
-        <div className="flexed-div single-idea-public-col-container">
+        <div className="ideaDetailBanner marginBelowNavbar flexed-div flexed-col main-container alignedCenter verticalCenter">
+          <div className="flexed-div ideaDetailBanner-cont">
+            {this.state.challenge ? (
+              <>
+                <div className="col-50 idbc-item flexed-div verticalCenter flexed-col">
+                  <h2>The Innovation Challenge: </h2>
+                  <h1 className="margin-top-15">
+                    {this.state.challenge.title}
+                  </h1>
+                </div>
+              </>
+            ) : (
+              <div className="col-50 idbc-item flexed-div verticalCenter flexed-col">
+                <h2 className="colorWhite">Open Idea</h2>
+              </div>
+            )}
+            <div className="col-50 idbc-item flexed-div alignedCenter flexed-col">
+              <h2 className="colorWhite">Submitted Idea:</h2>
+              <h1 className="colorWhite margin-top-15">{title}</h1>
+            </div>
+          </div>
+        </div>
+        {/* <div className="flexed-div single-idea-public-col-container">
           <div className="single-idea-public-col single-idea-public-col-left">
             {this.state.challenge ? (
               <h1>The Innovation Challenge: {this.state.challenge.title}</h1>
             ) : (
-                <h1>Open Idea</h1>
-              )}
+              <h1>Open Idea</h1>
+            )}
             <div id="triangle-right" />
           </div>
           <div className="single-idea-public-col single-idea-public-col-right">
             <h1>Submitted Idea: {title}</h1>
           </div>
-        </div>
-        <div className="main-container single-idea-public-bottom">
+        </div> */}
+        <div className="main-container single-idea-public-bottom margin-top-30">
           {this.props.loggedIn &&
-            this.props.loggedIn.role === "super-manager" ? (
-              status === "Rejected" ||
-                status === "Requesting more info" ||
-                status === "Submitted" ? (
-                  this.beforeIdeaAcceptedForm()
-                ) : (
-                  this.afterIdeaAcceptedForm()
-                )
+          this.props.loggedIn.role === "super-manager" ? (
+            status === "Rejected" ||
+            status === "Requesting more info" ||
+            status === "Submitted" ? (
+              this.beforeIdeaAcceptedForm()
             ) : (
-              <h1>Status: {status}</h1>
-            )}
+              this.afterIdeaAcceptedForm()
+            )
+          ) : (
+            <h1>Status: {status}</h1>
+          )}
 
-          <h2>Engagement</h2>
+          <h2 className="margin-top-30">Engagement</h2>
           <img
             src="https://res.cloudinary.com/dxbwwhlc6/image/upload/v1557761454/like_d65yra.png"
-            width="26px"
+            width="15px"
             alt="upvotes-icon"
+            className="margin-top-15"
           />
           {{ upVotes } === 1 ? (
             <>
-              <h2 className="single-idea-public-inline">{upVotes}</h2>{" "}
+              <h2 className="single-idea-public-inline ">{upVotes}</h2>{" "}
               <p className="upvotes single-idea-public-inline">Up-Vote</p>
             </>
           ) : (
-              <>
-                {" "}
-                <h2 className="single-idea-public-inline">{upVotes}</h2>{" "}
-                <p className="upvotes single-idea-public-inline">Up-Votes</p>{" "}
-              </>
-            )}
+            <>
+              {" "}
+              <h2 className="single-idea-public-inline">{upVotes}</h2>{" "}
+              <p className="upvotes single-idea-public-inline">Up-Votes</p>{" "}
+            </>
+          )}
 
-          <h2>Idea Description</h2>
-          <p>{description}</p>
+          <h2 className="margin-top-30">Idea Description</h2>
+          <p className="margin-top-15">{description}</p>
 
-          <h2 className="single-idea-public-inline">Need</h2>
-          <p className="single-idea-public-inline">
+          <h2 className="single-idea-public-inline margin-top-30">Need</h2>
+          <p className="single-idea-public-inline margin-top-15">
             <i className="specifications-single-idea-public">
               Who is the target group for your idea?
             </i>
           </p>
-          <p>{need}</p>
+          <p className="margin-top-15">{need}</p>
 
-          <h2 className="single-idea-public-inline">Benefit</h2>
+          <h2 className="single-idea-public-inline margin-top-30">Benefit</h2>
           <p className="single-idea-public-inline">
             <i className="specifications-single-idea-public">
               How will the idea benefit the target group?{" "}
             </i>
           </p>
-          <p>{benefit}</p>
+          <p className="margin-top-15">{benefit}</p>
 
-          <h2 className="single-idea-public-inline">Estimated Resources</h2>
+          <h2 className="single-idea-public-inline margin-top-30">
+            Estimated Resources
+          </h2>
           <p className="single-idea-public-inline">
             <i className="specifications-single-idea-public">
               Which resources do you think are needed to work on this idea?
             </i>
           </p>
-          <ul>{estimatedResources && estimatedResources.map((resource, i) => {
-            return (
-              <li key={i}>{resource}</li>
-            )
-          })}</ul>
 
-          <h2 className="single-idea-public-inline">Competition</h2>
+          {estimatedResources &&
+            estimatedResources.map((resource, i) => {
+              return (
+                <p key={i} className="margin-top-15">
+                  {i + 1}
+                  <span className="margin-left-15">{resource}</span>
+                </p>
+              );
+            })}
+
+          <h2 className="single-idea-public-inline margin-top-30">
+            Competition
+          </h2>
           <p className="single-idea-public-inline">
             <i className="specifications-single-idea-public">
               Are there any other products trying to solve the same problem?
             </i>
           </p>
-          <p>{competition}</p>
+          <p className="margin-top-15">{competition}</p>
 
-          <h2>Idea Team</h2>
-          {teamMembers && teamMembers.map((member, i) => {
-            return (
-              <>
-                <img src={member.profileImage} alt="team-member" />
-                <p key={i}>{member.firstName}{member.lastName}</p>
-              </>
-            )
-          })}
+          <h2 className="margin-top-30">Idea Team</h2>
+          <div className="flexed-div flexed-wrap margin-top-15">
+            {teamMembers &&
+              teamMembers.map((member, i) => {
+                return (
+                  <>
+                    <div className="flexed-div flexed-col alignedCenter margin-left-15">
+                      <img
+                        src={member.profileImage}
+                        alt="team-member"
+                        width="50rem"
+                      />
+                      <p key={i}>
+                        {member.firstName}
+                        {member.lastName}
+                      </p>
+                    </div>
+                  </>
+                );
+              })}
+          </div>
 
           <div>
-            <h2>Comments</h2>
-            <button onClick={this.handleManagToggle}>
-              Manager Comments ({" "}
-              {comments &&
-                comments.filter(el => el.createdBy.role === "manager")
-                  .length}{" "}
-              )
-            </button>
-            <button onClick={this.handleColleagueToggle}>
-              Collegue Comments ({" "}
-              {comments &&
-                comments.filter(el => el.createdBy.role === "employee")
-                  .length}{" "}
-              ){" "}
-            </button>
+            <h2 className="margin-top-30">Comments</h2>
+            <div className="flexed-div margin-top-30">
+              <button onClick={this.handleManagToggle} className="bSpecial">
+                Manager Comments ({" "}
+                {comments &&
+                  comments.filter(el => el.createdBy.role === "manager")
+                    .length}{" "}
+                )
+              </button>
+              <button onClick={this.handleColleagueToggle} className="bSpecial">
+                Colleague Comments ({" "}
+                {comments &&
+                  comments.filter(el => el.createdBy.role === "employee")
+                    .length}{" "}
+                ){" "}
+              </button>
+            </div>
             <div className="single-idea-public-comment-box">
               {comments &&
                 this.state.managComm &&
                 (this.managerComments().length > 0 ? (
                   this.managerComments()
                 ) : (
-                    <p>No manager comments yet</p>
-                  ))}
+                  <p>No manager comments yet</p>
+                ))}
               {comments &&
                 !this.state.managComm &&
                 (this.colleagueComments().length > 0 ? (
                   this.colleagueComments()
                 ) : (
-                    <p>No colleague comments yet</p>
-                  ))}
+                  <p>No colleague comments yet</p>
+                ))}
             </div>
           </div>
 
           <form onSubmit={this.handleSubmit}>
-            <img src={this.props.loggedIn && this.props.loggedIn.profileImage} alt="loggedIn-user" />
+            <img
+              src={this.props.loggedIn && this.props.loggedIn.profileImage}
+              alt="loggedIn-user"
+            />
             <input
               type="text"
               placeholder="Leave a comment..."
@@ -302,6 +354,9 @@ class PublicViewIdea extends Component {
               name="commentContent"
               onChange={this.handleChange}
             />
+            <button type="submit" className="margin-left-15">
+              Submit Comment
+            </button>
           </form>
         </div>
       </div>

@@ -124,7 +124,7 @@ export default class IdeaPreview extends Component {
           <div>
             <Snackbar
               anchorOrigin={{
-                vertical: "bottom",
+                vertical: "top",
                 horizontal: "left"
               }}
               open={this.state.open}

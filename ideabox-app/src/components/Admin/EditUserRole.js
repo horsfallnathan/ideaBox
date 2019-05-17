@@ -24,15 +24,15 @@ class EditUserRole extends Component {
 
     searchThroughUsers = (event) => {
         const searchText = event.target.value
-        
+
         event.preventDefault()
         const { users } = this.state
         let usersCopy = users.slice()
-        
+
         let filteredUsers = usersCopy.filter(el => {
             return (el.username.toLowerCase().includes(searchText.toLowerCase() || el.email.toLowerCase().includes(searchText.toLowerCase())))
         });
-        
+
         this.setState({
             searchText,
             filteredUsers
@@ -60,15 +60,16 @@ class EditUserRole extends Component {
         })
 
         return (
-            <div className="main-container">
+            <div className="marginBelowNavbar main-container">
+                <br /><br />
                 <h2>Edit User Role</h2>
                 <input
-                className="margin-left-15"
-                type="text"
-                value={this.state.searchText}
-                onChange={this.searchThroughUsers}
-                placeholder="Search"
-              />
+                    className="margin-left-15"
+                    type="text"
+                    value={this.state.searchText}
+                    onChange={this.searchThroughUsers}
+                    placeholder="Search"
+                />
                 {usersMapped}
             </div>
         )

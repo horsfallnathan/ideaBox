@@ -27,8 +27,6 @@ class ChallengeForm extends React.Component {
   //   });
   // };
 
-  
-
   handleChange = event => {
     const { name, value } = event.target;
 
@@ -36,7 +34,13 @@ class ChallengeForm extends React.Component {
   };
 
   handleSubmit = event => {
-    const { title, description, startDate, deadline, managerPanel } = this.state;
+    const {
+      title,
+      description,
+      startDate,
+      deadline,
+      managerPanel
+    } = this.state;
     event.preventDefault();
     getAllChallenges().then(allChallenges => {
       const conflictingChallenge = allChallenges.data.filter(
@@ -44,12 +48,16 @@ class ChallengeForm extends React.Component {
       );
       conflictingChallenge.length > 0
         ? alert("Challenge timeline conflicts with another challenge")
-        : createChallenge(title, description, startDate, deadline, managerPanel).then(
-            challenge => {
-              let challengeId = challenge._id;
-              this.props.history.push(`/managerDashboard/${challengeId}`);
-            }
-          );
+        : createChallenge(
+            title,
+            description,
+            startDate,
+            deadline,
+            managerPanel
+          ).then(challenge => {
+            let challengeId = challenge._id;
+            this.props.history.push(`/managerDashboard/${challengeId}`);
+          });
     });
   };
 
@@ -58,23 +66,32 @@ class ChallengeForm extends React.Component {
   // }
 
   render() {
-    const { title, description, startDate, deadline, managerPanel } = this.state;
+    const {
+      title,
+      description,
+      startDate,
+      deadline,
+      managerPanel
+    } = this.state;
     // const userList = this.props.users.map((user, index) => ({
     //   key: user._id,
     //   text: user.username,
     //   value: user._id
     // }));
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>title</label>
+      <div className="main-container marginBelowNavbar">
+        <br />
+        <br />
+        <h1>Create Challenge</h1>
+        <form onSubmit={this.handleSubmit} className="signupForm">
+          <h4>Title</h4>
           <input
             type="text"
             name="title"
             value={title}
             onChange={this.handleChange}
           />
-          <label>description</label>
+          <h4>Description</h4>
           <input
             type="text"
             maxLength="300"
@@ -82,22 +99,22 @@ class ChallengeForm extends React.Component {
             value={description}
             onChange={this.handleChange}
           />
-          <label>start Date</label>
+          <h4>Start Date</h4>
           <input
             type="date"
             name="startDate"
             value={startDate}
             onChange={this.handleChange}
           />
-          <label>deadline</label>
+          <h4>Deadline</h4>
           <input
             type="date"
             name="deadline"
             value={deadline}
             onChange={this.handleChange}
           />
-          
-          <input type="submit" value="submit" />
+
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );
