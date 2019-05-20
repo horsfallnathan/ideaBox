@@ -75,11 +75,12 @@ class CurrentChallengeIdeas extends React.Component {
 
   componentDidMount() {
     let { currentChallenge } = this.props;
-    this.setCountdown();
-    this.setState({
-      challenge: currentChallenge,
-      filteredIdeas: currentChallenge.ideas
-    });
+    currentChallenge && this.setCountdown();
+    currentChallenge &&
+      this.setState({
+        challenge: currentChallenge,
+        filteredIdeas: currentChallenge.ideas
+      });
   }
 
   componentDidUpdate(prevProp) {

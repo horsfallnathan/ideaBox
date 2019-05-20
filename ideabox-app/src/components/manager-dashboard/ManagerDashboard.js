@@ -18,20 +18,22 @@ class ManagerDashboard extends React.Component {
 
   componentDidMount() {
     let { currentChallenge } = this.props;
-    this.setState({
-      challenge: currentChallenge,
-      filteredIdeas: currentChallenge.ideas
-    });
+    currentChallenge &&
+      this.setState({
+        challenge: currentChallenge,
+        filteredIdeas: currentChallenge.ideas
+      });
   }
 
   componentDidUpdate(prevProp) {
     if (prevProp.currentChallenge !== this.props.currentChallenge) {
       let { currentChallenge } = this.props;
-      this.setState({
-        challenge: currentChallenge,
-        filteredIdeas: currentChallenge.ideas,
-        ideas: currentChallenge.ideas
-      });
+      currentChallenge &&
+        this.setState({
+          challenge: currentChallenge,
+          filteredIdeas: currentChallenge.ideas,
+          ideas: currentChallenge.ideas
+        });
     }
   }
 
